@@ -8,7 +8,7 @@ class Nav extends Component {
         return (
             <ul className="NavList">
                 <li>
-                    <Link exact to="/">HOME</Link>
+                    <Link to="/">HOME</Link>
                 </li>
                 <li>
                     <Link to="/about">ABOUT</Link>

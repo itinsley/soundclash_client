@@ -1,12 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Home, Container, Nav, About } from './components';
-
-import {
-  Route,
-  Switch
-} from 'react-router-dom'
-
+import { Container, Nav } from './components';
 
 class App extends React.Component {
   render() {
@@ -15,9 +9,9 @@ class App extends React.Component {
         <div className="App-header">
           <Nav/>
         </div>
-        <p className="App-intro">
+        <div className="App-intro">
           <Container/>
-        </p>
+        </div>
       </div>
     );
   }
