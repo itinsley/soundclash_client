@@ -10,13 +10,22 @@ class App extends React.Component {
     const accessToken = response["accessToken"];
     console.log(accessToken)
 
-    // curl -H "Accept: application/json" -H "Content-type: application/json" -X POST  http://localhost:3001/users/auth/api_sessions  -d '{"AccessToken": "EAAFiJQMNiUkBANTNW10nOoqotZCAhHq4kByUDxqOMd7Vcj3sCDf2p4aZB0orceXNKfY323gz5TFcTmldlIj65GUAjTOZAyvcxT6ISur5frl2XGdWPKfZBvRWJncSy1CFiijVuCyWjP0EPbV1k9nS2WGj4mQZBbogDvPnbsn9JvN9UYUftpQ0xkM0dmZB5N3I149OijKkVZCCgZDZD"}'
-    axios.post('http://localhost:3001/users/auth/api_sessions', {
+    //See if we can proxy to api
+    // axios.get("/api/wontwork")
+
+    // See if we can get ourselves a session cookie
+    // Browser should take care of storage
+    axios.post('/users/auth/api_sessions', {
         AccessToken: accessToken
       })
-      .then(function (response) {
+      .then((response)=> {
         //This response confirms server validates FB user and returns FB user ID (user.uid in soundclash DB)
         console.log(response);
+        //Now we've got a cookie. Can we access a secure route?
+        axios.get('/users/1.json').then((response)=>{
+          console.log(response);
+        })
+
       })
       .catch(function (error) {
         console.log(error);
@@ -38,7 +47,8 @@ class App extends React.Component {
         </div>
         <div id="fbDemo">
           <FacebookLogin
-            appId="389386081241417"
+            appId="389386081241417" //soundclash_development
+            // appId="803392683074499" //soundclash_edge
             autoLoad={true}
             fields="name,email,picture"
             onClick={this.componentClicked}
