@@ -21,8 +21,15 @@ class App extends React.Component {
       .then((response)=> {
         //This response confirms server validates FB user and returns FB user ID (user.uid in soundclash DB)
         console.log(response);
-        //Now we've got a cookie. Can we access a secure route?
-        axios.get('/users/1.json').then((response)=>{
+        //Now we've got a JWT. Can we access a secure route?
+        localStorage.token = response['data']['jwt']
+
+        axios.get('/users/83.json?jwt=' + 'bogus').then((response)=>{
+          console.log("bogus token should fail");
+          console.log(response);
+        })
+
+        axios.get('/users/83.json?jwt=' + localStorage.token).then((response)=>{
           console.log(response);
         })
 
