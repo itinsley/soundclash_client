@@ -2,7 +2,7 @@
   "name": "soundclash_client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://soundclash.test:3001",
+  // "proxy": "http://soundclash.test:3001",
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
