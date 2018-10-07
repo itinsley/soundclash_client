@@ -54,8 +54,8 @@ class App extends React.Component {
         </div>
         <div id="fbDemo">
           <FacebookLogin
-            appId="389386081241417" //soundclash_development
-            // appId="803392683074499" //soundclash_edge
+            // appId="389386081241417" //soundclash_development
+            appId="803392683074499" //soundclash_edge
             autoLoad={true}
             fields="name,email,picture"
             onClick={this.componentClicked}
