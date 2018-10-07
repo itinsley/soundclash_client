@@ -40,7 +40,6 @@ class App extends React.Component {
   }
 
   componentClicked (response) {
-    console.log(process.env.REACT_APP_FACEBOOK_APPID)
     console.log(response)
   }
 
@@ -54,6 +53,7 @@ class App extends React.Component {
           <Container/>
         </div>
         <div id="fbDemo">
+          {process.env.REACT_APP_FACEBOOK_APPID}
           <FacebookLogin
             // appId="389386081241417" //soundclash_development
             // appId="803392683074499" //soundclash_edge
