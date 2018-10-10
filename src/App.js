@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import logo from './logo.svg';
-import { Container, Nav, About, Home, NotFound  } from './components';
+import { Nav, About, Home, Login, NotFound  } from './components';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 class App extends React.Component {
@@ -26,7 +26,7 @@ class App extends React.Component {
         //Now we've got a JWT. Can we access a secure route?
         localStorage.token = response['data']['jwt']
 
-        axios.get('/users/83.json?jwt=' + 'bogus').then((response)=>{
+        axios.get('/users/83.json?jwt=bogus').then((response)=>{
           console.log("bogus token should fail");
           console.log(response);
         })
@@ -56,10 +56,11 @@ class App extends React.Component {
           </div>
 
           <div className="App-intro">
-            <div>
+            <div id = "routes">
               <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route path='/about' component={About}/>
+                <Route path='/login' component={Login}/>
                 <Route component={NotFound}/>
               </Switch>
             </div>
