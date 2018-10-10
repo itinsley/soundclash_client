@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
-import { Container, Nav } from './components';
+import logo from './logo.svg';
+import { Container, Nav, About, Home, NotFound  } from './components';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 
 class App extends React.Component {
@@ -45,27 +47,40 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <Nav/>
+      <Router basename='/client'>
+        <div className="App">
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Welcome to React</h1>
+            <Nav />
+          </div>
+
+          <div className="App-intro">
+            <div>
+              <Switch>
+                <Route exact path='/' component={Home}/>
+                <Route path='/about' component={About}/>
+                <Route component={NotFound}/>
+              </Switch>
+            </div>
+          </div>
+          <div id="fbDemo">
+            {process.env.REACT_APP_FACEBOOK_APPID}
+            <FacebookLogin
+              // appId="389386081241417" //soundclash_development
+              // appId="803392683074499" //soundclash_edge
+              appId={process.env.REACT_APP_FACEBOOK_APPID} //soundclash_edge
+              autoLoad={true}
+              fields="name,email,picture"
+              onClick={this.componentClicked}
+              callback={this.responseFacebook} />
+          </div>
         </div>
-        <div className="App-intro">
-          <Container/>
-        </div>
-        <div id="fbDemo">
-          {process.env.REACT_APP_FACEBOOK_APPID}
-          <FacebookLogin
-            // appId="389386081241417" //soundclash_development
-            // appId="803392683074499" //soundclash_edge
-            appId={process.env.REACT_APP_FACEBOOK_APPID} //soundclash_edge
-            autoLoad={true}
-            fields="name,email,picture"
-            onClick={this.componentClicked}
-            callback={this.responseFacebook} />
-        </div>
-      </div>
+      </Router>
     );
   }
 }
 
 export default App;
+
+
