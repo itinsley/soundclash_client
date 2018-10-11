@@ -11,9 +11,7 @@ class Login extends Component {
           <div id="fbDemo">
             {process.env.REACT_APP_FACEBOOK_APPID}
             <FacebookLogin
-              // appId="389386081241417" //soundclash_development
-              // appId="803392683074499" //soundclash_edge
-              appId={process.env.REACT_APP_FACEBOOK_APPID} //soundclash_edge
+              appId={process.env.REACT_APP_FACEBOOK_APPID}
               autoLoad={true}
               fields="name,email,picture"
               onClick={this.componentClicked}
@@ -42,7 +40,7 @@ class Login extends Component {
         //Now we've got a JWT. Can we access a secure route?
         localStorage.token = response['data']['jwt']
 
-        axios.get('/users/83.json?jwt=' + localStorage.token).then((response)=>{
+        axios.get('/users/5.json?jwt=' + localStorage.token).then((response)=>{
           console.log(response);
         })
 

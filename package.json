@@ -2,7 +2,7 @@
   "name": "soundclash_client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://soundcla5h-edge.herokuapp.com",
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
