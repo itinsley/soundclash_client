@@ -35,6 +35,7 @@ class Home extends Component {
                 <td>Comments</td>
                 <td>last_track</td>
                 <td>thumbnail</td>
+                <td>uri</td>
               </tr>
             </thead>
             <tbody>
@@ -56,6 +57,7 @@ function ClashRow(props){
       <td>{props.clash.comments_count}</td>
       <td>{props.clash.last_track_url}</td>
       <td>{props.clash.thumbnail}</td>
+      <td>{props.clash.uri}</td>
     </tr>
   );
 }
