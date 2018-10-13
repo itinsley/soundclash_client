@@ -33,6 +33,8 @@ class Home extends Component {
                 <td>Owner</td>
                 <td>Opponent</td>
                 <td>Comments</td>
+                <td>last_track</td>
+                <td>thumbnail</td>
               </tr>
             </thead>
             <tbody>
@@ -52,6 +54,8 @@ function ClashRow(props){
       <td>{props.clash.owner}</td>
       <td>{props.clash.opponent}</td>
       <td>{props.clash.comments_count}</td>
+      <td>{props.clash.last_track_url}</td>
+      <td>{props.clash.thumbnail}</td>
     </tr>
   );
 }
