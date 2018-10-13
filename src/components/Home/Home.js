@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
 
@@ -51,7 +52,9 @@ class Home extends Component {
 function ClashRow(props){
   return (
     <tr>
-      <td>{props.clash.name}</td>
+      <td>
+        <Link to={"/clashes/" + props.clash.id}>{props.clash.name}</Link>
+      </td>
       <td>{props.clash.owner}</td>
       <td>{props.clash.opponent}</td>
       <td>{props.clash.comments_count}</td>

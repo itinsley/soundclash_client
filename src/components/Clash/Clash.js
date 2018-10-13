@@ -5,7 +5,15 @@ class Clash extends Component {
 
   constructor(props) {
     super(props);
-    this.state={clash: {}}
+    this.state=
+    {clash:
+      {rounds:[
+        { id: 0,
+          owner_track:{},
+          opponent_track:{}
+        }]
+      }
+    }
   }
 
   componentDidMount(){
@@ -21,6 +29,7 @@ class Clash extends Component {
   }
 
   render() {
+    const rounds = this.state['clash']['rounds']
     return (
       <div>
         <div>
@@ -36,20 +45,48 @@ class Clash extends Component {
 function ClashTile(props){
   return (
     <div>
-      <div>{props.clash.name}</div>
-      <div>{props.clash.owner}</div>
-      <div>{props.clash.opponent}</div>
-      <div>{props.clash.comments_count}</div>
-      <div>{props.clash.last_track_url}</div>
-      <div>{props.clash.thumbnail}</div>
-      <div>{props.clash.uri}</div>
+      <div>NAME: {props.clash.name}</div>
+      <div>OWNER: {props.clash.owner}</div>
+      <div>OPPONENT: {props.clash.opponent}</div>
+      <div>COMMENTS_COUNT: {props.clash.comments_count}</div>
+      <div>LAST_TRACK: {props.clash.last_track_url}</div>
+      <div>THUMBNAIL: {props.clash.thumbnail}</div>
+      <div>URI: {props.clash.uri}</div>
+      <div>
+        {props.clash['rounds'].map((round, i) => <RoundTile key={round.id} round={round}/>)}
+      </div>
+    </div>
+
+  );
+}
+
+function RoundTile(props){
+  return (
+    <div>
+      <div>ROUND INDEX: {props.round.index}</div>
+      <div>
+        <TrackTile track={props.round.owner_track}/>
+      </div>
+    </div>
+  );
+}
+
+function TrackTile(props){
+
+  return (
+    <div>
+      <div>NAME: {props.track.name}</div>
+      <div>URL: {props.track.url}</div>
+      <div>UNAVAILABLE: {props.track.unavailable+' '}</div>
+      <div>THUMBNAIL: {props.track.thumbnail}</div>
+
     </div>
   );
 }
 
 function getClash(id) {
   return new Promise(function(resolve, reject) {
-    axios.get('/clashes/' + id).then((response)=>{
+    axios.get('/clashes/' + id + '.json').then((response)=>{
       resolve(response['data']);
     })
   })
