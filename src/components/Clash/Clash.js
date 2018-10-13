@@ -13,7 +13,7 @@ class Clash extends Component {
     const me = this;
 
     const id = this.props.match.params.id;
-    getClash(id).then(function(clash){
+    getClash(id).then((clash)=>{
       me.setState ({
         clash: clash
       });
@@ -21,7 +21,6 @@ class Clash extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <div>

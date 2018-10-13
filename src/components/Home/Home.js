@@ -12,7 +12,7 @@ class Home extends Component {
     //Is this an anti-pattern
     const me = this;
 
-    getClashes().then(function(clashes){
+    getClashes().then((clashes)=>{
       me.setState ({
         clashes: clashes
       });
@@ -39,7 +39,7 @@ class Home extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state['clashes'].map((clash, i) => <ClashRow clash={clash}/>)}
+              {this.state['clashes'].map((clash, i) => <ClashRow key={clash.id} clash={clash}/>)}
             </tbody>
           </table>
         </div>
