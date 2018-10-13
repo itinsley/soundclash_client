@@ -63,11 +63,7 @@ function ClashRow(props){
 function getClashes() {
   return new Promise(function(resolve, reject) {
     axios.get('/clashes.json').then((response)=>{
-      let clashes=[];
-      for (let i=0; i<=response['data'].length-1; i++){
-        clashes[i]=response['data'][i];
-      }
-      resolve(clashes);
+      resolve(response['data']);
     })
   })
 }
