@@ -4,6 +4,7 @@ import Home from './Home/Home';
 import NotFound from './NotFound/NotFound';
 import Login from './Login/Login';
 import Clash from './Clash/Clash';
+import Track from './Track/Track';
 
 export {
     Nav,
@@ -11,5 +12,6 @@ export {
     Home,
     Login,
     Clash,
+    Track,
     NotFound
 };

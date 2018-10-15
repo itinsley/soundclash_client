@@ -29,7 +29,7 @@ class Clash extends Component {
   }
 
   render() {
-    const rounds = this.state['clash']['rounds']
+    // const rounds = this.state['clash']['rounds']
     return (
       <div>
         <div>
@@ -52,8 +52,9 @@ function ClashTile(props){
       <div>LAST_TRACK: {props.clash.last_track_url}</div>
       <div>THUMBNAIL: {props.clash.thumbnail}</div>
       <div>URI: {props.clash.uri}</div>
+      <hr />
       <div>
-        {props.clash['rounds'].map((round, i) => <RoundTile key={round.id} round={round}/>)}
+        {props.clash['rounds'].map((round, i) => <RoundTile key={'round'+round.id} round={round}/>)}
       </div>
     </div>
 
@@ -65,8 +66,14 @@ function RoundTile(props){
     <div>
       <div>ROUND INDEX: {props.round.index}</div>
       <div>
-        <TrackTile track={props.round.owner_track}/>
+      <b>OWNER</b>
+        <TrackTile key={'track'+props.round.owner_track.id} track={props.round.owner_track}/>
       </div>
+      <div>
+      <b>OPPONENT</b>
+        <TrackTile key={'track'+props.round.opponent_track.id} track={props.round.opponent_track}/>
+      </div>
+      <hr />
     </div>
   );
 }
@@ -75,7 +82,8 @@ function TrackTile(props){
 
   return (
     <div>
-      <div>NAME: {props.track.name}</div>
+      <div>ID: {props.track.id}</div>
+      <div><a href={'/client/tracks/' + props.track.id}>{props.track.name}</a></div>
       <div>URL: {props.track.url}</div>
       <div>UNAVAILABLE: {props.track.unavailable+' '}</div>
       <div>THUMBNAIL: {props.track.thumbnail}</div>
