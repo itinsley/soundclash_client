@@ -19,7 +19,7 @@ class Login extends Component {
       <div>
         <h1>Login</h1>
 
-          <div id="fbDemo">
+          <div id="fbDemo">{process.env.REACT_APP_FACEBOOK_APPID}
             <FacebookLogin
               appId={process.env.REACT_APP_FACEBOOK_APPID}
               autoLoad={true}

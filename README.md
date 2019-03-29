@@ -10,6 +10,10 @@
  - To get FB integration working you neet to setup a hostname alias to soundclash.test and run from port 3000. Can't use Soundclash.dev as this is a reserved domain by google. soundclash.test:3000 is an approved callback URI for Facebook app.
  - App runs in /client i.e. - http://soundclash.test:3000/client
 
+## Start
+
+    HTTPS=true npm start
+
 # API
 
 ## Open (unsecured) routes
