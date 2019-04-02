@@ -34,8 +34,10 @@ class Login extends Component {
           <div id="responseData">
             Below is an arbitrary user from a secured URI for POC for JWT
             <table border='1'>
-              <tr><td id='userId'>{this.state['user']['id']}</td></tr>
-              <tr><td id='userEmail'>{this.state['user']['email']}</td></tr>
+              <tbody>
+                <tr><td id='userId'>{this.state['user']['id']}</td></tr>
+                <tr><td id='userEmail'>{this.state['user']['email']}</td></tr>
+              </tbody>
             </table>
           </div>
 

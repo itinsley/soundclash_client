@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import logo from './logo.svg';
 import { Nav, About, Home, Login, Clash, Track, NotFound  } from './components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -10,11 +9,7 @@ class App extends React.Component {
     return (
       <Router basename='/client'>
         <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-            <Nav />
-          </div>
+          <Nav />
 
           <div className="App-intro">
             <div id = "routes">
