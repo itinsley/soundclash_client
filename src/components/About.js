@@ -6,9 +6,9 @@ function About() {
     <div className="mx-auto text-center" style={{maxWidth: '56.25rem'}}>
       <h1>What is Soundclash?</h1>
       <hr/>
-      <div class="u-s-mb-base">
+      <div className="u-s-mb-base">
         <a href="https://www.google.com/search?q=soundclash" >
-          <img style = {{maxWidth:'100%'}}src="https://res.cloudinary.com/soundclash/image/asset/soundclash_defn-0cc8b1b418d0ca290528fa2b373cc4b2.png" />
+          <img alt="Soundclash dictionary definition screenshot" style = {{maxWidth:'100%'}}src="https://res.cloudinary.com/soundclash/image/asset/soundclash_defn-0cc8b1b418d0ca290528fa2b373cc4b2.png" />
         </a>
       </div>
       <div className="mx-auto text-left">

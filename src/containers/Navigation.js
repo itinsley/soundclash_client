@@ -58,7 +58,7 @@ export class Navigation extends Component {
         <div>
           <Navbar dark color="dark" expand="md">
               <Link to='/' className='navbar-brand'>
-                <img src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />
+                <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />
               </Link>
 
             <NavbarToggler onClick={this.toggle} />
