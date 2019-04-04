@@ -7,7 +7,7 @@ import {
     Nav,
     NavLink,
     NavItem} from 'reactstrap';
-import UserSession from '../components/UserSession/UserSession';
+import UserSession from '../lib/UserSession/UserSession';
 
 
 export class Navigation extends Component {

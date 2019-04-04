@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
-import UserSession from './UserSession/UserSession';
+import UserSession from '../lib/UserSession/UserSession';
 
 class Login extends Component {
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import UserSession from './UserSession/UserSession';
+import UserSession from '../lib/UserSession/UserSession';
 
 class Logout extends Component {
 
