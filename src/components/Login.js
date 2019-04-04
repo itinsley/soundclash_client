@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
-import axios from 'axios';
 import UserSession from '../lib/UserSession/UserSession';
+import Session from '../api/Session';
 
 class Login extends Component {
 
@@ -47,26 +47,15 @@ class Login extends Component {
     );
   }
 
-  responseFacebook(response) {
+  async responseFacebook(response) {
     const accessToken = response["accessToken"];
-    console.log("FBAccessToken", accessToken)
+    const sessionResponse = await Session.create(accessToken)
 
     // See if we can get ourselves a session cookie
-    // Browser should take care of storage
-    axios.post('/users/auth/api_sessions', {
-        AccessToken: accessToken
-      })
-      .then((response)=> {
-        //This response confirms server validates FB user and returns FB user ID (user.uid in soundclash DB)
-        console.log(response);
-        const token = response['data']['jwt'];
-        UserSession.set(token);
-        // Reload to make refreshing the nav nice and simple..
-        window.location.href="/client";
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    UserSession.set(sessionResponse.jwt);
+
+    // Reload to make refreshing the nav nice and simple..
+    window.location.href="/client";
   }
 
 }
