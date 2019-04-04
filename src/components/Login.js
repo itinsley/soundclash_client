@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 
 class Login extends Component {
 
@@ -10,37 +11,31 @@ class Login extends Component {
       user: {
         id: "",
         email: ""
-      }
+      },
+       currentUserEmail: ""
     };
+
+    this.responseFacebook = this.responseFacebook.bind(this);
   }
 
   render() {
     return (
-      <div>
-        <h1>Login</h1>
+      <div className="mx-auto text-center" style={{maxWidth: '56.25rem'}}>
+        <h1 >Login</h1>
+        <hr/>
 
-          <div id="fbDemo">{process.env.REACT_APP_FACEBOOK_APPID}
+          <div id="fbDemo">
+            <div >Current User: {this.state.currentUserEmail}</div>
+
             <FacebookLogin
+              className='btn-facebook'
               appId={process.env.REACT_APP_FACEBOOK_APPID}
               autoLoad={true}
               fields="name,email,picture"
-              callback={this.responseFacebook} />
+              callback={this.responseFacebook} 
+              icon="fa-facebook"
+              />
           </div>
-          <div>
-            <button onClick={()=>this.handleClick()}>
-              Prove Auth Works
-            </button>
-          </div>
-          <div id="responseData">
-            Below is an arbitrary user from a secured URI for POC for JWT
-            <table border='1'>
-              <tbody>
-                <tr><td id='userId'>{this.state['user']['id']}</td></tr>
-                <tr><td id='userEmail'>{this.state['user']['email']}</td></tr>
-              </tbody>
-            </table>
-          </div>
-
       </div>
     );
   }
@@ -70,8 +65,9 @@ class Login extends Component {
         //This response confirms server validates FB user and returns FB user ID (user.uid in soundclash DB)
         console.log(response);
         //Now we've got a JWT. Can we access a secure route?
-        localStorage.token = response['data']['jwt']
-
+        const token = response['data']['jwt'];
+        const decoded = jwt.decode(token);
+        this.setState({'currentUserEmail': decoded.email}) ;    
       })
       .catch(function (error) {
         console.log(error);
