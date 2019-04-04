@@ -21,3 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 .env
 poc.js
+node_modules
