@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
+import UserSession from './UserSession/UserSession';
 
 class Login extends Component {
 
   constructor(props) {
     super(props);
+    const userDetails = UserSession.get();
+    const userEmail = userDetails ? userDetails.email: '';
     this.state = {
       user: {
         id: "",
         email: ""
       },
-       currentUserEmail: ""
+      currentUserEmail: userEmail
     };
-
     this.responseFacebook = this.responseFacebook.bind(this);
+  }
+
+  currentUser(){
+    if (this.state.currentUserEmail){
+      return <div >Current User: {this.state.currentUserEmail}</div>;
+    }
   }
 
   render() {
@@ -25,12 +32,12 @@ class Login extends Component {
         <hr/>
 
           <div id="fbDemo">
-            <div >Current User: {this.state.currentUserEmail}</div>
+            {this.currentUser()}
 
             <FacebookLogin
               className='btn-facebook'
               appId={process.env.REACT_APP_FACEBOOK_APPID}
-              autoLoad={true}
+              // autoLoad={true}
               fields="name,email,picture"
               callback={this.responseFacebook} 
               icon="fa-facebook"
@@ -40,21 +47,9 @@ class Login extends Component {
     );
   }
 
-  handleClick (){
-    //Retrieve a secure page (hardcoded user in edge)
-    axios.get('/users/5.json?jwt=' + localStorage.token).then((response)=>{
-      this.setState({
-        user: {
-          id: response['data']['id'],
-          email: response['data']['email']
-        }
-      })
-    })
-  }
-
   responseFacebook(response) {
     const accessToken = response["accessToken"];
-    console.log(accessToken)
+    console.log("FBAccessToken", accessToken)
 
     // See if we can get ourselves a session cookie
     // Browser should take care of storage
@@ -64,10 +59,10 @@ class Login extends Component {
       .then((response)=> {
         //This response confirms server validates FB user and returns FB user ID (user.uid in soundclash DB)
         console.log(response);
-        //Now we've got a JWT. Can we access a secure route?
         const token = response['data']['jwt'];
-        const decoded = jwt.decode(token);
-        this.setState({'currentUserEmail': decoded.email}) ;    
+        UserSession.set(token);
+        // Reload to make refreshing the nav nice and simple..
+        window.location.href="/client";
       })
       .catch(function (error) {
         console.log(error);

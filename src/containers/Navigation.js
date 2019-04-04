@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import { Link } from "react-router-dom";
 import {
     Collapse,
@@ -7,6 +7,8 @@ import {
     Nav,
     NavLink,
     NavItem} from 'reactstrap';
+import UserSession from '../components/UserSession/UserSession';
+
 
 export class Navigation extends Component {
     constructor(props) {
@@ -14,8 +16,7 @@ export class Navigation extends Component {
 
       this.toggle = this.toggle.bind(this);
       this.state = {
-        isOpen: false,
-        Username:''
+        isOpen: false
       };
     }
 
@@ -24,6 +25,33 @@ export class Navigation extends Component {
         isOpen: !this.state.isOpen
       });
     }
+
+    loginNav(){
+      const userDetails = UserSession.get();
+      if (userDetails.userName){
+        const loggedIn = 
+          <Fragment>
+            <NavItem>
+              <NavLink className='disabled'>Hello {userDetails.userName}</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="logout">Logout</NavLink>
+            </NavItem>;
+          </Fragment>
+          return loggedIn;
+      } else {
+        const loggedOut =
+          <Fragment>
+            <NavItem>
+              <a className='nav-link' href='/users/sign_up'>Sign Up</a>
+            </NavItem>
+            <NavLink tag={Link} to="/login">Login</NavLink>
+          </Fragment> 
+        return loggedOut;
+      }
+    }
+
+    
     render() {
       
       return (
@@ -39,13 +67,7 @@ export class Navigation extends Component {
                 <NavItem>
                   <NavLink tag={Link} to='/about'>What is this?</NavLink>
                 </NavItem>
-                <NavItem>
-                  <NavLink tag={Link} to="login">Login</NavLink>
-                </NavItem>
-                <NavItem>
-                  <a className='nav-link' href='/users/sign_up'>Sign Up</a>
-                </NavItem>
-                
+                {this.loginNav()}                
               </Nav>
             </Collapse>
           </Navbar>
