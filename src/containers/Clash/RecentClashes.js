@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Clashes from "../../api/Clashes";
-import ClashTile from "./ClashTile";
+import ClashTile from "../../components/Clash/ClashTile";
 
 class RecentClashes extends Component{
   constructor(props){
