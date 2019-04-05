@@ -22,3 +22,4 @@ yarn-error.log*
 .env
 poc.js
 node_modules
+tmp.js

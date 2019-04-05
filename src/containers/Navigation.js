@@ -56,14 +56,14 @@ export class Navigation extends Component {
       
       return (
         <div>
-          <Navbar dark color="dark" expand="md">
+          <Navbar dark expand="md" className="navbar navbar-default fixed-top bg-black">
               <Link to='/' className='navbar-brand'>
                 <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />
               </Link>
 
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
+              <Nav className="ml-auto navbar-fixed-top" navbar>
                 <NavItem>
                   <NavLink tag={Link} to='/about'>What is this?</NavLink>
                 </NavItem>
