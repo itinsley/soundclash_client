@@ -28,12 +28,14 @@ class RecentClashes extends Component{
   render(){
     const clashTiles = this.state.recentClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
     return (
-      <div className="container-fluid bg-grey">
-        <h1 className="px-2 p-3">Recent Clashes</h1>
-        <div className="row">
-          {clashTiles}
+      <main className="container-fluid main-content col-lg-12 col-md-12 col-sm-12 px-5 bg-grey mt-5">
+        <div className="container-fluid bg-grey">
+          <h1 className="px-2 p-3">Recent Clashes</h1>
+          <div className="row">
+            {clashTiles}
+          </div>
         </div>
-      </div>
+      </main>
     )
   }
 }
