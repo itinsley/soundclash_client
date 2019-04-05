@@ -8,13 +8,13 @@ class ClashTile extends Component{
     return(
       <div className="card col-sm-3 p-2 border-0 bg-grey" >
         <Link to={`/clashes/${clash.id}`} className='navbar-brand'>
-          <div className="card-body bg-white">
-            <h5 className="card-title text-truncate">{clash.name}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">
+          <div className="card-body bg-white"  >
+            <h3 className="card-title text-truncate">{clash.name}</h3>
+            <h4 className="card-subtitle mb-2 text-muted text-truncate">
               {clash.owner} vs. {clash.opponent}
-            </h6>
-            <div className="card-text">
-            <img style={{maxWidth:'100%'}} 
+            </h4>
+            <div className="card-text" >
+            <img style={{width:'100%'}} 
                   alt={`Track thumbnail for ${clash.name}`}
                   src={clash.thumbnail}></img>
             </div>

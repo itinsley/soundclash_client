@@ -4,7 +4,7 @@ import App from './App';
 import About from './components/About';
 import Login from './components/Login';
 import Logout from './components/Logout';
-import Clash from '../src/containers/Clash/Clash'
+import Clash from '../src/containers/Clash/ClashContainer'
 import {Navigation} from './containers/Navigation';
 
 export const makeMainRoutes = () => {

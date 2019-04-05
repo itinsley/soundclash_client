@@ -56,7 +56,7 @@ export class Navigation extends Component {
       
       return (
         <div>
-          <Navbar dark expand="md" className="navbar navbar-default fixed-top bg-black">
+          <Navbar dark expand="md" className="navbar navbar-default fixed-top bg-black" >
               <Link to='/' className='navbar-brand'>
                 <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />
               </Link>
@@ -65,7 +65,7 @@ export class Navigation extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto navbar-fixed-top" navbar>
                 <NavItem>
-                  <NavLink tag={Link} to='/about'>What is this?</NavLink>
+                  <NavLink tag={Link} to='/about' >What is this?</NavLink>
                 </NavItem>
                 {this.loginNav()}                
               </Nav>
