@@ -9,6 +9,7 @@ const set = (jwt)=>{
   const userDetails = {
     email: decoded.email,
     userName: decoded.user_name,
+    imageUrl: decoded.image_url,
     expiry,
   }
 

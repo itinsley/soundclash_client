@@ -35,7 +35,7 @@ export class Navigation extends Component {
               <NavLink className='disabled'>Hello {userDetails.userName}</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="logout">Logout</NavLink>
+              <NavLink tag={Link} to="/logout">Logout</NavLink>
             </NavItem>;
           </Fragment>
           return loggedIn;
