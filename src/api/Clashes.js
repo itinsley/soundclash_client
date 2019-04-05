@@ -5,6 +5,16 @@ const recent = async(accessToken)=>{
   return response.data;
 }
 
+const emptyStruct=()=>{
+  return { 
+    name: '',
+    id: '0',
+    owner: '',
+    opponent: ''
+  }
+}
+
 export default {
-  recent
+  recent,
+  emptyStruct
 }
