@@ -8,6 +8,10 @@
   font-weight: 200;
 }
 
+.u-circle {
+  border-radius: 100%;
+}
+
 .bg-grey{
   background-color: #e1e1e1;
 }

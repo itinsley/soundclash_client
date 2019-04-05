@@ -21,9 +21,7 @@ class ClashContainer extends Component{
 
   async loadClash(){
     const clash = await ClashApi.get(this.clashID());
-    // const [owner, opponent] = await Promise.all([UserApi.get(clash.owner.id), UserApi.get(clash.opponent.id)]);
     this.setState({clash});
-    console.log(clash)
   }
 
   componentDidMount(){
@@ -32,8 +30,8 @@ class ClashContainer extends Component{
 
   render(){
     return (
-      <Clash clash={this.state.clash} 
-             currentUser = {this.state.currentUser}/>
+      <Clash  clash={this.state.clash} 
+              currentUser = {this.state.currentUser} />
     )
   }
 }

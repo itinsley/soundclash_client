@@ -58,10 +58,10 @@ class Clash extends Component{
           <div className='col-sm-6 text-center p-3' > 
             {YoutubeIframe(owner_youtube_url, owner_track_name)}
             <div className="container">
-              <div className="row">
+              <div className="row p-2">
                 <span className="">
-                  <img  alt="Picture?type=large" className="u-circle" height="60" 
-                        src={currentUser.image_url} title={clash.owner} width="60"></img>
+                  <img  alt="Picture?type=large" className="u-circle " height="60" 
+                        src={currentUser.imageUrl} title={clash.owner} width="60"></img>
                 </span>
                 <span className="">Comments</span>
               </div>
