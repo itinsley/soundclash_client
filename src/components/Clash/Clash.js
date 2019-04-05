@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import Youtube from "../../lib/YouTube";
 import spinner from "../../assets/spinner.gif";
 
@@ -8,22 +8,23 @@ const YoutubeIframe=(url, track_name)=>{
   }
 
   return(
-    <div className='col-sm-6 text-center' > 
+    <Fragment>
       <h2 className='text-truncate p-4 clash-item__header' >{track_name}</h2>
       <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item p-3" 
+        <iframe className="embed-responsive-item" 
                 title={track_name}
                 src = {url}
                 >
         </iframe>
       </div>
-    </div>
+    </Fragment>
   )
 }
 
 class Clash extends Component{
   render(){
     const clash = this.props.clash;
+    const currentUser = this.props.currentUser;
 
     const owner_youtube_url = Youtube.EmbedUrl(clash.rounds[0].owner_track.url);
     const owner_track_name = clash.rounds[0].owner_track.name;
@@ -54,8 +55,21 @@ class Clash extends Component{
 
       <div className="container-fluid bg-grey px-0">
         <div className='row p-4'>
-          {YoutubeIframe(owner_youtube_url, owner_track_name)}
-          {YoutubeIframe(opponent_youtube_url, opponent_track_name)}
+          <div className='col-sm-6 text-center p-3' > 
+            {YoutubeIframe(owner_youtube_url, owner_track_name)}
+            <div className="container">
+              <div className="row">
+                <span className="">
+                  <img  alt="Picture?type=large" className="u-circle" height="60" 
+                        src={currentUser.image_url} title={clash.owner} width="60"></img>
+                </span>
+                <span className="">Comments</span>
+              </div>
+            </div>
+          </div>
+          <div className='col-sm-6 text-center p-3' > 
+            {YoutubeIframe(opponent_youtube_url, opponent_track_name)}
+          </div>
         </div>
       </div>
     </main>
