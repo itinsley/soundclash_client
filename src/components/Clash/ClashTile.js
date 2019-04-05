@@ -1,15 +1,11 @@
 import React, {Component} from "react";
 
 class ClashTile extends Component{
-  constructor(props){
-    super(props);
-  }
-
   render(){
     const clash = this.props.clash;
 
     return(
-      <div key={`clash-${clash.id}`} className="card col-sm-3 p-2 border-0 bg-grey" >
+      <div className="card col-sm-3 p-2 border-0 bg-grey" >
         <div className="card-body bg-white">
           <h5 className="card-title text-truncate">{clash.name}</h5>
           <h6 className="card-subtitle mb-2 text-muted">
@@ -17,7 +13,7 @@ class ClashTile extends Component{
           </h6>
           <div className="card-text">
           <img style={{maxWidth:'100%'}} 
-                alt={`Track thumbnail image for ${clash.name}`}
+                alt={`Track thumbnail for ${clash.name}`}
                 src={clash.thumbnail}></img>
           </div>
           <div className='row'>
