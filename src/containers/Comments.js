@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from "react";
+import {Link} from "react-router-dom";
 import CommentApi from "../api/Comments";
 import CommentItem from "../components/CommentItem";
 import Avatar from "../components/Avatar";
@@ -17,6 +18,7 @@ class Comment extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state.comments = props.comments;
+
   }
 
   handleChange(e) {
@@ -27,8 +29,8 @@ class Comment extends Component{
     const comments = this.state.comments.map((comment)=>{
       if (comment.new){
         return (
-          <Fragment>
-            <CommentItem key={`comment=${comment.id}`} comment={comment} />
+          <Fragment key={`comment=${comment.id}`}>
+            <CommentItem  comment={comment} />
             <hr/>
           </Fragment>
         )
@@ -56,39 +58,51 @@ class Comment extends Component{
     }
   }
 
-
-render(){
-    // Refactor: make objects consistent later
+renderCommentForm(){
+  if (this.props.currentUser.userName){
     const currentUser = {
-      name: this.props.currentUser.name,
+      name: this.props.currentUser.userName,
       image_url : this.props.currentUser.imageUrl
     }
-    return (
-      <div>
-        
-        <form onSubmit={this.handleSubmit}>
-          <div className="row py-2 px-0 mx-0">
-            <div className='col-md-auto text-left'>
-              <Avatar user={currentUser}
-                        description= "Current user avatar"
-                        size='60' />
-            </div>
-            <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
-                  <textarea type="text" 
-                          rows="2"
-                          value={this.state.newComment} 
-                          className="form-control" 
-                          name="newComment"
-                          placeholder="Comment on this track"
-                          onChange={this.handleChange} /> 
-            </div>
-          </div>        
-          <div className="row py-0 px-0 mx-0 justify-content-end" >
+    
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <div className="row py-2 px-0 mx-0">
+          <div className='col-md-auto text-left'>
+            <Avatar user={currentUser}
+                      description= "Current user avatar"
+                      size='60' />
+          </div>
+          <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
+                <textarea type="text" 
+                        rows="2"
+                        value={this.state.newComment} 
+                        className="form-control" 
+                        name="newComment"
+                        placeholder="Comment on this track"
+                        onChange={this.handleChange} /> 
+          </div>
+        </div>        
+        <div className="row py-0 px-0 mx-0 justify-content-end" >
           <div className='col-md-auto px-0'>
             <input className="btn btn-dark btn-sm" type="submit" value="Post" />
           </div>
         </div>
-        </form>
+      </form>  
+    )  
+  } else{
+    return (
+      <span>
+        <Link to={'/login'} >Login</Link> to add a comment
+      </span>
+    )
+  }
+}
+
+render(){
+  return (
+      <div>
+        {this.renderCommentForm()}
         {this.renderHistory()}
       </div>
     )

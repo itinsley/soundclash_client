@@ -3,16 +3,14 @@ import React, {Component} from "react";
 class Clash extends Component{
   render(){
     const clash = this.props.clash;
-    const currentUser = this.props.currentUser;
 
-    
     return(
       <main className="container-fluid main-content mt-5 px-0">
 
       <div className="container mx-auto text-center " style={{maxWidth: '56.25rem'}}>
         <h1 className="px-2 p-3">{clash.name}</h1>
         <h6 className="card-subtitle mb-2 text-muted">
-          <strong>{clash.owner}</strong> vs. <strong>{clash.opponent}</strong>
+          <strong>{clash.owner.name}</strong> vs. <strong>{clash.opponent.name}</strong>
         </h6>
         <div className='text-center pb-3'>
           <span className='text-size-xx-small p-2'>

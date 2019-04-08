@@ -11,7 +11,7 @@ class ClashTile extends Component{
           <div className="card-body bg-white"  >
             <h3 className="card-title text-truncate">{clash.name}</h3>
             <h4 className="card-subtitle mb-2 text-muted text-truncate">
-              {clash.owner} vs. {clash.opponent}
+              {clash.owner.name} vs. {clash.opponent.name}
             </h4>
             <div className="card-text" >
             <img style={{width:'100%'}} 

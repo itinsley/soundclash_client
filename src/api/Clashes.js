@@ -14,8 +14,8 @@ const emptyStruct=()=>{
   return { 
     name: '',
     id: '0',
-    owner: '',
-    opponent: '',
+    owner: {name:''},
+    opponent: {name:''},
     rounds:[{
       owner_track: {
         name:'',
