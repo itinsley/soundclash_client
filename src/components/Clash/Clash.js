@@ -1,36 +1,10 @@
-import React, {Component, Fragment} from "react";
-import Youtube from "../../lib/YouTube";
-import spinner from "../../assets/spinner.gif";
-import Comments from "../../containers/Comments"
-
-const YoutubeIframe=(url, track_name)=>{
-  if (!url || (!/.*youtube.*/.test(url))){
-   return  <img src={spinner} alt="Logo" />;
-  }
-
-  return(
-    <Fragment>
-      <h2 className='text-truncate p-4 clash-item__header' >{track_name}</h2>
-      <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item" 
-                title={track_name}
-                src = {url}
-                >
-        </iframe>
-      </div>
-    </Fragment>
-  )
-}
+import React, {Component} from "react";
 
 class Clash extends Component{
   render(){
     const clash = this.props.clash;
     const currentUser = this.props.currentUser;
 
-    const ownerTrack = clash.rounds[0].owner_track;
-    const opponentTrack = clash.rounds[0].opponent_track;
-    const ownerYoutubeUrl = Youtube.EmbedUrl(ownerTrack.url);
-    const opponent_youtube_url = Youtube.EmbedUrl(opponentTrack.url);
     
     return(
       <main className="container-fluid main-content mt-5 px-0">
@@ -54,24 +28,6 @@ class Clash extends Component{
         </div>
       </div>
 
-      <div className="container-fluid bg-grey px-0">
-        <div className='row p-4'>
-          <div className='col-sm-6 text-center p-3' >           
-            {YoutubeIframe(ownerYoutubeUrl, ownerTrack.name)}
-            <Comments comments={ownerTrack.comments} 
-                      currentUser={currentUser}
-                      trackId={ownerTrack.id}
-                      />
-          </div>
-          <div className='col-sm-6 text-center p-3' > 
-            {YoutubeIframe(opponent_youtube_url, opponentTrack.name)}
-            <Comments comments={opponentTrack.comments} 
-                      currentUser={currentUser}
-                      trackId={opponentTrack.id}
-                      />
-          </div>
-        </div>
-      </div>
     </main>
     )
   }
