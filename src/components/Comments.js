@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react";
 import CommentApi from "../api/Comments";
-import Elapsed from "elapsed";
+import CommentItem from "./CommentItem";
+import Avatar from "./Avatar";
  
 class Comment extends Component{
   constructor(props){
@@ -22,38 +23,14 @@ class Comment extends Component{
   
   renderHistory(){
     const comments = this.state.comments.map(comment=>{
-      const elapsedTime = new Elapsed(new Date(comment.updated_at), new Date());
       return (
-        <Fragment>
-          <div className="row py-2 px-0 mx-0" key={Comment.id}>
-            <div className='col-md-auto text-left'>
-            {this.avatar(comment.user, "Comment user avatar", 35)}
-            </div>
-            <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
-              <div>{comment.comment_text}</div>
-              <div className='comments__the-comment__time'>{elapsedTime.optimal} ago</div>
-            </div>
-          </div>
-        </Fragment>
+        <CommentItem comment={comment} />
       )
     })
 
     return comments;
   }
 
-  avatar(user, description, size){
-    if (user.image_url){
-      return(
-        <img  alt={description} className="u-circle " height={size} 
-          src={user.image_url} title={user.name} width={size}></img>
-      )  
-    }
-
-    return (
-      <div>{user.name.substring(0,2).toUpperCase()}</div>
-    )
-  }
-  
   render(){
     // Refactor: make objects consistent later
     const currentUser = {
@@ -65,7 +42,9 @@ class Comment extends Component{
       <div>
         <div className="row py-2 px-0 mx-0">
           <div className='col-md-auto text-left'>
-            {this.avatar(currentUser, "Current user avatar", 60)}
+            <Avatar user={currentUser}
+                      description= "Current user avatar"
+                      size='60' />
           </div>
           <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
               <form onSubmit={this.handleSubmit}>
