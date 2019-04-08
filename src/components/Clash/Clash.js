@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Avatar from "../Avatar";
 
 class Clash extends Component{
   render(){
@@ -10,7 +11,17 @@ class Clash extends Component{
       <div className="container mx-auto text-center " style={{maxWidth: '56.25rem'}}>
         <h1 className="px-2 p-3">{clash.name}</h1>
         <h6 className="card-subtitle mb-2 text-muted">
-          <strong>{clash.owner.name}</strong> vs. <strong>{clash.opponent.name}</strong>
+          <div className='text-center pb-3'>
+            <span className='text-size-xx-small p-2'>
+              <Avatar user={clash.owner} description= "Comment user avatar" size='35' />
+              <strong>{clash.owner.name}</strong>
+            </span>
+            <span>vs.</span>
+            <span className='text-size-xx-small p-2'>
+              <strong>{clash.opponent.name}</strong>
+              <Avatar user={clash.opponent} description= "Comment user avatar" size='35' />
+            </span>
+          </div>    
         </h6>
         <div className='text-center pb-3'>
           <span className='text-size-xx-small p-2'>
