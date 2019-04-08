@@ -8,3 +8,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Menu
 
 
+Get Started
+ * Start server with 
+    HTTPS=true npm start
