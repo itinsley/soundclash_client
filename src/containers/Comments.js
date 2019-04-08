@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import CommentApi from "../api/Comments";
-import CommentItem from "./CommentItem";
-import Avatar from "./Avatar";
+import CommentItem from "../components/CommentItem";
+import Avatar from "../components/Avatar";
  
 class Comment extends Component{
   constructor(props){

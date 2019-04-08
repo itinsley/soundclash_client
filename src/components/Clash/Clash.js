@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import Youtube from "../../lib/YouTube";
 import spinner from "../../assets/spinner.gif";
-import Comments from "../Comments"
+import Comments from "../../containers/Comments"
 
 const YoutubeIframe=(url, track_name)=>{
   if (!url || (!/.*youtube.*/.test(url))){
