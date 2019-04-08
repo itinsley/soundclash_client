@@ -18,6 +18,7 @@ it('#get - retrieves data from local storage', () => {
   const session = UserSession.get();
   expect(session.email).toEqual('jsmith@gmail.com');
   expect(session.userName).toEqual('John Smith');
+  expect(session.jwt).toEqual(jwt);
 });
 
 it('#get - returns empty object if expired', () => {

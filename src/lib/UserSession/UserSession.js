@@ -11,6 +11,7 @@ const set = (jwt)=>{
     userName: decoded.user_name,
     imageUrl: decoded.image_url,
     expiry,
+    jwt
   }
 
   localStorage.setItem('userDetails', JSON.stringify(userDetails));

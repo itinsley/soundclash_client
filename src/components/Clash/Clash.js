@@ -58,11 +58,17 @@ class Clash extends Component{
         <div className='row p-4'>
           <div className='col-sm-6 text-center p-3' >           
             {YoutubeIframe(ownerYoutubeUrl, ownerTrack.name)}
-            <Comments comments={ownerTrack.comments} currentUser={currentUser}/>            
+            <Comments comments={ownerTrack.comments} 
+                      currentUser={currentUser}
+                      trackId={ownerTrack.id}
+                      />
           </div>
           <div className='col-sm-6 text-center p-3' > 
             {YoutubeIframe(opponent_youtube_url, opponentTrack.name)}
-            <Comments comments={opponentTrack.comments} currentUser={currentUser}/>            
+            <Comments comments={opponentTrack.comments} 
+                      currentUser={currentUser}
+                      trackId={opponentTrack.id}
+                      />
           </div>
         </div>
       </div>
