@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import CommentApi from "../api/Comments";
 import CommentItem from "../components/CommentItem";
 import Avatar from "../components/Avatar";
@@ -24,12 +24,19 @@ class Comment extends Component{
   }
   
   renderHistory(){
-    const comments = this.state.comments.map(comment=>{
-      return (
-        <CommentItem key={`comment=${comment.id}`} comment={comment} />
-      )
+    const comments = this.state.comments.map((comment)=>{
+      if (comment.new){
+        return (
+          <Fragment>
+            <CommentItem key={`comment=${comment.id}`} comment={comment} />
+            <hr/>
+          </Fragment>
+        )
+      } else
+        return (
+          <CommentItem key={`comment=${comment.id}`} comment={comment} />
+        )  
     })
-
     return comments;
   }
 
@@ -37,7 +44,7 @@ class Comment extends Component{
     event.preventDefault();
     try {
       const response = await CommentApi.create(this.props.trackId, this.state.newComment, this.props.currentUser );
-      const comments =[response.data, ...this.state.comments];
+      const comments =[{...response.data, new: true}, ...this.state.comments];
       this.setState({
         comments: comments,
         newComment: ''
