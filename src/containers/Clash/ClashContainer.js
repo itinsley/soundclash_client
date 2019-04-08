@@ -3,12 +3,13 @@ import ClashApi from "../../api/Clashes";
 import UserApi from "../../api/Users";
 import Clash from "../../components/Clash/Clash";
 import UserSession from '../../lib/UserSession/UserSession';
+import spinner from "../../assets/spinner.gif";
 
 class ClashContainer extends Component{
   constructor(props){
     super(props)
     this.state={
-      clash: ClashApi.emptyStruct(),
+      clash: null,
       currentUser: UserSession.get(),
       owner: UserApi.emptyStruct(),
       opponent: UserApi.emptyStruct(),
@@ -29,10 +30,13 @@ class ClashContainer extends Component{
   }
 
   render(){
-    return (
-      <Clash  clash={this.state.clash} 
-              currentUser = {this.state.currentUser} />
-    )
+    if (!this.state.clash){
+      return  <img src={spinner} alt="Logo" />;
+    } else {
+      return(
+        <Clash  clash={this.state.clash} 
+                currentUser = {this.state.currentUser} />)
+      }
   }
 }
 

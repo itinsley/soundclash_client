@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react";
 import Youtube from "../../lib/YouTube";
 import spinner from "../../assets/spinner.gif";
+import Comments from "../Comments"
 
 const YoutubeIframe=(url, track_name)=>{
   if (!url || (!/.*youtube.*/.test(url))){
@@ -26,10 +27,10 @@ class Clash extends Component{
     const clash = this.props.clash;
     const currentUser = this.props.currentUser;
 
-    const owner_youtube_url = Youtube.EmbedUrl(clash.rounds[0].owner_track.url);
-    const owner_track_name = clash.rounds[0].owner_track.name;
-    const opponent_youtube_url = Youtube.EmbedUrl(clash.rounds[0].opponent_track.url);
-    const opponent_track_name = clash.rounds[0].opponent_track.name;
+    const ownerTrack = clash.rounds[0].owner_track;
+    const opponentTrack = clash.rounds[0].opponent_track;
+    const ownerYoutubeUrl = Youtube.EmbedUrl(ownerTrack.url);
+    const opponent_youtube_url = Youtube.EmbedUrl(opponentTrack.url);
     
     return(
       <main className="container-fluid main-content mt-5 px-0">
@@ -55,20 +56,13 @@ class Clash extends Component{
 
       <div className="container-fluid bg-grey px-0">
         <div className='row p-4'>
-          <div className='col-sm-6 text-center p-3' > 
-            {YoutubeIframe(owner_youtube_url, owner_track_name)}
-            <div className="container">
-              <div className="row p-2">
-                <span className="">
-                  <img  alt="Picture?type=large" className="u-circle " height="60" 
-                        src={currentUser.imageUrl} title={clash.owner} width="60"></img>
-                </span>
-                <span className="">Comments</span>
-              </div>
-            </div>
+          <div className='col-sm-6 text-center p-3' >           
+            {YoutubeIframe(ownerYoutubeUrl, ownerTrack.name)}
+            <Comments comments={ownerTrack.comments} currentUser={currentUser}/>            
           </div>
           <div className='col-sm-6 text-center p-3' > 
-            {YoutubeIframe(opponent_youtube_url, opponent_track_name)}
+            {YoutubeIframe(opponent_youtube_url, opponentTrack.name)}
+            <Comments comments={opponentTrack.comments} currentUser={currentUser}/>            
           </div>
         </div>
       </div>
