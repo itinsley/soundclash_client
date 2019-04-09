@@ -1,10 +1,15 @@
 import React, {Component} from "react";
 
 class Compressed extends Component {
+  constructor(props){
+    super(props);
+    this.Handle_Click = props.Handle_Click;
+  }
+
   render(){
     const round = this.props.round;
     return (
-      <a className="py-3 round-thumb u-overlay-hover" >
+      <a className="py-3 round-thumb u-overlay-hover" onClick={this.Handle_Click} >
         <strong >
           <span className="text-uppercase" >Round {round.index}</span>
           <img className="mx-2" 
@@ -24,11 +29,29 @@ class Compressed extends Component {
 }
 
 class Round extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      isOpen: false
+    }
+    this.Handle_Click = this.Handle_Click.bind(this);
+  }
+
+  Handle_Click(){
+    this.setState({isOpen:true})
+  }
+
   render(){
-    const round =this.props.round;    
-    return (
-      <Compressed round={round} />
-    )
+    const round =this.props.round;
+    if (this.state.isOpen){
+      return (<div>OPEN</div>)
+    } else {
+      return (
+        <Compressed 
+          round={round} 
+          Handle_Click={this.Handle_Click}/>
+      )
+    }
   }
 }
 
