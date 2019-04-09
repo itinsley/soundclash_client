@@ -4,9 +4,17 @@ import Avatar from "./Avatar";
  
 class CommentItem extends Component{
   
+  elapsed(comment){
+    if (comment.new){
+      return "A few seconds ago";
+    } else{
+      const elapsedTime = new Elapsed(new Date(comment.updated_at), new Date());
+      return elapsedTime.optimal + " ago";
+    }
+  }
+
   render(){
     const comment = this.props.comment;
-    const elapsedTime = new Elapsed(new Date(comment.updated_at), new Date());
 
     return(
       <Fragment>
@@ -18,7 +26,7 @@ class CommentItem extends Component{
           </div>
           <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
             <div>{comment.comment_text}</div>
-            <div className='comments__the-comment__time'>{elapsedTime.optimal} ago</div>
+            <div className='comments__the-comment__time'>{this.elapsed(comment)}</div>
           </div>
         </div>
       </Fragment>
