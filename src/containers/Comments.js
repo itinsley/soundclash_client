@@ -59,7 +59,7 @@ class Comment extends Component{
   }
 
 renderCommentForm(){
-  if (this.props.currentUser.userName){
+  if (this.props.currentUser && this.props.currentUser.userName){
     const currentUser = {
       name: this.props.currentUser.userName,
       image_url : this.props.currentUser.imageUrl
