@@ -11,7 +11,7 @@ class CommentItem extends Component{
     return(
       <Fragment>
         <div className="row py-2 px-0 mx-0" key={comment.id}>
-          <div className='col-md-auto text-left'>
+          <div className='col-auto text-left'>
             <Avatar user={comment.user}
                     description= "Comment user avatar"
                     size='35' />

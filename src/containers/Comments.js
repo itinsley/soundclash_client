@@ -68,7 +68,7 @@ renderCommentForm(){
     return(
       <form onSubmit={this.handleSubmit}>
         <div className="row py-2 px-0 mx-0">
-          <div className='col-md-auto text-left'>
+          <div className='col-auto text-left'>
             <Avatar user={currentUser}
                       description= "Current user avatar"
                       size='60' />
@@ -84,7 +84,7 @@ renderCommentForm(){
           </div>
         </div>        
         <div className="row py-0 px-0 mx-0 justify-content-end" >
-          <div className='col-md-auto px-0'>
+          <div className='col-auto px-0'>
             <input className="btn btn-dark btn-sm" type="submit" value="Post" />
           </div>
         </div>

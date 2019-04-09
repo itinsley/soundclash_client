@@ -1,13 +1,14 @@
-# React Client Scaffold
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Soundclash Client
 
-* Auth with cognito
-* Env variable managment
-* Bootstrap
-* Routing
-* Menu
+## Local Environment
+
+  * Configure Env variables 
+
+        $cp env.example .env
+
+  * Configure Proxy in package.json
+  Use `https://soundcla5h-edge.herokuapp.com` if not running server locally.
 
 
-Get Started
  * Start server with 
     HTTPS=true npm start

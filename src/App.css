@@ -9,6 +9,11 @@ audio, canvas, progress, video {
   padding-right: 5px;
 }
 
+.image-avatar{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .text-size-xx-small {
   font-size: 0.8125rem;
   line-height: 1.8461538462;
