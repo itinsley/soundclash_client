@@ -8,9 +8,6 @@ import Track from "../../components/Track/Track";
 import Round from "../../components/Round";
 
 class RoundsList extends Component {
-  constructor(props){
-    super(props)
-  };
   render(){
     return this.props.rounds.map(round=>{
       return (<Round key={round.id} round={round} />)
