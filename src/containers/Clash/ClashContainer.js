@@ -52,7 +52,11 @@ class ClashContainer extends Component{
 
   render(){
     if (!this.state.clash){
-      return  <img src={spinner} alt="Logo" />;
+      return (
+        <div className="container-fluid bg-grey text-center">
+          <img src={spinner} alt="Logo" />
+        </div>
+      )
     } else {
       const clash = this.state.clash;
       const firstRound = clash.rounds[0];

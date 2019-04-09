@@ -4,8 +4,6 @@ import Track from "../Track/Track";
 class Round extends Component{
 
   render(){
-
-    console.log("Round props", this.props)
     const owner_track = this.props.round.owner_track;
     const opponent_track = this.props.round.opponent_track;
     const currentUser = this.props.currentUser;
