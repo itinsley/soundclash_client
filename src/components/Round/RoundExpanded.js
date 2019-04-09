@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Round from "./Round";
 
 class RoundExpanded extends Component {
   constructor(props){
@@ -6,9 +7,9 @@ class RoundExpanded extends Component {
   }
 
   render(){
-    const round = this.props.round;
     return (
-      <div>{round.owner_track.name} vs {round.opponent_track.name}</div>
+      <Round round={this.props.round} 
+             currentUser={this.props.currentUser}/>
     )
   }
 }

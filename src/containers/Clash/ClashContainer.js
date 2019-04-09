@@ -5,12 +5,22 @@ import Clash from "../../components/Clash/Clash";
 import UserSession from '../../lib/UserSession/UserSession';
 import spinner from "../../assets/spinner.gif";
 import Track from "../../components/Track/Track";
+import Round from "../../components/Round/Round"
 import RoundWrapper from "../../components/Round/RoundWrapper";
 
 class RoundsList extends Component {
   render(){
     return this.props.rounds.map(round=>{
-      return (<RoundWrapper key={round.id} round={round} />)
+      return (
+        <div className='row' >
+          <div className='col-sm-12 text-center' >
+            <RoundWrapper 
+              key={round.id} round={round} 
+              currentUser = {this.props.currentUser}
+              />
+          </div>
+        </div>
+      )
     })
   }
 }
@@ -44,28 +54,16 @@ class ClashContainer extends Component{
     if (!this.state.clash){
       return  <img src={spinner} alt="Logo" />;
     } else {
-      console.log(this.state.clash)
+      const clash = this.state.clash;
+      const firstRound = clash.rounds[0];
       return(
         <Fragment>
-          <Clash  clash={this.state.clash} 
+          <Clash  clash={ this.state.clash} 
                   currentUser = {this.state.currentUser} />
-          <div className="container-fluid bg-grey px-0">
-            <div className='row p-4'>
-              <div className='col-sm-6 text-center p-3' >           
-                <Track track = {this.state.clash.rounds[0].owner_track}
-                          currentUser = {this.state.currentUser} />
-              </div>
-              <div className='col-sm-6 text-center p-3' >           
-                <Track track = {this.state.clash.rounds[0].opponent_track}
-                        currentUser = {this.state.currentUser} />
-              </div>
-            </div>
-          </div>
-          <div className='row' >
-            <div className='col-sm-12 text-center' >
-              <RoundsList rounds={this.state.clash.rounds}/>
-            </div>
-          </div>
+          <Round round = {firstRound}
+                  currentUser = {this.state.currentUser} />
+          <RoundsList rounds={this.state.clash.rounds}
+                  currentUser = {this.state.currentUser} />
         </Fragment>
       )     
     }

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import RoundCompressed from "./RoundCompressed";
 import RoundExpanded from "./RoundExpanded";
 
-class Round extends Component{
+class RoundWrapper extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -21,7 +21,9 @@ class Round extends Component{
     if (this.state.isOpen){
       return (
         <RoundExpanded 
-          round={round}  />
+          round={round}  
+          currentUser = {this.props.currentUser} 
+        />
       )
     } else {
       return (
@@ -33,4 +35,4 @@ class Round extends Component{
   }
 }
 
-export default Round;
+export default RoundWrapper;
