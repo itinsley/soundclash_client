@@ -29,6 +29,14 @@ audio, canvas, progress, video {
   line-height: 1.3;  
 }
 
+.round-thumb {
+  display: block;
+  background-color: #fff;
+  background-image: linear-gradient(0deg, #f6f6f6, transparent 24%, transparent);
+}
+.round-thumb:hover, .round-thumb:focus {
+  background-color: lightgray;
+}
 .u-circle {
   border-radius: 100%;
 }
