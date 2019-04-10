@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, BrowserRouter, Switch } from 'react-router-dom';
-import App from './App';
+import Home from './containers/Home/Home';
 import About from './components/About';
 import Login from './components/Login';
 import Logout from './components/Logout';
@@ -17,7 +17,7 @@ export const makeMainRoutes = () => {
             <Route path="/login" render={(props) => <Login  />} />
             <Route path="/logout" render={(props) => <Logout />} />
             <Route path="/clashes/:clashId" render={(props) => <Clash {...props}/>} />
-            <Route path="/" render={(props) => <App  />} />
+            <Route path="/" render={(props) => <Home  />} />
           </Switch>
         </div>
       </BrowserRouter>

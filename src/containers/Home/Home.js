@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import RecentClashes from './containers/Clash/RecentClashes';
+import '../../App.css';
+import RecentClashes from '../Clash/RecentClashes';
 
 class App extends Component {
 
