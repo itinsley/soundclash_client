@@ -4,8 +4,8 @@ import UserApi from "../../api/Users";
 import Clash from "../../components/Clash/Clash";
 import UserSession from '../../lib/UserSession/UserSession';
 import spinner from "../../assets/spinner.gif";
-import Round from "../../components/Round/Round"
 import RoundWrapper from "../../components/Round/RoundWrapper";
+import CurrentRound from "../../components/Clash/CurrentRound";
 
 class RoundsList extends Component {
   render(){
@@ -22,20 +22,6 @@ class RoundsList extends Component {
       )
     })
   }
-}
-
-function RoundPlaceholder(props){
-  // No rounds for unaccepted clashes
-  const clash = props.clash;
-  const currentUser = props.currentUser;
-
-  if (clash.rounds.length>0){
-    return (<Round round = {clash.rounds[0]}
-                              currentUser = {currentUser} />)
-  } else {
-    return (<div className="text-center">{clash.waiting_for_description}</div>)
-  }
-
 }
 
 class ClashContainer extends Component{
@@ -75,7 +61,7 @@ class ClashContainer extends Component{
         <Fragment>
           <Clash  clash={clash} 
                   currentUser = {this.state.currentUser} />
-          <RoundPlaceholder clash ={clash} 
+          <CurrentRound clash ={clash} 
                   currentUser = {this.state.currentUser} />
           <RoundsList rounds={clash.rounds}
                   currentUser = {this.state.currentUser} />
