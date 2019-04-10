@@ -1,21 +1,44 @@
 import React, {Component} from "react";
-import Round from "../Round/Round";
 
-// CurrentRound deals with the Clash object
-// Presents UI for adding new Tracks which move to the rounds array when completed
+
+function ChallengeSent(clash){
+  return (
+    <div className='col-sm-12 text-center p-3' >
+      {clash.waiting_for_description}
+    </div>
+  )
+}
+
+/*
+CurrentRound deals with the Clash object
+Presents UI for adding new Tracks which move to the rounds array when completed
+
+# Workflow
+State              Description
+challenge_sent     Created, awaiting response from challengee
+                    - Only CurrentUser can view this clash so "awaiting opponent"
+awaiting_owner     Waiting for owner to upload a track
+                    - CurrentUser sees Form to upload
+                    - Opponent sees Message
+awaiting_opponent  Waiting for opponent to upload a track
+                    - Opponent sees Form to upload
+                    - CurrentUser sees Message
+*/
 class CurrentRound extends Component{
+
+  workflowComponentFactory(){
+    const clash = this.props.clash;
+    if (clash.state='challenge_sent'){
+      return (
+        ChallengeSent(clash)
+      )
+    } 
+  }
   
   render(){
-    // No rounds for unaccepted clashes
-    const clash = this.props.clash;
-    const currentUser = this.props.currentUser;
-
-    if (clash.rounds.length>0){
-      return (<Round round = {clash.rounds[0]}
-                                currentUser = {currentUser} />)
-    } else {
-      return (<div className="text-center">{clash.waiting_for_description}</div>)
-    }
+    return (
+      this.workflowComponentFactory()
+    )
   }
 }
 

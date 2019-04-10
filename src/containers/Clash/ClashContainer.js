@@ -9,11 +9,12 @@ import CurrentRound from "../../components/Clash/CurrentRound";
 
 class RoundsList extends Component {
   render(){
-    return this.props.rounds.map(round=>{
+    return this.props.rounds.map((round, idx)=>{
       return (
         <div className='row' >
           <div className='col-sm-12 text-center' >
             <RoundWrapper 
+              isOpen={idx===0}
               key={round.id} round={round} 
               currentUser = {this.props.currentUser}
               />

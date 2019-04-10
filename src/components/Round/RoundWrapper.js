@@ -6,7 +6,7 @@ class RoundWrapper extends Component{
   constructor(props){
     super(props)
     this.state = {
-      isOpen: false
+      isOpen: props.isOpen
     }
     this.Handle_Click = this.Handle_Click.bind(this);
   }
