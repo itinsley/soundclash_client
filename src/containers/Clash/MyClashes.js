@@ -3,11 +3,11 @@ import Clashes from "../../api/Clashes";
 import ClashTile from "../../components/Clash/ClashTile";
 import spinner from "../../assets/spinner.gif";
 
-class RecentClashes extends Component{
+class MyClashes extends Component{
   constructor(props){
     super(props);
     this.state = {
-      recentClashes: [
+      myClashes: [
       ]
     }
 
@@ -19,25 +19,26 @@ class RecentClashes extends Component{
   }
 
   async loadClashes(){
-    const recentClashes = await Clashes.recent();
+    const jwt = this.props.currentUser.jwt;
+    const myClashes = await Clashes.forUser(jwt)
     this.setState(
-      {recentClashes}
+      {myClashes}
     )
   }
 
   render(){
     const clashTiles =()=>{
-      if (this.state.recentClashes.length>0){
-        const clashTiles = this.state.recentClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
+      if (this.state.myClashes.length>0){
+        const clashTiles = this.state.myClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
         return clashTiles
       } else {
         return <img src={spinner} alt="waiting.." />
       }
     }
     return (
-      <main className="container-fluid main-content col-lg-12 col-md-12 col-sm-12 px-5 bg-grey pt-3">
-        <div className="container-fluid bg-grey">
-          <h1 className="px-2 p-3">Recent Clashes</h1>
+      <main className="container-fluid main-content col-lg-12 col-md-12 col-sm-12 px-5 bg-grey-1 mt-5">
+        <div className="container-fluid bg-grey-1">
+          <h1 className="px-2 p-3">My Clashes</h1>
           <div className="row">
             {clashTiles()}
           </div>
@@ -47,4 +48,4 @@ class RecentClashes extends Component{
   }
 }
 
-export default RecentClashes;
+export default MyClashes;

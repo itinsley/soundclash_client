@@ -1,7 +1,21 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import Avatar from "../Avatar";
 
 class Clash extends Component{
+
+  opponent(clash){
+    if (clash.opponent){
+      return (
+        <Fragment>
+          <strong>{clash.opponent.name}</strong>
+          <Avatar user={clash.opponent} description= "Comment user avatar" size='35' />
+        </Fragment>
+      )
+    } else {
+      return(clash.opponent_name)
+    }
+
+  }
   render(){
     const clash = this.props.clash;
 
@@ -18,8 +32,7 @@ class Clash extends Component{
             </span>
             <span>vs.</span>
             <span className='text-size-xx-small p-2'>
-              <strong>{clash.opponent.name}</strong>
-              <Avatar user={clash.opponent} description= "Comment user avatar" size='35' />
+              {this.opponent(clash)}
             </span>
           </div>    
         </h6>

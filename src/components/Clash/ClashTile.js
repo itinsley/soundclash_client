@@ -2,16 +2,25 @@ import React, {Component} from "react";
 import { Link } from "react-router-dom";
 
 class ClashTile extends Component{
+
+  opponentName(clash){
+    if (clash.opponent){
+      return clash.opponent.name
+    } else {
+      return(clash.opponent_name)
+    }
+  }
+
   render(){
     const clash = this.props.clash;
 
     return(
-      <div className="card col-xs-12 col-sm-6 col-md-4 col-lg-3 p-2 border-0 bg-grey" >
-        <Link to={`/clashes/${clash.id}`} className='navbar-brand'>
+      <div className="card col-xs-12 col-sm-6 col-md-4 col-lg-3 border-0 bg-transparent my-3">
+        <Link to={`/clashes/${clash.id}`} >
           <div className="card-body bg-white"  >
             <h3 className="card-title text-truncate">{clash.name}</h3>
             <h4 className="card-subtitle mb-2 text-muted text-truncate">
-              {clash.owner.name} vs. {clash.opponent.name}
+              {clash.owner.name} vs. {this.opponentName(clash)}
             </h4>
             <div className="card-text" >
             <img style={{width:'100%'}} 

@@ -1,12 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../../App.css';
 import RecentClashes from '../Clash/RecentClashes';
+import UserSession from '../../lib/UserSession/UserSession';
+import MyClashes from '../Clash/MyClashes';
+
+function MyClashesWrapper(){
+  const currentUser = UserSession.get();
+  if(currentUser){
+    return <MyClashes currentUser={currentUser} />
+  }
+}
+
 
 class App extends Component {
 
   render() {
+
     return (
-      <RecentClashes />
+      <Fragment >
+        <MyClashesWrapper />
+        <RecentClashes />
+      </Fragment>
     );
   }
 }

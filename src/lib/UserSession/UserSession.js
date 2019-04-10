@@ -23,11 +23,11 @@ const get = ()=>{
 
   const UserDetailsString = localStorage.getItem('userDetails')
   if (!UserDetailsString){
-    return {};
+    return null;
   }
   const userDetails = JSON.parse(UserDetailsString);
   if (new Date(userDetails.expiry)< Date.now()){
-    return {};
+    return null;
   }
   return userDetails;
 }

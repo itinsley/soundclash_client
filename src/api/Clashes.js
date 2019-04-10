@@ -10,7 +10,13 @@ const get = async(clashId)=>{
   return response.data;
 }
 
+const forUser = async(jwt)=>{
+  const response = await axios.get(`/api/user/clashes.json?jwt=${jwt}`);
+  return response.data;
+}
+
 export default {
   recent,
-  get
+  get,
+  forUser  
 }

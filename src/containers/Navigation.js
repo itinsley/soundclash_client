@@ -28,7 +28,7 @@ export class Navigation extends Component {
 
     loginNav(){
       const userDetails = UserSession.get();
-      if (userDetails.userName){
+      if (userDetails){
         const loggedIn = 
           <Fragment>
             <NavItem>

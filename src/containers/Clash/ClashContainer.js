@@ -24,6 +24,20 @@ class RoundsList extends Component {
   }
 }
 
+function RoundPlaceholder(props){
+  // No rounds for unaccepted clashes
+  const clash = props.clash;
+  const currentUser = props.currentUser;
+
+  if (clash.rounds.length>0){
+    return (<Round round = {clash.rounds[0]}
+                              currentUser = {currentUser} />)
+  } else {
+    return (<div className="text-center">{clash.waiting_for_description}</div>)
+  }
+
+}
+
 class ClashContainer extends Component{
   constructor(props){
     super(props)
@@ -48,7 +62,6 @@ class ClashContainer extends Component{
     this.loadClash();
   }
 
-
   render(){
     if (!this.state.clash){
       return (
@@ -56,16 +69,15 @@ class ClashContainer extends Component{
           <img src={spinner} alt="Logo" />
         </div>
       )
-    } else {
+    } else {      
       const clash = this.state.clash;
-      const firstRound = clash.rounds[0];
       return(
         <Fragment>
-          <Clash  clash={ this.state.clash} 
+          <Clash  clash={clash} 
                   currentUser = {this.state.currentUser} />
-          <Round round = {firstRound}
+          <RoundPlaceholder clash ={clash} 
                   currentUser = {this.state.currentUser} />
-          <RoundsList rounds={this.state.clash.rounds}
+          <RoundsList rounds={clash.rounds}
                   currentUser = {this.state.currentUser} />
         </Fragment>
       )     

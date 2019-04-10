@@ -21,18 +21,18 @@ it('#get - retrieves data from local storage', () => {
   expect(session.jwt).toEqual(jwt);
 });
 
-it('#get - returns empty object if expired', () => {
+it('#get - returns null  if expired', () => {
   const jwt = jwtLib.sign(data, 'secret', { expiresIn: -1 });
   UserSession.set(jwt);
-  expect(UserSession.get()).toEqual({});
+  expect(UserSession.get()).toEqual(null);
 });
 
 it('#get - returns empty object if not set', () => {
   localStorage.clear();
-  expect(UserSession.get()).toEqual({});
+  expect(UserSession.get()).toEqual(null);
 });
 
 it('#clear - clears session', () => {
   UserSession.clear();
-  expect(UserSession.get()).toEqual({});
+  expect(UserSession.get()).toEqual(null);
 });
