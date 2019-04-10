@@ -29,7 +29,7 @@ class MyClashes extends Component{
   render(){
     const clashTiles =()=>{
       if (this.state.myClashes.length>0){
-        const clashTiles = this.state.myClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
+        const clashTiles = this.state.myClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} showFooter={true}/>)
         return clashTiles
       } else {
         return <img src={spinner} alt="waiting.." />

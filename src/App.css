@@ -37,6 +37,16 @@ audio, canvas, progress, video {
 .round-thumb:hover, .round-thumb:focus {
   background-color: lightgray;
 }
+
+.clash-tile-waiting {
+  font-size: 0.8125rem;
+  line-height: 1.8461538462;
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  background-color: #115e98;
+}
+
 .u-circle {
   border-radius: 100%;
 }
