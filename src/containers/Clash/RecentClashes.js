@@ -26,23 +26,20 @@ class RecentClashes extends Component{
   }
 
   render(){
-    if (this.state.recentClashes.length==0){
-      return(
-        <main className="container-fluid main-content px-5 bg-grey mt-5">
-        <div className="container-fluid text-center">
-          <img src={spinner} alt="waiting.." />
-        </div>
-        </main>
-      )
+    const clashTiles =()=>{
+      if (this.state.recentClashes.length>0){
+        const clashTiles = this.state.recentClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
+        return clashTiles
+      } else {
+        return <img src={spinner} alt="waiting.." />
+      }
     }
-
-    const clashTiles = this.state.recentClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
     return (
       <main className="container-fluid main-content col-lg-12 col-md-12 col-sm-12 px-5 bg-grey mt-5">
         <div className="container-fluid bg-grey">
           <h1 className="px-2 p-3">Recent Clashes</h1>
           <div className="row">
-            {clashTiles}
+            {clashTiles()}
           </div>
         </div>
       </main>
