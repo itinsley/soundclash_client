@@ -9,6 +9,7 @@ function MyClashesWrapper(){
   if(currentUser){
     return <MyClashes currentUser={currentUser} />
   }
+  return null
 }
 
 

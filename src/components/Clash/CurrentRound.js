@@ -9,6 +9,17 @@ function ChallengeSent(clash){
   )
 }
 
+function AwaitingOwner(clash, currentUser){
+  if(clash.current_user_is_involved){
+    return (
+      <div className='col-sm-12 text-center p-3' >
+        hello {currentUser.name} we are waiting for {clash.waiting_for}
+      </div>
+    )  
+  }
+  return null;
+}
+
 /*
 CurrentRound deals with the Clash object
 Presents UI for adding new Tracks which move to the rounds array when completed
@@ -28,11 +39,15 @@ class CurrentRound extends Component{
 
   workflowComponentFactory(){
     const clash = this.props.clash;
-    if (clash.state='challenge_sent'){
-      return (
-        ChallengeSent(clash)
-      )
-    } 
+    const currentUser = this.props.currentUser;
+    console.log("State", clash.state)
+    if (clash.state==='challenge_sent'){
+      return ChallengeSent(clash)
+    } else if (clash.state==='awaiting_owner' || clash.state==='awaiting_opponent'){
+      return AwaitingOwner(clash, currentUser)
+    }
+
+    return null;
   }
   
   render(){

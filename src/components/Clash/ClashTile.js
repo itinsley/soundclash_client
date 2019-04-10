@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Footer(props){
   if (props.show){
     return(
-      <div className="card-footer clash-tile-waiting mt-2" >
+      <div className="card-footer clash-tile-waiting mt-2 text-truncate" >
         {props.clash.waiting_for_description}
       </div>
     )
