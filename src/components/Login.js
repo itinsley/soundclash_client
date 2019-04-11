@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import UserSession from '../lib/UserSession/UserSession';
-import Session from '../api/Session';
+import FacebookSession from '../api/FacebookSession';
 
 class Login extends Component {
 
@@ -49,7 +49,7 @@ class Login extends Component {
 
   async responseFacebook(response) {
     const accessToken = response["accessToken"];
-    const sessionResponse = await Session.create(accessToken)
+    const sessionResponse = await FacebookSession.create(accessToken)
 
     // See if we can get ourselves a session cookie
     UserSession.set(sessionResponse.jwt);
