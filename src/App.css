@@ -73,9 +73,10 @@ strong {
 }
 
 a {
-  color: #333;
+  color: #167ac6;
+  text-decoration: none;
 }
-a:hover{ color:#6c757d;}
+
 h3 {
   font-size: 1.125rem;
   line-height: 1.3333333333;
@@ -84,4 +85,8 @@ h3 {
 h4 {
   font-size: 1rem;
   line-height: 1.3333333333;
+}
+
+ul, ol {
+  list-style-type: none;
 }

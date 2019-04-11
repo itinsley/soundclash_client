@@ -5,6 +5,14 @@ const get = async(userId)=>{
   return response.data;
 }
 
+const login = async(email, password)=>{
+  const params = {
+    user: {email, password}
+  }
+  const response = await axios.post(`/users/auth/api_sessions`, params);
+  return response.data;
+}
+
 const emptyStruct=()=>{
   return { 
     id: '0',
@@ -16,5 +24,6 @@ const emptyStruct=()=>{
 
 export default {
   emptyStruct,
-  get
+  get,
+  login
 }
