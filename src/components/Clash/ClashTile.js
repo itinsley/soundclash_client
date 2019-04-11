@@ -28,7 +28,7 @@ class ClashTile extends Component{
     const clash = this.props.clash;
     
     return(
-      <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-2">
+      <div className="clash-tile col-xs-12 col-sm-6 col-md-4 col-lg-3 my-2 p-1">
         <div className="card p-2" >
           <Link to={`/clashes/${clash.id}`} >
             <div className="card-body bg-white"  >

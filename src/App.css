@@ -38,6 +38,14 @@ audio, canvas, progress, video {
   background-color: lightgray;
 }
 
+.clash-tile a{
+  color: #333;
+}
+
+.clash-tile a:hover{
+  color:#6c757d;
+}
+
 .clash-tile-waiting {
   font-size: 0.8125rem;
   line-height: 1.8461538462;
