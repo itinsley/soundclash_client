@@ -5,11 +5,12 @@ function ChallengeSent(clash){
   return (
     <div className='col-sm-12 text-center p-3' >
       {clash.waiting_for_description}
+      <div>{clash.state}</div>
     </div>
   )
 }
 
-function AwaitingOwner(clash, currentUser){
+function AwaitingPlayer(clash, currentUser){
   if(clash.current_user_is_involved){
     return (
       <div className='col-sm-12 text-center p-3' >
@@ -44,7 +45,7 @@ class CurrentRound extends Component{
     if (clash.state==='challenge_sent'){
       return ChallengeSent(clash)
     } else if (clash.state==='awaiting_owner' || clash.state==='awaiting_opponent'){
-      return AwaitingOwner(clash, currentUser)
+      return AwaitingPlayer(clash, currentUser)
     }
 
     return null;
