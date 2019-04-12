@@ -36,7 +36,7 @@ class MyClashes extends Component{
       }
     }
     return (
-      <main className="container-fluid main-content col-lg-12 col-md-12 col-sm-12 px-5 bg-grey-1 mt-5">
+      <main className="container-fluid main-content col-lg-12 col-md-12 col-sm-12 px-5 bg-grey-1">
         <div className="container-fluid bg-grey-1">
           <h1 className="px-2 p-3">My Clashes</h1>
           <div className="row">

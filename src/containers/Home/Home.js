@@ -19,6 +19,7 @@ class App extends Component {
 
     return (
       <Fragment >
+        <div className="top-element-margin"></div>
         <MyClashesWrapper />
         <RecentClashes />
       </Fragment>

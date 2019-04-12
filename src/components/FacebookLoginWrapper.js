@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './FacebookLoginWrapper.css'
 import FacebookSession from '../api/FacebookSession';
 import FacebookLogin from 'react-facebook-login';
 import UserSession from '../lib/UserSession/UserSession';
@@ -23,13 +24,14 @@ class FacebookLoginWrapper extends Component {
   render(){
 
     return(
-      <div id="fbDemo">
+      <div id="fbLogin">
         <FacebookLogin
-          className='btn-facebook'
+          className='btn-facebook btn-rounded'
           appId={process.env.REACT_APP_FACEBOOK_APPID}
           fields="name,email,picture"
           callback={this.responseFacebook} 
           icon="fa-facebook"
+          textButton="Continue with Facebook"
           />
       </div>
     )

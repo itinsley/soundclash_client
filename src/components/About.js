@@ -6,6 +6,7 @@ function About() {
     
 
       <div className="mx-auto text-center" style={{maxWidth: '56.25rem'}}>
+        <div className="top-element-margin"></div>
         <h1 className="px-2 p-3">What is Soundclash?</h1>
         <hr/>
         <div className="u-s-mb-base">
