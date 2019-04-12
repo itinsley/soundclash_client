@@ -1,11 +1,25 @@
 import React, {Component} from "react";
+import Track from "../Track/Track";
+import ClashWorkflow from "../../lib/ClashWorkflow";
 
 
-function ChallengeSent(clash){
+function ReadyToAccept(clash, currentUser){
+  const owner_track = clash.owner_track;
+
   return (
     <div className='col-sm-12 text-center p-3' >
-      {clash.waiting_for_description}
-      <div>{clash.state}</div>
+      <div className="container-fluid bg-grey px-0">
+        <div className='row p-4'>
+          <div className='col-sm-6 text-center p-3' >           
+            <Track track = {owner_track}
+                  currentUser = {currentUser} />
+          </div>
+          <div className='col-sm-6 text-center p-3' >           
+            <h2 className='text-truncate p-4 clash-item__header' >Waiting for you</h2>
+            <div>You have been challenged to a soundclash by {clash.owner.name}</div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -14,7 +28,7 @@ function AwaitingPlayer(clash, currentUser){
   if(clash.current_user_is_involved){
     return (
       <div className='col-sm-12 text-center p-3' >
-        hello {currentUser.name} we are waiting for {clash.waiting_for}
+        hello {currentUser.name} we are waiting for {clash.waiting_for.name}
       </div>
     )  
   }
@@ -24,27 +38,16 @@ function AwaitingPlayer(clash, currentUser){
 /*
 CurrentRound deals with the Clash object
 Presents UI for adding new Tracks which move to the rounds array when completed
-
-# Workflow
-State              Description
-challenge_sent     Created, awaiting response from challengee
-                    - Only CurrentUser can view this clash so "awaiting opponent"
-awaiting_owner     Waiting for owner to upload a track
-                    - CurrentUser sees Form to upload
-                    - Opponent sees Message
-awaiting_opponent  Waiting for opponent to upload a track
-                    - Opponent sees Form to upload
-                    - CurrentUser sees Message
 */
 class CurrentRound extends Component{
 
   workflowComponentFactory(){
     const clash = this.props.clash;
     const currentUser = this.props.currentUser;
-    console.log("State", clash.state)
-    if (clash.state==='challenge_sent'){
-      return ChallengeSent(clash)
-    } else if (clash.state==='awaiting_owner' || clash.state==='awaiting_opponent'){
+    const state = ClashWorkflow.state(clash, currentUser);
+    if (state===ClashWorkflow.STATES.ReadyToAccept){
+      return ReadyToAccept(clash, currentUser)
+    } else {
       return AwaitingPlayer(clash, currentUser)
     }
 

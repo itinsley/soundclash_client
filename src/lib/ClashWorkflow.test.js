@@ -36,7 +36,7 @@ const spectator = {
   email: 'spectator@gmail.com'
 }
 
-describe("Clash Workflow Matrix - ", ()=>{
+describe("Current round workflow - ", ()=>{
   describe("challengeSent to unregistered opponent", ()=>{
     const challengeSentToUnregisteredPlayer = {
       state: "challenge_sent",
@@ -47,6 +47,7 @@ describe("Clash Workflow Matrix - ", ()=>{
       expect(state(challengeSentToUnregisteredPlayer, spectator)).toEqual(STATES.Hidden)
       expect(state(challengeSentToUnregisteredPlayer, owner)).toEqual(STATES.Hidden)
       expect(state(challengeSentToUnregisteredPlayer, opponent)).toEqual(STATES.Hidden)
+      expect(state(challengeSentToUnregisteredPlayer, null)).toEqual(STATES.Hidden)
     })
   
   })
@@ -85,6 +86,7 @@ describe("Clash Workflow Matrix - ", ()=>{
     })
     test("viewed by spectator should be hidden", ()=>{
       expect(state(awaitingOwner, spectator)).toEqual(STATES.Hidden)
+      expect(state(awaitingOwner, null)).toEqual(STATES.Hidden)
     })
   })
 
@@ -100,8 +102,9 @@ describe("Clash Workflow Matrix - ", ()=>{
     test("viewed by opponent should ", ()=>{
       expect(state(awaitingOpponent, opponent)).toEqual(STATES.Upload)
     })
-    test("viewed by spectator", ()=>{
-      expect(state(awaitingOpponent, spectator)).toEqual(STATES.DisplayInfo)
+    test.only("viewed by spectator", ()=>{
+      // expect(state(awaitingOpponent, spectator)).toEqual(STATES.DisplayInfo)
+      expect(state(awaitingOpponent, null)).toEqual(STATES.DisplayInfo)
     })
   })
 

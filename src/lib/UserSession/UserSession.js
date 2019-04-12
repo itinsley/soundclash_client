@@ -7,6 +7,7 @@ const set = (jwt)=>{
   expiry.setUTCSeconds(decoded.exp);
 
   const userDetails = {
+    id: decoded.user_id,
     email: decoded.email,
     userName: decoded.user_name,
     imageUrl: decoded.image_url,
