@@ -22,7 +22,7 @@ class Clash extends Component{
     return(
       <main className="container-fluid main-content mt-5 px-0">
 
-      <div className="container mx-auto text-center " style={{maxWidth: '56.25rem'}}>
+      <div className="t-clash-header container mx-auto text-center " style={{maxWidth: '56.25rem'}}>
         <h1 className="px-2 p-3">{clash.name}</h1>
         <h6 className="card-subtitle mb-2 text-muted">
           <div className='text-center pb-3'>

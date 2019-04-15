@@ -15,6 +15,11 @@
 
     npm start
 
+# Tests
+## Element identification
+Use classes with a prefix of t- for identifying elements for testing purposes. i.e. 
+
+       t-owner-track-container
 # e2e Tests
  - Uses fixtures defined and created *from the server* using the command
 
