@@ -5,8 +5,8 @@ const recent = async()=>{
   return response.data;
 }
 
-const get = async(clashId)=>{
-  const response = await axios.get(`/clashes/${clashId}.json`);
+const get = async(clashId, jwt='')=>{
+  const response = await axios.get(`/clashes/${clashId}.json?jwt=${jwt}`);
   return response.data;
 }
 

@@ -12,8 +12,8 @@ module.exports = {
     browser.end();
   },
 
-  'My Clashes:: challenge_sent - owner can see clash listed' : function (browser) {
-    const page = browser
+  'My Clashes:: challenge_sent - owner' : function (browser) {
+    browser
       .url("https://soundclash.test:3000")
       .waitForElementVisible("body")
       .click("#login")
@@ -22,7 +22,11 @@ module.exports = {
       .setValue("input[name='password']", "password")
       .click("button[type='submit']")
       .waitForElementVisible(".clash-tile")
-    page.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent'); 
+      .verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
+
+    browser
+      .click(".clash-tile")
+      .verify.containsText('div', 'hello we are waiting for Api Opponent')
   }
 
 };

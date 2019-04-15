@@ -44,7 +44,7 @@ class ClashContainer extends Component{
   }
 
   async loadClash(){
-    const clash = await ClashApi.get(this.clashID());
+    const clash = await ClashApi.get(this.clashID(), this.state.currentUser.jwt);
     await this.setState({clash:clash});
   }
 
