@@ -95,6 +95,7 @@ class Login extends Component {
     return (
       <div>
       <div className="mx-auto text-center" style={{maxWidth: '40.25rem'}}>
+        <div className="top-element-margin"></div>
         <h1 className="px-2 p-3">Login</h1>
         <hr/>
         <div className="container" >

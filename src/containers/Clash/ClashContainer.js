@@ -5,7 +5,7 @@ import Clash from "../../components/Clash/Clash";
 import UserSession from '../../lib/UserSession/UserSession';
 import spinner from "../../assets/spinner.gif";
 import RoundWrapper from "../../components/Round/RoundWrapper";
-import CurrentRound from "../../components/Clash/CurrentRound";
+import CurrentRound from "../../components/CurrentRound/CurrentRound";
 
 class RoundsList extends Component {
   render(){

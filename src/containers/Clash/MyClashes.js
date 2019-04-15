@@ -7,8 +7,8 @@ class MyClashes extends Component{
   constructor(props){
     super(props);
     this.state = {
-      myClashes: [
-      ]
+      myClashes: [],
+      loading:true
     }
 
     this.loadClashes = this.loadClashes.bind(this);
@@ -22,17 +22,23 @@ class MyClashes extends Component{
     const jwt = this.props.currentUser.jwt;
     const myClashes = await Clashes.forUser(jwt)
     this.setState(
-      {myClashes}
+      {myClashes,
+      loading: false}
     )
   }
 
   render(){
     const clashTiles =()=>{
+      if (this.state.loading){
+        return <img src={spinner} alt="waiting.." />
+      }
       if (this.state.myClashes.length>0){
         const clashTiles = this.state.myClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} showFooter={true}/>)
         return clashTiles
       } else {
-        return <img src={spinner} alt="waiting.." />
+        return <div>
+          You are not involved in any clashes yet.
+        </div>
       }
     }
     return (
