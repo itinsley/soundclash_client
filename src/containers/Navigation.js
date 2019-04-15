@@ -45,7 +45,7 @@ export class Navigation extends Component {
             <NavItem>
               <a className='nav-link' href='/users/sign_up'>Sign Up</a>
             </NavItem>
-            <NavLink tag={Link} to="/login">Login</NavLink>
+            <NavLink id='login' tag={Link} to="/login">Login</NavLink>
           </Fragment> 
         return loggedOut;
       }

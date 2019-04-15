@@ -37,7 +37,7 @@ class MyClashes extends Component{
         return clashTiles
       } else {
         return <div>
-          You are not involved in any clashes yet.
+          You have not created any clashes yet. Submit the form above to challenge someone to a Soundclash.
         </div>
       }
     }

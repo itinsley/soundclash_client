@@ -23,3 +23,5 @@ yarn-error.log*
 poc.js
 node_modules
 tmp.js
+*.xml
+chromedriver.log

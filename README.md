@@ -13,9 +13,14 @@
 
 ## Start
 
-    HTTPS=true npm start
+    npm start
 
-# API
+# e2e Tests
+ - Uses fixtures defined and created *from the server* using the command
+
+       rake api_fixtures:generate
+
+- Assume fixtures are always loaded at http://soundcla5h-edge.herokuapp.com
 
 ## Open (unsecured) routes
  - http://soundcla5h-edge.herokuapp.com/clashes.json

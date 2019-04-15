@@ -10,6 +10,8 @@
     "dotenv": "^7.0.0",
     "elapsed": "0.0.7",
     "jsonwebtoken": "^8.5.1",
+    "nightwatch": "^1.0.19",
+    "nock": "^10.0.6",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.4",
@@ -26,6 +28,7 @@
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "e2e": "nightwatch test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,6 +41,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "chromedriver": "^2.46.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1"
   }
