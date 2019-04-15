@@ -27,6 +27,7 @@ module.exports = {
     browser
       .click(".clash-tile")
       .verify.containsText('div', 'hello we are waiting for Api Opponent')
+      .end()
   },
 
   'My Clashes:: challenge_sent - opponent' : function (browser) {
@@ -47,6 +48,17 @@ module.exports = {
       .verify.elementPresent('.t-clash-header')
       .verify.containsText('.t-track-opponent-container', 'Waiting for you')
       .verify.containsText('.t-track-opponent-container', 'You have been challenged to a soundclash by Api Owner')
+      .end()
+  },
+
+  'My Clashes:: challenge_sent - spectator' : function (browser) {
+    browser
+      .url("https://soundclash.test:3000")
+      .waitForElementVisible("body")
+      .click("#login")
+      .verify.elementNotPresent(".t-myclashes-header")
+      .end()
+
   }
 
 };
