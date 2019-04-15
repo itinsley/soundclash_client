@@ -32,7 +32,7 @@ class ClashTile extends Component{
         <div className="card p-2" >
           <Link to={`/clashes/${clash.id}`} >
             <div className="card-body bg-white"  >
-              <h3 className="card-title text-truncate">{clash.name}</h3>
+              <h3 className="card-title t-card-title text-truncate">{clash.name}</h3>
               <h4 className="card-subtitle mb-2 text-muted text-truncate">
                 {clash.owner.name} vs. {this.opponentName(clash)}
               </h4>
