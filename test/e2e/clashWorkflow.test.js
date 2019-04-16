@@ -16,6 +16,8 @@ function login(browser, email, password){
     return browser;
 }
 
+// Function causes noisy errors as it continues to evaluate async callbacks
+// after browser has moved on. Not sure how to change this. 
 const ClickInnerText=(browser, innerText)=> (elemResponse)=>{
   elemResponse.value.map(function(element, err) {
     browser.elementIdAttribute(element.ELEMENT, 'innerText', function(res) {
@@ -74,11 +76,12 @@ module.exports = {
 
   'My Clashes:: awaiting_owner - owner' : function (browser) {
     login(browser, OWNER, 'password')
-      .click(".clash-tile")
+      .elements('css selector', '.t-myclashes-container .t-card-title', 
+        ClickInnerText(browser, 'API::awaiting_owner')
+      )
       .verify.elementPresent('iframe')
       .verify.elementPresent('.t-clash-header')
-      .pause()
-      .verify.containsText('.t-track-opponent-container', 'Waiting for Api Opponent')
+      .verify.containsText('div', 'hello we are waiting for Api Owner')
       .end()
 
   },
