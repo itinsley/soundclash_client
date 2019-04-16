@@ -2,30 +2,31 @@ const OWNER='api_owner@soundcla.sh';
 const OPPONENT='api_opponent@soundcla.sh';
 const SPECTATOR='api_spectator@soundcla.sh';
 
-function login(browser, email, password){
-  browser
-    .url("https://soundclash.test:3000")
-    .waitForElementVisible("body")
-    .click("#login")
-    .waitForElementVisible('input')
-    .setValue("input[name='email']", email)
-    .setValue("input[name='password']", password)
-    .click("button[type='submit']")
-    .waitForElementVisible(".clash-tile")
-
-    return browser;
+async function login(browser, email, password){
+  await browser.url("https://soundclash.test:3000")
+  await browser.click("#login")
+  browser.setValue("input[name='email']", email)
+  browser.setValue("input[name='password']", password)
+  return browser.click("button[type='submit']")
 }
 
-// Function causes noisy errors as it continues to evaluate async callbacks
-// after browser has moved on. Not sure how to change this. 
-const ClickInnerText=(browser, innerText)=> (elemResponse)=>{
-  elemResponse.value.map(function(element, err) {
-    browser.elementIdAttribute(element.ELEMENT, 'innerText', function(res) {
-      if (res.value===innerText){
-        browser.elementIdClick(element.ELEMENT)
-      }
-    })
-  })
+
+async function clickElement(browser, elements, innerText){
+  for (var i=0; i<elements.length; i++){
+    const elementId = elements[i].ELEMENT;
+    const res = await browser.elementIdAttribute(elementId, 'innerText');
+    const elementInnerText = res.value;
+    if (elementInnerText===innerText){
+      browser.elementIdClick(elementId)
+      break;
+    }
+  }
+}
+
+async function clickElementBySelector(browser, cssSelector, innerText){
+  const result = await browser.elements('css selector', cssSelector);
+  const elements = result.value;
+  return clickElement(browser,elements, innerText);
 }
 
 module.exports = {
@@ -34,7 +35,6 @@ module.exports = {
     const page = browser
       .url('https://soundclash.test:3000')
       .waitForElementVisible('body');
-
     page.verify.containsText('h1', 'Recent Clashes');
     browser.end();
   },
@@ -47,53 +47,47 @@ module.exports = {
   },
 
   'My Clashes:: challenge_sent - owner' : async function (browser) {
-    login(browser, OWNER, 'password')
-      .verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
-      .elements('css selector', '.t-myclashes-container .t-card-title', 
-        ClickInnerText(browser, 'API::challenge_sent')
-      )
-      .verify.containsText('div', 'hello we are waiting for Api Opponent')
-      .end()
+    await login(browser, OWNER, 'password')
+    browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
+    await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::challenge_sent');
+    browser.verify.containsText('div', 'hello we are waiting for Api Opponent')
+    browser.end()
   },
 
-  'My Clashes:: challenge_sent - opponent' : function (browser) {
-    login(browser, OPPONENT, 'password')
-      .verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
-      .click(".clash-tile")
-      .verify.elementPresent('iframe')
-      .verify.elementPresent('.t-clash-header')
-      .verify.containsText('.t-track-opponent-container', 'Waiting for you')
-      .verify.containsText('.t-track-opponent-container', 'You have been challenged to a soundclash by Api Owner')
-      .end()
+  'My Clashes:: challenge_sent - opponent' : async function (browser) {
+    await login(browser, OPPONENT, 'password')
+    browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
+    await browser.click(".clash-tile")
+    browser.verify.elementPresent('iframe')
+    browser.verify.elementPresent('.t-clash-header')
+    browser.verify.containsText('.t-track-opponent-container', 'Waiting for you')
+    browser.verify.containsText('.t-track-opponent-container', 'You have been challenged to a soundclash by Api Owner')
+    browser.end()
   },
 
-  'My Clashes:: challenge_sent - logged in spectator' : function (browser) {
-    login(browser, SPECTATOR, 'password')
-      .url("https://soundclash.test:3000")
-      .verify.elementNotPresent(".t-myclashes-header .clash-tile")
-      .end()
+  'My Clashes:: challenge_sent - logged in spectator' : async function (browser) {
+    await login(browser, SPECTATOR, 'password')
+    browser.verify.elementNotPresent(".t-myclashes-header .clash-tile")
+    browser.end()
   },
 
-  'My Clashes:: awaiting_owner - owner' : function (browser) {
-    login(browser, OWNER, 'password')
-      .elements('css selector', '.t-myclashes-container .t-card-title', 
-        ClickInnerText(browser, 'API::awaiting_owner')
-      )
-      .verify.elementPresent('iframe')
-      .verify.elementPresent('.t-clash-header')
-      .verify.containsText('div', 'hello we are waiting for Api Owner')
-      .end()
+  'My Clashes:: awaiting_owner - owner' : async function (browser) {
+    await login(browser, OWNER, 'password')
+    browser.verify.containsText('h1', 'My Clashes');
+    await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
+    browser.verify.containsText('div', 'hello we are waiting for Api Owner')
+    browser.end();
   },
 
-  'My Clashes:: awaiting_owner - opponent' : function (browser) {
-    login(browser, OPPONENT, 'password')
-      .elements('css selector', '.t-myclashes-container .t-card-title', 
-        ClickInnerText(browser, 'API::awaiting_owner')
-      )
-      .verify.elementPresent('iframe')
-      .verify.elementPresent('.t-clash-header')
-      .verify.containsText('div', 'hello we are waiting for Api Owner')
-      .end()
+  'My Clashes:: awaiting_owner - opponent' : async function (browser) {
+    await login(browser, OPPONENT, 'password')
+    browser.verify.containsText('h1', 'My Clashes');
+    await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
+    browser.pause
+    browser.verify.elementPresent('iframe')
+    browser.verify.elementPresent('.t-clash-header')
+    browser.verify.containsText('div', 'hello we are waiting for Api Owner')
+    browser.end()
   },
 
 };
