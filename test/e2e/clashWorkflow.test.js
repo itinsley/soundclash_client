@@ -83,7 +83,17 @@ module.exports = {
       .verify.elementPresent('.t-clash-header')
       .verify.containsText('div', 'hello we are waiting for Api Owner')
       .end()
+  },
 
+  'My Clashes:: awaiting_owner - opponent' : function (browser) {
+    login(browser, OPPONENT, 'password')
+      .elements('css selector', '.t-myclashes-container .t-card-title', 
+        ClickInnerText(browser, 'API::awaiting_owner')
+      )
+      .verify.elementPresent('iframe')
+      .verify.elementPresent('.t-clash-header')
+      .verify.containsText('div', 'hello we are waiting for Api Owner')
+      .end()
   },
 
 };
