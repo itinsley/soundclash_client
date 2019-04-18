@@ -58,7 +58,7 @@ module.exports = {
     await login(browser, OWNER, 'password')
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::challenge_sent');
-    browser.verify.containsText('div', 'hello we are waiting for Api Opponent')
+    browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Opponent')
     browser.end()
   },
 
@@ -83,7 +83,7 @@ module.exports = {
     await login(browser, OWNER, 'password')
     browser.verify.containsText('h1', 'My Clashes');
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
-    browser.verify.containsText('div', 'hello we are waiting for Api Owner')
+    browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
     browser.end();
   },
 
@@ -94,7 +94,7 @@ module.exports = {
     browser.pause
     browser.verify.elementPresent('iframe')
     browser.verify.elementPresent('.t-clash-header')
-    browser.verify.containsText('div', 'hello we are waiting for Api Owner')
+    browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
     browser.end()
   },
 
