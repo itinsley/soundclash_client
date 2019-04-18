@@ -1,14 +1,13 @@
 import React, {Component, Fragment} from "react";
-
-// All these need to be passed as properties!
 import RecentClashes from '../components/RecentClashes';
 import MyClashes from '../components/MyClashes'
 import UserSession from '../../../lib/UserSession/UserSession';
 
-function MyClashesWrapper(){
+function MyClashesWrapper(props){
   const currentUser = UserSession.get();
   if(currentUser){
-    return <MyClashes currentUser={currentUser} />
+    return <MyClashes currentUser={currentUser}
+                      myClashes = {props.myClashes} />
   }
   return null
 }
@@ -18,7 +17,7 @@ class Home extends Component{
     return (
       <Fragment >
         <div className="top-element-margin"></div>
-        <MyClashesWrapper />
+        <MyClashesWrapper myClashes={this.props.myClashes} />
         <RecentClashes />
       </Fragment>
     )

@@ -1,39 +1,16 @@
 import React, {Component} from "react";
-import Clashes from "../../../api/Clashes";
 import ClashTile from "./ClashTile";
 import spinner from "../../../assets/spinner.gif"
 
 class MyClashes extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      myClashes: [],
-      loading:true
-    }
-
-    this.loadClashes = this.loadClashes.bind(this);
-  }
-
-  componentDidMount(){
-    this.loadClashes();
-  }
-
-  async loadClashes(){
-    const jwt = this.props.currentUser.jwt;
-    const myClashes = await Clashes.forUser(jwt)
-    this.setState(
-      {myClashes,
-      loading: false}
-    )
-  }
 
   render(){
     const clashTiles =()=>{
-      if (this.state.loading){
+      if (this.props.loading){
         return <img src={spinner} alt="waiting.." />
       }
-      if (this.state.myClashes.length>0){
-        const clashTiles = this.state.myClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} showFooter={true}/>)
+      if (this.props.myClashes.length>0){
+        const clashTiles = this.props.myClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} showFooter={true}/>)
         return clashTiles
       } else {
         return <div>
