@@ -39,6 +39,14 @@ module.exports = {
     browser.end();
   },
 
+  'View Clash:: - spectator, not logged in' : async function (browser) {
+    await browser.url("https://soundclash.test:3000")
+    browser.waitForElementVisible('.card');
+    await clickElementBySelector(browser, '.t-card-title', 'API::awaiting_owner');
+    browser.verify.containsText('h1', 'API::awaiting_owner')
+    browser.end()
+  },
+
   'My Clashes:: - spectator, not logged in' : function (browser) {
     browser
       .url("https://soundclash.test:3000")
