@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, BrowserRouter, Switch } from 'react-router-dom';
-import Home from './containers/Home/Home';
+import Home from './containers/Home';
 import About from './components/About';
 import Login from './components/Login';
 import Logout from './components/Logout';
-import Clash from '../src/containers/Clash/ClashContainer'
+import Clash from '../src/containers/Clash';
 import {Navigation} from './containers/Navigation';
 
   // Should never hit these routes in prod as root will point to server app
