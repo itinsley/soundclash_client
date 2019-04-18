@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import ClashApi from "../../api/Clashes";
 import UserApi from "../../api/Users";
-import Clash from "./components/Clash/Clash";
+import ClashHeader from "./components/Clash/ClashHeader";
 import UserSession from '../../lib/UserSession/UserSession';
 import spinner from "../../assets/spinner.gif";
 import RoundWrapper from "./components/Round/RoundWrapper";
@@ -62,7 +62,7 @@ class ClashContainer extends Component{
       const clash = this.state.clash;
       return(
         <Fragment>
-          <Clash  clash={clash} 
+          <ClashHeader  clash={clash} 
                   currentUser = {this.state.currentUser} />
           <CurrentRound clash ={clash} 
                   currentUser = {this.state.currentUser} />
