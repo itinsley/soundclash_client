@@ -34,8 +34,6 @@ class ClashContainer extends Component{
     this.state={
       clash: null,
       currentUser: UserSession.get(),
-      owner: UserApi.emptyStruct(),
-      opponent: UserApi.emptyStruct(),
     }
   }
 
