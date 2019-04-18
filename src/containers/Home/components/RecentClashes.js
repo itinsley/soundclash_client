@@ -1,34 +1,14 @@
 import React, {Component} from "react";
-import Clashes from "../../../api/Clashes";
 import ClashTile from "./ClashTile";
 import spinner from "../../../assets/spinner.gif";
 
 class RecentClashes extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      recentClashes: [
-      ]
-    }
-
-    this.loadClashes = this.loadClashes.bind(this);
-  }
-
-  componentDidMount(){
-    this.loadClashes();
-  }
-
-  async loadClashes(){
-    const recentClashes = await Clashes.recent();
-    this.setState(
-      {recentClashes}
-    )
-  }
 
   render(){
     const clashTiles =()=>{
-      if (this.state.recentClashes.length>0){
-        const clashTiles = this.state.recentClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
+      const recentClashes = this.props.recentClashes.data;
+      if (recentClashes.length>0){
+        const clashTiles = recentClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
         return clashTiles
       } else {
         return <img src={spinner} alt="waiting.." />

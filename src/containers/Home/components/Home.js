@@ -16,7 +16,7 @@ class Home extends Component{
         <div className="top-element-margin"></div>
         <MyClashesWrapper myClashes={this.props.myClashes} 
                           currentUser={this.props.currentUser}/>
-        <RecentClashes />
+        <RecentClashes recentClashes={this.props.recentClashes}/>
       </Fragment>
     )
   }

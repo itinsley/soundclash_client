@@ -11,15 +11,31 @@ class HomeContainer extends Component {
       myClashes: {
         data: [],
         loading:true
+      },
+      recentClashes: {
+        data: [],
       }
     }
   }
 
   componentDidMount(){
-    this.loadClashes();
+    this.loadMyClashes();
+    this.loadRecentClashes();
+  }
+
+  async loadRecentClashes(){
+    const recentClashes = await Clashes.recent();
+    this.setState(
+      {
+        recentClashes: {
+          data: recentClashes,
+        }
+      }
+    )
   }
   
-  async loadClashes(){
+  
+  async loadMyClashes(){
     const currentUser = UserSession.get();
     if (currentUser){
       const myClashes = await Clashes.forUser(currentUser.jwt);
@@ -37,7 +53,10 @@ class HomeContainer extends Component {
   render() {
     const currentUser = UserSession.get();
     return (
-      <Home myClashes={this.state.myClashes} currentUser={currentUser}/>
+      <Home myClashes={this.state.myClashes} 
+            recentClashes={this.state.recentClashes}
+            currentUser={currentUser}
+            />
     );
   }
 }
