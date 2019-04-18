@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ClashWorkflow from "../../lib/ClashWorkflow";
+import ClashWorkflow from "../../../../lib/ClashWorkflow";
 import ReadyToAccept from "./ReadyToAccept";
 import AwaitingPlayer from "./AwaitingPlayer";
 

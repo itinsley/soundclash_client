@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import '../../App.css';
-import RecentClashes from '../Clash/RecentClashes';
+import RecentClashes from './components/RecentClashes';
 import UserSession from '../../lib/UserSession/UserSession';
-import MyClashes from '../Clash/MyClashes';
+import MyClashes from './components/MyClashes';
 
 function MyClashesWrapper(){
   const currentUser = UserSession.get();

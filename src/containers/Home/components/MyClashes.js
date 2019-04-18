@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import Clashes from "../../api/Clashes";
-import ClashTile from "../../components/Clash/ClashTile";
-import spinner from "../../assets/spinner.gif";
+import Clashes from "../../../api/Clashes";
+import ClashTile from "./ClashTile";
+import spinner from "../../../assets/spinner.gif"
 
 class MyClashes extends Component{
   constructor(props){
