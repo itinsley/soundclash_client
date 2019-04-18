@@ -4,29 +4,8 @@ import UserApi from "../../api/Users";
 import ClashHeader from "./components/Clash/ClashHeader";
 import UserSession from '../../lib/UserSession/UserSession';
 import spinner from "../../assets/spinner.gif";
-import RoundWrapper from "./components/Round/RoundWrapper";
 import CurrentRound from "./components/CurrentRound/CurrentRound";
-
-class RoundsList extends Component {
-  render(){
-    return this.props.rounds.map((round, idx)=>{
-      return (
-        <Fragment
-          key={round.id}  >
-          <div className='row' >
-            <div className='col-sm-12 text-center' >
-              <RoundWrapper 
-                isOpen={idx===0}
-                round={round}
-                currentUser = {this.props.currentUser}
-                />
-            </div>
-          </div>
-        </Fragment>
-      )
-    })
-  }
-}
+import RoundsList from "./components/Clash/RoundsList";
 
 class ClashContainer extends Component{
   constructor(props){
