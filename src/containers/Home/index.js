@@ -1,30 +1,45 @@
 import React, { Component, Fragment } from 'react';
 import '../../App.css';
-import RecentClashes from './components/RecentClashes';
-import UserSession from '../../lib/UserSession/UserSession';
-import MyClashes from './components/MyClashes';
+import Home from './components/Home';
+import Clashes from "../../api/Clashes";
+import UserSession from "../../lib/UserSession/UserSession";
 
-function MyClashesWrapper(){
-  const currentUser = UserSession.get();
-  if(currentUser){
-    return <MyClashes currentUser={currentUser} />
+class HomeContainer extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      myClashes: {
+        data: [],
+        loading:true
+      }
+    }
   }
-  return null
-}
 
-
-class Home extends Component {
-
+  componentDidMount(){
+    this.loadClashes();
+  }
+  
+  async loadClashes(){
+    const currentUser = UserSession.get();
+    if (currentUser){
+      const myClashes = await Clashes.forUser(currentUser.jwt);
+      this.setState(
+        {
+          myClashes: {
+            data: myClashes,
+            loading: false
+          }
+        }
+      )
+    }
+  }
+    
   render() {
-
+    const currentUser = UserSession.get();
     return (
-      <Fragment >
-        <div className="top-element-margin"></div>
-        <MyClashesWrapper />
-        <RecentClashes />
-      </Fragment>
+      <Home myClashes={this.state.myClashes} currentUser={currentUser}/>
     );
   }
 }
 
-export default Home;
+export default HomeContainer;
