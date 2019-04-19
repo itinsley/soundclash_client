@@ -10,12 +10,16 @@ function MyClashesWrapper(props){
 }
 
 class Home extends Component{
+  constructor(props){
+    super(props);
+  }
+
   render(){
     return (
       <Fragment >
         <div className="top-element-margin"></div>
-        <MyClashesWrapper myClashes={this.props.myClashes} 
-                          currentUser={this.props.currentUser}/>
+        {/* <MyClashesWrapper myClashes={this.props.myClashes} 
+                          currentUser={this.props.currentUser}/> */}
         <RecentClashes recentClashes={this.props.recentClashes}/>
       </Fragment>
     )
