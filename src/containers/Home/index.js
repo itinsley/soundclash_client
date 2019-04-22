@@ -19,7 +19,9 @@ const App = connect(
 // Map Redux state to component props
 function mapStateToProps(state) {
   return {
-    recentClashes: state.recentClashes
+    recentClashes: state.recentClashes,
+    currentUser: state.currentUser,
+    myClashes: state.myClashes
   }
 }
 
@@ -31,10 +33,27 @@ async function fetchAndDispatchRecentClashes(){
   })
 }
 
+function currentUserJwt(){
+  const currentUser = store.getState().currentUser;
+  return currentUser?currentUser.jwt:null
+}
+
+async function fetchAndDispatchMyClashes(){
+  const jwt = currentUserJwt();
+  if (jwt){
+    const myClashes = await ClashApi.forUser(currentUserJwt())
+    store.dispatch({
+      type: 'GET_MY_CLASHES',
+      myClashes
+    })
+  }
+}
+
 class HomeContainer extends Component {
   constructor(props){
     super(props)
     fetchAndDispatchRecentClashes();
+    fetchAndDispatchMyClashes();
   }
   render(){
     return(

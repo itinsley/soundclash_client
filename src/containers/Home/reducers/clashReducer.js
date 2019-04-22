@@ -6,7 +6,10 @@ const defaultState = {
   recentClashes: {
     data: [],
     loading: true},
-  currentUser: UserSession.get(),
+  myClashes: {
+      data: [],
+      loading: true},
+    currentUser: UserSession.get(),
 }
 
 // Reducer
@@ -14,8 +17,17 @@ function clashReducer(state = defaultState, action) {
   switch (action.type) {
     case 'GET_RECENT_CLASHES':
       return {
+        ...state,
         recentClashes:{
           data: action.recentClashes,
+          loading: false
+        }
+      }
+    case 'GET_MY_CLASHES':
+      return {
+        ...state,
+        myClashes:{
+          data: action.myClashes,
           loading: false
         }
       }
