@@ -2,18 +2,18 @@ import React, { Component, Fragment } from 'react';
 import '../../App.css';
 import Home from './components/Home';
 import ClashApi from "../../api/Clashes";
-import {createStore} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import clashReducer from './reducers/clashReducer';
-
+import thunk from 'redux-thunk';
 
 // Store
-const store = createStore(clashReducer);
+const store = createStore(clashReducer, applyMiddleware(thunk));
 
 // Connected Component
 const App = connect(
   mapStateToProps,
-  {},
+  mapDispatchToProps,
 )(Home)
 
 // Map Redux state to component props
@@ -25,24 +25,34 @@ function mapStateToProps(state) {
   }
 }
 
-async function fetchAndDispatchRecentClashes(){
+function mapDispatchToProps(dispatch){
+  return {
+    onLoad: ()=>{
+      dispatch(fetchAndDispatchRecentClashes)
+      dispatch(fetchAndDispatchMyClashes)
+    }
+  }
+}
+
+async function fetchAndDispatchRecentClashes(dispatch){
   const recentClashes = await ClashApi.recent();
-  store.dispatch({
+  dispatch({
     type: 'GET_RECENT_CLASHES',
     recentClashes
   })
 }
 
-function currentUserJwt(){
-  const currentUser = store.getState().currentUser;
+function currentUserJwt(state){
+  const currentUser = state.currentUser;
   return currentUser?currentUser.jwt:null
 }
 
-async function fetchAndDispatchMyClashes(){
-  const jwt = currentUserJwt();
+async function fetchAndDispatchMyClashes(dispatch, getState){
+  const state = getState()
+  const jwt = currentUserJwt(state);
   if (jwt){
-    const myClashes = await ClashApi.forUser(currentUserJwt())
-    store.dispatch({
+    const myClashes = await ClashApi.forUser(jwt)
+    dispatch({
       type: 'GET_MY_CLASHES',
       myClashes
     })
@@ -52,9 +62,8 @@ async function fetchAndDispatchMyClashes(){
 class HomeContainer extends Component {
   constructor(props){
     super(props)
-    fetchAndDispatchRecentClashes();
-    fetchAndDispatchMyClashes();
   }
+
   render(){
     return(
       <Provider store={store}>
