@@ -10,6 +10,11 @@ function MyClashesWrapper(props){
 }
 
 class Home extends Component{
+  constructor(props){
+    super(props);
+    this.props.onLoad();
+  }
+
   render(){
     return (
       <Fragment >

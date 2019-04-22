@@ -1,63 +1,51 @@
 import React, { Component, Fragment } from 'react';
 import '../../App.css';
 import Home from './components/Home';
-import Clashes from "../../api/Clashes";
-import UserSession from "../../lib/UserSession/UserSession";
+import ClashApi from "../../api/Clashes";
+import { createStore, applyMiddleware } from 'redux';
+import { Provider, connect } from 'react-redux';
+import clashReducer from './reducers/clashReducer';
+import thunk from 'redux-thunk';
+import {fetchMyClashesAction, fetchRecentClashesAction} from './actions';
+
+// Store
+const store = createStore(clashReducer, applyMiddleware(thunk));
+
+// Connected Component
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Home)
+
+// Map Redux state to component props
+function mapStateToProps(state) {
+  return {
+    recentClashes: state.recentClashes,
+    currentUser: state.currentUser,
+    myClashes: state.myClashes
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    onLoad: ()=>{
+      dispatch(fetchMyClashesAction)
+      dispatch(fetchRecentClashesAction)
+    }
+  }
+}
 
 class HomeContainer extends Component {
   constructor(props){
-    super(props);
-    this.state = {
-      myClashes: {
-        data: [],
-        loading:true
-      },
-      recentClashes: {
-        data: [],
-      }
-    }
+    super(props)
   }
 
-  componentDidMount(){
-    this.loadMyClashes();
-    this.loadRecentClashes();
-  }
-
-  async loadRecentClashes(){
-    const recentClashes = await Clashes.recent();
-    this.setState(
-      {
-        recentClashes: {
-          data: recentClashes,
-        }
-      }
+  render(){
+    return(
+      <Provider store={store}>
+        <App />
+      </Provider>
     )
-  }
-  
-  
-  async loadMyClashes(){
-    const currentUser = UserSession.get();
-    if (currentUser){
-      const myClashes = await Clashes.forUser(currentUser.jwt);
-      this.setState(
-        {
-          myClashes: {
-            data: myClashes,
-            loading: false
-          }
-        }
-      )
-    }
-  }
-    
-  render() {
-    const currentUser = UserSession.get();
-    return (
-      <Home myClashes={this.state.myClashes} 
-            recentClashes={this.state.recentClashes}
-            currentUser={currentUser}
-            />
-    );
   }
 }
 
