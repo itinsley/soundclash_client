@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import clashReducer from './reducers/clashReducer';
 import thunk from 'redux-thunk';
+import {fetchMyClashesAction, fetchRecentClashesAction} from './actions';
 
 // Store
 const store = createStore(clashReducer, applyMiddleware(thunk));
@@ -28,34 +29,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch){
   return {
     onLoad: ()=>{
-      dispatch(fetchAndDispatchRecentClashes)
-      dispatch(fetchAndDispatchMyClashes)
+      dispatch(fetchMyClashesAction)
+      dispatch(fetchRecentClashesAction)
     }
-  }
-}
-
-async function fetchAndDispatchRecentClashes(dispatch){
-  const recentClashes = await ClashApi.recent();
-  dispatch({
-    type: 'GET_RECENT_CLASHES',
-    recentClashes
-  })
-}
-
-function currentUserJwt(state){
-  const currentUser = state.currentUser;
-  return currentUser?currentUser.jwt:null
-}
-
-async function fetchAndDispatchMyClashes(dispatch, getState){
-  const state = getState()
-  const jwt = currentUserJwt(state);
-  if (jwt){
-    const myClashes = await ClashApi.forUser(jwt)
-    dispatch({
-      type: 'GET_MY_CLASHES',
-      myClashes
-    })
   }
 }
 
