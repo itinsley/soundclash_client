@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import ClashApi from "../../api/Clashes";
 import Clash from "./components/Clash/Clash";
 import UserSession from '../../lib/UserSession/UserSession';

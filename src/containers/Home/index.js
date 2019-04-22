@@ -1,7 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import '../../App.css';
 import Home from './components/Home';
-import ClashApi from "../../api/Clashes";
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import clashReducer from './reducers/clashReducer';
@@ -36,10 +35,6 @@ function mapDispatchToProps(dispatch){
 }
 
 class HomeContainer extends Component {
-  constructor(props){
-    super(props)
-  }
-
   render(){
     return(
       <Provider store={store}>

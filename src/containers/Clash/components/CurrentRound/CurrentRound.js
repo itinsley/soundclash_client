@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import {Component} from "react";
 import ClashWorkflow from "../../../../lib/ClashWorkflow";
 import ReadyToAccept from "./ReadyToAccept";
 import AwaitingPlayer from "./AwaitingPlayer";
@@ -19,8 +19,6 @@ class CurrentRound extends Component{
     } else {
       return AwaitingPlayer(clash, currentUser)
     }
-
-    return null;
   }
   
   render(){
