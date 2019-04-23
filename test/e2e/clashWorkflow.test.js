@@ -1,9 +1,11 @@
+require('dotenv').config();
+const BASE_URL = process.env.BASE_URL || 'https://soundclash.test:3000/';
 const OWNER='api_owner@soundcla.sh';
 const OPPONENT='api_opponent@soundcla.sh';
 const SPECTATOR='api_spectator@soundcla.sh';
 
 async function login(browser, email, password){
-  await browser.url("https://soundclash.test:3000")
+  await browser.url(BASE_URL)
   await browser.click("#login")
   browser.setValue("input[name='email']", email)
   browser.setValue("input[name='password']", password)
@@ -32,7 +34,7 @@ async function clickElementBySelector(browser, cssSelector, innerText){
 module.exports = {
 
   'View Clash:: - spectator, not logged in' : async function (browser) {
-    browser.url("https://soundclash.test:3000");
+    await browser.url(BASE_URL)
     browser.waitForElementVisible('.card');
     browser.verify.containsText('h1', 'Recent Clashes');
     await clickElementBySelector(browser, '.t-card-title', 'API::awaiting_owner');

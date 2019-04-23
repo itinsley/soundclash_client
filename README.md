@@ -24,13 +24,20 @@ Use classes with a prefix of t- for identifying elements for testing purposes. i
 
        npm run e2e
 
- - Uses fixtures defined and created *from the server* using the command
+## Fixtures
+Uses fixtures defined and created *from the server* using the command
 
        rake api_fixtures:generate
 
 - Assume fixtures are always loaded at http://soundcla5h-edge.herokuapp.com
 
+## Run against other environment
+Set env variable BASE_URL - i.e
+
+      BASE_URL=https://frifti.com/client npm run e2e
+
 ## Open (unsecured) routes
 (The following routes don't require a JWT)
  - http://soundcla5h-edge.herokuapp.com/clashes.json
  - http://soundcla5h-edge.herokuapp.com/clashes/:id.json
+
