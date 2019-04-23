@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import CurrentUserStub from "../stubs/CurrentUser";
 import ClashWorkflow from "./ClashWorkflow";
 import { isContext } from "vm";
