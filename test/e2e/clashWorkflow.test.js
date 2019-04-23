@@ -66,8 +66,8 @@ module.exports = {
     await login(browser, OPPONENT, 'password')
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
     await browser.click(".clash-tile")
+    browser.waitForElementVisible('.t-clash-header')
     browser.verify.elementPresent('iframe')
-    browser.verify.elementPresent('.t-clash-header')
     browser.verify.containsText('.t-track-opponent-container', 'Waiting for you')
     browser.verify.containsText('.t-track-opponent-container', 'You have been challenged to a soundclash by Api Owner')
     browser.end()
@@ -81,7 +81,9 @@ module.exports = {
 
   'My Clashes:: awaiting_owner - owner' : async function (browser) {
     await login(browser, OWNER, 'password')
+    browser.waitForElementVisible('.t-myclashes-container');
     browser.verify.containsText('h1', 'My Clashes');
+    browser.waitForElementVisible('.t-card-title');
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
     browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
     browser.end();
@@ -89,11 +91,12 @@ module.exports = {
 
   'My Clashes:: awaiting_owner - opponent' : async function (browser) {
     await login(browser, OPPONENT, 'password')
+    browser.waitForElementVisible('.t-myclashes-container');
     browser.verify.containsText('h1', 'My Clashes');
+    browser.waitForElementVisible('.t-card-title');
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
-    browser.pause
+    browser.waitForElementVisible('.t-clash-header')
     browser.verify.elementPresent('iframe')
-    browser.verify.elementPresent('.t-clash-header')
     browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
     browser.end()
   },
