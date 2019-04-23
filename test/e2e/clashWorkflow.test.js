@@ -31,25 +31,16 @@ async function clickElementBySelector(browser, cssSelector, innerText){
 
 module.exports = {
 
-  'Home page - Recent Clashes' : function (browser) {
-    const page = browser
-      .url('https://soundclash.test:3000')
-      .waitForElementVisible('body');
-    page.verify.containsText('h1', 'Recent Clashes');
-    browser.end();
-  },
-
   'View Clash:: - spectator, not logged in' : async function (browser) {
-    await browser.url("https://soundclash.test:3000")
+    browser.url("https://soundclash.test:3000");
     browser.waitForElementVisible('.card');
+    browser.verify.containsText('h1', 'Recent Clashes');
     await clickElementBySelector(browser, '.t-card-title', 'API::awaiting_owner');
     browser.verify.containsText('h1', 'API::awaiting_owner')
-    browser.end()
-  },
 
-  'My Clashes:: - spectator, not logged in' : function (browser) {
-    browser
-      .url("https://soundclash.test:3000")
+    // My Clashes:: - spectator, not logged in
+    browser.click('.navbar-brand')
+      .waitForElementVisible('.card')
       .verify.elementNotPresent(".t-myclashes-header")
       .end()
   },
@@ -59,28 +50,9 @@ module.exports = {
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::challenge_sent');
     browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Opponent')
-    browser.end()
-  },
 
-  'My Clashes:: challenge_sent - opponent' : async function (browser) {
-    await login(browser, OPPONENT, 'password')
-    browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
-    await browser.click(".clash-tile")
-    browser.waitForElementVisible('.t-clash-header')
-    browser.verify.elementPresent('iframe')
-    browser.verify.containsText('.t-track-opponent-container', 'Waiting for you')
-    browser.verify.containsText('.t-track-opponent-container', 'You have been challenged to a soundclash by Api Owner')
-    browser.end()
-  },
-
-  'My Clashes:: challenge_sent - logged in spectator' : async function (browser) {
-    await login(browser, SPECTATOR, 'password')
-    browser.verify.elementNotPresent(".t-myclashes-header .clash-tile")
-    browser.end()
-  },
-
-  'My Clashes:: awaiting_owner - owner' : async function (browser) {
-    await login(browser, OWNER, 'password')
+    // My Clashes:: awaiting_owner - owner
+    browser.click('.navbar-brand')
     browser.waitForElementVisible('.t-myclashes-container');
     browser.verify.containsText('h1', 'My Clashes');
     browser.waitForElementVisible('.t-card-title');
@@ -98,6 +70,21 @@ module.exports = {
     browser.waitForElementVisible('.t-clash-header')
     browser.verify.elementPresent('iframe')
     browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
+
+    // My Clashes:: challenge_sent - opponent
+    browser.click('.navbar-brand')
+    browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
+    await browser.click(".clash-tile")
+    browser.waitForElementVisible('.t-clash-header')
+    browser.verify.elementPresent('iframe')
+    browser.verify.containsText('.t-track-opponent-container', 'Waiting for you')
+    browser.verify.containsText('.t-track-opponent-container', 'You have been challenged to a soundclash by Api Owner')
+    browser.end()
+  },
+
+  'My Clashes:: challenge_sent - logged in spectator' : async function (browser) {
+    await login(browser, SPECTATOR, 'password')
+    browser.verify.elementNotPresent(".t-myclashes-header .clash-tile")
     browser.end()
   },
 
