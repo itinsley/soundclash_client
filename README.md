@@ -21,6 +21,9 @@ Use classes with a prefix of t- for identifying elements for testing purposes. i
 
        t-owner-track-container
 # e2e Tests
+
+       npm run e2e
+
  - Uses fixtures defined and created *from the server* using the command
 
        rake api_fixtures:generate
@@ -28,5 +31,6 @@ Use classes with a prefix of t- for identifying elements for testing purposes. i
 - Assume fixtures are always loaded at http://soundcla5h-edge.herokuapp.com
 
 ## Open (unsecured) routes
+(The following routes don't require a JWT)
  - http://soundcla5h-edge.herokuapp.com/clashes.json
  - http://soundcla5h-edge.herokuapp.com/clashes/:id.json
