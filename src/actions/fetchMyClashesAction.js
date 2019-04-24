@@ -1,4 +1,4 @@
-import ClashApi from '../../../api/Clashes';
+import ClashApi from '../api/Clashes';
 
 function currentUserJwt(state){
   const currentUser = state.currentUser;

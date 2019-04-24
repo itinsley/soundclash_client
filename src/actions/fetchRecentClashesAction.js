@@ -1,4 +1,4 @@
-import ClashApi from '../../../api/Clashes';
+import ClashApi from '../api/Clashes';
 async function fetchRecentClashes(dispatch){
   const recentClashes = await ClashApi.recent();
   dispatch({

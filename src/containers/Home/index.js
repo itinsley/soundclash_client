@@ -3,12 +3,12 @@ import '../../App.css';
 import Home from './components/Home';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
-import clashReducer from './reducers/clashReducer';
+import reducer from '../../reducer'
 import thunk from 'redux-thunk';
-import {fetchMyClashesAction, fetchRecentClashesAction} from './actions';
+import {fetchMyClashesAction, fetchRecentClashesAction} from '../../actions';
 
 // Store
-const store = createStore(clashReducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk));
 
 // Connected Component
 const App = connect(

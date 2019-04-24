@@ -1,6 +1,6 @@
 // These should probably be provided as properties to make testing easier
 // but import for now
-import UserSession from '../../../lib/UserSession/UserSession';
+import UserSession from './lib/UserSession/UserSession';
 
 const defaultState = { 
   recentClashes: {
@@ -13,7 +13,7 @@ const defaultState = {
 }
 
 // Reducer
-function clashReducer(state = defaultState, action) {
+function reducer(state = defaultState, action) {
   switch (action.type) {
     case 'GET_RECENT_CLASHES':
       return {
@@ -36,4 +36,4 @@ function clashReducer(state = defaultState, action) {
   }
 }
 
-export default clashReducer;
+export default reducer;
