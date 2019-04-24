@@ -31,10 +31,10 @@ function reducer(state = defaultState, action) {
           loading: false
         }
       }
-    case 'LOAD_USER_SESSION':
+    case 'LOGOUT_USER':
       return {
         ...state,
-        currentUser: action.currentUser
+        currentUser: null
       }
     default:
       return state

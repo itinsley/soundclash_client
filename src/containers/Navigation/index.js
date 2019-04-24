@@ -1,78 +1,38 @@
 import React, {Component, Fragment} from "react";
-import { Link } from "react-router-dom";
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    Nav,
-    NavLink,
-    NavItem} from 'reactstrap';
-import UserSession from '../../lib/UserSession/UserSession';
+import Navigation from  './components/Navigation'
+import { Provider, connect } from 'react-redux';
+import logoutAction from "../../actions/logoutAction";
 
-class Navigation extends Component {
-    constructor(props) {
-      super(props);
-
-      this.toggle = this.toggle.bind(this);
-      this.state = {
-        isOpen: false
-      };
-    }
-
-    toggle() {
-      this.setState({
-        isOpen: !this.state.isOpen
-      });
-    }
-
-    loginNav(){
-      const userDetails = UserSession.get();
-      if (userDetails){
-        const loggedIn = 
-          <Fragment>
-            <NavItem>
-              <NavLink className='disabled'>Hello {userDetails.userName}</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/logout">Logout</NavLink>
-            </NavItem>;
-          </Fragment>
-          return loggedIn;
-      } else {
-        const loggedOut =
-          <Fragment>
-            <NavItem>
-              <a className='nav-link' href='/users/sign_up'>Sign Up</a>
-            </NavItem>
-            <NavLink id='login' tag={Link} to="/login">Login</NavLink>
-          </Fragment> 
-        return loggedOut;
-      }
-    }
-
-    
-    render() {
-      
-      return (
-        <div>
-          <Navbar dark expand="md" className="navbar navbar-default fixed-top bg-black" >
-              <Link to='/' className='navbar-brand'>
-                <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />
-              </Link>
-
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto navbar-fixed-top" navbar>
-                <NavItem>
-                  <NavLink tag={Link} to='/about' >What is this?</NavLink>
-                </NavItem>
-                {this.loginNav()}                
-              </Nav>
-            </Collapse>
-          </Navbar>
-        </div>
-      );
-    }
+// Map Redux state to component props
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
   }
+}
 
-  export default Navigation;
+function mapDispatchToProps(dispatch){  
+  return {
+    logOut: ()=>{
+      dispatch(logoutAction)
+    },
+  }
+}
+
+// Connected Component
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Navigation)
+
+class NavigationContainer extends Component {
+  render() {
+    const store = this.props.store;
+    return (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+  }
+}
+
+export default NavigationContainer;

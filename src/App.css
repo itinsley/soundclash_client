@@ -3,6 +3,13 @@ audio, canvas, progress, video {
   vertical-align: middle;
 }
 
+.btn-link{
+  background:none!important;
+  border:none; 
+  color:white!important;
+  font-weight: 300;
+}
+
 /* I don't know how else to prevent content getting hidden under the NavBar */
 .top-element-margin{
   padding-top: 55px; 

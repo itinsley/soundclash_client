@@ -3,8 +3,14 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { makeMainRoutes } from './routes';
 import * as serviceWorker from './serviceWorker';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import reducer from './reducer';
 
-const routes = makeMainRoutes();
+// Global Redux Store
+const store = createStore(reducer, applyMiddleware(thunk));
+
+const routes = makeMainRoutes(store);
 
 ReactDOM.render(
   routes,

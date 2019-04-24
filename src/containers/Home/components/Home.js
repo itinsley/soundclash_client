@@ -14,7 +14,6 @@ class Home extends Component{
     super(props);
     this.props.onLoad();
   }
-
   render(){
     return (
       <Fragment >

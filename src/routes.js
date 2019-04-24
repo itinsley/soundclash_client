@@ -3,7 +3,6 @@ import {Route, BrowserRouter, Switch } from 'react-router-dom';
 import Home from './containers/Home';
 import About from './components/About';
 import Login from './components/Login';
-import Logout from './components/Logout';
 import Clash from '../src/containers/Clash';
 import Navigation from './containers/Navigation';
 
@@ -17,15 +16,14 @@ import Navigation from './containers/Navigation';
     )
 }
 
-export const makeMainRoutes = () => {
+export const makeMainRoutes = (store) => {
   return (
     <BrowserRouter basename='/client' >
         <div>
-          <Navigation />
+          <Navigation store={store} />
           <Switch>
             <Route path="/about" render={(props) => <About  />} />
             <Route path="/login" render={(props) => <Login  />} />
-            <Route path="/logout" render={(props) => <Logout />} />
             <Route path="/clashes/:clashId" render={(props) => <Clash {...props}/>} />
             <Route path="/users/sign_up" render={(props) => {
               return <WrongWayGoBack link={<a href='/users/sign_up'>Sign Up</a>} />
@@ -33,8 +31,7 @@ export const makeMainRoutes = () => {
             <Route path="/users/password/new" render={(props) => {
               return <WrongWayGoBack link={<a href='/users/password/new'>Reset Password</a>} />
             }} />
-            <Route path="/users/password/new" render={(props) => <Logout />} />
-            <Route path="/" render={(props) => <Home  />} />
+            <Route path="/" render={(props) => <Home store={store} />} />
           </Switch>
         </div>
       </BrowserRouter>

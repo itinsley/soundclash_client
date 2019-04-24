@@ -1,14 +1,8 @@
 import React, { Component} from 'react';
 import '../../App.css';
 import Home from './components/Home';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
-import reducer from '../../reducer'
-import thunk from 'redux-thunk';
 import {fetchMyClashesAction, fetchRecentClashesAction} from '../../actions';
-
-// Store
-const store = createStore(reducer, applyMiddleware(thunk));
 
 // Connected Component
 const App = connect(
@@ -36,6 +30,7 @@ function mapDispatchToProps(dispatch){
 
 class HomeContainer extends Component {
   render(){
+    const store = this.props.store;
     return(
       <Provider store={store}>
         <App />
