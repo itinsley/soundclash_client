@@ -7,10 +7,9 @@ import {
     Nav,
     NavLink,
     NavItem} from 'reactstrap';
-import UserSession from '../lib/UserSession/UserSession';
+import UserSession from '../../lib/UserSession/UserSession';
 
-
-export class Navigation extends Component {
+class Navigation extends Component {
     constructor(props) {
       super(props);
 
@@ -75,3 +74,5 @@ export class Navigation extends Component {
       );
     }
   }
+
+  export default Navigation;

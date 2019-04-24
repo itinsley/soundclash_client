@@ -5,7 +5,7 @@ import About from './components/About';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Clash from '../src/containers/Clash';
-import {Navigation} from './containers/Navigation';
+import Navigation from './containers/Navigation';
 
   // Should never hit these routes in prod as root will point to server app
   // and this app only has the scope of basename='/client'

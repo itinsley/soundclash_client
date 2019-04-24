@@ -31,6 +31,11 @@ function reducer(state = defaultState, action) {
           loading: false
         }
       }
+    case 'LOAD_USER_SESSION':
+      return {
+        ...state,
+        currentUser: action.currentUser
+      }
     default:
       return state
   }
