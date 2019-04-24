@@ -47,13 +47,14 @@ module.exports = {
       .end()
   },
 
-  'My Clashes:: challenge_sent - owner' : async function (browser) {
+  'My Clashes:: logged in as clash owner' : async function (browser) {
+    // With status of challenge_sent
     await login(browser, OWNER, 'password')
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::challenge_sent');
     browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Opponent')
 
-    // My Clashes:: awaiting_owner - owner
+    // With status of awaiting_owner
     browser.click('.navbar-brand')
     browser.waitForElementVisible('.t-myclashes-container');
     browser.verify.containsText('h1', 'My Clashes');
@@ -63,7 +64,8 @@ module.exports = {
     browser.end();
   },
 
-  'My Clashes:: awaiting_owner - opponent' : async function (browser) {
+  'My Clashes:: logged in as clash opponent' : async function (browser) {
+    // Clash with status of awaiting_owner
     await login(browser, OPPONENT, 'password')
     browser.waitForElementVisible('.t-myclashes-container');
     browser.verify.containsText('h1', 'My Clashes');
@@ -73,10 +75,10 @@ module.exports = {
     browser.verify.elementPresent('iframe')
     browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
 
-    // My Clashes:: challenge_sent - opponent
+    // Clash with status of challenge_sent
     browser.click('.navbar-brand')
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
-    await browser.click(".clash-tile")
+    await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::challenge_sent');
     browser.waitForElementVisible('.t-clash-header')
     browser.verify.elementPresent('iframe')
     browser.verify.containsText('.t-track-opponent-container', 'Waiting for you')
