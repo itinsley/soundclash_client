@@ -2,14 +2,17 @@
 // but import for now
 import UserSession from './lib/UserSession/UserSession';
 
-const defaultState = { 
+const defaultState = {
   recentClashes: {
     data: [],
     loading: true},
   myClashes: {
       data: [],
       loading: true},
-    currentUser: UserSession.get(),
+  currentClash:{
+      data: [],
+      loading: true},
+  currentUser: UserSession.get(),
 }
 
 // Reducer
@@ -31,12 +34,20 @@ function reducer(state = defaultState, action) {
           loading: false
         }
       }
+    case 'GET_CLASH':
+      return {
+        ...state,
+        currentClash:{
+          data: action.clash,
+          loading: false
+        }
+      }
     case 'LOGOUT_USER':
       return {
         ...state,
         currentUser: null
       }
-    // Session is stored in local storage. 
+    // Session is stored in local storage.
     // Sync should be performed where user state is critical to pick up session expiry
     case 'SYNC_USER_SESSION':
       return {

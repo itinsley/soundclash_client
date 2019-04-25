@@ -2,44 +2,40 @@ import React, {Component} from "react";
 import ClashApi from "../../api/Clashes";
 import Clash from "./components/Clash/Clash";
 import UserSession from '../../lib/UserSession/UserSession';
-import spinner from "../../assets/spinner.gif";
+import { connect } from 'react-redux';
+import {fetchClashAction} from "../../actions";
+
+// Map Redux state to component props
+function mapStateToProps(state) {
+  return {
+    clash: state.currentClash,
+    currentUser: state.currentUser
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    loadClash: (clashId, currentUser)=>{
+      fetchClashAction(dispatch, clashId, currentUser)
+    }
+  }
+}
 
 class ClashContainer extends Component{
   constructor(props){
-    super(props)
-    this.state={
-      clash: null,
-      currentUser: UserSession.get(),
-    }
-  }
-
-  clashID(){
-    return this.props.match.params.clashId;
-  }
-
-  async loadClash(){
-    const jwt = this.state.currentUser ? this.state.currentUser.jwt:'';
-    const clash = await ClashApi.get(this.clashID(), jwt);
-    await this.setState({clash:clash});
-  }
-
-  componentDidMount(){
-    this.loadClash();
+    super(props);
   }
 
   render(){
-    if (!this.state.clash){
-      return (
-        <div className="container-fluid bg-grey text-center">
-          <img src={spinner} alt="Logo" />
-        </div>
-      )
-    } else {      
-      const clash = this.state.clash;
-      return(
-        <Clash clash={clash} currentUser={this.state.currentUser} />
-      )     
-    }
+
+    const ConnectedClash = connect(
+      mapStateToProps,
+      mapDispatchToProps,
+    )(Clash)
+
+    return(
+      <ConnectedClash {... this.props}/>
+    )
   }
 }
 
