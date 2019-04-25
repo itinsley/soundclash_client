@@ -36,6 +36,13 @@ function reducer(state = defaultState, action) {
         ...state,
         currentUser: null
       }
+    // Session is stored in local storage. 
+    // Sync should be performed where user state is critical to pick up session expiry
+    case 'SYNC_USER_SESSION':
+      return {
+        ...state,
+        currentUser: action.currentUser
+      }
     default:
       return state
   }

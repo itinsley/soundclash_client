@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import '../../App.css';
 import Home from './components/Home';
 import { Provider, connect } from 'react-redux';
-import {fetchMyClashesAction, fetchRecentClashesAction} from '../../actions';
+import {fetchMyClashesAction, fetchRecentClashesAction, syncUserSession} from '../../actions';
 
 // Connected Component
 const App = connect(
@@ -24,6 +24,7 @@ function mapDispatchToProps(dispatch){
     onLoad: ()=>{
       dispatch(fetchMyClashesAction)
       dispatch(fetchRecentClashesAction)
+      dispatch(syncUserSession)
     }
   }
 }
