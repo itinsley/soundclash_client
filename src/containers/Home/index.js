@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import '../../App.css';
 import Home from './components/Home';
-import { Provider, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import {fetchMyClashesAction, fetchRecentClashesAction, syncUserSession} from '../../actions';
 
 // Connected Component
@@ -31,11 +31,8 @@ function mapDispatchToProps(dispatch){
 
 class HomeContainer extends Component {
   render(){
-    const store = this.props.store;
     return(
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App />
     )
   }
 }

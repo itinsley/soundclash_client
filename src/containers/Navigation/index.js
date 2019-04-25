@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import Navigation from  './components/Navigation'
-import { Provider, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import logoutAction from "../../actions/logoutAction";
 
 // Map Redux state to component props
@@ -26,11 +26,8 @@ const App = connect(
 
 class NavigationContainer extends Component {
   render() {
-    const store = this.props.store;
     return (
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App />
     );
   }
 }
