@@ -52,6 +52,7 @@ module.exports = {
     await login(browser, OWNER, 'password')
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::challenge_sent');
+    browser.waitForElementVisible('.t-clash-status');
     browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Opponent')
 
     // With status of awaiting_owner
