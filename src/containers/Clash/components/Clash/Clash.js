@@ -23,7 +23,7 @@ class Clash extends Component {
     if (loading){
       return (
         <div className="container-fluid bg-grey text-center">
-          <img src={spinner} alt="Logo" />
+          <img src={spinner} alt="waiting.." />
         </div>
       )
     } else {

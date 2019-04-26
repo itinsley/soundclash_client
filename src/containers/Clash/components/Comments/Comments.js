@@ -3,12 +3,26 @@ import {Link} from "react-router-dom";
 import CommentApi from "../../../../api/Comments";
 import CommentItem from "./CommentItem";
 import Avatar from "../../../../components/Avatar";
+import spinner from "../../../../assets/spinner.gif"
+
+function SpinnerButtonInner(props){
+  if (props.loading){
+    return(
+      <Fragment>
+        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </Fragment>
+    )
+  }
+
+  return props.label;
+}
 
 class Comment extends Component{
   constructor(props){
     super(props);
     this.state={
-      newComment: ""
+      newComment: "",
+      loading: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -38,12 +52,8 @@ class Comment extends Component{
 
   async handleSubmit(event) {
     event.preventDefault();
-    try {
-      this.props.createComment(this.props.trackId, this.props.currentUser, this.state.newComment );
-    } catch(error){
-      console.log("Errors", error)
-      alert(`Could not create Comment`);
-    }
+    this.setState({loading: true});
+    this.props.createComment(this.props.trackId, this.props.currentUser, this.state.newComment );
   }
 
 renderCommentForm(){
@@ -63,6 +73,7 @@ renderCommentForm(){
           </div>
           <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
                 <textarea type="text"
+                        required
                         rows="2"
                         value={this.state.newComment}
                         className="form-control"
@@ -73,7 +84,9 @@ renderCommentForm(){
         </div>
         <div className="row py-0 px-0 mx-0 justify-content-end" >
           <div className='col-auto px-0'>
-            <input className="btn btn-dark btn-sm" type="submit" value="Post" />
+            <button className="btn btn-dark btn-sm" type="submit" >
+              <SpinnerButtonInner label='Post' loading={this.state.loading}/>
+            </button>
           </div>
         </div>
       </form>
