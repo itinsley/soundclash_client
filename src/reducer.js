@@ -1,6 +1,7 @@
 // These should probably be provided as properties to make testing easier
 // but import for now
 import UserSession from './lib/UserSession/UserSession';
+import {insertComment} from './lib/ClashDocument';
 
 const defaultState = {
   recentClashes: {
@@ -54,9 +55,19 @@ function reducer(state = defaultState, action) {
         ...state,
         currentUser: action.currentUser
       }
+    case 'CREATE_COMMENT':
+      const currentClash = insertComment(action.trackId, action.comment, state.currentClash.data);
+      return {
+        ...state,
+        currentClash: {
+          data: currentClash,
+          loading: false
+        }
+      }
     default:
       return state
   }
 }
+
 
 export default reducer;

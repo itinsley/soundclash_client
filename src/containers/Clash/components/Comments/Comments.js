@@ -8,17 +8,11 @@ class Comment extends Component{
   constructor(props){
     super(props);
     this.state={
-      comments:[
-        CommentApi.emptyStruct()
-      ],
-      newComment: "",
-      Errors: ""
+      newComment: ""
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state.comments = props.comments;
-
   }
 
   handleChange(e) {
@@ -26,7 +20,7 @@ class Comment extends Component{
   }
 
   renderHistory(){
-    const comments = this.state.comments.map((comment)=>{
+    const comments = this.props.comments.map((comment)=>{
       if (comment.new){
         return (
           <Fragment key={`comment=${comment.id}`}>
@@ -45,16 +39,10 @@ class Comment extends Component{
   async handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await CommentApi.create(this.props.trackId, this.state.newComment, this.props.currentUser );
-      const comments =[{...response.data, new: true}, ...this.state.comments];
-      this.setState({
-        comments: comments,
-        newComment: ''
-      });
+      this.props.createComment(this.props.trackId, this.props.currentUser, this.state.newComment );
     } catch(error){
       console.log("Errors", error)
-      alert(`Could not create Comment: ${error.response.data.status}`);
-      this.setState({Errors: error.response.data.errors})
+      alert(`Could not create Comment`);
     }
   }
 
