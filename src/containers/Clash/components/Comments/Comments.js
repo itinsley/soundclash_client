@@ -1,9 +1,7 @@
 import React, {Component, Fragment} from "react";
 import {Link} from "react-router-dom";
-import CommentApi from "../../../../api/Comments";
 import CommentItem from "./CommentItem";
 import Avatar from "../../../../components/Avatar";
-import spinner from "../../../../assets/spinner.gif"
 
 function SpinnerButtonInner(props){
   if (props.loading){

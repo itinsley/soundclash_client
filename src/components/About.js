@@ -1,9 +1,9 @@
 import React from 'react';
 
 function About() {
-  
-  const about = 
-    
+
+  const about =
+
 
       <div className="mx-auto text-center" style={{maxWidth: '56.25rem'}}>
         <div className="top-element-margin"></div>
@@ -27,7 +27,7 @@ function About() {
           We'd love to hear from you, drop us an email: <a href="mailto:contact@soundcla.sh">contact@soundcla.sh</a>
         </div>
       </div>
-    
+
   return about;
 }
 

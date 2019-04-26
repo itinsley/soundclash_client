@@ -26,7 +26,7 @@ class ClashTile extends Component{
 
   render(){
     const clash = this.props.clash;
-    
+
     return(
       <div className="clash-tile col-xs-12 col-sm-6 col-md-4 col-lg-3 my-2 p-1">
         <div className="card p-2" >
@@ -37,18 +37,18 @@ class ClashTile extends Component{
                 {clash.owner.name} vs. {this.opponentName(clash)}
               </h4>
               <div className="card-text" >
-              <img style={{width:'100%'}} 
+              <img style={{width:'100%'}}
                     alt={`Track thumbnail for ${clash.name}`}
                     src={clash.thumbnail}></img>
               </div>
               <div className='row'>
                 <span className='col-xs-12 col-sm-6 text-size-xx-small'>
-                  <img alt="Comments Icon" src="https://res.cloudinary.com/soundclash/image/asset/comment-f01f9b1834a2e2bc80dae34d5cf70df3.svg" 
+                  <img alt="Comments Icon" src="https://res.cloudinary.com/soundclash/image/asset/comment-f01f9b1834a2e2bc80dae34d5cf70df3.svg"
                     width="20"/>
                   {` ${clash.comments_count} comments`}
                 </span>
                 <span className='col-xs-12 col-sm-6 text-size-xx-small'>
-                  <img alt="Tracks Icon" src="https://res.cloudinary.com/soundclash/image/asset/vinyl-record-a40f320b60a2c98f4e4479f85ee1d218.svg" 
+                  <img alt="Tracks Icon" src="https://res.cloudinary.com/soundclash/image/asset/vinyl-record-a40f320b60a2c98f4e4479f85ee1d218.svg"
                     width="20"/>
                     {` ${clash.tracks_count} tracks`}
                 </span>

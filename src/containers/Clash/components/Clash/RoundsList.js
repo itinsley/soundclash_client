@@ -8,7 +8,7 @@ class RoundsList extends Component {
           key={round.id}  >
           <div className='row' >
             <div className='col-sm-12 text-center' >
-              <RoundWrapper 
+              <RoundWrapper
                 isOpen={idx===0}
                 round={round}
                 currentUser = {this.props.currentUser}

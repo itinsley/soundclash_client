@@ -29,7 +29,7 @@ class FacebookLoginWrapper extends Component {
           className='btn-facebook btn-rounded'
           appId={process.env.REACT_APP_FACEBOOK_APPID}
           fields="name,email,picture"
-          callback={this.responseFacebook} 
+          callback={this.responseFacebook}
           icon="fa-facebook"
           textButton="Continue with Facebook"
           />

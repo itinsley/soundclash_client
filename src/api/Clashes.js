@@ -18,5 +18,5 @@ const forUser = async(jwt)=>{
 export default {
   recent,
   get,
-  forUser  
+  forUser
 }

@@ -10,7 +10,7 @@ Enzyme.configure({adapter: new Adapter()});
 describe("When current User is provided", ()=>{
   var wrapper;
   beforeEach(() => {
-    const commentsComponent = <Comments 
+    const commentsComponent = <Comments
       currentUser = {CurrentUserStub}
       comments = {CommentsStub}
     />
@@ -27,7 +27,7 @@ describe("When current User is provided", ()=>{
 describe("When no current User", ()=>{
   var wrapper;
   beforeEach(() => {
-    const commentsComponent = <Comments 
+    const commentsComponent = <Comments
       comments = {CommentsStub}
     />
     wrapper = shallow(commentsComponent);

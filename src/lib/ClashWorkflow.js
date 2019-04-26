@@ -18,7 +18,7 @@ const state=(clash, player)=>{
     }
     else{
       return STATES.Hidden;
-    } 
+    }
   }
 
   if (clash.state==='awaiting_owner'){

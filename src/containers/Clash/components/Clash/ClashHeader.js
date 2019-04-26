@@ -34,16 +34,16 @@ class Clash extends Component{
             <span className='text-size-xx-small p-2'>
               {this.opponent(clash)}
             </span>
-          </div>    
+          </div>
         </h6>
         <div className='text-center pb-3'>
           <span className='text-size-xx-small p-2'>
-            <img alt="Comments Icon" src="https://res.cloudinary.com/soundclash/image/asset/comment-f01f9b1834a2e2bc80dae34d5cf70df3.svg" 
+            <img alt="Comments Icon" src="https://res.cloudinary.com/soundclash/image/asset/comment-f01f9b1834a2e2bc80dae34d5cf70df3.svg"
               width="20"/>
             {` ${clash.comments_count} comments`}
           </span>
           <span className='text-size-xx-small p-2'>
-            <img alt="Tracks Icon" src="https://res.cloudinary.com/soundclash/image/asset/vinyl-record-a40f320b60a2c98f4e4479f85ee1d218.svg" 
+            <img alt="Tracks Icon" src="https://res.cloudinary.com/soundclash/image/asset/vinyl-record-a40f320b60a2c98f4e4479f85ee1d218.svg"
               width="20"/>
               {` ${clash.tracks_count} tracks`}
           </span>

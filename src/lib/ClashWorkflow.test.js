@@ -42,14 +42,14 @@ describe("Current round workflow - ", ()=>{
       state: "challenge_sent",
       opponent: null
     }
-      
+
     test("viewed by anyone should be hidden", ()=>{
       expect(state(challengeSentToUnregisteredPlayer, spectator)).toEqual(STATES.Hidden)
       expect(state(challengeSentToUnregisteredPlayer, owner)).toEqual(STATES.Hidden)
       expect(state(challengeSentToUnregisteredPlayer, opponent)).toEqual(STATES.Hidden)
       expect(state(challengeSentToUnregisteredPlayer, null)).toEqual(STATES.Hidden)
     })
-  
+
   })
   describe("challengeSent to registered opponent", ()=>{
     const challengeSent = {
@@ -58,11 +58,11 @@ describe("Current round workflow - ", ()=>{
       opponent: opponent,
       owner: owner
     }
-          
+
     test("viewed by registered opponent should be ready to accept", ()=>{
       expect(state(challengeSent, opponent)).toEqual(STATES.ReadyToAccept)
     })
-    
+
     test("viewed by owner should display info", ()=>{
       expect(state(challengeSent, owner)).toEqual(STATES.DisplayInfo)
     })

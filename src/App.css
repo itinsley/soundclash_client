@@ -5,14 +5,14 @@ audio, canvas, progress, video {
 
 .btn-link{
   background:none!important;
-  border:none; 
+  border:none;
   color:white!important;
   font-weight: 300;
 }
 
 /* I don't know how else to prevent content getting hidden under the NavBar */
 .top-element-margin{
-  padding-top: 55px; 
+  padding-top: 55px;
 }
 
 .UserAvatar{
@@ -38,7 +38,7 @@ audio, canvas, progress, video {
 .comments__the-comment__time{
   color: #575757;
   font-size: 0.8125rem;
-  line-height: 1.3;  
+  line-height: 1.3;
 }
 
 .round-thumb {

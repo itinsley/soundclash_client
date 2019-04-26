@@ -20,15 +20,15 @@ class RoundWrapper extends Component{
     const round =this.props.round;
     if (this.state.isOpen){
       return (
-        <RoundExpanded 
-          round={round}  
-          currentUser = {this.props.currentUser} 
+        <RoundExpanded
+          round={round}
+          currentUser = {this.props.currentUser}
         />
       )
     } else {
       return (
-        <RoundCompressed 
-          round={round} 
+        <RoundCompressed
+          round={round}
           Handle_Click={this.Handle_Click}/>
       )
     }

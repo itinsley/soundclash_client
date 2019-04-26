@@ -20,7 +20,7 @@ class CurrentRound extends Component{
       return AwaitingPlayer(clash, currentUser)
     }
   }
-  
+
   render(){
     return (
       this.workflowComponentFactory()

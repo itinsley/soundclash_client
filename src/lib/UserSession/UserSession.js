@@ -3,7 +3,7 @@ import jwtLib from 'jsonwebtoken';
 const set = (jwt)=>{
   const decoded = jwtLib.decode(jwt);
 
-  const expiry = new Date(0); 
+  const expiry = new Date(0);
   expiry.setUTCSeconds(decoded.exp);
 
   const userDetails = {
@@ -20,7 +20,7 @@ const set = (jwt)=>{
   return userDetails;
 }
 
-const get = ()=>{  
+const get = ()=>{
 
   const UserDetailsString = localStorage.getItem('userDetails')
   if (!UserDetailsString){

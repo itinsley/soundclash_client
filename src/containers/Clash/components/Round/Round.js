@@ -11,11 +11,11 @@ class Round extends Component{
     return(
       <div className="container-fluid bg-grey px-0">
         <div className='row p-4'>
-          <div className='col-sm-6 text-center p-3' >           
+          <div className='col-sm-6 text-center p-3' >
             <Track track = {owner_track}
                   currentUser = {currentUser} />
           </div>
-          <div className='col-sm-6 text-center p-3' >           
+          <div className='col-sm-6 text-center p-3' >
             <Track track = {opponent_track}
                     currentUser = {currentUser} />
           </div>

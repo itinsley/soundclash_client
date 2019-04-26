@@ -43,24 +43,24 @@ class SoundClashLogin extends Component {
 
             <div className="form-group">
               <label htmlFor="email">Email address</label>
-              <input type="text" 
-                      className="form-control" 
-                      name="email" 
-                      aria-describedby="emailHelp" 
+              <input type="text"
+                      className="form-control"
+                      name="email"
+                      aria-describedby="emailHelp"
                       placeholder="Enter email"
-                      value={this.state.email} 
-                      onChange={this.handleChange} />                   
+                      value={this.state.email}
+                      onChange={this.handleChange} />
               <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
 
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input type="password" 
-                      className="form-control" 
-                      name="password" 
+              <input type="password"
+                      className="form-control"
+                      name="password"
                       placeholder="Password"
-                      value={this.state.password} 
-                      onChange={this.handleChange} /> 
+                      value={this.state.password}
+                      onChange={this.handleChange} />
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>
@@ -71,8 +71,8 @@ class SoundClashLogin extends Component {
           </ul>
         </div>
       </div>
-    )  
-  } 
+    )
+  }
 }
 
 class Login extends Component {

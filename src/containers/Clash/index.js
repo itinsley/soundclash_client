@@ -1,7 +1,5 @@
 import React, {Component} from "react";
-import ClashApi from "../../api/Clashes";
 import Clash from "./components/Clash/Clash";
-import UserSession from '../../lib/UserSession/UserSession';
 import { connect } from 'react-redux';
 import {fetchClashAction} from "../../actions";
 
@@ -22,10 +20,6 @@ function mapDispatchToProps(dispatch){
 }
 
 class ClashContainer extends Component{
-  constructor(props){
-    super(props);
-  }
-
   render(){
 
     const ConnectedClash = connect(

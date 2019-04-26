@@ -27,7 +27,7 @@ class Navigation extends Component {
   loginNav(){
     const currentUser = this.props.currentUser;
     if (currentUser){
-      const loggedIn = 
+      const loggedIn =
         <Fragment>
           <NavItem>
             <NavLink className='disabled'>Hello {currentUser.userName}</NavLink>
@@ -44,14 +44,14 @@ class Navigation extends Component {
             <a className='nav-link' href='/users/sign_up'>Sign Up</a>
           </NavItem>
           <NavLink id='login' tag={Link} to="/login">Login</NavLink>
-        </Fragment> 
+        </Fragment>
       return loggedOut;
     }
   }
 
-  
+
   render() {
-    
+
     return (
       <div>
         <Navbar dark expand="md" className="navbar navbar-default fixed-top bg-black" >
@@ -65,7 +65,7 @@ class Navigation extends Component {
               <NavItem>
                 <NavLink tag={Link} to='/about' >What is this?</NavLink>
               </NavItem>
-              {this.loginNav()}                
+              {this.loginNav()}
             </Nav>
           </Collapse>
         </Navbar>

@@ -29,9 +29,9 @@ class Clash extends Component {
     } else {
       return(
         <Fragment>
-          <ClashHeader  clash={clash} 
+          <ClashHeader  clash={clash}
                   currentUser = {currentUser} />
-          <CurrentRound clash ={clash} 
+          <CurrentRound clash ={clash}
                   currentUser = {currentUser} />
           <RoundsList rounds={clash.rounds}
                   currentUser = {currentUser} />

@@ -14,7 +14,7 @@ const login = async(email, password)=>{
 }
 
 const emptyStruct=()=>{
-  return { 
+  return {
     id: '0',
     name: '',
     abbrev_name: '',

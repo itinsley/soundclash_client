@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import Navigation from  './components/Navigation'
 import { connect } from 'react-redux';
 import logoutAction from "../../actions/logoutAction";
@@ -10,7 +10,7 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch){  
+function mapDispatchToProps(dispatch){
   return {
     logOut: ()=>{
       dispatch(logoutAction)
