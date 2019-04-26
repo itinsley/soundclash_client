@@ -60,6 +60,7 @@ module.exports = {
     browser.verify.containsText('h1', 'My Clashes');
     browser.waitForElementVisible('.t-card-title');
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
+    browser.waitForElementVisible('.t-clash-status');
     browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
     browser.end();
   },
