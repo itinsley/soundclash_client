@@ -14,10 +14,11 @@ class CurrentRound extends Component{
     const currentUser = this.props.currentUser;
     const state = ClashWorkflow.state(clash, currentUser);
     console.log(state)
-    if (state===ClashWorkflow.STATES.ReadyToAccept){
-      return ReadyToAccept(clash, currentUser)
-    } else {
-      return AwaitingPlayer(clash, currentUser)
+    switch (state) {
+      case ClashWorkflow.STATES.ReadyToAccept:
+        return ReadyToAccept(clash, currentUser);
+      default:
+        return AwaitingPlayer(clash, currentUser);
     }
   }
 
