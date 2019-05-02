@@ -53,7 +53,7 @@ module.exports = {
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::challenge_sent');
     browser.waitForElementVisible('.t-clash-status');
-    browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Opponent')
+    browser.verify.containsText('.t-clash-status', 'we are waiting for Api Opponent')
 
     // With status of awaiting_owner
     browser.click('.navbar-brand')
@@ -62,7 +62,7 @@ module.exports = {
     browser.waitForElementVisible('.t-card-title');
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
     browser.waitForElementVisible('.t-clash-status');
-    browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
+    browser.verify.containsText('.t-clash-status', 'we are waiting for Api Owner')
     browser.end();
   },
 
@@ -75,7 +75,7 @@ module.exports = {
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
     browser.waitForElementVisible('.t-clash-header')
     browser.verify.elementPresent('iframe')
-    browser.verify.containsText('.t-clash-status', 'hello we are waiting for Api Owner')
+    browser.verify.containsText('.t-clash-status', 'we are waiting for Api Owner')
 
     // Clash with status of challenge_sent
     browser.click('.navbar-brand')
