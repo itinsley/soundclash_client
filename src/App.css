@@ -1,3 +1,5 @@
+
+/* Shame file  :) */
 audio, canvas, progress, video {
   display: inline-block;
   vertical-align: middle;
@@ -65,6 +67,21 @@ audio, canvas, progress, video {
   color: #fff;
   text-align: center;
   background-color: #115e98;
+}
+
+.current-round-intro {
+  background: radial-gradient(ellipse at center, #3d3d3d 0%, #1f1f1f 44%, #000 100%);
+  text-shadow: 0.0625rem 0.0625rem 0rem #000;
+  color: #fff;
+}
+
+.current-round-intro strong{
+  text-shadow: 0.0625rem 0.0625rem 0rem #000;
+  color: #fff;
+}
+
+em{
+  font-weight: 300;
 }
 
 .u-circle {

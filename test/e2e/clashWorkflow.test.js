@@ -62,7 +62,8 @@ module.exports = {
     browser.waitForElementVisible('.t-card-title');
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
     browser.waitForElementVisible('.t-clash-status');
-    browser.verify.containsText('.t-clash-status', 'we are waiting for Api Owner')
+    browser.verify.containsText('.t-clash-status', 'Api Opponent just played')
+    browser.verify.containsText('.t-clash-status', "Now it's your turn...")
     browser.end();
   },
 

@@ -23,7 +23,7 @@ class Clash extends Component{
       <main className="container-fluid main-content mt-5 px-0">
 
       <div className="t-clash-header container mx-auto text-center " style={{maxWidth: '56.25rem'}}>
-        <h1 className="px-2 p-3">{clash.name}</h1>
+        <h1 className="px-2 p-3 pt-5">{clash.name}</h1>
         <h6 className="card-subtitle mb-2 text-muted">
           <div className='text-center pb-3'>
             <span className='text-size-xx-small p-2'>
