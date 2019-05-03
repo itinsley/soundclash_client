@@ -33,7 +33,7 @@ export const makeMainRoutes = (store) => {
               <Route path="/users/password/new" render={(props) => {
                 return <WrongWayGoBack link={<a href='/users/password/new'>Reset Password</a>} />
               }} />
-              <Route path="/" render={(props) => <Home store={store} />} />
+              <Route path="/" render={(props) => <Home />} />
             </Switch>
           </div>
         </BrowserRouter>
