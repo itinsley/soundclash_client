@@ -16,14 +16,16 @@ class CurrentRound extends Component{
     const state = ClashWorkflow.state(clash, currentUser);
     const ConectedUpload = connectedUpload();
 
+    const props = {clash, currentUser}
+
     console.log(state)
     switch (state) {
       case ClashWorkflow.STATES.ReadyToAccept:
-        return ReadyToAccept(clash, currentUser);
+        return <ReadyToAccept {...props} />;
       case ClashWorkflow.STATES.Upload:
-        return <ConectedUpload clash={clash} currentUser={currentUser} />;
+        return <ConectedUpload {...props} />;
       default:
-        return AwaitingPlayer(clash, currentUser);
+        return <AwaitingPlayer {...props} />;
     }
   }
 

@@ -1,7 +1,8 @@
 import React from "react";
 import Track from "../Track/Track";
 
-function ReadyToAccept(clash, currentUser){
+function ReadyToAccept(props){
+  const {clash, currentUser} = props;
   const owner_track = clash.owner_track;
 
   return (
