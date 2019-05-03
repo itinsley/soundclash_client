@@ -3,7 +3,8 @@ const STATES = {
     ReadyToAccept: 'ReadyToAccept',
     DisplayInfo: 'DisplayInfo',
     Hidden: 'Hidden',
-    Upload: 'Upload'
+    Upload: 'Upload',
+    AwaitingPlayer: 'AwaitingPlayer'
 }
 
 const state=(clash, player)=>{
@@ -28,19 +29,16 @@ const state=(clash, player)=>{
     if(clash.owner.id===player.id){
       return STATES.Upload
     } else if (clash.opponent===player){
-      return STATES.DisplayInfo;
+      return STATES.AwaitingPlayer;
     } else {
       return STATES.Hidden;
     }
   }
   if(clash.state==='awaiting_opponent'){
-    if (player===null){
+    if (player===null || clash.opponent.id!=player.id){
       return STATES.DisplayInfo;
-    }
-    if(clash.opponent.id===player.id){
+    }else{
       return STATES.Upload;
-    }else {
-      return STATES.DisplayInfo;
     }
   }
 }

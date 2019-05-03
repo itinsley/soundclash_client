@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import ClashWorkflow from "../../../../lib/ClashWorkflow";
 import ReadyToAccept from "./ReadyToAccept";
 import AwaitingPlayer from "./AwaitingPlayer";
+import PartialRound from "./PartialRound";
 import connectedUpload from "./connectedUpload";
 
 /*
@@ -24,6 +25,10 @@ class CurrentRound extends Component{
         return <ReadyToAccept {...props} />;
       case ClashWorkflow.STATES.Upload:
         return <ConectedUpload {...props} />;
+      case ClashWorkflow.STATES.DisplayInfo:
+        return <PartialRound previousTrack={clash.previous_track}
+                             waitingFor={clash.waiting_for}
+                             currentUser={currentUser}/>;
       default:
         return <AwaitingPlayer {...props} />;
     }

@@ -38,43 +38,48 @@ class Upload extends Component{
       const otherPlayer = clash.private_info.other_player;
       return (
         <div className='container-fluid current-round-intro'>
-          <div className='t-clash-status col-sm-12 text-center p-3' >
+          <div className="t-clash-status mx-auto text-center p-3" style={{maxWidth: '40.25rem'}}>
             <p>
               <strong>{otherPlayer.name}</strong> just played <em>{previousTrack.name}</em>
             </p>
             <p>
               <strong>Now it's your turn...</strong>
             </p>
-            <form onSubmit={this.handleSubmit}>
-              <div className="row py-2 px-0 mx-0">
-                <div className='col-auto text-left'>
+
+            <div style={{maxWidth: '37.5rem'}}>            
+              <form onSubmit={this.handleSubmit} >
+                <div className="row py-2 px-0 mx-0">
+                  <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
+                        <input  required
+                                value={this.state.youTubeUrl}
+                                className="form-control"
+                                name="youTubeUrl"
+                                placeholder="Put your YouTube tune url here!"
+                                onChange={this.handleChange}
+                                style={{background:'none'}}/>
+                  </div>
                 </div>
-                <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
-                      <input  required
-                              value={this.state.youTubeUrl}
-                              className="form-control"
-                              name="youTubeUrl"
-                              placeholder="Put your YouTube tune url here!"
-                              onChange={this.handleChange} />
+                <div className="row py-2 px-0 mx-0">
+                  <div className='col text-left px-0 mx-0' >
+                        <textarea type="text"
+                                required
+                                value={this.state.commentText}
+                                className="form-control"
+                                name="commentText"
+                                placeholder="Say what you have to say"
+                                onChange={this.handleChange}
+                                style={{background:'none'}} />
+                  </div>
                 </div>
-                <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
-                      <textarea type="text"
-                              required
-                              value={this.state.commentText}
-                              className="form-control"
-                              name="commentText"
-                              placeholder="Say what you have to say"
-                              onChange={this.handleChange} />
-                </div>
-              </div>
-              <div className="row py-0 px-0 mx-0 justify-content-end" >
-                <div className='col-auto px-0'>
-                  <button className="btn btn-dark btn-sm" type="submit" >
+                <div className="py-0 px-0 mx-auto text-center " >
+                <div className='px-0 '>
+                  <button className="btn btn-dark text-uppercase" type="submit" >
                     <SpinnerButtonInner label='Submit' loading={this.state.loading}/>
                   </button>
                 </div>
               </div>
               </form>
+            </div>
           </div>
         </div>
       )

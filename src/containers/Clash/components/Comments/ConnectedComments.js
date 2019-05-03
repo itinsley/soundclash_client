@@ -1,20 +1,24 @@
 
 import Comments from "../Comments/Comments";
 import { connect } from 'react-redux';
-import { createCommentAction } from "../../../../actions";
+import { createCommentAction, fetchClashAction } from "../../../../actions";
+
 
 const mapProps=(state, ownProps)=>{
   return {
     comments: ownProps.track.comments,
     currentUser: ownProps.currentUser,
     trackId: ownProps.track.id,
+    clashId: state.currentClash.data.id
   }
 }
 
 const mapDispatchToProps=(dispatch)=>{
   return {
-    createComment: (trackId, currentUser, commentText)=>{
-      createCommentAction(dispatch, trackId, currentUser, commentText)
+    createComment: (clashId, trackId, currentUser, commentText)=>{
+      createCommentAction(dispatch, trackId, currentUser, commentText).then(
+        fetchClashAction(dispatch, clashId, currentUser )
+      )
     }
   }
 }
