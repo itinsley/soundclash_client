@@ -2,18 +2,7 @@ import React, {Component, Fragment} from "react";
 import {Link} from "react-router-dom";
 import CommentItem from "./CommentItem";
 import Avatar from "../../../../components/Avatar";
-
-function SpinnerButtonInner(props){
-  if (props.loading){
-    return(
-      <Fragment>
-        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      </Fragment>
-    )
-  }
-
-  return props.label;
-}
+import SpinnerButtonInner from "../../../../lib/SpinnerButtonInner";
 
 class Comment extends Component{
   constructor(props){
