@@ -64,6 +64,11 @@ function reducer(state = defaultState, action) {
           loading: false
         }
       }
+    case 'CREATE_TRACK':
+      // No state change, adding the event for the record
+      return {
+        ...state,
+      }
     default:
       return state
   }

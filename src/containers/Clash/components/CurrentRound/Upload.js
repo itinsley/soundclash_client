@@ -7,13 +7,12 @@ class Upload extends Component{
     super(props)
     this.state={
       youTubeUrl: '',
-      comment: '',
+      commentText: '',
       loading: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  } 
-
+  }
 
   handleChange(e) {
     this.setState({[e.target.name]:e.target.value});
@@ -22,15 +21,12 @@ class Upload extends Component{
   async handleSubmit(event) {
     event.preventDefault();
     this.setState({loading: true});
-    alert("yo");
-    //this.props.uploadTrack(
-        // this.props.trackId, 
-        // this.props.currentUser, 
-        // this.state.comment,
-        // this.state.youTubeUrl );
+    this.props.createTrack(this.props.currentUser,
+                            this.props.clash.id,
+                            {commentText: this.state.commentText,
+                             youTubeUrl: this.state.youTubeUrl,
+                             name: 'NOTYETI'})
   }
-
-
 
   render(){
     const clash = this.props.clash;
@@ -48,43 +44,39 @@ class Upload extends Component{
             </p>
             <p>
               <strong>Now it's your turn...</strong>
-
-              <form onSubmit={this.handleSubmit}>
-                <div className="row py-2 px-0 mx-0">
-                  <div className='col-auto text-left'>
-                  </div>
-                  <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
-                        <input  required
-                                value={this.state.youTubeUrl}
-                                className="form-control"
-                                name="youTubeUrl"
-                                placeholder="Put your YouTube tune url here!"
-                                onChange={this.handleChange} />
-                  </div>
-                  <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
-                        <textarea type="text"
-                                required
-                                value={this.state.comment}
-                                className="form-control"
-                                name="comment"
-                                placeholder="Say what you have to say"
-                                onChange={this.handleChange} />
-                  </div>
-                </div>
-                <div className="row py-0 px-0 mx-0 justify-content-end" >
-                  <div className='col-auto px-0'>
-                    <button className="btn btn-dark btn-sm" type="submit" >
-                      <SpinnerButtonInner label='Submit' loading={this.state.loading}/>
-                    </button>
-                  </div>
-                </div>
-              </form>`
-
-
             </p>
+            <form onSubmit={this.handleSubmit}>
+              <div className="row py-2 px-0 mx-0">
+                <div className='col-auto text-left'>
+                </div>
+                <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
+                      <input  required
+                              value={this.state.youTubeUrl}
+                              className="form-control"
+                              name="youTubeUrl"
+                              placeholder="Put your YouTube tune url here!"
+                              onChange={this.handleChange} />
+                </div>
+                <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
+                      <textarea type="text"
+                              required
+                              value={this.state.commentText}
+                              className="form-control"
+                              name="commentText"
+                              placeholder="Say what you have to say"
+                              onChange={this.handleChange} />
+                </div>
+              </div>
+              <div className="row py-0 px-0 mx-0 justify-content-end" >
+                <div className='col-auto px-0'>
+                  <button className="btn btn-dark btn-sm" type="submit" >
+                    <SpinnerButtonInner label='Submit' loading={this.state.loading}/>
+                  </button>
+                </div>
+              </div>
+              </form>
           </div>
         </div>
-        
       )
     }
     return null;

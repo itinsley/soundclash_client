@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import ClashWorkflow from "../../../../lib/ClashWorkflow";
 import ReadyToAccept from "./ReadyToAccept";
 import AwaitingPlayer from "./AwaitingPlayer";
-import Upload from "./Upload";
+import connectedUpload from "./connectedUpload";
 
 /*
 CurrentRound deals with the Clash object
@@ -14,12 +14,14 @@ class CurrentRound extends Component{
     const clash = this.props.clash;
     const currentUser = this.props.currentUser;
     const state = ClashWorkflow.state(clash, currentUser);
+    const ConectedUpload = connectedUpload();
+
     console.log(state)
     switch (state) {
       case ClashWorkflow.STATES.ReadyToAccept:
         return ReadyToAccept(clash, currentUser);
       case ClashWorkflow.STATES.Upload:
-        return <Upload clash={clash} currentUser={currentUser} />;
+        return <ConectedUpload clash={clash} currentUser={currentUser} />;
       default:
         return AwaitingPlayer(clash, currentUser);
     }

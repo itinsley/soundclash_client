@@ -1,10 +1,20 @@
 import axios from 'axios';
-const create= async(currentUser, clashId, name, commentText, youTubeUrl)=>{
-  const uri = `api/clashes/${clashId}/tracks?jwt=${currentUser.jwt}`
+
+/**
+ *
+ * @param {string} jwt
+ * @param {number} clashId
+ * @param {Object} track
+ * @param {string} track.name
+ * @param {string} track.commentText
+ * @param {string} track.youTubeUrl
+ */
+const create= async(jwt, clashId, track)=>{
+  const uri = `/api/clashes/${clashId}/tracks?jwt=${jwt}`
   const response = await axios.post(uri, {
-            uri: youTubeUrl,
-            comment_text: commentText,
-            name: name
+            url: track.youTubeUrl,
+            comment_text: track.commentText,
+            name: track.name
           });
   return response;
 }
