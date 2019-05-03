@@ -1,28 +1,7 @@
 import React, {Component, Fragment} from "react";
 import Youtube from "../../../../lib/YouTube";
-import spinner from "../../../../assets/spinner.gif";
-import Comments from "../Comments/Comments";
-import { connect } from 'react-redux';
-import { createCommentAction } from "../../../../actions";
-
-const YoutubeIframe=(url, track_name)=>{
-  if (!url || (!/.*youtube.*/.test(url))){
-   return  <img src={spinner} alt="Logo" />;
-  }
-
-  return(
-    <Fragment>
-      <h2 className='text-truncate p-4 clash-item__header' >{track_name}</h2>
-      <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item"
-                title={track_name}
-                src = {url}
-                >
-        </iframe>
-      </div>
-    </Fragment>
-  )
-}
+import YoutubeIframe from "../../../../lib/YoutubeIframe";
+import ConnectedComments from "../Comments/ConnectedComments";
 
 class Track extends Component{
   render(){
@@ -30,29 +9,12 @@ class Track extends Component{
     const currentUser = this.props.currentUser;
     const youtubeUrl = Youtube.EmbedUrl(track.url);
 
-    const ConnectedComments = connect(
-      // Map State to Props
-      (state)=>{
-        return {
-          comments: track.comments,
-          currentUser: currentUser,
-          trackId: track.id,
-        }
-      },
-      // Map dispatch to Props
-      (dispatch)=>{
-        return {
-          createComment: (trackId, currentUser, commentText)=>{
-            createCommentAction(dispatch, trackId, currentUser, commentText)
-          }
-        }
-      }
-    )(Comments)
+    const Comments = ConnectedComments();
 
     return(
       <Fragment>
         {YoutubeIframe(youtubeUrl, track.name)}
-        <ConnectedComments />
+        <Comments track={track} currentUser={currentUser}/>
       </Fragment>
     )
   }

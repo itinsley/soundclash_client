@@ -2,7 +2,7 @@ import {Component} from "react";
 import ClashWorkflow from "../../../../lib/ClashWorkflow";
 import ReadyToAccept from "./ReadyToAccept";
 import AwaitingPlayer from "./AwaitingPlayer";
-import Upload from "./Upload";
+// import Upload from "./Upload";
 
 /*
 CurrentRound deals with the Clash object
@@ -19,7 +19,7 @@ class CurrentRound extends Component{
       case ClashWorkflow.STATES.ReadyToAccept:
         return ReadyToAccept(clash, currentUser);
       case ClashWorkflow.STATES.Upload:
-        return Upload(clash, currentUser);
+        // return Upload(clash, currentUser);
       default:
         return AwaitingPlayer(clash, currentUser);
     }
