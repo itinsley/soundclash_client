@@ -26,6 +26,7 @@ function About() {
 
           We'd love to hear from you, drop us an email: <a href="mailto:contact@soundcla.sh">contact@soundcla.sh</a>
         </div>
+        <p class='my-5'/>
       </div>
 
   return about;

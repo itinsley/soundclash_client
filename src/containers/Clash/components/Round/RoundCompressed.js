@@ -12,7 +12,7 @@ class RoundCompressed extends Component {
       <a href={`/rounds/${round.id}.json`} className="py-3 round-thumb u-overlay-hover" onClick={this.Handle_Click} >
         <strong >
           <span className="text-uppercase" >Round {round.index}</span>
-          <img className="mx-2"
+          <img className="ml-4 mr-1"
               alt="Tracks icon"
               src="https://res.cloudinary.com/soundclash/image/asset/comment-f01f9b1834a2e2bc80dae34d5cf70df3.svg" width="20" />
           {round.comments_count}

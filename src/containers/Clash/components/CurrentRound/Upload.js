@@ -23,7 +23,7 @@ class Upload extends Component{
   }
 
   async youTubeUrl_AfterChange(e){
-    if (this.state.youTubeUrl==''){
+    if (this.state.youTubeUrl===''){
       return;
     }
     try{
@@ -102,8 +102,6 @@ class Upload extends Component{
                         <FontAwesomeIcon icon={faBackspace} size="lg"/>
                       </button>
                     }
-
-
                   </div>
                 </div>
                 <div className="row py-2 px-0 mx-0">
