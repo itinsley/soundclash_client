@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import SpinnerButtonInner from "../../../../lib/SpinnerButtonInner";
 import youtube from "../../../../lib/youtube";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBackspace } from '@fortawesome/free-solid-svg-icons'
 
 class Upload extends Component{
 
@@ -16,9 +18,14 @@ class Upload extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.youTubeUrl_AfterChange = this.youTubeUrl_AfterChange.bind(this);
+    this.clearUrl_HandleClick = this.clearUrl_HandleClick.bind(this);
+    this.scrollReference = React.createRef();
   }
 
   async youTubeUrl_AfterChange(e){
+    if (this.state.youTubeUrl==''){
+      return;
+    }
     try{
       const trackName = await youtube.getTitle(this.state.youTubeUrl);
       this.setState({
@@ -33,6 +40,15 @@ class Upload extends Component{
 
   handleChange(e) {
     this.setState({[e.target.name]:e.target.value});
+  }
+
+  clearUrl_HandleClick(event){
+    event.preventDefault();
+    this.setState({
+      showYouTubeUrl: true,
+      youTubeUrl: ''
+    })
+    this.scrollReference.current.scrollIntoView({behavior: 'smooth'})
   }
 
   async handleSubmit(event) {
@@ -54,7 +70,7 @@ class Upload extends Component{
       const previousTrack = clash.previous_track;
       const otherPlayer = clash.private_info.other_player;
       return (
-        <div className='container-fluid current-round-intro'>
+        <div ref={this.scrollReference} className='container-fluid current-round-intro'>
           <div className="t-clash-status mx-auto text-center p-3" style={{maxWidth: '40.25rem'}}>
             <p>
               <strong>{otherPlayer.name}</strong> just played <em>{previousTrack.name}</em>
@@ -66,7 +82,7 @@ class Upload extends Component{
             <div style={{maxWidth: '37.5rem'}}>
               <form onSubmit={this.handleSubmit} >
                 <div className="row py-2 px-0 mx-0">
-                  <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
+                  <div className='col text-center px-0 mx-0' style={{width:'100%'}}>
                     {this.state.showYouTubeUrl && <input  required
                               value={this.state.youTubeUrl}
                               className="form-control"
@@ -75,7 +91,18 @@ class Upload extends Component{
                               onChange={this.handleChange}
                               onBlur={this.youTubeUrl_AfterChange}
                               style={{background:'none'}}/>}
+
                     {!this.state.showYouTubeUrl && youtube.iframe(embedYouTubeUrl, this.state.trackName)}
+                    {!this.state.showYouTubeUrl && 
+                      <button className="mt-1 btn btn-dark text-uppercase" 
+                              type="submit" 
+                              title="Enter a different track URL"
+                              onClick={this.clearUrl_HandleClick}
+                              >
+                        <FontAwesomeIcon icon={faBackspace} size="lg"/>
+                      </button>
+                    }
+
 
                   </div>
                 </div>
