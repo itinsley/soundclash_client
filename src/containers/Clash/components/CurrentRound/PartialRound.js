@@ -14,6 +14,7 @@ const PartialRound=(props)=>{
                 currentUser = {currentUser} />
         </div>
         <div className='t-clash-status col-sm-6 text-center p-3' >
+          <h2 className='text-truncate p-4 clash-item__header' >Waiting...</h2>
           we are waiting for {waitingFor.name}
         </div>
       </div>
