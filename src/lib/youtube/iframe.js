@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
-import spinner from "../assets/spinner.gif";
+import spinner from "../../assets/spinner.gif";
 
-const YoutubeIframe=(url, track_name)=>{
+const iframe=(url, track_name)=>{
   if (!url || (!/.*youtube.*/.test(url))){
    return  <img src={spinner} alt="Logo" />;
   }
@@ -20,4 +20,4 @@ const YoutubeIframe=(url, track_name)=>{
   )
 }
 
-export default YoutubeIframe;
+export default iframe;
