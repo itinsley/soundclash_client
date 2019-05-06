@@ -78,6 +78,19 @@ module.exports = {
     browser.verify.elementPresent('iframe')
     browser.verify.containsText('.t-clash-status', 'we are waiting for Api Owner')
 
+    // Clash with status of awaiting_opponent
+    browser.click('.navbar-brand')
+    await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_opponent');
+    browser.waitForElementVisible('.t-clash-header')
+    browser.waitForElementVisible('iframe')
+    browser.verify.containsText('.t-clash-status', "Now it's your turn")
+    browser.setValue("input[name='youTubeUrl']", 'https://www.youtube.com/watch?v=-KIm0Je4phY')
+    browser.setValue("textarea[name='commentText']", "Owner's revenge")
+    browser.waitForElementVisible('.t-track-title')
+    // Youtube integration, depends on track existing..
+    browser.verify.containsText('.t-track-title', 'Friends by Amii Stewart (12 in version - VERY CLEAR)')
+    // Don't commit as this will break the tests next time.
+
     // Clash with status of challenge_sent
     browser.click('.navbar-brand')
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')

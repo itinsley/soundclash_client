@@ -8,7 +8,7 @@ const iframe=(url, track_name)=>{
 
   return(
     <Fragment>
-      <h2 className='text-truncate p-4 clash-item__header' >{track_name}</h2>
+      <h2 className='t-track-title text-truncate p-4 clash-item__header' >{track_name}</h2>
       <div className="embed-responsive embed-responsive-16by9">
         <iframe className="embed-responsive-item"
                 title={track_name}
