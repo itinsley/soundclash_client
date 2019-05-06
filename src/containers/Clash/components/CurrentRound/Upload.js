@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import SpinnerButtonInner from "../../../../lib/SpinnerButtonInner";
+import youtube from "../../../../lib/youtube";
 
 class Upload extends Component{
 
@@ -7,11 +8,27 @@ class Upload extends Component{
     super(props)
     this.state={
       youTubeUrl: '',
+      trackName: '',
       commentText: '',
-      loading: false
+      loading: false,
+      showYouTubeUrl: true
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.youTubeUrl_AfterChange = this.youTubeUrl_AfterChange.bind(this);
+  }
+
+  async youTubeUrl_AfterChange(e){
+    try{
+      const trackName = await youtube.getTitle(this.state.youTubeUrl);
+      this.setState({
+        trackName,
+        showYouTubeUrl: false
+      })
+    }catch(error){
+      alert("Invalid YouTube URL. Please review and try again.")
+    }
+
   }
 
   handleChange(e) {
@@ -25,12 +42,12 @@ class Upload extends Component{
                             this.props.clash.id,
                             {commentText: this.state.commentText,
                              youTubeUrl: this.state.youTubeUrl,
-                             name: 'NOTYETI'})
+                             name: this.state.trackName})
   }
 
   render(){
     const clash = this.props.clash;
-    const currentUser = this.props.currentUser;
+    const embedYouTubeUrl = youtube.embedUrl(this.state.youTubeUrl);
 
     //Belt and braces on private information
     if(clash.private_info.current_user_is_involved){
@@ -46,17 +63,20 @@ class Upload extends Component{
               <strong>Now it's your turn...</strong>
             </p>
 
-            <div style={{maxWidth: '37.5rem'}}>            
+            <div style={{maxWidth: '37.5rem'}}>
               <form onSubmit={this.handleSubmit} >
                 <div className="row py-2 px-0 mx-0">
                   <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
-                        <input  required
-                                value={this.state.youTubeUrl}
-                                className="form-control"
-                                name="youTubeUrl"
-                                placeholder="Put your YouTube tune url here!"
-                                onChange={this.handleChange}
-                                style={{background:'none'}}/>
+                    {this.state.showYouTubeUrl && <input  required
+                              value={this.state.youTubeUrl}
+                              className="form-control"
+                              name="youTubeUrl"
+                              placeholder="Put your YouTube tune url here!"
+                              onChange={this.handleChange}
+                              onBlur={this.youTubeUrl_AfterChange}
+                              style={{background:'none'}}/>}
+                    {!this.state.showYouTubeUrl && youtube.iframe(embedYouTubeUrl, this.state.trackName)}
+
                   </div>
                 </div>
                 <div className="row py-2 px-0 mx-0">
