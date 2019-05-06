@@ -1,4 +1,3 @@
-import React from "react";
 import Upload from "./Upload";
 import createTrackAction from "../../../../actions/createTrackAction";
 import fetchClashAction from "../../../../actions/fetchClashAction";

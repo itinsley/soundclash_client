@@ -35,7 +35,7 @@ const state=(clash, player)=>{
     }
   }
   if(clash.state==='awaiting_opponent'){
-    if (player===null || clash.opponent.id!=player.id){
+    if (player===null || clash.opponent.id!==player.id){
       return STATES.DisplayInfo;
     }else{
       return STATES.Upload;
