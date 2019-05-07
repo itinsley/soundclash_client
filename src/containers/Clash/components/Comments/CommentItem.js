@@ -25,7 +25,7 @@ class CommentItem extends Component{
                     size='35' />
           </div>
           <div className='col text-left px-0 mx-0' style={{width:'100%'}}>
-            <div>{comment.comment_text}</div>
+            <div className='t-comment-text'>{comment.comment_text}</div>
             <div className='comments__the-comment__time'>{this.elapsed(comment)}</div>
           </div>
         </div>

@@ -6,6 +6,7 @@
 
 ## Setup
  - Setup env variables `$ cp .env.example .env`
+ - **NOTE** the prestart call to checkenv.js does not seem to work when deploying to Heroku!!
  - Set proxy in package.json to use edge http://soundcla5h-edge.herokuapp.com or localhost if 
  running local copy of soundclash server.
  - To get FB integration working you neet to setup a hostname alias to soundclash.test and run from port 3000 over SSL. Can't use Soundclash.dev as this is a reserved domain by google. soundclash.test:3000 is an approved callback URI for Facebook app.

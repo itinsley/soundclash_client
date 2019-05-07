@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import CommentItem from "./CommentItem";
 import Avatar from "../../../../components/Avatar";
@@ -21,20 +21,7 @@ class Comment extends Component{
   }
 
   renderHistory(){
-    const comments = this.props.comments.map((comment)=>{
-      if (comment.new){
-        return (
-          <Fragment key={`comment=${comment.id}`}>
-            <CommentItem  comment={comment} />
-            <hr/>
-          </Fragment>
-        )
-      } else
-        return (
-          <CommentItem key={`comment=${comment.id}`} comment={comment} />
-        )
-    })
-    return comments;
+    return this.props.comments.map((comment)=><CommentItem key={`comment=${comment.id}`} comment={comment} />);
   }
 
   async handleSubmit(event) {
@@ -71,7 +58,7 @@ renderCommentForm(){
         </div>
         <div className="row py-0 px-0 mx-0 justify-content-end" >
           <div className='col-auto px-0'>
-            <button className="btn btn-dark btn-sm" type="submit" >
+            <button className="t-comment-submit btn btn-dark btn-sm" type="submit" >
               <SpinnerButtonInner label='Post' loading={this.state.loading}/>
             </button>
           </div>

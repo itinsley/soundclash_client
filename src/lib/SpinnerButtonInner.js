@@ -4,7 +4,7 @@ function SpinnerButtonInner(props){
   if (props.loading){
     return(
       <Fragment>
-        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span className="t-spinner spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       </Fragment>
     )
   }

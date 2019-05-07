@@ -8,7 +8,7 @@ async function createCommentAction(dispatch, trackId, currentUser, commentText){
     comment: {...comment.data, new: true},
     trackId,
   })
-
+  return comment;
 }
 
 export default createCommentAction;

@@ -15,10 +15,10 @@ const mapProps=(state, ownProps)=>{
 
 const mapDispatchToProps=(dispatch)=>{
   return {
-    createComment: (clashId, trackId, currentUser, commentText)=>{
-      createCommentAction(dispatch, trackId, currentUser, commentText).then(
-        fetchClashAction(dispatch, clashId, currentUser )
-      )
+    createComment: async (clashId, trackId, currentUser, commentText)=>{
+      await createCommentAction(dispatch, trackId, currentUser, commentText);
+      console.log("After crate acocmment await and before fetchClash")
+      fetchClashAction(dispatch, clashId, currentUser )
     }
   }
 }
