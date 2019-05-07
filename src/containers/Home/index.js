@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {fetchMyClashesAction, fetchRecentClashesAction, syncUserSession} from '../../actions';
 
 // Connected Component
-const App = connect(
+const ConnectedHome = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Home)
@@ -32,7 +32,7 @@ function mapDispatchToProps(dispatch){
 class HomeContainer extends Component {
   render(){
     return(
-      <App />
+      <ConnectedHome />
     )
   }
 }

@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch){
 }
 
 // Connected Component
-const App = connect(
+const ConnectedNavigation = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Navigation)
@@ -27,7 +27,7 @@ const App = connect(
 class NavigationContainer extends Component {
   render() {
     return (
-      <App />
+      <ConnectedNavigation />
     );
   }
 }

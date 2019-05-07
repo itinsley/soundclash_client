@@ -1,5 +1,5 @@
 
-import Comments from "../Comments/Comments";
+import Comments from "./Comments";
 import { connect } from 'react-redux';
 import { createCommentAction, fetchClashAction } from "../../../../actions";
 
@@ -17,7 +17,6 @@ const mapDispatchToProps=(dispatch)=>{
   return {
     createComment: async (clashId, trackId, currentUser, commentText)=>{
       await createCommentAction(dispatch, trackId, currentUser, commentText);
-      console.log("After crate acocmment await and before fetchClash")
       fetchClashAction(dispatch, clashId, currentUser )
     }
   }
@@ -25,11 +24,11 @@ const mapDispatchToProps=(dispatch)=>{
 
 // Returns Comments component wrapped in Connect
 // Supply the properties used in ownProps when you render the returned component
-const ConnectedComments = ()=> {
+const connectedComments = ()=> {
   return connect(
    mapProps,
    mapDispatchToProps
  )(Comments)
 }
 
-export default ConnectedComments;
+export default connectedComments;
