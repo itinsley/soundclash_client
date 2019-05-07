@@ -5,12 +5,11 @@ import Avatar from "../../../../components/Avatar";
 class CommentItem extends Component{
 
   elapsed(comment){
-    if (comment.new){
-      return "A few seconds ago";
-    } else{
-      const elapsedTime = new Elapsed(new Date(comment.updated_at), new Date());
-      return elapsedTime.optimal + " ago";
+    const elapsedTime = new Elapsed(new Date(comment.updated_at), new Date());
+    if (elapsedTime.seconds.num<10){
+      return `A few seconds ago`;
     }
+    return `About ${elapsedTime.optimal} ago`;
   }
 
   render(){

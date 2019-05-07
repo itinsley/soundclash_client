@@ -67,9 +67,9 @@ renderCommentForm(){
     )
   } else{
     return (
-      <span>
-        <Link to={'/login'} >Login</Link> to add a comment
-      </span>
+      <div className='my-2 text-left' >
+        <strong><Link to={'/login'} >Login</Link></strong> to leave a comment
+      </div>
     )
   }
 }
