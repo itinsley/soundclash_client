@@ -57,7 +57,6 @@ module.exports = {
     browser.click('.navbar-brand')
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_opponent');
     browser.waitForElementVisible('.t-clash-header')
-    browser.waitForElementVisible('iframe')
     browser.verify.containsText('.t-clash-status', "Now it's your turn")
     browser.setValue("input[name='youTubeUrl']", 'https://www.youtube.com/watch?v=-KIm0Je4phY')
     browser.setValue("textarea[name='commentText']", "Owner's revenge")

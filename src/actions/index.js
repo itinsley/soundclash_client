@@ -4,6 +4,7 @@ import syncUserSession from "./syncUserSession";
 import fetchClashAction from "./fetchClashAction";
 import createCommentAction from "./createCommentAction";
 import refreshClashAction from "./refreshClashAction";
+import loginAction from "./loginAction";
 
 export {
   fetchMyClashesAction,
@@ -11,5 +12,6 @@ export {
   syncUserSession,
   fetchClashAction,
   createCommentAction,
-  refreshClashAction
+  refreshClashAction,
+  loginAction
 }

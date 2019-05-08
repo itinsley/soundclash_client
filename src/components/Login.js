@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import UserSession from '../lib/UserSession/UserSession';
 import FacebookLoginWrapper from './FacebookLoginWrapper';
-import UserApi from '../api/Users';
 
 class SoundClashLogin extends Component {
 
@@ -22,16 +20,7 @@ class SoundClashLogin extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    try {
-      const response = await UserApi.login(this.state.email, this.state.password );
-      console.log(response)
-      UserSession.set(response.jwt);
-      // Reload to make refreshing the nav nice and simple..
-      window.location.href="/client";
-    } catch(error){
-      console.log(error)
-      alert(`Login failed: ${error.response.data.error}`);
-    }
+    this.props.login(this.state.email, this.state.password);
   }
 
   render(){
@@ -77,17 +66,9 @@ class SoundClashLogin extends Component {
 
 class Login extends Component {
 
-  constructor(props) {
-    super(props);
-    const currentUser = UserSession.get();
-    this.state = {
-      currentUser
-    };
-  }
-
   currentUser(){
-    if (this.state.currentUser){
-      return <div >Currently logged in as: {this.state.currentUser.email}</div>;
+    if (this.props.currentUser){
+      return <div >Currently logged in as: {this.props.currentUser.email}</div>;
     }
   }
 
@@ -116,7 +97,7 @@ class Login extends Component {
           </div>
           <div className="row mx-auto text-center p-3">
             <div className="col">
-            <SoundClashLogin />
+            <SoundClashLogin login={this.props.login}/>
             </div>
           </div>
         </div>
