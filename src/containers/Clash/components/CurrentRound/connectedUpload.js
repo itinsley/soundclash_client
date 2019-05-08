@@ -14,7 +14,7 @@ const mapDispatchToProps=(dispatch)=>{
   return {
     createTrack: (currentUser, clashId, track)=>{
       createTrackAction(dispatch, currentUser, clashId, track).then(
-        fetchClashAction(dispatch,clashId, currentUser)
+        dispatch(fetchClashAction(clashId))
       )
     }
   }

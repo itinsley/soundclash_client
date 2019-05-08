@@ -1,6 +1,7 @@
 import ClashApi from '../api/Clashes';
-async function fetchClash(dispatch, clashId, currentUser=null){
-  const jwt = currentUser?currentUser.jwt:'';
+const fetchClash=(clashId)=>async(dispatch, getState)=>{
+  const state = getState();
+  const jwt = state.currentUser?state.currentUser.jwt:'';
   const clash = await ClashApi.get(clashId, jwt);
   dispatch({
     type: 'GET_CLASH',

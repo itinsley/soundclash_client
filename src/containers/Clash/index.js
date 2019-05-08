@@ -13,8 +13,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
   return {
-    loadClash: (clashId, currentUser)=>{
-      fetchClashAction(dispatch, clashId, currentUser)
+    loadClash: (clashId)=>{
+      dispatch(fetchClashAction(clashId));
     }
   }
 }

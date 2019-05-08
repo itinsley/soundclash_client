@@ -8,7 +8,7 @@ class Clash extends Component {
   constructor(props){
     super(props);
     this.props.clash.loading=true;
-    this.props.loadClash(this.clashID(), this.props.currentUser);
+    this.props.loadClash(this.clashID());
   }
 
   clashID(){

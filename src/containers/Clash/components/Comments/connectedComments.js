@@ -17,7 +17,7 @@ const mapDispatchToProps=(dispatch)=>{
   return {
     createComment: async (clashId, trackId, currentUser, commentText)=>{
       await createCommentAction(dispatch, trackId, currentUser, commentText);
-      fetchClashAction(dispatch, clashId, currentUser )
+      dispatch(fetchClashAction(clashId));
     }
   }
 }
