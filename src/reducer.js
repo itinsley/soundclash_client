@@ -54,16 +54,6 @@ function reducer(state = defaultState, action) {
         ...state,
         currentUser: action.currentUser
       }
-    case 'CREATE_COMMENT':
-      // No state change, adding the event for the record
-      return {
-        ...state,
-      }
-    case 'CREATE_TRACK':
-      // No state change, adding the event for the record
-      return {
-        ...state,
-      }
     default:
       return state
   }

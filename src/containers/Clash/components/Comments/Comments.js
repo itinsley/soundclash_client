@@ -27,7 +27,7 @@ class Comment extends Component{
   async handleSubmit(event) {
     event.preventDefault();
     this.setState({loading: true});
-    this.props.createComment(this.props.clashId, this.props.trackId, this.props.currentUser, this.state.newComment );
+    this.props.createComment(this.props.trackId, this.state.newComment);
   }
 
 renderCommentForm(){

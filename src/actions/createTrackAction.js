@@ -1,12 +1,11 @@
 import TrackApi from '../api/Tracks';
+import refreshClashAction from "./refreshClashAction";
 
-async function createTrackAction(dispatch, currentUser, clashId, track){
-  const response = await TrackApi.create(currentUser.jwt, clashId, track);
-  dispatch({
-    type: 'CREATE_TRACK',
-    track: {...response.data},
-    clashId: clashId,
-  })
-
+const createTrackAction=(track)=>async(dispatch, getState)=>{
+  const state = getState();
+  const currentUser = state.currentUser;
+  const clashId = state.currentClash.data.id;
+  await TrackApi.create(currentUser.jwt, clashId, track);
+  dispatch(refreshClashAction);
 }
 export default createTrackAction;

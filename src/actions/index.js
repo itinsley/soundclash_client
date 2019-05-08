@@ -3,11 +3,13 @@ import fetchRecentClashesAction from "./fetchRecentClashesAction";
 import syncUserSession from "./syncUserSession";
 import fetchClashAction from "./fetchClashAction";
 import createCommentAction from "./createCommentAction";
+import refreshClashAction from "./refreshClashAction";
 
 export {
   fetchMyClashesAction,
   fetchRecentClashesAction,
   syncUserSession,
   fetchClashAction,
-  createCommentAction
+  createCommentAction,
+  refreshClashAction
 }

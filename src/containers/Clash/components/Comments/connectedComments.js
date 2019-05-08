@@ -1,7 +1,7 @@
 
 import Comments from "./Comments";
 import { connect } from 'react-redux';
-import { createCommentAction, fetchClashAction } from "../../../../actions";
+import { createCommentAction } from "../../../../actions";
 
 
 const mapProps=(state, ownProps)=>{
@@ -15,9 +15,8 @@ const mapProps=(state, ownProps)=>{
 
 const mapDispatchToProps=(dispatch)=>{
   return {
-    createComment: async (clashId, trackId, currentUser, commentText)=>{
-      await createCommentAction(dispatch, trackId, currentUser, commentText);
-      dispatch(fetchClashAction(clashId));
+    createComment: async (trackId, commentText)=>{
+      await dispatch(createCommentAction(trackId, commentText));
     }
   }
 }

@@ -54,9 +54,7 @@ class Upload extends Component{
   async handleSubmit(event) {
     event.preventDefault();
     this.setState({loading: true});
-    this.props.createTrack(this.props.currentUser,
-                            this.props.clash.id,
-                            {commentText: this.state.commentText,
+    this.props.createTrack( {commentText: this.state.commentText,
                              youTubeUrl: this.state.youTubeUrl,
                              name: this.state.trackName})
   }

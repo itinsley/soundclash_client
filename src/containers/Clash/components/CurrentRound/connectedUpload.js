@@ -1,6 +1,5 @@
 import Upload from "./Upload";
 import createTrackAction from "../../../../actions/createTrackAction";
-import fetchClashAction from "../../../../actions/fetchClashAction";
 import { connect } from 'react-redux';
 
 const mapProps=(state, ownProps)=>{
@@ -12,10 +11,8 @@ const mapProps=(state, ownProps)=>{
 
 const mapDispatchToProps=(dispatch)=>{
   return {
-    createTrack: (currentUser, clashId, track)=>{
-      createTrackAction(dispatch, currentUser, clashId, track).then(
-        dispatch(fetchClashAction(clashId))
-      )
+    createTrack: (track)=>{
+      dispatch(createTrackAction(track))
     }
   }
 }

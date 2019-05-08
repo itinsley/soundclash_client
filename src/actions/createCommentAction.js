@@ -1,13 +1,16 @@
 import CommentApi from '../api/Comments';
+import refreshClashAction from "./refreshClashAction";
 
-
-async function createCommentAction(dispatch, trackId, currentUser, commentText){
+const createCommentAction=(trackId, commentText)=>async(dispatch, getState)=>{
+  const state = getState();
+  const currentUser = state.currentUser;
   const comment = await CommentApi.create(trackId, commentText, currentUser)
-  dispatch({
+  await dispatch({
     type: 'CREATE_COMMENT',
     comment: {...comment.data, new: true},
     trackId,
   })
+  dispatch(refreshClashAction);
 }
 
 export default createCommentAction;
