@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { loginAction } from "../actions"
 import Login from "../components/Login";
-import history from '../history';
 
 const mapProps=(state)=>{
   return {
@@ -13,7 +12,6 @@ const mapDispatchToProps=(dispatch, ownProps)=>{
   return {
     login: async (email, password)=>{
       await dispatch(loginAction(email, password));
-      history.push("/");
     }
   }
 }

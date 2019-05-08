@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from "react";
+import Modal from 'react-responsive-modal';
 import { Link } from "react-router-dom";
 import {
     Collapse,
@@ -7,6 +8,7 @@ import {
     Nav,
     NavLink,
     NavItem} from 'reactstrap';
+import connectedLogin from '../../../components/connectedLogin';
 
 class Navigation extends Component {
   constructor(props) {
@@ -43,7 +45,9 @@ class Navigation extends Component {
           <NavItem>
             <a className='nav-link' href='/users/sign_up'>Sign Up</a>
           </NavItem>
-          <NavLink id='login' tag={Link} to="/login">Login</NavLink>
+          <NavItem>
+            <button id='login' className='btn-link nav-link' onClick={this.props.onOpenLoginModal}>Login</button>
+          </NavItem>;
         </Fragment>
       return loggedOut;
     }
@@ -51,9 +55,13 @@ class Navigation extends Component {
 
 
   render() {
-
+    const ConnectedLogin = connectedLogin();
     return (
       <div>
+        <Modal open={this.props.isLoginModalOpen} onClose={this.props.onCloseLoginModal} center>
+          <ConnectedLogin />
+        </Modal>
+
         <Navbar dark expand="md" className="navbar navbar-default fixed-top bg-black" >
             <Link to='/' className='navbar-brand'>
               <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />

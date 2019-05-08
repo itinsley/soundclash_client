@@ -13,6 +13,7 @@ const defaultState = {
       data: [],
       loading: true},
   currentUser: UserSession.get(),
+  isLoginModalOpen: false
 }
 
 // Reducer
@@ -50,7 +51,18 @@ function reducer(state = defaultState, action) {
     case 'LOGIN_USER':
       return {
         ...state,
-        currentUser: action.currentUser
+        currentUser: action.currentUser,
+        isLoginModalOpen: false
+      }
+    case 'OPEN_LOGIN_FORM':
+      return {
+        ...state,
+        isLoginModalOpen: true
+      }
+    case 'CLOSE_LOGIN_FORM':
+      return {
+        ...state,
+        isLoginModalOpen: false
       }
     // Session is stored in local storage.
     // Sync should be performed where user state is critical to pick up session expiry

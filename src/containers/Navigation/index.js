@@ -6,7 +6,8 @@ import logoutAction from "../../actions/logoutAction";
 // Map Redux state to component props
 function mapStateToProps(state) {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    isLoginModalOpen: state.isLoginModalOpen
   }
 }
 
@@ -15,6 +16,16 @@ function mapDispatchToProps(dispatch){
     logOut: ()=>{
       dispatch(logoutAction)
     },
+    onCloseLoginModal:()=>{
+      dispatch({
+        type: 'CLOSE_LOGIN_FORM'
+      })
+    },
+    onOpenLoginModal:()=>{
+      dispatch({
+        type: 'OPEN_LOGIN_FORM'
+      })
+    }
   }
 }
 
