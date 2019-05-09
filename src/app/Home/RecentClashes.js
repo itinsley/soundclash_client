@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ClashTile from "./ClashTile";
-import spinner from "../../../assets/spinner.gif";
+import spinner from "../../assets/spinner.gif";
 
 class RecentClashes extends Component{
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Router, Switch } from 'react-router-dom';
-import Home from './app/Home';
+import Home from './app/Home/HomeContainer';
 import About from './components/About';
 import connectedLogin from './components/connectedLogin';
 import Clash from '../src/app/Clash/ClashContainer';

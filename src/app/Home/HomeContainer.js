@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import '../../App.css';
-import Home from './components/Home';
+import Home from './Home';
 import { connect } from 'react-redux';
 import {fetchMyClashesAction, fetchRecentClashesAction, syncUserSession} from '../../actions';
 
