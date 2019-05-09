@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FacebookLoginWrapper from './FacebookLoginWrapper';
+import Modal from 'react-responsive-modal';
 
 class SoundClashLogin extends Component {
 
@@ -74,36 +75,35 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-      <div className="mx-auto text-center" style={{maxWidth: '40.25rem'}}>
-        <div className="top-element-margin"></div>
-        <h1 className="px-2 p-3">Login</h1>
-        <hr/>
-        <div className="container" >
-          <div className="row mx-auto text-center p-3">
-            <div className="col">
-              {this.currentUser()}
+      <Modal open={this.props.isLoginModalOpen} onClose={this.props.onCloseLoginModal} center>
+        <div className="mx-auto text-center" style={{maxWidth: '40.25rem'}}>
+          <div className="top-element-margin"></div>
+          <h1 className="px-2 p-3">Login</h1>
+          <hr/>
+          <div className="container" >
+            <div className="row mx-auto text-center p-3">
+              <div className="col">
+                {this.currentUser()}
+              </div>
             </div>
-          </div>
-          <div className="row mx-auto text-center p-3">
-            <div className="col">
-              <FacebookLoginWrapper />
+            <div className="row mx-auto text-center p-3">
+              <div className="col">
+                <FacebookLoginWrapper />
+              </div>
             </div>
-          </div>
-          <div className="row mx-auto text-center">
-            <div className="col">
-              OR
+            <div className="row mx-auto text-center">
+              <div className="col">
+                OR
+              </div>
             </div>
-          </div>
-          <div className="row mx-auto text-center p-3">
-            <div className="col">
-            <SoundClashLogin login={this.props.login}/>
+            <div className="row mx-auto text-center p-3">
+              <div className="col">
+              <SoundClashLogin login={this.props.login}/>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      </div>
-
+      </Modal>
     );
   }
 }

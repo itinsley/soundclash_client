@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from "react";
-import Modal from 'react-responsive-modal';
 import { Link } from "react-router-dom";
 import {
     Collapse,
@@ -58,10 +57,7 @@ class Navigation extends Component {
     const ConnectedLogin = connectedLogin();
     return (
       <div>
-        <Modal open={this.props.isLoginModalOpen} onClose={this.props.onCloseLoginModal} center>
-          <ConnectedLogin />
-        </Modal>
-
+        <ConnectedLogin open={this.props.isLoginModalOpen} onClose={this.props.onCloseLoginModal}/>
         <Navbar dark expand="md" className="navbar navbar-default fixed-top bg-black" >
             <Link to='/' className='navbar-brand'>
               <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />

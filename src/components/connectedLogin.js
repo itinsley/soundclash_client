@@ -4,7 +4,8 @@ import Login from "../components/Login";
 
 const mapProps=(state)=>{
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    isLoginModalOpen: state.isLoginModalOpen
   }
 }
 
@@ -12,6 +13,11 @@ const mapDispatchToProps=(dispatch, ownProps)=>{
   return {
     login: async (email, password)=>{
       await dispatch(loginAction(email, password));
+    },
+    onCloseLoginModal:()=>{
+      dispatch({
+        type: 'CLOSE_LOGIN_FORM'
+      })
     }
   }
 }

@@ -16,11 +16,6 @@ function mapDispatchToProps(dispatch){
     logOut: ()=>{
       dispatch(logoutAction)
     },
-    onCloseLoginModal:()=>{
-      dispatch({
-        type: 'CLOSE_LOGIN_FORM'
-      })
-    },
     onOpenLoginModal:()=>{
       dispatch({
         type: 'OPEN_LOGIN_FORM'
