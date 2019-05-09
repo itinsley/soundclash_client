@@ -1,7 +1,7 @@
 
 import Comments from "./Comments";
 import { connect } from 'react-redux';
-import { createCommentAction } from "../../../../actions";
+import { createCommentAction } from "../../../actions";
 
 
 const mapProps=(state, ownProps)=>{

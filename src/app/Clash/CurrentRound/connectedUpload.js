@@ -1,5 +1,5 @@
 import Upload from "./Upload";
-import createTrackAction from "../../../../actions/createTrackAction";
+import createTrackAction from "../../../actions/createTrackAction";
 import { connect } from 'react-redux';
 
 const mapProps=(state, ownProps)=>{

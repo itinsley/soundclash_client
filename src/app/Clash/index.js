@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Clash from "./components/Clash/Clash";
+import Clash from "./Clash/Clash";
 import { connect } from 'react-redux';
 import {fetchClashAction} from "../../actions";
 

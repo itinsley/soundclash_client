@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import Elapsed from "elapsed";
-import Avatar from "../../../../components/Avatar";
+import Avatar from "../../../components/Avatar";
 
 class CommentItem extends Component{
 

@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import CommentItem from "./CommentItem";
-import Avatar from "../../../../components/Avatar";
-import SpinnerButtonInner from "../../../../lib/SpinnerButtonInner";
+import Avatar from "../../../components/Avatar";
+import SpinnerButtonInner from "../../../lib/SpinnerButtonInner";
 
 class Comment extends Component{
   constructor(props){

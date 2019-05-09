@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import youtube from "../../../../lib/youtube";
+import youtube from "../../../lib/youtube";
 import connectedComments from "../Comments/connectedComments";
 
 class Track extends Component{

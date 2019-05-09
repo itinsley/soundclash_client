@@ -2,7 +2,7 @@ import React, {Component, Fragment} from "react";
 import ClashHeader from "./ClashHeader";
 import CurrentRound from "../CurrentRound/CurrentRound"; //Move this to /clash/components folder
 import RoundsList from "./RoundsList";
-import spinner from "../../../../assets/spinner.gif"
+import spinner from "../../../assets/spinner.gif"
 
 class Clash extends Component {
   constructor(props){
