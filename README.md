@@ -46,12 +46,5 @@ Set env variable BASE_URL - i.e
 We are using Redux and Thunks to manage global state reads and writes.
 The pattern is to avoid using connected redux components or containers unless necessary. Most components just rely on the props that are passed into them.
 
-## Containers
-This is a slight bastardisation of the normal redux pattern. The Containers folder contains a folder for each section of the site which then contains components
-specific to that. The index file wraps the root component with redux Connect.
-
-## Connected Components
-Components that are not root components but require acesss to the redux store are wrapped in a ConnectedComponent function(i.e. ConnectedComment). This function contains property and dispatch mappings and represents the point of Dependency Injection.
-
 ## Components
-All components depend only upon the properties passed in, this makes them pure Components and easily testable. Most components live in the /Containers folder to which they naturally belong. Shared components live in /components.
+All components depend only upon the properties passed in, this makes them pure Components and easily testable. 

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, Router, Switch } from 'react-router-dom';
-import Home from './containers/Home';
+import Home from './app/Home';
 import About from './components/About';
 import connectedLogin from './components/connectedLogin';
-import Clash from '../src/containers/Clash';
-import NavigationContainer from './containers/Navigation';
+import Clash from '../src/app/Clash';
+import NavigationContainer from './app/Navigation';
 import { Provider } from 'react-redux';
 import history from './history';
 
