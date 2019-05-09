@@ -4,7 +4,7 @@ import Home from './app/Home/HomeContainer';
 import About from './components/About';
 import connectedLogin from './components/connectedLogin';
 import Clash from '../src/app/Clash/ClashContainer';
-import NavigationContainer from './app/Navigation';
+import NavigationContainer from './app/Navigation/NavigationContainer';
 import { Provider } from 'react-redux';
 import history from './history';
 

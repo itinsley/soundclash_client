@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Navigation from  './components/Navigation'
+import Navigation from  './Navigation'
 import { connect } from 'react-redux';
 import logoutAction from "../../actions/logoutAction";
 

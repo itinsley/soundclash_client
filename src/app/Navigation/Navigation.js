@@ -7,7 +7,7 @@ import {
     Nav,
     NavLink,
     NavItem} from 'reactstrap';
-import connectedLogin from '../../../components/connectedLogin';
+import connectedLogin from '../../components/connectedLogin';
 
 class Navigation extends Component {
   constructor(props) {
