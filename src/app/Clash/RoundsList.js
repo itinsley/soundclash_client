@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import RoundWrapper from "../Round/RoundWrapper";
+import RoundWrapper from "./Round/RoundWrapper";
 class RoundsList extends Component {
   render(){
     return this.props.rounds.map((round, idx)=>{
