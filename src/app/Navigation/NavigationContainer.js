@@ -24,7 +24,6 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-// Connected Component
 const ConnectedNavigation = connect(
   mapStateToProps,
   mapDispatchToProps,

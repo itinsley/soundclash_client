@@ -14,6 +14,7 @@ class Comment extends Component{
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearFormState = this.clearFormState.bind(this);
   }
 
   handleChange(e) {
@@ -24,10 +25,17 @@ class Comment extends Component{
     return this.props.comments.map((comment)=><CommentItem key={`comment=${comment.id}`} comment={comment} />);
   }
 
+  clearFormState(){
+    this.setState({
+      newComment: '',
+      loading: false
+    })
+  }
+
   async handleSubmit(event) {
     event.preventDefault();
     this.setState({loading: true});
-    this.props.createComment(this.props.trackId, this.state.newComment);
+    this.props.createComment(this.props.trackId, this.state.newComment, this.clearFormState);
   }
 
 renderCommentForm(){

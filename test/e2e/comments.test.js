@@ -16,5 +16,6 @@ module.exports = {
     await browser.click(".t-track-owner .t-comment-submit")
     await browser.waitForElementNotVisible('.t-track-owner button.t-spinner')
     await assertTextInElements(browser, '.t-track-owner .t-comment-text', comment);
+    browser.assert.value(".t-track-owner textarea[name='newComment']", "");
   },
 }
