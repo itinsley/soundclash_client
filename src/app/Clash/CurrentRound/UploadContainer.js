@@ -17,11 +17,11 @@ const mapDispatchToProps=(dispatch)=>{
   }
 }
 
-const connectedUpload=()=>{
+const UploadContainer=()=>{
   return connect(
     mapProps,
     mapDispatchToProps
   )(Upload)
 }
 
-export default connectedUpload;
+export default UploadContainer();
