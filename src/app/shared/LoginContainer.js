@@ -22,11 +22,11 @@ const mapDispatchToProps=(dispatch, ownProps)=>{
   }
 }
 
-const connectedLogin = ()=> {
+const LoginContainer = ()=> {
   return connect(
    mapProps,
    mapDispatchToProps
  )(Login)
 }
 
-export default connectedLogin;
+export default LoginContainer();

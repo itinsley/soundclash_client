@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, Router, Switch } from 'react-router-dom';
 import Home from './app/Home/HomeContainer';
 import About from './app/About/About';
-import connectedLogin from './app/shared/connectedLogin';
+import LoginContainer from './app/shared/LoginContainer';
 import Clash from '../src/app/Clash/ClashContainer';
 import NavigationContainer from './app/Navigation/NavigationContainer';
 import { Provider } from 'react-redux';
@@ -19,7 +19,6 @@ import history from './history';
 }
 
 export const makeMainRoutes = (store) => {
-  const ConnectedLogin = connectedLogin();
   return (
     <Provider store={store}>
       <Router basename='/client' history={history} >
@@ -27,7 +26,7 @@ export const makeMainRoutes = (store) => {
             <NavigationContainer />
             <Switch>
               <Route path="/about" render={(props) =>  <About  />} />
-              <Route path="/login" render={(props) => <ConnectedLogin history={props.history} />} />
+              <Route path="/login" render={(props) => <LoginContainer history={props.history} />} />
               <Route path="/clashes/:clashId" render={(props) => <Clash {...props}/>} />
               <Route path="/users/sign_up" render={(props) => {
                 return <WrongWayGoBack link={<a href='/users/sign_up'>Sign Up</a>} />
