@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import Avatar from "../../components/Avatar";
+import Avatar from "../shared/Avatar";
 
 class Clash extends Component{
 

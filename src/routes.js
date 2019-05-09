@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Router, Switch } from 'react-router-dom';
 import Home from './app/Home/HomeContainer';
-import About from './components/About';
-import connectedLogin from './components/connectedLogin';
+import About from './app/About/About';
+import connectedLogin from './app/shared/connectedLogin';
 import Clash from '../src/app/Clash/ClashContainer';
 import NavigationContainer from './app/Navigation/NavigationContainer';
 import { Provider } from 'react-redux';

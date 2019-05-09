@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { loginAction } from "../actions"
-import Login from "../components/Login";
+import { loginAction } from "../../actions"
+import Login from "./Login";
 
 const mapProps=(state)=>{
   return {
