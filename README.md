@@ -23,7 +23,15 @@ Use classes with a prefix of t- for identifying elements for testing purposes. i
        t-owner-track-container
 # e2e Tests
 
-       npm run e2e
+This project depends on e2e tests. Unit tests are used for discrete logic when appropriate but most plumbing, rendering and integration are done through integration tests against a live API. As a result, continuous deployment gets stuck behind a failing CI.
+
+CI e2e's run against the 'edge' server
+
+## Fixing/debugging e2e tests
+1. Ensure server is up-to-date `git push edge`
+2. Ensure server fixtures are up-to-data `heroku run rake api_fixtures:generate --remote edge'
+3. Run tests against CI environment `BASE_URL=https://frifti.com/client npm run e2e` to identify issues with tests
+4. Run tests against local react environment `npm run e2e` to debug
 
 ## Fixtures
 Uses fixtures defined and created *from the server* using the command
