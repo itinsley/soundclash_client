@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FacebookLoginWrapper from './FacebookLoginWrapper';
+import FacebookLogin from 'react-facebook-login';
 import Modal from 'react-responsive-modal';
 
 class SoundClashLogin extends Component {
@@ -88,7 +88,14 @@ class Login extends Component {
             </div>
             <div className="row mx-auto text-center p-3">
               <div className="col">
-                <FacebookLoginWrapper />
+              <FacebookLogin
+                className='btn-facebook btn-rounded'
+                appId={process.env.REACT_APP_FACEBOOK_APPID}
+                fields="name,email,picture"
+                callback={this.props.afterFacebookLogin}
+                icon="fa-facebook"
+                textButton="Continue with Facebook"
+                />
               </div>
             </div>
             <div className="row mx-auto text-center">
@@ -98,7 +105,7 @@ class Login extends Component {
             </div>
             <div className="row mx-auto text-center p-3">
               <div className="col">
-              <SoundClashLogin login={this.props.login}/>
+              <SoundClashLogin login={this.props.soundClashlogin}/>
               </div>
             </div>
           </div>

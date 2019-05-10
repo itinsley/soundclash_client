@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { loginAction } from "../../actions"
+import { loginAction, facebookLoginAction } from "../../actions"
 import Login from "./Login";
 
 const mapProps=(state)=>{
@@ -11,8 +11,11 @@ const mapProps=(state)=>{
 
 const mapDispatchToProps=(dispatch, ownProps)=>{
   return {
-    login: async (email, password)=>{
+    soundClashlogin: async (email, password)=>{
       await dispatch(loginAction(email, password));
+    },
+    afterFacebookLogin: async (fbResponse)=>{
+      await dispatch(facebookLoginAction(fbResponse));
     },
     onCloseLoginModal:()=>{
       dispatch({

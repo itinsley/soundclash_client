@@ -4,7 +4,8 @@ import syncUserSession from "./syncUserSession";
 import fetchClashAction from "./fetchClashAction";
 import createCommentAction from "./createCommentAction";
 import refreshClashAction from "./refreshClashAction";
-import loginAction from "./loginAction";
+import loginAction from "./soundClashIdentityLoginAction";
+import facebookLoginAction from "./facebookLoginAction";
 
 export {
   fetchMyClashesAction,
@@ -13,5 +14,6 @@ export {
   fetchClashAction,
   createCommentAction,
   refreshClashAction,
-  loginAction
+  loginAction,
+  facebookLoginAction
 }
