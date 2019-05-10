@@ -23,7 +23,15 @@ Use classes with a prefix of t- for identifying elements for testing purposes. i
        t-owner-track-container
 # e2e Tests
 
-       npm run e2e
+This project depends on e2e tests. Unit tests are used for discrete logic when appropriate but most plumbing, rendering and integration are done through integration tests against a live API. As a result, continuous deployment gets stuck behind a failing CI.
+
+CI e2e's run against the 'edge' server
+
+## Fixing/debugging e2e tests
+1. Ensure server is up-to-date `git push edge`
+2. Ensure server fixtures are up-to-data `heroku run rake api_fixtures:generate --remote edge'
+3. Run tests against CI environment `BASE_URL=https://frifti.com/client npm run e2e` to identify issues with tests
+4. Run tests against local react environment `npm run e2e` to debug
 
 ## Fixtures
 Uses fixtures defined and created *from the server* using the command
@@ -46,12 +54,5 @@ Set env variable BASE_URL - i.e
 We are using Redux and Thunks to manage global state reads and writes.
 The pattern is to avoid using connected redux components or containers unless necessary. Most components just rely on the props that are passed into them.
 
-## Containers
-This is a slight bastardisation of the normal redux pattern. The Containers folder contains a folder for each section of the site which then contains components
-specific to that. The index file wraps the root component with redux Connect.
-
-## Connected Components
-Components that are not root components but require acesss to the redux store are wrapped in a ConnectedComponent function(i.e. ConnectedComment). This function contains property and dispatch mappings and represents the point of Dependency Injection.
-
 ## Components
-All components depend only upon the properties passed in, this makes them pure Components and easily testable. Most components live in the /Containers folder to which they naturally belong. Shared components live in /components.
+All components depend only upon the properties passed in, this makes them pure Components and easily testable. 

@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
-import youtube from "../../../../lib/youtube";
-import connectedComments from "../Comments/connectedComments";
+import youtube from "../../../lib/youtube";
+import CommentContainer from "../Comments/CommentContainer";
 
 class Track extends Component{
   render(){
@@ -8,12 +8,10 @@ class Track extends Component{
     const currentUser = this.props.currentUser;
     const youtubeUrl = youtube.embedUrl(track.url);
 
-    const ConnectedComments = connectedComments();
-
     return(
       <Fragment>
         {youtube.iframe(youtubeUrl, track.name)}
-        <ConnectedComments track={track} currentUser={currentUser}/>
+        <CommentContainer track={track} currentUser={currentUser}/>
       </Fragment>
     )
   }

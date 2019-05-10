@@ -1,7 +1,7 @@
 
 import Comments from "./Comments";
 import { connect } from 'react-redux';
-import { createCommentAction } from "../../../../actions";
+import { createCommentAction } from "../../../actions";
 
 
 const mapProps=(state, ownProps)=>{
@@ -15,19 +15,19 @@ const mapProps=(state, ownProps)=>{
 
 const mapDispatchToProps=(dispatch)=>{
   return {
-    createComment: async (trackId, commentText)=>{
-      await dispatch(createCommentAction(trackId, commentText));
+    createComment: async (trackId, commentText, cb)=>{
+      dispatch(createCommentAction(trackId, commentText)).then(cb);
     }
   }
 }
 
 // Returns Comments component wrapped in Connect
 // Supply the properties used in ownProps when you render the returned component
-const connectedComments = ()=> {
+const CommentContainer = ()=> {
   return connect(
    mapProps,
    mapDispatchToProps
  )(Comments)
 }
 
-export default connectedComments;
+export default CommentContainer();

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import SpinnerButtonInner from "../../../../lib/SpinnerButtonInner";
-import youtube from "../../../../lib/youtube";
+import SpinnerButtonInner from "../../../lib/SpinnerButtonInner";
+import youtube from "../../../lib/youtube";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackspace } from '@fortawesome/free-solid-svg-icons'
 

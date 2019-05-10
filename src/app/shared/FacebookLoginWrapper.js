@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './FacebookLoginWrapper.css'
-import FacebookSession from '../api/FacebookSession';
+import FacebookSession from '../../api/FacebookSession';
 import FacebookLogin from 'react-facebook-login';
-import UserSession from '../lib/UserSession/UserSession';
+import UserSession from '../../lib/UserSession/UserSession';
 
 class FacebookLoginWrapper extends Component {
   constructor(props) {

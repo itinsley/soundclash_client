@@ -7,7 +7,7 @@ import {
     Nav,
     NavLink,
     NavItem} from 'reactstrap';
-import connectedLogin from '../../../components/connectedLogin';
+import LoginContainer from '../shared/LoginContainer';
 
 class Navigation extends Component {
   constructor(props) {
@@ -54,10 +54,9 @@ class Navigation extends Component {
 
 
   render() {
-    const ConnectedLogin = connectedLogin();
     return (
       <div>
-        <ConnectedLogin open={this.props.isLoginModalOpen} onClose={this.props.onCloseLoginModal}/>
+        <LoginContainer open={this.props.isLoginModalOpen} onClose={this.props.onCloseLoginModal}/>
         <Navbar dark expand="md" className="navbar navbar-default fixed-top bg-black" >
             <Link to='/' className='navbar-brand'>
               <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />

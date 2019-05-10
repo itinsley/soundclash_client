@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import ClashWorkflow from "../../../../lib/ClashWorkflow";
+import ClashWorkflow from "../../../lib/ClashWorkflow";
 import ReadyToAccept from "./ReadyToAccept";
 import AwaitingPlayer from "./AwaitingPlayer";
 import PartialRound from "./PartialRound";
-import connectedUpload from "./connectedUpload";
+import UploadContainer from "./UploadContainer";
 
 /*
 CurrentRound deals with the Clash object
@@ -15,7 +15,6 @@ class CurrentRound extends Component{
     const clash = this.props.clash;
     const currentUser = this.props.currentUser;
     const state = ClashWorkflow.state(clash, currentUser);
-    const ConectedUpload = connectedUpload();
 
     const props = {clash, currentUser}
 
@@ -24,7 +23,7 @@ class CurrentRound extends Component{
       case ClashWorkflow.STATES.ReadyToAccept:
         return <ReadyToAccept {...props} />;
       case ClashWorkflow.STATES.Upload:
-        return <ConectedUpload {...props} />;
+        return <UploadContainer {...props} />;
       case ClashWorkflow.STATES.DisplayInfo:
         return <PartialRound previousTrack={clash.previous_track}
                              waitingFor={clash.waiting_for}

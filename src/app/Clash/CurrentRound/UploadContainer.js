@@ -1,5 +1,5 @@
 import Upload from "./Upload";
-import createTrackAction from "../../../../actions/createTrackAction";
+import createTrackAction from "../../../actions/createTrackAction";
 import { connect } from 'react-redux';
 
 const mapProps=(state, ownProps)=>{
@@ -17,11 +17,11 @@ const mapDispatchToProps=(dispatch)=>{
   }
 }
 
-const connectedUpload=()=>{
+const UploadContainer=()=>{
   return connect(
     mapProps,
     mapDispatchToProps
   )(Upload)
 }
 
-export default connectedUpload;
+export default UploadContainer();

@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
-import RecentClashes from '../components/RecentClashes';
-import MyClashes from '../components/MyClashes'
+import RecentClashes from './RecentClashes';
+import MyClashes from './MyClashes'
 
 function MyClashesWrapper(props){
   if(props.currentUser){
