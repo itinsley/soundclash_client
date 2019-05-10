@@ -5,7 +5,7 @@ import fetchMyClashesAction from './fetchMyClashesAction';
 const loginAction=(email, password)=> async(dispatch)=>{
   const response = await UserApi.login(email, password );
   const currentUser = UserSession.set(response.jwt);
-  await dispatch({
+  dispatch({
     type: 'LOGIN_USER',
     currentUser
   });

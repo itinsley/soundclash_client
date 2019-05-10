@@ -5,7 +5,7 @@ const createCommentAction=(trackId, commentText)=>async(dispatch, getState)=>{
   const state = getState();
   const currentUser = state.currentUser;
   const comment = await CommentApi.create(trackId, commentText, currentUser)
-  await dispatch({
+  dispatch({
     type: 'CREATE_COMMENT',
     comment: {...comment.data, new: true},
     trackId,

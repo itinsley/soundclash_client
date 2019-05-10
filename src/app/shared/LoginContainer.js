@@ -12,10 +12,10 @@ const mapProps=(state)=>{
 const mapDispatchToProps=(dispatch, ownProps)=>{
   return {
     soundClashlogin: async (email, password)=>{
-      await dispatch(loginAction(email, password));
+      dispatch(loginAction(email, password));
     },
     afterFacebookLogin: async (fbResponse)=>{
-      await dispatch(facebookLoginAction(fbResponse));
+      dispatch(facebookLoginAction(fbResponse));
     },
     onCloseLoginModal:()=>{
       dispatch({
