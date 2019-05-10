@@ -82,7 +82,7 @@ describe("Current round workflow - ", ()=>{
       expect(state(awaitingOwner, owner)).toEqual(STATES.Upload)
     })
     test("viewed by opponent should display info", ()=>{
-      expect(state(awaitingOwner, opponent)).toEqual(STATES.DisplayInfo)
+      expect(state(awaitingOwner, opponent)).toEqual(STATES.AwaitingPlayer)
     })
     test("viewed by spectator should be hidden", ()=>{
       expect(state(awaitingOwner, spectator)).toEqual(STATES.Hidden)
@@ -102,8 +102,7 @@ describe("Current round workflow - ", ()=>{
     test("viewed by opponent should ", ()=>{
       expect(state(awaitingOpponent, opponent)).toEqual(STATES.Upload)
     })
-    test.only("viewed by spectator", ()=>{
-      // expect(state(awaitingOpponent, spectator)).toEqual(STATES.DisplayInfo)
+    test("viewed by spectator", ()=>{
       expect(state(awaitingOpponent, null)).toEqual(STATES.DisplayInfo)
     })
   })
