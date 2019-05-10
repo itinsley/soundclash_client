@@ -91,9 +91,9 @@ class Upload extends Component{
                               style={{background:'none'}}/>}
 
                     {!this.state.showYouTubeUrl && youtube.iframe(embedYouTubeUrl, this.state.trackName)}
-                    {!this.state.showYouTubeUrl && 
-                      <button className="mt-1 btn btn-dark text-uppercase" 
-                              type="submit" 
+                    {!this.state.showYouTubeUrl &&
+                      <button className="mt-1 btn btn-dark text-uppercase"
+                              type="submit"
                               title="Enter a different track URL"
                               onClick={this.clearUrl_HandleClick}
                               >

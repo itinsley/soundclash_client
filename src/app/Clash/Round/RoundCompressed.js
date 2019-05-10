@@ -1,15 +1,12 @@
 import React, {Component} from "react";
 
 class RoundCompressed extends Component {
-  constructor(props){
-    super(props);
-    this.Handle_Click = props.Handle_Click;
-  }
-
   render(){
     const round = this.props.round;
     return (
-      <a href={`/rounds/${round.id}.json`} className="py-3 round-thumb u-overlay-hover" onClick={this.Handle_Click} >
+      <a href={`/rounds/${round.id}.json`}
+        className="py-3 round-thumb u-overlay-hover"
+        onClick={this.props.Handle_Click} >
         <strong >
           <span className="text-uppercase" >Round {round.index}</span>
           <img className="ml-4 mr-1"
