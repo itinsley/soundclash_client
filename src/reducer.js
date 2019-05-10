@@ -65,7 +65,7 @@ function reducer(state = defaultState, action) {
         isLoginModalOpen: false
       }
     // Session is stored in local storage.
-    // Sync should be performed where user state is critical to pick up session expiry
+    // Sync should be performed to establish session expiry when user state is critical
     case 'SYNC_USER_SESSION':
       return {
         ...state,
