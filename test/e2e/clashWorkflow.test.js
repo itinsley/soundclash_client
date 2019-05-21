@@ -24,6 +24,11 @@ module.exports = {
     // With status of challenge_sent
     await browser.url(BASE_URL)
     await login(browser, OWNER, 'password')
+
+    // I can challenge someone
+    browser.verify.containsText('.challenge h1', 'Challenge someone...');
+
+    // My clashes
     browser.verify.containsText('.clash-tile', 'Api Owner vs. Api Opponent')
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::challenge_sent');
     browser.waitForElementVisible('.t-clash-status');
@@ -32,7 +37,7 @@ module.exports = {
     // With status of awaiting_owner
     browser.click('.navbar-brand')
     browser.waitForElementVisible('.t-myclashes-container');
-    browser.verify.containsText('h1', 'My Clashes');
+    browser.verify.containsText('h1.t-myclashes-header', 'My Clashes');
     browser.waitForElementVisible('.t-card-title');
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
     browser.waitForElementVisible('.t-clash-status');
@@ -46,7 +51,6 @@ module.exports = {
     await browser.url(BASE_URL)
     await login(browser, OPPONENT, 'password')
     browser.waitForElementVisible('.t-myclashes-container');
-    browser.verify.containsText('h1', 'My Clashes');
     browser.waitForElementVisible('.t-card-title');
     await clickElementBySelector(browser, '.t-myclashes-container .t-card-title', 'API::awaiting_owner');
     browser.waitForElementVisible('.t-clash-header')
