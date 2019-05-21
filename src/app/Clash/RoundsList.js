@@ -11,8 +11,7 @@ class RoundsList extends Component {
               <RoundWrapper
                 isOpen={idx===0}
                 round={round}
-                currentUser = {this.props.currentUser}
-                />
+              />
             </div>
           </div>
         </Fragment>

@@ -4,8 +4,7 @@ import Round from "./Round";
 class RoundExpanded extends Component {
   render(){
     return (
-      <Round round={this.props.round}
-             currentUser={this.props.currentUser}/>
+      <Round round={this.props.round} />
     )
   }
 }

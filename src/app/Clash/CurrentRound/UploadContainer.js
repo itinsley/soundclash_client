@@ -3,9 +3,10 @@ import createTrackAction from "../../../actions/createTrackAction";
 import { connect } from 'react-redux';
 
 const mapProps=(state, ownProps)=>{
+  console.log("Uokoiadcitauber", state)
   return {
-    clash: ownProps.clash,
-    currentUser: ownProps.currentUser,
+    clash: state.currentClash.data,
+    currentUser: state.currentUser,
   }
 }
 

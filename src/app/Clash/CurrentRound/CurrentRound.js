@@ -4,6 +4,8 @@ import ReadyToAccept from "./ReadyToAccept";
 import AwaitingPlayer from "./AwaitingPlayer";
 import PartialRound from "./PartialRound";
 import UploadContainer from "./UploadContainer";
+import UserSession from "../../../lib/UserSession/UserSession";
+
 
 /*
 CurrentRound deals with the Clash object
@@ -26,8 +28,7 @@ class CurrentRound extends Component{
         return <UploadContainer {...props} />;
       case ClashWorkflow.STATES.DisplayInfo:
         return <PartialRound previousTrack={clash.previous_track}
-                             waitingFor={clash.waiting_for}
-                             currentUser={currentUser}/>;
+                             waitingFor={clash.waiting_for}/>;
       default:
         return <AwaitingPlayer {...props} />;
     }

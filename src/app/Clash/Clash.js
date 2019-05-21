@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import ClashHeader from "./ClashHeader";
-import CurrentRound from "./CurrentRound/CurrentRound"; //Move this to /clash/components folder
+import CurrentRoundContainer from "./CurrentRound/CurrentRoundContainer"; //Move this to /clash/components folder
 import RoundsList from "./RoundsList";
 import spinner from "../../assets/spinner.gif"
 
@@ -17,7 +17,6 @@ class Clash extends Component {
 
   render(){
     const clash = this.props.clash.data;
-    const currentUser = this.props.currentUser;
     const loading = this.props.clash.loading;
 
     if (loading){
@@ -29,12 +28,9 @@ class Clash extends Component {
     } else {
       return(
         <Fragment>
-          <ClashHeader  clash={clash}
-                  currentUser = {currentUser} />
-          <CurrentRound clash ={clash}
-                  currentUser = {currentUser} />
-          <RoundsList rounds={clash.rounds}
-                  currentUser = {currentUser} />
+          <ClashHeader  clash={clash}/>
+          <CurrentRoundContainer />
+          <RoundsList rounds={clash.rounds} />
         </Fragment>
       )
     }

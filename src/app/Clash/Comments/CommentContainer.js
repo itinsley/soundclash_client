@@ -7,7 +7,7 @@ import { createCommentAction } from "../../../actions";
 const mapProps=(state, ownProps)=>{
   return {
     comments: ownProps.track.comments,
-    currentUser: ownProps.currentUser,
+    currentUser: state.currentUser,
     trackId: ownProps.track.id,
     clashId: state.currentClash.data.id
   }

@@ -2,7 +2,7 @@ import React from "react";
 import Track from "../Track/Track";
 
 function ReadyToAccept(props){
-  const {clash, currentUser} = props;
+  const { clash } = props;
   const owner_track = clash.owner_track;
 
   return (
@@ -10,8 +10,7 @@ function ReadyToAccept(props){
       <div className="container-fluid bg-grey px-0">
         <div className='row p-4'>
           <div className='t-track-owner-container col-sm-6 text-center p-3' >
-            <Track track = {owner_track}
-                  currentUser = {currentUser} />
+            <Track track = {owner_track}/>
           </div>
           <div className='t-track-opponent-container col-sm-6 text-center p-3' >
             <h2 className='text-truncate p-4 clash-item__header' >Waiting for you</h2>
