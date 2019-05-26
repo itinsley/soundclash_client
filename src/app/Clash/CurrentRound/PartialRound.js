@@ -3,7 +3,7 @@ import Track from "../Track/Track";
 
 const PartialRound=(props)=>{
   const previousTrack = props.previousTrack;
-  const waitingFor = props.waitingFor;
+  const waitingForDescription = props.waitingForDescription;
 
   return(
     <div className="container-fluid bg-grey px-0">
@@ -13,7 +13,7 @@ const PartialRound=(props)=>{
         </div>
         <div className='t-clash-status col-sm-6 text-center p-3' >
           <h2 className='text-truncate p-4 clash-item__header' >Waiting...</h2>
-          we are waiting for {waitingFor.name}
+          {waitingForDescription}
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ class CurrentRound extends Component{
         return <UploadContainer {...props} />;
       case ClashWorkflow.STATES.DisplayInfo:
         return <PartialRound previousTrack={clash.previous_track}
-                             waitingFor={clash.waiting_for}/>;
+                             waitingForDescription={clash.waiting_for_description}/>;
       default:
         return <AwaitingPlayer {...props} />;
     }

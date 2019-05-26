@@ -4,7 +4,7 @@ function AwaitingPlayer(props){
   const {clash}=props;
   return (
     <div className='t-clash-status col-sm-12 text-center p-3' >
-      we are waiting for {clash.waiting_for.name}
+      {clash.waiting_for_description}
     </div>
   )
 }
