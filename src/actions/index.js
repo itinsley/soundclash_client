@@ -6,6 +6,7 @@ import createCommentAction from "./createCommentAction";
 import refreshClashAction from "./refreshClashAction";
 import loginAction from "./soundClashIdentityLoginAction";
 import facebookLoginAction from "./facebookLoginAction";
+import createClashAction from "./createClashAction";
 
 export {
   fetchMyClashesAction,
@@ -15,5 +16,6 @@ export {
   createCommentAction,
   refreshClashAction,
   loginAction,
-  facebookLoginAction
+  facebookLoginAction,
+  createClashAction
 }

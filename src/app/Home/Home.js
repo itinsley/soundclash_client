@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import RecentClashes from './RecentClashes';
 import MyClashes from './MyClashes';
-import Challenge from './Challenge';
+import CreateClashContainer from './CreateClashContainer';
 
 class Home extends Component{
   constructor(props){
@@ -12,7 +12,7 @@ class Home extends Component{
     return (
       <Fragment >
         <div className="top-element-margin"></div>
-        {this.props.currentUser && <Challenge currentUser = {this.props.currentUser} />}
+        {this.props.currentUser && <CreateClashContainer />}
         {this.props.currentUser && <MyClashes myClashes = {this.props.myClashes} />}
         <RecentClashes recentClashes={this.props.recentClashes}/>
       </Fragment>
