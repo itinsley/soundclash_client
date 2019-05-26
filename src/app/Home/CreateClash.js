@@ -139,7 +139,7 @@ class Challenge extends Component{
                 </div>
                 <div className="py-0 px-0 mx-auto text-center " >
                   <div className='px-0 '>
-                    <button className="btn btn-dark text-uppercase" type="submit" >
+                    <button id='createTrack' className="btn btn-dark text-uppercase" type="submit" >
                       <SpinnerButtonInner label='Submit' loading={this.state.loading}/>
                     </button>
                   </div>

@@ -88,4 +88,17 @@ module.exports = {
     browser.end()
   },
 
+  'Create Clash:: logged in as clash owner' : async function (browser) {
+    await browser.url(BASE_URL)
+    await login(browser, OWNER, 'password')
+    browser.setValue("input[name='clashName']", 'A new Clash Owner Clash..')
+      .setValue("input[name='opponentEmailAddress']", 'doesnt.exist@yet.com')
+      .setValue("input[name='youTubeUrl']", 'https://www.youtube.com/watch?v=-KIm0Je4phY')
+      .setValue("textarea[name='commentText']", 'New clash for unregistered user')
+      .waitForElementVisible('.t-track-title')
+      .click("button#createTrack")
+      .waitForElementVisible('.t-clash-header')
+      .verify.containsText('h1', 'A new Clash Owner Clash..')
+      .end()
+  }
 };
