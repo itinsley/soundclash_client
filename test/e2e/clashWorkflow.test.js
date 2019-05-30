@@ -9,7 +9,7 @@ module.exports = {
   'View Clash:: - spectator, not logged in' : async function (browser) {
     await browser.url(BASE_URL)
     browser.waitForElementVisible('.card');
-    browser.verify.containsText('h1', 'Recent Clashes');
+    browser.verify.containsText('h2', 'Recent Clashes');
     await clickElementBySelector(browser, '.t-card-title', 'API::awaiting_owner');
     browser.verify.containsText('h1', 'API::awaiting_owner')
 

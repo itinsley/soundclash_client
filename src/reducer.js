@@ -12,8 +12,10 @@ const defaultState = {
   currentClash:{
       data: [],
       loading: true},
+  newClash:{},
   currentUser: UserSession.get(),
-  isLoginModalOpen: false
+  isLoginModalOpen: false,
+  loginContext: ''
 }
 
 // Reducer
@@ -57,7 +59,8 @@ function reducer(state = defaultState, action) {
     case 'OPEN_LOGIN_FORM':
       return {
         ...state,
-        isLoginModalOpen: true
+        isLoginModalOpen: true,
+        loginContext: action.loginContext
       }
     case 'CLOSE_LOGIN_FORM':
       return {

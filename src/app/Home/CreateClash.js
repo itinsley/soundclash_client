@@ -9,7 +9,7 @@ class Challenge extends Component{
   constructor(props){
     super(props)
     this.state={
-      clashName: this.defaultClashName(),
+      clashName: '',
       opponentEmailAddress: '',
       youTubeUrl: '',
       trackName: '',
@@ -18,19 +18,23 @@ class Challenge extends Component{
       showYouTubeUrl: true
     }
     this.handleChange = this.handleChange.bind(this);
+    this.clashName_invalid = this.clashName_invalid.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.youTubeUrl_AfterChange = this.youTubeUrl_AfterChange.bind(this);
     this.clearUrl_HandleClick = this.clearUrl_HandleClick.bind(this);
   }
 
-  defaultClashName(){
-    return `a new clash for ${this.props.currentUser.userName}`;
-  }
-
   handleChange(e) {
     this.setState({[e.target.name]:e.target.value});
   }
-
+  clashName_invalid(e){
+    const currentUser = this.props.currentUser;
+    const name =currentUser?currentUser.userName:"John";
+    e.target.setCustomValidity(`Please provide a name for your clash such as '${name}'s Laidback tunes'`);
+  }
+  clashName_onInput(e){
+    e.target.setCustomValidity('');
+  }
   async youTubeUrl_AfterChange(e){
     if (this.state.youTubeUrl===''){
       return;
@@ -57,6 +61,12 @@ class Challenge extends Component{
 
   async handleSubmit(event) {
     event.preventDefault();
+
+    if (!this.props.currentUser){
+      this.props.onOpenLoginModal();
+      return;
+    }
+
     this.setState({loading: true});
     const newClash = {name: this.state.clashName,
       opponentEmailAddress: this.state.opponentEmailAddress,
@@ -85,8 +95,11 @@ class Challenge extends Component{
                                 className="form-control"
                                 name="clashName"
                                 placeholder="Enter name of clash"
-                                onChange={this.handleChange}
-                                style={{background:'none'}} />
+                                onChange={this.handleChange }
+                                onInvalid={this.clashName_invalid}
+                                onInput={this.clashName_onInput}
+                                style={{background:'none'}}
+                                />
                   </div>
                 </div>
 

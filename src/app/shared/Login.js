@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import Modal from 'react-responsive-modal';
+import loginContext from './LoginContext';
 
 class SoundClashLogin extends Component {
 
@@ -40,7 +41,6 @@ class SoundClashLogin extends Component {
                       placeholder="Enter email"
                       value={this.state.email}
                       onChange={this.handleChange} />
-              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
 
             <div className="form-group">
@@ -52,7 +52,7 @@ class SoundClashLogin extends Component {
                       value={this.state.password}
                       onChange={this.handleChange} />
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary t-login">Submit</button>
           </form>
 
           <ul className="m-0 p-0 pt-3">
@@ -73,6 +73,16 @@ class Login extends Component {
     }
   }
 
+  message(){
+    if ((this.props.loginContext===loginContext.Challenge)){
+      return(
+        <div>
+        To challenge someone please Login below or <strong><a href='/users/sign_up'>create an account</a></strong> first
+      </div>
+      )
+    }
+  }
+
   render() {
     return (
       <Modal open={this.props.isLoginModalOpen} onClose={this.props.onCloseLoginModal} center>
@@ -81,11 +91,12 @@ class Login extends Component {
           <h1 className="px-2 p-3">Login</h1>
           <hr/>
           <div className="container" >
-            <div className="row mx-auto text-center p-3">
+          <div className="row mx-auto text-center p-3">
               <div className="col">
-                {this.currentUser()}
+                {this.message()}
               </div>
             </div>
+
             <div className="row mx-auto text-center p-3">
               <div className="col">
                 <FacebookLogin

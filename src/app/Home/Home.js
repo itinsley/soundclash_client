@@ -12,7 +12,7 @@ class Home extends Component{
     return (
       <Fragment >
         <div className="top-element-margin"></div>
-        {this.props.currentUser && <CreateClashContainer />}
+        {<CreateClashContainer />}
         {this.props.currentUser && <MyClashes myClashes = {this.props.myClashes} />}
         <RecentClashes recentClashes={this.props.recentClashes}/>
       </Fragment>

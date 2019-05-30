@@ -7,7 +7,7 @@ import logoutAction from "../../actions/logoutAction";
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    isLoginModalOpen: state.isLoginModalOpen
+    isLoginModalOpen: state.isLoginModalOpen,
   }
 }
 

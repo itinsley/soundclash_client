@@ -5,7 +5,8 @@ import Login from "./Login";
 const mapProps=(state)=>{
   return {
     currentUser: state.currentUser,
-    isLoginModalOpen: state.isLoginModalOpen
+    isLoginModalOpen: state.isLoginModalOpen,
+    loginContext: state.loginContext
   }
 }
 
