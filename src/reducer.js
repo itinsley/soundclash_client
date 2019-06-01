@@ -3,6 +3,9 @@
 import UserSession from './lib/UserSession/UserSession';
 
 const defaultState = {
+  menu:{
+    isOpen: false
+  },
   recentClashes: {
     data: [],
     loading: true},
@@ -21,6 +24,13 @@ const defaultState = {
 // Reducer
 function reducer(state = defaultState, action) {
   switch (action.type) {
+    case 'TOGGLE_MENU':
+      return{
+        ...state,
+        menu:{
+          isOpen: !state.menu.isOpen
+        }
+      }
     case 'GET_RECENT_CLASHES':
       return {
         ...state,
@@ -48,7 +58,10 @@ function reducer(state = defaultState, action) {
     case 'LOGOUT_USER':
       return {
         ...state,
-        currentUser: null
+        currentUser: null,
+        menu:{
+          isOpen: false
+        },        
       }
     case 'LOGIN_USER':
       return {
@@ -59,6 +72,9 @@ function reducer(state = defaultState, action) {
     case 'OPEN_LOGIN_FORM':
       return {
         ...state,
+        menu:{
+          isOpen: false
+        },        
         isLoginModalOpen: true,
         loginContext: action.loginContext
       }

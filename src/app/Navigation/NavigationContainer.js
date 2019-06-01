@@ -8,6 +8,7 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     isLoginModalOpen: state.isLoginModalOpen,
+    isOpen: state.menu.isOpen
   }
 }
 
@@ -19,6 +20,11 @@ function mapDispatchToProps(dispatch){
     onOpenLoginModal:()=>{
       dispatch({
         type: 'OPEN_LOGIN_FORM'
+      })
+    },
+    onToggleMenu:()=>{
+      dispatch({
+        type: 'TOGGLE_MENU'
       })
     }
   }
