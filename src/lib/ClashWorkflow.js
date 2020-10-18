@@ -23,10 +23,12 @@ const state=(clash, player)=>{
   }
 
   if (clash.state==='awaiting_owner'){
+    console.log("PLAYER")
+    console.log(player)
     if (player===null){
       return STATES.Hidden;
     }
-    if(clash.owner.id===player.id){
+    if(clash.owner.email===player.email){
       return STATES.Upload
     } else if (clash.opponent===player){
       return STATES.AwaitingPlayer;
@@ -35,7 +37,8 @@ const state=(clash, player)=>{
     }
   }
   if(clash.state==='awaiting_opponent'){
-    if (player===null || clash.opponent.id!==player.id){
+    console.log(clash)
+    if (player===null || clash.opponent.email!==player.email){
       return STATES.DisplayInfo;
     }else{
       return STATES.Upload;

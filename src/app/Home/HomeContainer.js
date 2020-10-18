@@ -2,7 +2,8 @@ import React, { Component} from 'react';
 import '../../App.css';
 import Home from './Home';
 import { connect } from 'react-redux';
-import {fetchMyClashesAction, fetchRecentClashesAction, syncUserSession} from '../../actions';
+import {fetchMyClashesAction, fetchRecentClashesAction} from '../../actions';
+import { withAuth0 } from '@auth0/auth0-react';
 
 // Connected Component
 const ConnectedHome = connect(
@@ -24,7 +25,6 @@ function mapDispatchToProps(dispatch){
     onLoad: ()=>{
       dispatch(fetchMyClashesAction)
       dispatch(fetchRecentClashesAction)
-      dispatch(syncUserSession)
     }
   }
 }
@@ -37,4 +37,4 @@ class HomeContainer extends Component {
   }
 }
 
-export default HomeContainer;
+export default withAuth0(HomeContainer);

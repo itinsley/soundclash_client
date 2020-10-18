@@ -1,21 +1,17 @@
 import fetchMyClashesAction from "./fetchMyClashesAction";
 import fetchRecentClashesAction from "./fetchRecentClashesAction";
-import syncUserSession from "./syncUserSession";
 import fetchClashAction from "./fetchClashAction";
 import createCommentAction from "./createCommentAction";
 import refreshClashAction from "./refreshClashAction";
-import loginAction from "./soundClashIdentityLoginAction";
-import facebookLoginAction from "./facebookLoginAction";
 import createClashAction from "./createClashAction";
+import setUserSessionAction from "./setUserSessionAction";
 
 export {
   fetchMyClashesAction,
   fetchRecentClashesAction,
-  syncUserSession,
+  setUserSessionAction,
   fetchClashAction,
   createCommentAction,
   refreshClashAction,
-  loginAction,
-  facebookLoginAction,
   createClashAction
 }

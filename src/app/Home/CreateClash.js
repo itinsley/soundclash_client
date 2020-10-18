@@ -62,11 +62,6 @@ class Challenge extends Component{
   async handleSubmit(event) {
     event.preventDefault();
 
-    if (!this.props.currentUser){
-      this.props.onOpenLoginModal();
-      return;
-    }
-
     this.setState({loading: true});
     const newClash = {name: this.state.clashName,
       opponentEmailAddress: this.state.opponentEmailAddress,

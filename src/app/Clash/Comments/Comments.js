@@ -39,13 +39,9 @@ class Comment extends Component{
   }
 
 renderCommentForm(){
-  if (this.props.currentUser){
-    // Map current user to API contract used elsewhere
-    const currentUser = {
-      name: this.props.currentUser.userName,
-      image_url : this.props.currentUser.imageUrl
-    }
+  const currentUser = this.props.currentUser;
 
+  if (currentUser){
     return(
       <form onSubmit={this.handleSubmit}>
         <div className="row py-2 px-0 mx-0">

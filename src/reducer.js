@@ -1,6 +1,3 @@
-// These should probably be provided as properties to make testing easier
-// but import for now
-import UserSession from './lib/UserSession/UserSession';
 
 const defaultState = {
   menu:{
@@ -16,21 +13,12 @@ const defaultState = {
       data: [],
       loading: true},
   newClash:{},
-  currentUser: UserSession.get(),
-  isLoginModalOpen: false,
-  loginContext: ''
+  currentUser: null
 }
 
 // Reducer
 function reducer(state = defaultState, action) {
   switch (action.type) {
-    case 'TOGGLE_MENU':
-      return{
-        ...state,
-        menu:{
-          isOpen: !state.menu.isOpen
-        }
-      }
     case 'GET_RECENT_CLASHES':
       return {
         ...state,
@@ -55,37 +43,10 @@ function reducer(state = defaultState, action) {
           loading: false
         }
       }
-    case 'LOGOUT_USER':
-      return {
-        ...state,
-        currentUser: null,
-        menu:{
-          isOpen: false
-        },        
-      }
-    case 'LOGIN_USER':
-      return {
-        ...state,
-        currentUser: action.currentUser,
-        isLoginModalOpen: false
-      }
-    case 'OPEN_LOGIN_FORM':
-      return {
-        ...state,
-        menu:{
-          isOpen: false
-        },        
-        isLoginModalOpen: true,
-        loginContext: action.loginContext
-      }
-    case 'CLOSE_LOGIN_FORM':
-      return {
-        ...state,
-        isLoginModalOpen: false
-      }
+
     // Session is stored in local storage.
     // Sync should be performed to establish session expiry when user state is critical
-    case 'SYNC_USER_SESSION':
+    case 'SET_USER_SESSION':
       return {
         ...state,
         currentUser: action.currentUser
