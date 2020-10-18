@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 const recent = async()=>{
-  const response = await axios.get('/clashes.json');
-  return response.data;
+  const response = await axios.get(`${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes`);
+  return response.data.data;
 }
 
 const get = async(clashId, jwt='')=>{
-  const response = await axios.get(`/clashes/${clashId}.json?jwt=${jwt}`);
-  return response.data;
+  const response = await axios.get(`${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes/${clashId}`);
+  return response.data.data;
 }
 
 const forUser = async(jwt)=>{

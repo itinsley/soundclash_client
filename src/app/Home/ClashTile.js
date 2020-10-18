@@ -16,14 +16,6 @@ function Footer(props){
 
 class ClashTile extends Component{
 
-  opponentName(clash){
-    if (clash.opponent){
-      return clash.opponent.name
-    } else {
-      return(clash.opponent_name)
-    }
-  }
-
   render(){
     const clash = this.props.clash;
 
@@ -34,12 +26,12 @@ class ClashTile extends Component{
             <div className="card-body bg-white"  >
               <h3 className="card-title t-card-title text-truncate">{clash.name}</h3>
               <h4 className="card-subtitle mb-2 text-muted text-truncate">
-                {clash.owner.name} vs. {this.opponentName(clash)}
+                {clash.owner_name} vs. {clash.opponent_name}
               </h4>
               <div className="card-text" >
               <img style={{width:'100%'}}
                     alt={`Track thumbnail for ${clash.name}`}
-                    src={clash.thumbnail}></img>
+                    src={clash.image_url}></img>
               </div>
               <div className='row'>
                 <span className='col-xs-12 col-sm-6 text-size-xx-small'>

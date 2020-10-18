@@ -2,7 +2,6 @@
   "name": "soundclash-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://soundclash.test:3001",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
@@ -34,7 +33,7 @@
   },
   "scripts": {
     "prestart": "node checkenv.js",
-    "start": "HTTPS=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "e2e": "nightwatch test/e2e",

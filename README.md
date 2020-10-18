@@ -1,11 +1,11 @@
 # Soundclash Client
 
 ## Overview
- - Uses API branch of soundcla.sh which is deployed to http://soundcla5h-edge.herokuapp.com
  - Totally dependent on create-react-app
 
 ## Setup
  - Setup env variables `$ cp .env.example .env`
+ - Configure REACT_APP_SOUNDCLASH_API_BASE_URI - i.e. http://soundclash.test:3000
  - **NOTE** the prestart call to checkenv.js does not seem to work when deploying to Heroku!!
  - Set proxy in package.json to use edge http://soundcla5h-edge.herokuapp.com or localhost if
  running local copy of soundclash server.

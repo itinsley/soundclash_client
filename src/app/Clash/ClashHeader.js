@@ -28,7 +28,7 @@ class Clash extends Component{
           <div className='text-center pb-3'>
             <span className='text-size-xx-small p-2'>
               <Avatar user={clash.owner} description= "Comment user avatar" size='35' />
-              <strong>{clash.owner.name}</strong>
+              <strong>{clash.owner_name}</strong>
             </span>
             <span>vs.</span>
             <span className='text-size-xx-small p-2'>

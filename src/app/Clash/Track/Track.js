@@ -5,7 +5,7 @@ import CommentContainer from "../Comments/CommentContainer";
 class Track extends Component{
   render(){
     const track = this.props.track;
-    const youtubeUrl = youtube.embedUrl(track.url);
+    const youtubeUrl = youtube.embedUrl(track.youtube_url);
 
     return(
       <Fragment>

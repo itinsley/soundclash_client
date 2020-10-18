@@ -65,7 +65,7 @@ class Upload extends Component{
 
     //Belt and braces on private information
     if(clash.private_info.current_user_is_involved){
-      const previousTrack = clash.previous_track;
+      const previousTrack = clash.tracks[clash.tracks.length-1];
       const otherPlayer = clash.private_info.other_player;
       return (
         <div ref={this.scrollReference} className='container-fluid current-round-intro'>
