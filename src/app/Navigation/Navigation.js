@@ -10,7 +10,7 @@ import {
     NavLink,
     NavItem} from 'reactstrap';
 import { useAuth0 } from "@auth0/auth0-react";
-import {setUserSessionAction} from "../../actions";
+import {setUserSessionAction, fetchMyClashesAction} from "../../actions";
 
 function Navigation(props) {
   const {
@@ -30,6 +30,7 @@ function Navigation(props) {
       (async () => {
         const jwt = await getAccessTokenSilently();
         props.dispatch(setUserSessionAction(user, jwt))
+        props.dispatch(fetchMyClashesAction)
       })();
     }
   });

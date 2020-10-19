@@ -11,7 +11,11 @@ const get = async(clashId, jwt='')=>{
 }
 
 const forUser = async(jwt)=>{
-  const response = await axios.get(`/api/user/clashes.json?jwt=${jwt}`);
+  const response = await axios.get(`${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/user/current/clashes`,{
+    headers: {
+      'Authorization': `bearer ${jwt}`
+    }
+  });
   return response.data;
 }
 
