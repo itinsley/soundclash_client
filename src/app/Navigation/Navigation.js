@@ -21,10 +21,8 @@ function Navigation(props) {
     getAccessTokenSilently
   } = useAuth0();
 
-  async function doLogout(){
-    logout()
-    props.dispatch(setUserSessionAction(null))
-  }
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
 
   // Set user and JWT in global state when auth0 user status changes
   useEffect(() => {
@@ -35,6 +33,25 @@ function Navigation(props) {
       })();
     }
   });
+
+  return (
+    <div>
+      <Navbar color="black" dark expand="md" className="fixed-top bg-black">
+        <NavbarBrand href='/'>
+          <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />
+        </NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+          <NavItem>
+              <NavLink tag={Link} to='/about' >What is this?</NavLink>
+            </NavItem>
+            <LoginNav />
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 
   function loggedInNavItem(){
     return (
@@ -69,28 +86,10 @@ function Navigation(props) {
     return isAuthenticated ? loggedInNavItem() : notLoggedInNavItem()
   }
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-
-  return (
-    <div>
-      <Navbar color="black" dark expand="md" className="fixed-top bg-black">
-        <NavbarBrand href='/'>
-          <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-          <NavItem>
-              <NavLink tag={Link} to='/about' >What is this?</NavLink>
-            </NavItem>
-            <LoginNav />
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
-  );
+  async function doLogout(){
+    logout()
+    props.dispatch(setUserSessionAction(null))
+  }
 }
 
 export default Navigation;
