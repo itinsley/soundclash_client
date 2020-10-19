@@ -1,4 +1,4 @@
-import React, {Component, Fragment, useEffect, useState} from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
     Button,
@@ -26,7 +26,12 @@ function Navigation(props) {
 
   // Set user and JWT in global state when auth0 user status changes
   useEffect(() => {
-    if (user != props.currentUser) {
+    if (user==null){
+      props.dispatch(setUserSessionAction(null, null))
+      return
+    }
+
+    if (user !== props.currentUser) {
       (async () => {
         const jwt = await getAccessTokenSilently();
         props.dispatch(setUserSessionAction(user, jwt))

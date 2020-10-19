@@ -1,4 +1,3 @@
-import React, {Component, useEffect} from "react";
 import Navigation from  './Navigation'
 import { connect } from 'react-redux';
 
@@ -13,13 +12,5 @@ function mapStateToProps(state) {
 const ConnectedNavigation = connect(
   mapStateToProps,
 )(Navigation)
-
-class NavigationContainer extends Component {
-  render() {
-    return (
-      <Navigation />
-    );
-  }
-}
 
 export default ConnectedNavigation;
