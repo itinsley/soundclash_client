@@ -25,7 +25,7 @@
     "react-redux": "^7.0.2",
     "react-responsive-modal": "^3.6.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.0.0",
+    "react-scripts": "3.4.3",
     "react-user-avatar": "^1.10.0",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
