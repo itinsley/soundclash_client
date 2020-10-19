@@ -18,6 +18,7 @@ function Navigation(props) {
     isAuthenticated,
     loginWithRedirect,
     logout,
+    getAccessTokenSilently
   } = useAuth0();
 
   async function doLogout(){
@@ -25,9 +26,13 @@ function Navigation(props) {
     props.dispatch(setUserSessionAction(null))
   }
 
+  // Set user and JWT in global state when auth0 user status changes
   useEffect(() => {
     if (user != props.currentUser) {
-      props.dispatch(setUserSessionAction(user))
+      (async () => {
+        const jwt = await getAccessTokenSilently();
+        props.dispatch(setUserSessionAction(user, jwt))
+      })();
     }
   });
 

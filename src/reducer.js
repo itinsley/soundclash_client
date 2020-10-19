@@ -13,7 +13,8 @@ const defaultState = {
       data: [],
       loading: true},
   newClash:{},
-  currentUser: null
+  currentUser: null,
+  jwt: null
 }
 
 // Reducer
@@ -49,7 +50,8 @@ function reducer(state = defaultState, action) {
     case 'SET_USER_SESSION':
       return {
         ...state,
-        currentUser: action.currentUser
+        currentUser: action.currentUser,
+        jwt: action.jwt
       }
     default:
       return state

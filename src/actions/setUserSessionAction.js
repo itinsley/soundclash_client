@@ -1,8 +1,9 @@
 
-const setUserSession=(auth0User)=> async(dispatch)=>{
+const setUserSession=(auth0User, jwt)=> async(dispatch)=>{
   dispatch({
     type: 'SET_USER_SESSION',
-    currentUser: auth0User
+    currentUser: auth0User,
+    jwt: jwt
   })
 }
 
