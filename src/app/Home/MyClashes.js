@@ -6,7 +6,7 @@ class MyClashes extends Component{
 
   clashTiles=()=>{
     if (this.props.myClashes.loading){
-      return <img src={spinner} alt="waiting.." />
+      return <img src={spinner} style={{width:'100%', maxWidth:'300px'}} alt="waiting.." />
     }
     if (this.props.myClashes.data.length>0){
       const clashTiles = this.props.myClashes.data.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} showFooter={true}/>)

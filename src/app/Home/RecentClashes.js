@@ -9,7 +9,7 @@ class RecentClashes extends Component{
       const clashTiles = recentClashes.map(clash=> <ClashTile key={`clash-${clash.id}`} clash={clash} />)
       return clashTiles
     } else {
-      return <img src={spinner} alt="waiting.." />
+      return <img src={spinner} style={{width:'100%', maxWidth:'300px'}} alt="waiting.." />
     }
   }
 
