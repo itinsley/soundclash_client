@@ -16,7 +16,7 @@ const forUser = async(jwt)=>{
       'Authorization': `bearer ${jwt}`
     }
   });
-  return response.data;
+  return response.data.data;
 }
 
 /**
@@ -29,28 +29,21 @@ const forUser = async(jwt)=>{
  * @param {string} clash.opponentEmailAddress
  */
 const create = async(jwt, clash)=>{
-  // Unfortunately, because Rails, slightly awkward document format
-  const launchClash = {launch_clash:
-    {
-      clash:
-      {
-        opponent_email_address: clash.opponentEmailAddress,
-        name: clash.name
-      },
-      comment:
-      {
-        comment_text: clash.commentText
-      },
-      owner_track:
-      {
-        url: clash.youTubeUrl,
-        name: clash.trackName
-      }
+  const launchClash = {
+    launch_clash:{
+      clash_name: clash.name,
+      comment_text: clash.commentText,
+      track_name: clash.trackName,
+      youtube_track_url: clash.youTubeUrl,
+      opponent_email_address: clash.opponentEmailAddress
     }
   }
-
-  const uri = `/clashes.json?jwt=${jwt}`
-  const response = await axios.post(uri, launchClash);
+  const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes`
+  const response = await axios.post(uri, launchClash,{
+    headers: {
+      'Authorization': `bearer ${jwt}`
+    }
+  });
   return response;
 }
 

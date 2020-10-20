@@ -30,14 +30,14 @@ class Challenge extends Component{
 
   clashName_invalid(e){
     const currentUser = this.props.currentUser;
-    const name =currentUser?currentUser.userName:"John";
+    const name =currentUser?currentUser.name:"John";
     e.target.setCustomValidity(`Please provide a name for your clash such as '${name}'s Laidback tunes'`);
   }
 
   clashName_onInput(e){
     e.target.setCustomValidity('');
   }
-  
+
   async youTubeUrl_AfterChange(e){
     if (this.state.youTubeUrl===''){
       return;

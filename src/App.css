@@ -95,6 +95,10 @@ audio, canvas, progress, video {
   color: #fff;
 }
 
+.challenge input:focus, .challenge textarea:focus {
+  color:  grey;
+}
+
 .current-round-intro, .challenge {
   background: radial-gradient(ellipse at center, #3d3d3d 0%, #1f1f1f 44%, #000 100%);
   text-shadow: 0.0625rem 0.0625rem 0rem #000;
