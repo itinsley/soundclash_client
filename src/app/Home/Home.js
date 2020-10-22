@@ -1,8 +1,10 @@
 import React, {Component, Fragment} from "react";
+import { withAuth0 } from '@auth0/auth0-react';
 import RecentClashes from './RecentClashes';
 import MyClashes from './MyClashes';
 import CreateClashContainer from './CreateClashContainer';
 import {fetchMyClashesAction, fetchRecentClashesAction} from '../../actions';
+import ConnectStore from '../../lib/ConnectStore';
 
 
 class Home extends Component{
@@ -27,4 +29,4 @@ class Home extends Component{
     )
   }
 }
-export default Home;
+export default withAuth0(ConnectStore(Home));

@@ -2,7 +2,7 @@ import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import Loading from "./components/Loading";
 import NavigationContainer from './app/Navigation/NavigationContainer';
-import Home from './app/Home/HomeContainer';
+import Home from './app/Home/Home';
 import About from './app/About/About';
 import Clash from '../src/app/Clash/ClashContainer';
 import { useAuth0 } from "@auth0/auth0-react";
