@@ -2,7 +2,7 @@ import React, {Component, Fragment} from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import RecentClashes from './RecentClashes';
 import MyClashes from './MyClashes';
-import CreateClashContainer from './CreateClashContainer';
+import CreateClash from './CreateClash';
 import {fetchMyClashesAction, fetchRecentClashesAction} from '../../actions';
 import ConnectStore from '../../lib/ConnectStore';
 
@@ -22,7 +22,7 @@ class Home extends Component{
     return (
       <Fragment >
         <div className="top-element-margin"></div>
-        {<CreateClashContainer />}
+        <CreateClash />
         {this.props.currentUser && <MyClashes myClashes = {this.props.myClashes} />}
         <RecentClashes recentClashes={this.props.recentClashes}/>
       </Fragment>

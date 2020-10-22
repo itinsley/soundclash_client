@@ -3,6 +3,8 @@ import SpinnerButtonInner from "../../lib/SpinnerButtonInner";
 import youtube from "../../lib/youtube";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackspace } from '@fortawesome/free-solid-svg-icons'
+import ConnectStore from '../../lib/ConnectStore';
+import createClashAction from "../../actions/createClashAction";
 
 class Challenge extends Component{
 
@@ -73,7 +75,7 @@ class Challenge extends Component{
       commentText: this.state.commentText
     }
 
-    this.props.createClash(newClash);
+    this.props.dispatch(createClashAction(newClash));
   }
 
   render(){
@@ -163,4 +165,4 @@ class Challenge extends Component{
   }
 }
 
-export default Challenge;
+export default ConnectStore(Challenge);
