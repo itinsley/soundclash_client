@@ -4,6 +4,7 @@ import ReadyToAccept from "./ReadyToAccept";
 import AwaitingPlayer from "./AwaitingPlayer";
 import PartialRound from "./PartialRound";
 import UploadContainer from "./UploadContainer";
+import ConnectStore from '../../../lib/ConnectStore';
 
 /*
 CurrentRound deals with the Clash object
@@ -13,7 +14,7 @@ class CurrentRound extends Component{
 
   workflowComponentFactory(){
     const currentUser = this.props.currentUser;
-    const clash = this.props.clash;
+    const clash = this.props.currentClash.data;
     const state = ClashWorkflow.state(clash, currentUser);
 
     const props = {clash, currentUser}
@@ -40,4 +41,4 @@ class CurrentRound extends Component{
   }
 }
 
-export default CurrentRound;
+export default ConnectStore(CurrentRound);

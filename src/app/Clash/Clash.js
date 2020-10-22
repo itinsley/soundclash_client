@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import ClashHeader from "./ClashHeader";
-import CurrentRoundContainer from "./CurrentRound/CurrentRoundContainer"; //Move this to /clash/components folder
+import CurrentRound from "./CurrentRound/CurrentRound";
 import RoundsList from "./RoundsList";
 import spinner from "../../assets/spinner.gif"
 import ConnectStore from '../../lib/ConnectStore';
@@ -27,12 +27,12 @@ class Clash extends Component {
       return(
         <Fragment>
           <ClashHeader  clash={clash}/>
-          <CurrentRoundContainer />
+          <CurrentRound />
           <RoundsList rounds={clash.rounds} />
         </Fragment>
       )
     }
   }
-}
+  }
 
 export default ConnectStore(Clash);
