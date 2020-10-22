@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import ConnectStore from '../../lib/ConnectStore';
 import { Link } from "react-router-dom";
 import {
     Button,
@@ -98,4 +99,4 @@ function Navigation(props) {
   }
 }
 
-export default Navigation;
+export default ConnectStore(Navigation);

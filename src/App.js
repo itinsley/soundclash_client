@@ -1,7 +1,7 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import Loading from "./components/Loading";
-import NavigationContainer from './app/Navigation/NavigationContainer';
+import Navigation from './app/Navigation/Navigation';
 import Home from './app/Home/Home';
 import About from './app/About/About';
 import Clash from '../src/app/Clash/Clash';
@@ -34,12 +34,12 @@ const App = () => {
     <Provider store={store}>
       <Router history={history}>
         <div id="app" >
-          <NavigationContainer />
-            <Switch>
-              <Route path="/about" render={(props) =>  <About  />} />
-              <Route path="/clashes/:clashId" render={(props) => <Clash {...props}/>} />
-              <Route path="/" render={(props) => <Home />} />
-            </Switch>
+          <Navigation />
+          <Switch>
+            <Route path="/about" render={(props) =>  <About  />} />
+            <Route path="/clashes/:clashId" render={(props) => <Clash {...props}/>} />
+            <Route path="/" render={(props) => <Home />} />
+          </Switch>
         </div>
       </Router>
     </Provider>
