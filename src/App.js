@@ -4,7 +4,7 @@ import Loading from "./components/Loading";
 import NavigationContainer from './app/Navigation/NavigationContainer';
 import Home from './app/Home/Home';
 import About from './app/About/About';
-import Clash from '../src/app/Clash/ClashContainer';
+import Clash from '../src/app/Clash/Clash';
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./history";
 
