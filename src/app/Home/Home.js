@@ -2,12 +2,20 @@ import React, {Component, Fragment} from "react";
 import RecentClashes from './RecentClashes';
 import MyClashes from './MyClashes';
 import CreateClashContainer from './CreateClashContainer';
+import {fetchMyClashesAction, fetchRecentClashesAction} from '../../actions';
+
 
 class Home extends Component{
   constructor(props){
     super(props);
-    this.props.onLoad();
+    this.onLoad();
   }
+
+  onLoad (){
+    this.props.dispatch(fetchMyClashesAction)
+    this.props.dispatch(fetchRecentClashesAction)
+  }
+
   render(){
     return (
       <Fragment >
