@@ -39,12 +39,11 @@ const create = async(jwt, clash)=>{
     }
   }
   const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes`
-  const response = await axios.post(uri, launchClash,{
+  return await axios.post(uri, launchClash,{
     headers: {
       'Authorization': `bearer ${jwt}`
     }
   });
-  return response;
 }
 
 export default {

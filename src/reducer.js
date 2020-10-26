@@ -12,7 +12,9 @@ const defaultState = {
   currentClash:{
       data: [],
       loading: true},
-  newClash:{},
+  newClash:{
+        data: [],
+        loading: false},
   currentUser: null,
   jwt: null
 }
@@ -44,7 +46,23 @@ function reducer(state = defaultState, action) {
           loading: false
         }
       }
-
+    case 'CREATE_CLASH_POST':
+      return {
+        ...state,
+        newClash:{ loading:true }
+      }
+    case 'CREATE_CLASH_ERROR':
+      return {
+        ...state,
+        newClash:{ loading: false },
+        errors: action.errors,
+      }
+    case 'CREATE_CLASH_SUCCESS':
+      return {
+        ...state,
+        newClash:{ loading: false },
+        errors: []
+      }
     // Session is stored in local storage.
     // Sync should be performed to establish session expiry when user state is critical
     case 'SET_USER_SESSION':

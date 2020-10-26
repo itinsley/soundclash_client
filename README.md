@@ -56,3 +56,8 @@ The pattern is to avoid using connected redux components or containers unless ne
 
 ## Components
 All components depend only upon the properties passed in, this makes them pure Components and easily testable. 
+
+# TODO
+* Validate email address in Client when creating clash
+* Retain state in clash form so unlogged in user maintains clash details
+  * Have multiple reducers

@@ -1,10 +1,11 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import SpinnerButtonInner from "../../lib/SpinnerButtonInner";
 import youtube from "../../lib/youtube";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackspace } from '@fortawesome/free-solid-svg-icons'
 import ConnectStore from '../../lib/ConnectStore';
 import createClashAction from "../../actions/createClashAction";
+import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
 
 class Challenge extends Component{
 
@@ -67,7 +68,6 @@ class Challenge extends Component{
   async handleSubmit(event) {
     event.preventDefault();
 
-    this.setState({loading: true});
     const newClash = {name: this.state.clashName,
       opponentEmailAddress: this.state.opponentEmailAddress,
       youTubeUrl: this.state.youTubeUrl,
@@ -80,11 +80,13 @@ class Challenge extends Component{
 
   render(){
     const embedYouTubeUrl = youtube.embedUrl(this.state.youTubeUrl);
-
     return(
       <div ref={this.scrollReference} className='container-fluid challenge'>
         <div className="t-clash-status mx-auto text-center p-3" style={{maxWidth: '40.25rem'}}>
           <h1>Challenge someone...</h1>
+
+          <ErrorAlertContainer errors={this.props.errors}
+            message='We were unable to create your clash. Please try again. If the problem persists please email support@soundcla.sh'/>
 
           <div style={{maxWidth: '37.5rem'}}>
               <form onSubmit={this.handleSubmit} >
@@ -153,7 +155,7 @@ class Challenge extends Component{
                 <div className="py-0 px-0 mx-auto text-center " >
                   <div className='px-0 '>
                     <button id='createTrack' className="btn btn-dark text-uppercase" type="submit" >
-                      <SpinnerButtonInner label='Submit' loading={this.state.loading}/>
+                      <SpinnerButtonInner label='Submit' loading={this.props.newClash.loading}/>
                     </button>
                   </div>
                 </div>
