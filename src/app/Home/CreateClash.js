@@ -159,7 +159,7 @@ class Challenge extends Component{
                                 value={this.state.commentText}
                                 className="form-control"
                                 name="commentText"
-                                placeholder="Say what you have to say"
+                                placeholder="Why is this a killer track?"
                                 onChange={this.handleChange}
                                 style={{background:'none'}} />
                   </div>
