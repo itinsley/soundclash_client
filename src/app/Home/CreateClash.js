@@ -4,9 +4,10 @@ import youtube from "../../lib/youtube";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackspace } from '@fortawesome/free-solid-svg-icons'
 import ConnectStore from '../../lib/ConnectStore';
-import createClashAction from "../../actions/createClashAction";
+import ClashApi from '../../api/Clashes';
 import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
 import EmailValidator from "email-validator";
+import history from '../../history';
 
 class Challenge extends Component{
 
@@ -18,6 +19,7 @@ class Challenge extends Component{
       youTubeUrl: '',
       trackName: '',
       commentText: '',
+      errors: [],
       loading: false,
       showYouTubeUrl: true
     }
@@ -79,14 +81,31 @@ class Challenge extends Component{
   async handleSubmit(event) {
     event.preventDefault();
 
-    const newClash = {name: this.state.clashName,
+    const clash = {name: this.state.clashName,
       opponentEmailAddress: this.state.opponentEmailAddress,
       youTubeUrl: this.state.youTubeUrl,
       trackName: this.state.trackName,
       commentText: this.state.commentText
     }
 
-    this.props.dispatch(createClashAction(newClash));
+    try{
+      this.state.loading=true
+      const response = await ClashApi.create(this.props.jwt, clash);
+      const newClash = response.data.data.clash;
+      history.push(`/clashes/${newClash.id}`)
+    } catch(err) {
+      let message='';
+      let type='';
+      if (err.response){
+        type = 'Validation';
+        message = err.response.data.message;
+      } else {
+        type = 'Unhandled';
+        message = err.message;
+      }
+      this.setState({errors: [{type, message}]});
+      this.setState({loading: false});
+    }
   }
 
   render(){
@@ -96,7 +115,7 @@ class Challenge extends Component{
         <div className="t-clash-status mx-auto text-center p-3" style={{maxWidth: '40.25rem'}}>
           <h1>Challenge someone...</h1>
 
-          <ErrorAlertContainer errors={this.props.errors}
+          <ErrorAlertContainer errors={this.state.errors}
             message='We were unable to create your clash. Please try again. If the problem persists please email support@soundcla.sh'/>
 
           <div style={{maxWidth: '37.5rem'}}>
@@ -167,7 +186,7 @@ class Challenge extends Component{
                 <div className="py-0 px-0 mx-auto text-center " >
                   <div className='px-0 '>
                     <button id='createTrack' className="btn btn-dark text-uppercase" type="submit" >
-                      <SpinnerButtonInner label='Submit' loading={this.props.newClash.loading}/>
+                      <SpinnerButtonInner label='Submit' loading={this.state.loading}/>
                     </button>
                   </div>
                 </div>

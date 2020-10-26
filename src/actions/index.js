@@ -3,7 +3,6 @@ import fetchRecentClashesAction from "./fetchRecentClashesAction";
 import fetchClashAction from "./fetchClashAction";
 import createCommentAction from "./createCommentAction";
 import refreshClashAction from "./refreshClashAction";
-import createClashAction from "./createClashAction";
 import setUserSessionAction from "./setUserSessionAction";
 
 export {
@@ -13,5 +12,4 @@ export {
   fetchClashAction,
   createCommentAction,
   refreshClashAction,
-  createClashAction
 }
