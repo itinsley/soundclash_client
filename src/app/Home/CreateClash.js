@@ -6,6 +6,7 @@ import { faBackspace } from '@fortawesome/free-solid-svg-icons'
 import ConnectStore from '../../lib/ConnectStore';
 import createClashAction from "../../actions/createClashAction";
 import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
+import EmailValidator from "email-validator";
 
 class Challenge extends Component{
 
@@ -45,16 +46,26 @@ class Challenge extends Component{
     if (this.state.youTubeUrl===''){
       return;
     }
+
     try{
+      e.persist();
       const trackName = await youtube.getTitle(this.state.youTubeUrl);
       this.setState({
         trackName,
         showYouTubeUrl: false
       })
     }catch(error){
-      alert("Invalid YouTube URL. Please review and try again.")
+      e.target.setCustomValidity("Invalid YouTube URL. Please review and try again.")
     }
 
+  }
+
+  email_AfterChange(e){
+    if (!EmailValidator.validate(e.target.value)){
+      e.target.setCustomValidity("Please choose a valid email address for your opponent");
+    }else{
+      e.target.setCustomValidity("");
+    }
   }
 
   clearUrl_HandleClick(event){
@@ -113,6 +124,7 @@ class Challenge extends Component{
                                 name="opponentEmailAddress"
                                 placeholder="Put their email here"
                                 onChange={this.handleChange}
+                                onBlur={this.email_AfterChange}
                                 style={{background:'none'}} />
                   </div>
                 </div>
