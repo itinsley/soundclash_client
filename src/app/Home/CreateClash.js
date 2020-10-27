@@ -1,4 +1,4 @@
-import React, {useState, Fragment, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import SpinnerButtonInner from "../../lib/SpinnerButtonInner";
 import youtube from "../../lib/youtube";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,32 +8,31 @@ import ClashApi from '../../api/Clashes';
 import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
 import EmailValidator from "email-validator";
 import history from '../../history';
+import useStickyState from '../../lib/useStickyState';
 
+const LOCAL_STORAGE_STATE_KEY = "createClash";
+const DEFAULT_STATE = {
+  clashName: '',
+  opponentEmailAddress: '',
+  youTubeUrl: '',
+  trackName: '',
+  commentText: '',
+  errors: [],
+  loading: false,
+  showYouTubeUrl: true
+}
 
 const Challenge = (props) => {
 
   const updateState = (item) => {
-    const newState = Object.assign({...state}, item)
-    setState(newState)
+    const newState = Object.assign({...state}, item);
+    setState(newState);
   }
 
-  const[state, setState] = useState(
-    {
-      clashName: '',
-      opponentEmailAddress: '',
-      youTubeUrl: '',
-      trackName: '',
-      commentText: '',
-      errors: [],
-      loading: false,
-      showYouTubeUrl: true
-    }
-  );
+  const[state, setState] = useStickyState(DEFAULT_STATE, LOCAL_STORAGE_STATE_KEY);
 
   const handleChange = (e) => {
     updateState({[e.target.name]:e.target.value});
-    console.log(e.target.value, "value")
-    console.log(state, "state")
   }
 
   const clashName_invalid = (e) => {
@@ -94,6 +93,7 @@ const Challenge = (props) => {
       state.loading=true
       const response = await ClashApi.create(props.jwt, clash);
       const newClash = response.data.data.clash;
+      setState(DEFAULT_STATE);
       history.push(`/clashes/${newClash.id}`)
     } catch(err) {
       let message='';
