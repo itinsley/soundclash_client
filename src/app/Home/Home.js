@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, { Fragment, useEffect } from "react";
 import { withAuth0 } from '@auth0/auth0-react';
 import RecentClashes from './RecentClashes';
 import MyClashes from './MyClashes';
@@ -7,26 +7,21 @@ import {fetchMyClashesAction, fetchRecentClashesAction} from '../../actions';
 import ConnectStore from '../../lib/ConnectStore';
 
 
-class Home extends Component{
-  constructor(props){
-    super(props);
-    this.onLoad();
-  }
+const Home = ({currentUser, myClashes, recentClashes, dispatch})=>{
 
-  onLoad (){
-    this.props.dispatch(fetchMyClashesAction)
-    this.props.dispatch(fetchRecentClashesAction)
-  }
+  useEffect(()=>{
+    console.log("use effect")
+    dispatch(fetchMyClashesAction);
+    dispatch(fetchRecentClashesAction);
+  }, [])
 
-  render(){
-    return (
-      <Fragment >
-        <div className="top-element-margin"></div>
-        <CreateClash />
-        {this.props.currentUser && <MyClashes myClashes = {this.props.myClashes} />}
-        <RecentClashes recentClashes={this.props.recentClashes}/>
-      </Fragment>
-    )
-  }
+  return (
+    <Fragment >
+      <div className="top-element-margin"></div>
+      <CreateClash />
+      {currentUser && <MyClashes myClashes = {myClashes} />}
+      <RecentClashes recentClashes={recentClashes}/>
+    </Fragment>
+  )
 }
 export default withAuth0(ConnectStore(Home));
