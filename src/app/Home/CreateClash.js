@@ -9,6 +9,7 @@ import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
 import EmailValidator from "email-validator";
 import history from '../../history';
 import useStickyState from '../../lib/useStickyState';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const LOCAL_STORAGE_STATE_KEY = "createClash";
 const DEFAULT_STATE = {
@@ -23,6 +24,10 @@ const DEFAULT_STATE = {
 }
 
 const Challenge = (props) => {
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+  } = useAuth0();
 
   const updateState = (item) => {
     const newState = Object.assign({...state}, item);
@@ -81,6 +86,11 @@ const Challenge = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!isAuthenticated){
+      loginWithRedirect();
+      return;
+    }
 
     const clash = {name: state.clashName,
       opponentEmailAddress: state.opponentEmailAddress,
