@@ -5,17 +5,17 @@ const get = async(userId)=>{
   return response.data;
 }
 
-const emptyStruct=()=>{
-  return {
-    id: '0',
-    name: '',
-    abbrev_name: '',
-    image_url: ''
-  }
+const currentUser = async(jwt) =>{
+  const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/user`
+  const response = await axios.get(uri,{
+    headers: {
+      'Authorization': `bearer ${jwt}`
+    }
+  });
+  return response.data.data;
 }
 
 export default {
-  emptyStruct,
   get,
-  login
+  currentUser
 }

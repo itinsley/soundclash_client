@@ -11,7 +11,7 @@ import {
     NavLink,
     NavItem} from 'reactstrap';
 import { useAuth0 } from "@auth0/auth0-react";
-import {setUserSessionAction, fetchMyClashesAction} from "../../actions";
+import {setUserSessionAction, clearUserSessionAction, fetchMyClashesAction} from "../../actions";
 
 function Navigation(props) {
   const {
@@ -28,7 +28,7 @@ function Navigation(props) {
   // Set user and JWT in global state when auth0 user status changes
   useEffect(() => {
     if (user==null){
-      props.dispatch(setUserSessionAction(null, null))
+      props.dispatch(clearUserSessionAction())
       return
     }
 
@@ -36,10 +36,11 @@ function Navigation(props) {
       (async () => {
         const jwt = await getAccessTokenSilently();
         props.dispatch(setUserSessionAction(user, jwt))
+        //This shouldn't be here...
         props.dispatch(fetchMyClashesAction)
       })();
     }
-  });
+  }, []);
 
   return (
     <div>
@@ -64,7 +65,7 @@ function Navigation(props) {
     return (
         <Fragment>
           <NavItem>
-            <NavLink className='disabled'>Hello {user.name}</NavLink>
+            <NavLink tag={Link} to='/user'>Hello {user.name}</NavLink>
           </NavItem>
           <NavItem>
             <Button className='btn-link nav-link' onClick={doLogout}>Logout</Button>

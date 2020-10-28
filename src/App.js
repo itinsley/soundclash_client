@@ -4,6 +4,7 @@ import Loading from "./components/Loading";
 import Navigation from './app/Navigation/Navigation';
 import Home from './app/Home/Home';
 import About from './app/About/About';
+import CurrentUser from './app/User/CurrentUser';
 import Clash from '../src/app/Clash/Clash';
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./history";
@@ -37,6 +38,7 @@ const App = () => {
           <Navigation />
           <Switch>
             <Route path="/about" render={(props) =>  <About  />} />
+            <Route path="/user" render={(props) =>  <CurrentUser  />} />
             <Route path="/clashes/:clashId" render={(props) => <Clash {...props}/>} />
             <Route path="/" render={(props) => <Home />} />
           </Switch>

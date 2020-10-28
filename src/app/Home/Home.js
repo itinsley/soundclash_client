@@ -10,7 +10,6 @@ import ConnectStore from '../../lib/ConnectStore';
 const Home = ({currentUser, myClashes, recentClashes, dispatch})=>{
 
   useEffect(()=>{
-    console.log("use effect")
     dispatch(fetchMyClashesAction);
     dispatch(fetchRecentClashesAction);
   }, [])

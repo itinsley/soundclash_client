@@ -54,6 +54,12 @@ function reducer(state = defaultState, action) {
         currentUser: action.currentUser,
         jwt: action.jwt
       }
+    case 'SET_USER_SESSION':
+      return {
+        ...state,
+        currentUser: null,
+        jwt: null
+      }
     default:
       return state
   }
