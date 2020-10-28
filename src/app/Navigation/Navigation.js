@@ -36,8 +36,6 @@ function Navigation(props) {
       (async () => {
         const jwt = await getAccessTokenSilently();
         props.dispatch(setUserSessionAction(user, jwt))
-        //This shouldn't be here...
-        props.dispatch(fetchMyClashesAction)
       })();
     }
   }, []);
