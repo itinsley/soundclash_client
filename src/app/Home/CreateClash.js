@@ -19,6 +19,7 @@ const DEFAULT_STATE = {
   trackName: '',
   commentText: '',
   errors: [],
+  errorMessage: '',
   loading: false,
   showYouTubeUrl: true
 }
@@ -106,17 +107,20 @@ const Challenge = (props) => {
       setState(DEFAULT_STATE);
       history.push(`/clashes/${newClash.id}`)
     } catch(err) {
-      let message='';
+      let errorMessage='';
       let type='';
+      let errors=[];
       if (err.response){
         type = 'Validation';
-        message = err.response.data.message;
+        errorMessage = err.response.data.message;
+        errors = err.response.data.errors;
       } else {
         type = 'Unhandled';
-        message = err.message;
+        errorMessage = err.message;
       }
       updateState({
-        errors: [{type, message}],
+        errorMessage,
+        errors,
         loading: false
       });
     }
@@ -128,8 +132,7 @@ const Challenge = (props) => {
       <div className="t-clash-status mx-auto text-center p-3" style={{maxWidth: '40.25rem'}}>
         <h1>Challenge someone...</h1>
 
-        <ErrorAlertContainer errors={state.errors}
-          message='We were unable to create your clash. Please try again. If the problem persists please email support@soundcla.sh'/>
+        <ErrorAlertContainer errors={state.errors} errorMessage={state.errorMessage}/>
 
         <div style={{maxWidth: '37.5rem'}}>
             <form onSubmit={ handleSubmit } >
