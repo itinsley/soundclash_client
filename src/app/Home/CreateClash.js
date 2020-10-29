@@ -115,8 +115,8 @@ const Challenge = (props) => {
         type = 'Unhandled';
         message = err.message;
       }
-      setState({errors: [{type, message}]});
-      setState({loading: false});
+      updateState({errors: [{type, message}]});
+      updateState({loading: false});
     }
   }
 
