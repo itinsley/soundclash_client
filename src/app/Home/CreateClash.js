@@ -115,8 +115,10 @@ const Challenge = (props) => {
         type = 'Unhandled';
         message = err.message;
       }
-      updateState({errors: [{type, message}]});
-      updateState({loading: false});
+      updateState({
+        errors: [{type, message}],
+        loading: false
+      });
     }
   }
 
@@ -161,14 +163,15 @@ const Challenge = (props) => {
 
               <div className="row py-2 px-0 mx-0">
                 <div className='col text-center px-0 mx-0' style={{width:'100%'}}>
-                  {state.showYouTubeUrl && <input required
+                      <input required
                             value={state.youTubeUrl}
+                            hidden={!state.showYouTubeUrl}
                             className="form-control"
                             name="youTubeUrl"
                             placeholder="Put your YouTube tune url here!"
                             onChange={handleChange}
                             onBlur={youTubeUrl_AfterChange}
-                            style={{background:'none'}}/>}
+                            style={{background:'none'}}/>
 
                   {!state.showYouTubeUrl && youtube.iframe(embedYouTubeUrl, state.trackName)}
                   {!state.showYouTubeUrl &&
