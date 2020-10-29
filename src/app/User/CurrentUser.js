@@ -17,23 +17,23 @@ const CurrentUser = ({ currentUser })=>{
         <table className="table">
           <tbody>
           <tr>
-              <td align='right' class="font-weight-bold">Id:</td>
+              <td align='right' className="font-weight-bold">Id:</td>
               <td align='left'>{ currentUser.id }</td>
             </tr>
             <tr>
-              <td align='right'  class="font-weight-bold">Name:</td>
+              <td align='right'  className="font-weight-bold">Name:</td>
               <td align='left'>{ currentUser.name }</td>
             </tr>
             <tr>
-              <td align='right'  class="font-weight-bold">Email:</td>
+              <td align='right'  className="font-weight-bold">Email:</td>
               <td align='left'>{ currentUser.email }</td>
             </tr>
             <tr>
-              <td align='right'  class="font-weight-bold">Internal reference:</td>
+              <td align='right'  className="font-weight-bold">Internal reference:</td>
               <td align='left'>{ currentUser.sub }</td>
             </tr>
             <tr>
-              <td align='right'  class="font-weight-bold">Picture:</td>
+              <td align='right'  className="font-weight-bold">Picture:</td>
               <td align='left'> <img src={ currentUser.picture } /></td>
             </tr>
           </tbody>
