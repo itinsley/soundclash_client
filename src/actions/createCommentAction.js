@@ -3,8 +3,8 @@ import refreshClashAction from "./refreshClashAction";
 
 const createCommentAction=(trackId, commentText)=>async(dispatch, getState)=>{
   const state = getState();
-  const currentUser = state.currentUser;
-  const comment = await CommentApi.create(trackId, commentText, currentUser)
+  const jwt = state.jwt;
+  const comment = await CommentApi.create(trackId, commentText, jwt)
   dispatch({
     type: 'CREATE_COMMENT',
     comment: {...comment.data, new: true},
