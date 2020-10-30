@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import SpinnerButtonInner from "../../lib/SpinnerButtonInner";
 import youtube from "../../lib/youtube";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackspace } from '@fortawesome/free-solid-svg-icons'
 import ConnectStore from '../../lib/ConnectStore';
 import ClashApi from '../../api/Clashes';
+import HandleApiError from '../../api/HandleApiError';
+
 import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
 import EmailValidator from "email-validator";
 import history from '../../history';
@@ -12,16 +14,18 @@ import useStickyState from '../../lib/useStickyState';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LOCAL_STORAGE_STATE_KEY = "createClash";
-const DEFAULT_STATE = {
+const DEFAULT_SESSION_STATE = {
   clashName: '',
   opponentEmailAddress: '',
   youTubeUrl: '',
   trackName: '',
   commentText: '',
+  showYouTubeUrl: true,
+}
+const DEFAULT_STATE = {
   errors: [],
   errorMessage: '',
   loading: false,
-  showYouTubeUrl: true
 }
 
 const Challenge = (props) => {
@@ -30,15 +34,16 @@ const Challenge = (props) => {
     loginWithRedirect,
   } = useAuth0();
 
-  const updateState = (item) => {
-    const newState = Object.assign({...state}, item);
-    setState(newState);
+  const updateSessionState = (item) => {
+    const newState = Object.assign({...sessionState}, item);
+    setSessionState(newState);
   }
 
-  const[state, setState] = useStickyState(DEFAULT_STATE, LOCAL_STORAGE_STATE_KEY);
+  const[sessionState, setSessionState] = useStickyState(DEFAULT_SESSION_STATE, LOCAL_STORAGE_STATE_KEY);
+  const[state, setState] = useState(DEFAULT_STATE);
 
   const handleChange = (e) => {
-    updateState({[e.target.name]:e.target.value});
+    updateSessionState({[e.target.name]:e.target.value});
   }
 
   const clashName_invalid = (e) => {
@@ -52,14 +57,14 @@ const Challenge = (props) => {
   }
 
   const youTubeUrl_AfterChange = async (e) => {
-    if (state.youTubeUrl===''){
+    if (sessionState.youTubeUrl===''){
       return;
     }
 
     try{
       e.persist();
-      const trackName = await youtube.getTitle(state.youTubeUrl);
-      updateState({
+      const trackName = await youtube.getTitle(sessionState.youTubeUrl);
+      updateSessionState({
         trackName,
         showYouTubeUrl: false
       })
@@ -79,7 +84,7 @@ const Challenge = (props) => {
 
   const clearUrl_HandleClick = (e) => {
     e.preventDefault();
-    updateState({
+    updateSessionState({
       showYouTubeUrl: true,
       youTubeUrl: ''
     })
@@ -93,32 +98,23 @@ const Challenge = (props) => {
       return;
     }
 
-    const clash = {name: state.clashName,
-      opponentEmailAddress: state.opponentEmailAddress,
-      youTubeUrl: state.youTubeUrl,
-      trackName: state.trackName,
-      commentText: state.commentText
+    const clash = {name: sessionState.clashName,
+      opponentEmailAddress: sessionState.opponentEmailAddress,
+      youTubeUrl: sessionState.youTubeUrl,
+      trackName: sessionState.trackName,
+      commentText: sessionState.commentText
     }
 
     try{
-      state.loading=true
+      setState({...state, loading: true})
       const response = await ClashApi.create(props.jwt, clash);
       const newClash = response.data.data.clash;
+      setSessionState(DEFAULT_SESSION_STATE);
       setState(DEFAULT_STATE);
       history.push(`/clashes/${newClash.id}`)
     } catch(err) {
-      let errorMessage='';
-      let type='';
-      let errors=[];
-      if (err.response){
-        type = 'Validation';
-        errorMessage = err.response.data.message;
-        errors = err.response.data.errors;
-      } else {
-        type = 'Unhandled';
-        errorMessage = err.message;
-      }
-      updateState({
+      const {errorMessage, errors, type} = HandleApiError(err);
+      setState({
         errorMessage,
         errors,
         loading: false
@@ -126,7 +122,7 @@ const Challenge = (props) => {
     }
   }
 
-  const embedYouTubeUrl = youtube.embedUrl(state.youTubeUrl);
+  const embedYouTubeUrl = youtube.embedUrl(sessionState.youTubeUrl);
   return(
     <div ref={useRef()} className='container-fluid challenge'>
       <div className="t-clash-status mx-auto text-center p-3" style={{maxWidth: '40.25rem'}}>
@@ -139,7 +135,7 @@ const Challenge = (props) => {
             <div className="row py-2 px-0 mx-0">
                 <div className='col text-left px-0 mx-0' >
                       <input  required
-                              value={state.clashName}
+                              value={sessionState.clashName}
                               className="form-control"
                               name="clashName"
                               placeholder="Enter name of clash"
@@ -154,7 +150,7 @@ const Challenge = (props) => {
               <div className="row py-2 px-0 mx-0">
                 <div className='col text-left px-0 mx-0' >
                       <input  required
-                              value={state.opponentEmailAddress}
+                              value={sessionState.opponentEmailAddress}
                               className="form-control"
                               name="opponentEmailAddress"
                               placeholder="Put their email here"
@@ -167,8 +163,8 @@ const Challenge = (props) => {
               <div className="row py-2 px-0 mx-0">
                 <div className='col text-center px-0 mx-0' style={{width:'100%'}}>
                       <input required
-                            value={state.youTubeUrl}
-                            hidden={!state.showYouTubeUrl}
+                            value={sessionState.youTubeUrl}
+                            hidden={!sessionState.showYouTubeUrl}
                             className="form-control"
                             name="youTubeUrl"
                             placeholder="Put your YouTube tune url here!"
@@ -176,8 +172,8 @@ const Challenge = (props) => {
                             onBlur={youTubeUrl_AfterChange}
                             style={{background:'none'}}/>
 
-                  {!state.showYouTubeUrl && youtube.iframe(embedYouTubeUrl, state.trackName)}
-                  {!state.showYouTubeUrl &&
+                  {!sessionState.showYouTubeUrl && youtube.iframe(embedYouTubeUrl, sessionState.trackName)}
+                  {!sessionState.showYouTubeUrl &&
                     <button className="mt-1 btn btn-dark text-uppercase"
                             type="submit"
                             title="Enter a different track URL"
@@ -193,7 +189,7 @@ const Challenge = (props) => {
                 <div className='col text-left px-0 mx-0' >
                       <textarea type="text"
                               required
-                              value={state.commentText}
+                              value={sessionState.commentText}
                               className="form-control"
                               name="commentText"
                               placeholder="Why is this a killer track?"
@@ -205,7 +201,7 @@ const Challenge = (props) => {
               <div className="py-0 px-0 mx-auto text-center " >
                 <div className='px-0 '>
                   <button id='createTrack' className="btn btn-dark text-uppercase" type="submit" >
-                    <SpinnerButtonInner label='Submit' loading={state.loading}/>
+                    <SpinnerButtonInner label='Submit' loading={sessionState.loading}/>
                   </button>
                 </div>
               </div>
