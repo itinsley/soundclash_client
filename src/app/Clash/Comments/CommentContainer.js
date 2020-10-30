@@ -1,23 +1,14 @@
 
 import Comments from "./Comments";
 import { connect } from 'react-redux';
-import { createCommentAction } from "../../../actions";
-
 
 const mapProps=(state, ownProps)=>{
   return {
     comments: ownProps.track.comments,
     currentUser: state.currentUser,
     trackId: ownProps.track.id,
-    clashId: state.currentClash.data.id
-  }
-}
-
-const mapDispatchToProps=(dispatch)=>{
-  return {
-    createComment: async (trackId, commentText, cb)=>{
-      dispatch(createCommentAction(trackId, commentText)).then(cb);
-    }
+    clashId: state.currentClash.data.id,
+    jwt: state.jwt
   }
 }
 
@@ -25,8 +16,7 @@ const mapDispatchToProps=(dispatch)=>{
 // Supply the properties used in ownProps when you render the returned component
 const CommentContainer = ()=> {
   return connect(
-   mapProps,
-   mapDispatchToProps
+   mapProps
  )(Comments)
 }
 

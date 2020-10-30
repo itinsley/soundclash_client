@@ -6,7 +6,6 @@ import { faBackspace } from '@fortawesome/free-solid-svg-icons'
 import ConnectStore from '../../lib/ConnectStore';
 import ClashApi from '../../api/Clashes';
 import HandleApiError from '../../api/HandleApiError';
-
 import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
 import EmailValidator from "email-validator";
 import history from '../../history';
