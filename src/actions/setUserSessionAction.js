@@ -1,4 +1,5 @@
 import Users from "../api/Users";
+import { fetchMyClashesAction } from "../actions";
 
 const setUserSession=(auth0User, jwt)=> async(dispatch)=>{
 
@@ -15,6 +16,8 @@ const setUserSession=(auth0User, jwt)=> async(dispatch)=>{
     },
     jwt: jwt
   })
+
+  dispatch(fetchMyClashesAction);
 }
 
 export default setUserSession;

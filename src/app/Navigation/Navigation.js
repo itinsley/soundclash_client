@@ -11,7 +11,7 @@ import {
     NavLink,
     NavItem} from 'reactstrap';
 import { useAuth0 } from "@auth0/auth0-react";
-import {setUserSessionAction, clearUserSessionAction, fetchMyClashesAction} from "../../actions";
+import { setUserSessionAction, clearUserSessionAction } from "../../actions";
 
 function Navigation(props) {
   const {
@@ -32,7 +32,7 @@ function Navigation(props) {
       return
     }
 
-    if (user !== props.currentUser) {
+    if (user.email !== props.currentUser.email) {
       (async () => {
         const jwt = await getAccessTokenSilently();
         props.dispatch(setUserSessionAction(user, jwt))
@@ -63,7 +63,7 @@ function Navigation(props) {
     return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to='/user'>Hello {user.name}</NavLink>
+            <NavLink tag={Link} to='/user'>Hello {props.currentUser.name}</NavLink>
           </NavItem>
           <NavItem>
             <Button className='btn-link nav-link' onClick={doLogout}>Logout</Button>

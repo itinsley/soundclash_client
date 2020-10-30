@@ -15,7 +15,10 @@ const defaultState = {
   newClash:{
         data: [],
         loading: false},
-  currentUser: null,
+  currentUser: {
+    email: '',
+    name: '...'
+  },
   jwt: null
 }
 
@@ -54,7 +57,7 @@ function reducer(state = defaultState, action) {
         currentUser: action.currentUser,
         jwt: action.jwt
       }
-    case 'SET_USER_SESSION':
+    case 'CLEAR_USER_SESSION':
       return {
         ...state,
         currentUser: null,
