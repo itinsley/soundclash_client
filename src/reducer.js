@@ -15,10 +15,8 @@ const defaultState = {
   newClash:{
         data: [],
         loading: false},
-  currentUser: {
-    email: '',
-    name: '...'
-  },
+  currentUser: null,
+  currentUserError: '',
   jwt: null
 }
 
@@ -56,6 +54,14 @@ function reducer(state = defaultState, action) {
         ...state,
         currentUser: action.currentUser,
         jwt: action.jwt
+      }
+    case 'SET_USER_SESSION_ERROR':
+      console.log(action, 'setus')
+      return {
+        ...state,
+        currentUser: null,
+        jwt: null,
+        currentUserError: action.errorMessage
       }
     case 'CLEAR_USER_SESSION':
       return {

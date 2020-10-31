@@ -12,10 +12,11 @@ import {
     NavItem} from 'reactstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import { setUserSessionAction, clearUserSessionAction } from "../../actions";
+import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
 
 function Navigation(props) {
   const {
-    user,
+    user: auth0user,
     isAuthenticated,
     loginWithRedirect,
     logout,
@@ -27,15 +28,16 @@ function Navigation(props) {
 
   // Set user and JWT in global state when auth0 user status changes
   useEffect(() => {
-    if (user==null){
+    if (auth0user==null){
       props.dispatch(clearUserSessionAction())
       return
     }
 
-    if (user.email !== props.currentUser.email) {
+    // Reset user session if auth0User different to session user
+    if (auth0user.email !== (props.currentUser && props.currentUser.email)) {
       (async () => {
         const jwt = await getAccessTokenSilently();
-        props.dispatch(setUserSessionAction(user, jwt))
+        props.dispatch(setUserSessionAction(auth0user, jwt))
       })();
     }
   }, []);
@@ -53,6 +55,7 @@ function Navigation(props) {
           <NavItem>
               <NavLink tag={Link} to='/about' >What is this?</NavLink>
             </NavItem>
+            <ErrorAlertContainer errorMessage = {props.currentUserError} />
             <LoginNav />
           </Nav>
         </Collapse>
@@ -60,11 +63,15 @@ function Navigation(props) {
     </div>
   );
 
+  function isLoggedIn(){
+    return (isAuthenticated && props.currentUser)
+  }
+
   function loggedInNavItem(){
     return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to='/user'>Hello {props.currentUser.name}</NavLink>
+            <NavLink tag={Link} to='/user'>  {props.currentUser.name}</NavLink>
           </NavItem>
           <NavItem>
             <Button className='btn-link nav-link' onClick={doLogout}>Logout</Button>
@@ -90,7 +97,7 @@ function Navigation(props) {
   }
 
   function LoginNav(){
-    return isAuthenticated ? loggedInNavItem() : notLoggedInNavItem()
+    return isLoggedIn() ? loggedInNavItem() : notLoggedInNavItem()
   }
 
   async function doLogout(){
