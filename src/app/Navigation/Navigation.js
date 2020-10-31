@@ -43,12 +43,13 @@ function Navigation(props) {
   return (
     <div>
       <Navbar color="black" dark expand="md" className="fixed-top bg-black">
-        <NavbarBrand href='/'>
+        <NavbarBrand tag={Link} to='/' >
           <img alt="Soundclash Logo" src='https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg' />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
+          <NavLink tag={Link} to='/' >Home</NavLink>
           <NavItem>
               <NavLink tag={Link} to='/about' >What is this?</NavLink>
             </NavItem>
