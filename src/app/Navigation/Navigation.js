@@ -13,6 +13,7 @@ import {
 import { useAuth0 } from "@auth0/auth0-react";
 import { setUserSessionAction, clearUserSessionAction } from "../../actions";
 import ErrorAlertContainer from '../../lib/ErrorAlertContainer'
+import Avatar from "../shared/Avatar";
 
 function Navigation(props) {
   const {
@@ -71,7 +72,14 @@ function Navigation(props) {
     return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to='/user'>  {props.currentUser.name}</NavLink>
+            <NavLink tag={Link} to='/user'>  
+                {props.currentUser.name}
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to='/user'>  
+              <Avatar user={props.currentUser} description= "User avatar" size='35' />
+            </NavLink>
           </NavItem>
           <NavItem>
             <Button className='btn-link nav-link' onClick={doLogout}>Logout</Button>
@@ -84,13 +92,10 @@ function Navigation(props) {
     return (
       <Fragment>
         <NavItem>
-          <NavLink className='nav-link' href='/users/sign_up'>Sign Up</NavLink>
-        </NavItem>
-        <NavItem>
           <Button
             id='login'
             className='btn-link nav-link'
-            onClick={loginWithRedirect}>Login</Button>
+            onClick={loginWithRedirect}>Login/Sign Up</Button>
         </NavItem>
       </Fragment>
     )

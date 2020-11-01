@@ -34,7 +34,7 @@ const CurrentUser = ({ currentUser })=>{
             </tr>
             <tr>
               <td align='right'  className="font-weight-bold">Picture:</td>
-              <td align='left'> <img src={ currentUser.picture } /></td>
+              <td align='left'> <img src={ currentUser.image_url } /></td>
             </tr>
           </tbody>
         </table>

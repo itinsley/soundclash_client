@@ -12,7 +12,7 @@ const setUserSession=(auth0User, jwt)=> async(dispatch)=>{
         name: soundClashUser.name,
         email: soundClashUser.email,
         sub:  soundClashUser.sub,
-        picture: auth0User.picture
+        image_url: auth0User.picture
       },
       jwt: jwt
     });
