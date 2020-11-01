@@ -1,38 +1,38 @@
-import UserSession from './UserSession';
-import jwtLib from 'jsonwebtoken';
-import { getMaxListeners } from 'cluster';
+import UserSession from "./UserSession";
+import jwtLib from "jsonwebtoken";
+import { getMaxListeners } from "cluster";
 
-const data = {email: 'jsmith@gmail.com', user_name: 'John Smith'};
+const data = { email: "jsmith@gmail.com", user_name: "John Smith" };
 
-it('#set - Decodes supplied JWT', () => {
-  const jwt = jwtLib.sign(data, 'secret', { expiresIn: 60 });
+it("#set - Decodes supplied JWT", () => {
+  const jwt = jwtLib.sign(data, "secret", { expiresIn: 60 });
   const session = UserSession.set(jwt);
-  expect(session.email).toEqual('jsmith@gmail.com');
-  expect(session.userName).toEqual('John Smith');
+  expect(session.email).toEqual("jsmith@gmail.com");
+  expect(session.userName).toEqual("John Smith");
 });
 
-it('#get - retrieves data from local storage', () => {
-  const jwt = jwtLib.sign(data, 'secret', { expiresIn: 60 });
+it("#get - retrieves data from local storage", () => {
+  const jwt = jwtLib.sign(data, "secret", { expiresIn: 60 });
   UserSession.set(jwt);
 
   const session = UserSession.get();
-  expect(session.email).toEqual('jsmith@gmail.com');
-  expect(session.userName).toEqual('John Smith');
+  expect(session.email).toEqual("jsmith@gmail.com");
+  expect(session.userName).toEqual("John Smith");
   expect(session.jwt).toEqual(jwt);
 });
 
-it('#get - returns null  if expired', () => {
-  const jwt = jwtLib.sign(data, 'secret', { expiresIn: -1 });
+it("#get - returns null  if expired", () => {
+  const jwt = jwtLib.sign(data, "secret", { expiresIn: -1 });
   UserSession.set(jwt);
   expect(UserSession.get()).toEqual(null);
 });
 
-it('#get - returns empty object if not set', () => {
+it("#get - returns empty object if not set", () => {
   localStorage.clear();
   expect(UserSession.get()).toEqual(null);
 });
 
-it('#clear - clears session', () => {
+it("#clear - clears session", () => {
   UserSession.clear();
   expect(UserSession.get()).toEqual(null);
 });

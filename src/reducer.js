@@ -1,78 +1,80 @@
-
 const defaultState = {
-  menu:{
-    isOpen: false
+  menu: {
+    isOpen: false,
   },
   recentClashes: {
     data: [],
-    loading: true},
+    loading: true,
+  },
   myClashes: {
-      data: [],
-      loading: true},
-  currentClash:{
-      data: [],
-      loading: true},
-  newClash:{
-        data: [],
-        loading: false},
+    data: [],
+    loading: true,
+  },
+  currentClash: {
+    data: [],
+    loading: true,
+  },
+  newClash: {
+    data: [],
+    loading: false,
+  },
   currentUser: null,
-  currentUserError: '',
-  jwt: null
-}
+  currentUserError: "",
+  jwt: null,
+};
 
 // Reducer
 function reducer(state = defaultState, action) {
   switch (action.type) {
-    case 'GET_RECENT_CLASHES':
+    case "GET_RECENT_CLASHES":
       return {
         ...state,
-        recentClashes:{
+        recentClashes: {
           data: action.recentClashes,
-          loading: false
-        }
-      }
-    case 'GET_MY_CLASHES':
+          loading: false,
+        },
+      };
+    case "GET_MY_CLASHES":
       return {
         ...state,
-        myClashes:{
+        myClashes: {
           data: action.myClashes,
-          loading: false
-        }
-      }
-    case 'GET_CLASH':
+          loading: false,
+        },
+      };
+    case "GET_CLASH":
       return {
         ...state,
-        currentClash:{
+        currentClash: {
           data: action.clash,
-          loading: false
-        }
-      }
+          loading: false,
+        },
+      };
     // Session is stored in local storage.
     // Sync should be performed to establish session expiry when user state is critical
-    case 'SET_USER_SESSION':
+    case "SET_USER_SESSION":
       return {
         ...state,
         currentUser: action.currentUser,
-        jwt: action.jwt
-      }
-    case 'SET_USER_SESSION_ERROR':
-      console.log(action, 'setus')
+        jwt: action.jwt,
+      };
+    case "SET_USER_SESSION_ERROR":
+      console.log(action, "setus");
       return {
         ...state,
         currentUser: null,
         jwt: null,
-        currentUserError: action.errorMessage
-      }
-    case 'CLEAR_USER_SESSION':
+        currentUserError: action.errorMessage,
+      };
+    case "CLEAR_USER_SESSION":
       return {
         ...state,
         currentUser: null,
-        jwt: null
-      }
+        jwt: null,
+      };
     default:
-      return state
+      return state;
   }
 }
-
 
 export default reducer;

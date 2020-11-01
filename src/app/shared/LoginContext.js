@@ -1,1 +1,1 @@
-export default {Challenge:'Challenge'};
+export default { Challenge: "Challenge" };

@@ -5,5 +5,5 @@ import getTitle from "./getTitle";
 export default {
   iframe,
   embedUrl,
-  getTitle
-}
+  getTitle,
+};

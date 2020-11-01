@@ -12,4 +12,4 @@ export {
   clearUserSessionAction,
   fetchClashAction,
   refreshClashAction,
-}
+};

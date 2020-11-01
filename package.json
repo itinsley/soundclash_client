@@ -34,7 +34,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "prestart": "node checkenv.js",
+    "prestart": "node checkenv.js && prettier --check .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -53,6 +53,7 @@
   "devDependencies": {
     "chromedriver": "^2.46.0",
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.12.1"
+    "enzyme-adapter-react-16": "^1.12.1",
+    "prettier": "2.1.2"
   }
 }

@@ -4,88 +4,91 @@ import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import ErrorAlertContainer from "./ErrorAlertContainer";
 
-Enzyme.configure({adapter: new Adapter()});
+Enzyme.configure({ adapter: new Adapter() });
 
-describe("When errorMessage and multiple errors are provided", ()=>{
+describe("When errorMessage and multiple errors are provided", () => {
   var wrapper;
   beforeEach(() => {
-    const errorAlertComponent = <ErrorAlertContainer
-      errorMessage = "the error msg"
-      errors = {{
-        email:  'no good',
-        face: 'so ugly',
-        snake_case: 'good'
-      }}
-    />
+    const errorAlertComponent = (
+      <ErrorAlertContainer
+        errorMessage="the error msg"
+        errors={{
+          email: "no good",
+          face: "so ugly",
+          snake_case: "good",
+        }}
+      />
+    );
     wrapper = shallow(errorAlertComponent);
   });
-  test("it should render alert", ()=>{
-    expect(wrapper.exists('Alert')).toBe(true);
-  })
-  test("it should show error msg", ()=>{
+  test("it should render alert", () => {
+    expect(wrapper.exists("Alert")).toBe(true);
+  });
+  test("it should show error msg", () => {
     expect(wrapper.contains("the error msg")).toBe(true);
-  })
-  test("it should list errors", ()=>{
+  });
+  test("it should list errors", () => {
     expect(wrapper.contains("Email no good")).toBe(true);
     expect(wrapper.contains("Face so ugly")).toBe(true);
-  })
-  test("it should make snake case sentence case", ()=>{
+  });
+  test("it should make snake case sentence case", () => {
     expect(wrapper.contains("Snake Case good")).toBe(true);
-  })
+  });
+});
 
-})
-
-describe("When no properties are provided", ()=>{
+describe("When no properties are provided", () => {
   var wrapper;
   beforeEach(() => {
-    const errorAlertComponent = <ErrorAlertContainer
-    />
+    const errorAlertComponent = <ErrorAlertContainer />;
     wrapper = shallow(errorAlertComponent);
   });
-  test("it should not render alert", ()=>{
-    expect(wrapper.exists('Alert')).toBe(false);
-  })
-})
+  test("it should not render alert", () => {
+    expect(wrapper.exists("Alert")).toBe(false);
+  });
+});
 
-describe("When empty properties are provided", ()=>{
+describe("When empty properties are provided", () => {
   var wrapper;
   beforeEach(() => {
-    const errorAlertComponent = <ErrorAlertContainer
-      errorMessage= ""
-      errors = {[]}
-    />
+    const errorAlertComponent = (
+      <ErrorAlertContainer errorMessage="" errors={[]} />
+    );
     wrapper = shallow(errorAlertComponent);
   });
-  test("it should not render alert", ()=>{
-    expect(wrapper.exists('Alert')).toBe(false);
-  })
-})
+  test("it should not render alert", () => {
+    expect(wrapper.exists("Alert")).toBe(false);
+  });
+});
 
-describe("When only errorMessage is provided", ()=>{
+describe("When only errorMessage is provided", () => {
   var wrapper;
   beforeEach(() => {
-    const errorAlertComponent = <ErrorAlertContainer
-      errorMessage = "nasty exception"
-    />
+    const errorAlertComponent = (
+      <ErrorAlertContainer errorMessage="nasty exception" />
+    );
     wrapper = shallow(errorAlertComponent);
   });
-  test("it should show error msg", ()=>{
+  test("it should show error msg", () => {
     expect(wrapper.contains("nasty exception")).toBe(true);
-  })
-})
+  });
+});
 
-describe("When only errors are provided", ()=>{
+describe("When only errors are provided", () => {
   var wrapper;
   beforeEach(() => {
-    const errorAlertComponent = <ErrorAlertContainer
-      errors = { {email:  'no good'} }
-    />
+    const errorAlertComponent = (
+      <ErrorAlertContainer errors={{ email: "no good" }} />
+    );
     wrapper = shallow(errorAlertComponent);
   });
-  test("it should show error detail", ()=>{
+  test("it should show error detail", () => {
     expect(wrapper.contains("Email no good")).toBe(true);
-  })
-  test("it should show default error message", ()=>{
-    expect(wrapper.contains("Unhandled exception occurred. Please try again. If the problem persists please email support@soundcla.sh")).toBe(true);
-  })
-})
+  });
+  test("it should show default error message", () => {
+    expect(
+      wrapper.contains(
+        "Unhandled exception occurred. Please try again. If the problem persists please email support@soundcla.sh"
+      )
+    ).toBe(true);
+  });
+});

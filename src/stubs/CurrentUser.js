@@ -1,5 +1,5 @@
 export default {
-  userName: 'Ian',
-  image_url: 'http://animage.gif',
-  email: 'itinsley@gmail.com'
-}
+  userName: "Ian",
+  image_url: "http://animage.gif",
+  email: "itinsley@gmail.com",
+};

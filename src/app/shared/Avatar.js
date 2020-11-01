@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import UserAvatar from "react-user-avatar";
 
 const colours = [
@@ -15,27 +15,29 @@ const colours = [
   "#c0392b",
   "#bdc3c7",
   "#7f8c8d",
-]
+];
 
-class Avatar extends Component{
-
-  render(){
+class Avatar extends Component {
+  render() {
     const user = this.props.user;
     const description = this.props.description;
     const size = this.props.size;
 
-    if (user.image_url){
-      return(
-        <img  alt={description} className="image-avatar u-circle " height={size}
-          src={user.image_url} title={user.name} width={size}></img>
-      )
+    if (user.image_url) {
+      return (
+        <img
+          alt={description}
+          className="image-avatar u-circle "
+          height={size}
+          src={user.image_url}
+          title={user.name}
+          width={size}
+        ></img>
+      );
     }
 
-    return (
-      <UserAvatar size={size} name={user.name} colors={colours}/>
-    )
+    return <UserAvatar size={size} name={user.name} colors={colours} />;
   }
-
 }
 
-export default Avatar
+export default Avatar;

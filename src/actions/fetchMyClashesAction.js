@@ -1,14 +1,14 @@
-import ClashApi from '../api/Clashes';
+import ClashApi from "../api/Clashes";
 
-async function fetchMyClashesAction(dispatch, getState){
-  const state = getState()
-  if (state.jwt){
-    const myClashes = await ClashApi.forUser(state.jwt)
+async function fetchMyClashesAction(dispatch, getState) {
+  const state = getState();
+  if (state.jwt) {
+    const myClashes = await ClashApi.forUser(state.jwt);
     dispatch({
-      type: 'GET_MY_CLASHES',
+      type: "GET_MY_CLASHES",
       myClashes,
-      loading: false
-    })
+      loading: false,
+    });
   }
 }
 

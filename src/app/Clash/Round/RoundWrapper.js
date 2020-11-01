@@ -1,33 +1,27 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import RoundCompressed from "./RoundCompressed";
 import RoundExpanded from "./RoundExpanded";
 
-class RoundWrapper extends Component{
-  constructor(props){
-    super(props)
+class RoundWrapper extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      isOpen: props.isOpen
-    }
+      isOpen: props.isOpen,
+    };
     this.Handle_Click = this.Handle_Click.bind(this);
   }
 
-  Handle_Click(event){
-    this.setState({isOpen:true})
+  Handle_Click(event) {
+    this.setState({ isOpen: true });
     event.preventDefault();
   }
 
-  render(){
-    const round =this.props.round;
-    if (this.state.isOpen){
-      return (
-        <RoundExpanded round={round} />
-      )
+  render() {
+    const round = this.props.round;
+    if (this.state.isOpen) {
+      return <RoundExpanded round={round} />;
     } else {
-      return (
-        <RoundCompressed
-          round={round}
-          Handle_Click={this.Handle_Click}/>
-      )
+      return <RoundCompressed round={round} Handle_Click={this.Handle_Click} />;
     }
   }
 }
