@@ -26,6 +26,13 @@ const forUser = async (jwt) => {
   return response.data.data;
 };
 
+const getChallenge = async (uniqueRef) => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clash_challenges/${uniqueRef}`
+  );
+  return response.data.data;
+};
+
 /**
  *
  * @param {string} jwt
@@ -54,8 +61,9 @@ const create = async (jwt, clash) => {
 };
 
 export default {
-  recent,
-  get,
-  forUser,
   create,
+  forUser,
+  get,
+  getChallenge,
+  recent,
 };

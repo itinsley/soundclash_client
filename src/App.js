@@ -4,6 +4,7 @@ import Loading from "./components/Loading";
 import Navigation from "./app/Navigation/Navigation";
 import Home from "./app/Home/Home";
 import About from "./app/About/About";
+import Challenge from "./app/Home/Challenge";
 import CurrentUser from "./app/User/CurrentUser";
 import Clash from "../src/app/Clash/Clash";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -38,6 +39,10 @@ const App = () => {
           <Switch>
             <Route path="/about" render={(props) => <About />} />
             <Route path="/user" render={(props) => <CurrentUser />} />
+            <Route
+              path="/challenge/:uniqueRef"
+              render={(props) => <Challenge {...props} />}
+            />
             <Route
               path="/clashes/:clashId"
               render={(props) => <Clash {...props} />}
