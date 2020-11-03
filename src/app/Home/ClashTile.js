@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import CountLabel from "../../components/CountLabel";
 
 function Footer(props) {
   if (props.show) {
@@ -36,13 +37,14 @@ class ClashTile extends Component {
                 ></img>
               </div>
               <div className="row">
-                <span className="col-xs-12 col-sm-6 text-size-xx-small">
+                <span className="col-xs- col-sm-6 text-size-xx-small pr-1 text-truncate">
                   <img
                     alt="Comments Icon"
                     src="https://res.cloudinary.com/soundclash/image/asset/comment-f01f9b1834a2e2bc80dae34d5cf70df3.svg"
                     width="20"
                   />
-                  {` ${clash.comments_count} comments`}
+                  &nbsp;
+                  <CountLabel label="Comment" count={clash.comments_count} />
                 </span>
                 <span className="col-xs-12 col-sm-6 text-size-xx-small">
                   <img
@@ -50,7 +52,8 @@ class ClashTile extends Component {
                     src="https://res.cloudinary.com/soundclash/image/asset/vinyl-record-a40f320b60a2c98f4e4479f85ee1d218.svg"
                     width="20"
                   />
-                  {` ${clash.tracks_count} tracks`}
+                  &nbsp;
+                  <CountLabel label="Track" count={clash.tracks_count} />
                 </span>
               </div>
             </div>

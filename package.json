@@ -19,6 +19,7 @@
     "lodash.startcase": "^4.4.0",
     "nightwatch": "^1.1.0",
     "nock": "^10.0.6",
+    "pluralize": "^8.0.0",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.4",

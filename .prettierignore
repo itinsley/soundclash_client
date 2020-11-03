@@ -25,3 +25,4 @@ node_modules
 tmp.js
 *.xml
 chromedriver.log
+README.md

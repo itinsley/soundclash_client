@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Avatar from "../shared/Avatar";
+import CountLabel from "../../components/CountLabel";
 
 class Clash extends Component {
   opponent(clash) {
@@ -51,7 +52,8 @@ class Clash extends Component {
                 src="https://res.cloudinary.com/soundclash/image/asset/comment-f01f9b1834a2e2bc80dae34d5cf70df3.svg"
                 width="20"
               />
-              {` ${clash.comments_count} comments`}
+              &nbsp;
+              <CountLabel label="Comment" count={clash.comments_count} />
             </span>
             <span className="text-size-xx-small p-2">
               <img
@@ -59,7 +61,7 @@ class Clash extends Component {
                 src="https://res.cloudinary.com/soundclash/image/asset/vinyl-record-a40f320b60a2c98f4e4479f85ee1d218.svg"
                 width="20"
               />
-              {` ${clash.tracks_count} tracks`}
+              <CountLabel label="Track" count={clash.tracks_count} />
             </span>
           </div>
         </div>
