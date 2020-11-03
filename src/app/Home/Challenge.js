@@ -18,7 +18,7 @@ const Challenge = (props) => {
   const [errors, setErrors] = useState([]);
   const uniqueRef = props.match.params.uniqueRef;
 
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithPopup } = useAuth0();
   useEffect(() => {
     loadChallenge(uniqueRef);
   }, []);
@@ -117,9 +117,7 @@ const Challenge = (props) => {
         className="t-comment-submit btn btn-dark btn-sm"
         type="submit"
         onClick={() => {
-          loginWithRedirect({
-            redirect_uri: "http://localhost:3000/xxxxx",
-          });
+          loginWithPopup();
         }}
       >
         Login or Sign up to start playing

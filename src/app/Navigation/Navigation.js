@@ -20,7 +20,7 @@ function Navigation(props) {
   const {
     user: auth0user,
     isAuthenticated,
-    loginWithRedirect,
+    loginWithPopup,
     logout,
     getAccessTokenSilently,
   } = useAuth0();
@@ -110,7 +110,7 @@ function Navigation(props) {
           <Button
             id="login"
             className="btn-link nav-link"
-            onClick={loginWithRedirect}
+            onClick={loginWithPopup}
           >
             Login/Sign Up
           </Button>
