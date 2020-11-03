@@ -10,15 +10,61 @@ import history from "../../history";
 import ErrorAlertContainer from "../../lib/ErrorAlertContainer";
 import HandleApiError from "../../api/HandleApiError";
 
+const AcceptChallengeAction = ({ uniqueRef, jwt, currentUser }) => {
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [errors, setErrors] = useState([]);
+  const [acceptButtonLoading, setAcceptButtonLoading] = useState(false);
+  const { loginWithPopup } = useAuth0();
+  // uniqueRef,
+  // jwt: props.jwt,
+  // currentUser: props.currentUser,
+
+  if (!currentUser) {
+    return (
+      <button
+        className="t-comment-submit btn btn-dark btn-sm"
+        type="submit"
+        onClick={() => {
+          loginWithPopup();
+        }}
+      >
+        Login or Sign up to start playing
+      </button>
+    );
+  }
+  return (
+    <Fragment>
+      <ErrorAlertContainer errors={errors} errorMessage={errorMessage} />
+      <button
+        className="t-comment-submit btn btn-dark btn-sm"
+        type="submit"
+        onClick={async () => {
+          setAcceptButtonLoading(true);
+          try {
+            const clash = await ClashApi.acceptChallenge(uniqueRef, jwt);
+            history.push(`/clashes/${clash.id}`);
+          } catch (err) {
+            const { errorMessage, errors } = HandleApiError(err);
+            setErrorMessage(errorMessage);
+            setErrors(errors);
+          }
+          setAcceptButtonLoading(false);
+        }}
+      >
+        <SpinnerButtonInner
+          label="Accept and start playing"
+          loading={acceptButtonLoading}
+        />
+      </button>
+    </Fragment>
+  );
+};
+
 const Challenge = (props) => {
   const [clash, setClash] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [AcceptButtonLoading, setAcceptButtonLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [errors, setErrors] = useState([]);
   const uniqueRef = props.match.params.uniqueRef;
 
-  const { loginWithPopup } = useAuth0();
   useEffect(() => {
     loadChallenge(uniqueRef);
   }, [uniqueRef]);
@@ -44,8 +90,13 @@ const Challenge = (props) => {
         </p>
         <p>has challenged you to a Soundclash:</p>
         <h2 className="u-text-truncate">{clash.name}</h2>
-        <ErrorAlertContainer errors={errors} errorMessage={errorMessage} />
-        <ChallengeActions />
+
+        <AcceptChallengeAction
+          currentUser={props.currentUser}
+          jwt={props.jwt}
+          uniqueRef={uniqueRef}
+        />
+
         <div className="u-s-mb-base">
           <div className="u-s-mb-base mx-auto text-center col-xs-12 col-sm-6">
             <div className="pb-4">
@@ -79,49 +130,6 @@ const Challenge = (props) => {
       </div>
     </Fragment>
   );
-
-  function ChallengeActions() {
-    if (props.currentUser) {
-      return (
-        <button
-          className="t-comment-submit btn btn-dark btn-sm"
-          type="submit"
-          onClick={async () => {
-            setAcceptButtonLoading(true);
-            try {
-              const clash = await ClashApi.acceptChallenge(
-                uniqueRef,
-                props.jwt
-              );
-              history.push(`/clashes/${clash.id}`);
-            } catch (err) {
-              const { errorMessage, errors } = HandleApiError(err);
-              setErrorMessage(errorMessage);
-              setErrors(errors);
-            }
-            setAcceptButtonLoading(false);
-          }}
-        >
-          <SpinnerButtonInner
-            label="Accept and start playing"
-            loading={AcceptButtonLoading}
-          />
-        </button>
-      );
-    }
-
-    return (
-      <button
-        className="t-comment-submit btn btn-dark btn-sm"
-        type="submit"
-        onClick={() => {
-          loginWithPopup();
-        }}
-      >
-        Login or Sign up to start playing
-      </button>
-    );
-  }
 
   async function loadChallenge(uniqueRef) {
     setLoading(true);
