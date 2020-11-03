@@ -70,7 +70,12 @@ The pattern is to avoid using connected redux components or containers unless ne
 All components depend only upon the properties passed in, this makes them pure Components and easily testable.
 
 # TODO
+## Features
+- AcceptChallenge ✅
+ - POST /clash_challenge/:unique_ref ✅
+ - Redirect to clash ✅
+ - Redirect back to challenge after Login 
 
-- Validate email address in Client when creating clash
-- Retain state in clash form so unlogged in user maintains clash details
-  - Have multiple reducers
+## Tech Debt
+- Have multiple reducers
+- Review file locations - lib/component

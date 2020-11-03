@@ -28,8 +28,23 @@ const forUser = async (jwt) => {
 
 const getChallenge = async (uniqueRef) => {
   const response = await axios.get(
-    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clash_challenges/${uniqueRef}`
+    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/challenge/${uniqueRef}`
   );
+  return response.data.data;
+};
+
+const acceptChallenge = async (uniqueRef, jwt) => {
+  const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/challenge/${uniqueRef}`;
+  const response = await axios.post(
+    uri,
+    {},
+    {
+      headers: {
+        Authorization: `bearer ${jwt}`,
+      },
+    }
+  );
+
   return response.data.data;
 };
 
@@ -61,6 +76,7 @@ const create = async (jwt, clash) => {
 };
 
 export default {
+  acceptChallenge,
   create,
   forUser,
   get,

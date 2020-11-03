@@ -6,12 +6,19 @@ import ClashApi from "../../api/Clashes";
 import Loading from "../../components/Loading";
 import SpinnerButtonInner from "../../lib/SpinnerButtonInner";
 import { useAuth0 } from "@auth0/auth0-react";
+import history from "../../history";
+import ErrorAlertContainer from "../../lib/ErrorAlertContainer";
+import HandleApiError from "../../api/HandleApiError";
 
 const Challenge = (props) => {
   const [clash, setClash] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [AcceptButtonLoading, setAcceptButtonLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [errors, setErrors] = useState([]);
   const uniqueRef = props.match.params.uniqueRef;
 
+  const { loginWithRedirect } = useAuth0();
   useEffect(() => {
     loadChallenge(uniqueRef);
   }, []);
@@ -37,7 +44,10 @@ const Challenge = (props) => {
         </p>
         <p>has challenged you to a Soundclash:</p>
         <h2 className="u-text-truncate">{clash.name}</h2>
-        <p>{/* <ChallengeActions /> */}</p>
+        <p>
+          <ErrorAlertContainer errors={errors} errorMessage={errorMessage} />
+          <ChallengeActions />
+        </p>
         <div className="u-s-mb-base">
           <div className="u-s-mb-base mx-auto text-center col-xs-12 col-sm-6">
             <div className="pb-4">
@@ -75,21 +85,44 @@ const Challenge = (props) => {
   function ChallengeActions() {
     if (props.currentUser) {
       return (
-        <button className="t-comment-submit btn btn-dark btn-sm" type="submit">
+        <button
+          className="t-comment-submit btn btn-dark btn-sm"
+          type="submit"
+          onClick={async () => {
+            setAcceptButtonLoading(true);
+            try {
+              const clash = await ClashApi.acceptChallenge(
+                uniqueRef,
+                props.jwt
+              );
+              history.push(`/clashes/${clash.id}`);
+            } catch (err) {
+              const { errorMessage, errors } = HandleApiError(err);
+              setErrorMessage(errorMessage);
+              setErrors(errors);
+            }
+            setAcceptButtonLoading(false);
+          }}
+        >
           <SpinnerButtonInner
             label="Accept and start playing"
-            loading={false}
+            loading={AcceptButtonLoading}
           />
         </button>
       );
     }
 
     return (
-      <button className="t-comment-submit btn btn-dark btn-sm" type="submit">
-        <SpinnerButtonInner
-          label="Login or Sign up to start playing"
-          loading={false}
-        />
+      <button
+        className="t-comment-submit btn btn-dark btn-sm"
+        type="submit"
+        onClick={() => {
+          loginWithRedirect({
+            redirect_uri: "http://localhost:3000/xxxxx",
+          });
+        }}
+      >
+        Login or Sign up to start playing
       </button>
     );
   }

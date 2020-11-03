@@ -36,6 +36,20 @@ describe("When errorMessage and multiple errors are provided", () => {
   });
 });
 
+describe("When errors are an array of strings", () => {
+  var wrapper;
+  beforeEach(() => {
+    const errorAlertComponent = (
+      <ErrorAlertContainer errors={["You are no good", "Your face is ugly"]} />
+    );
+    wrapper = shallow(errorAlertComponent);
+  });
+  test("it should show bare error detail", () => {
+    expect(wrapper.find("#err-0").text()).toBe(" You are no good");
+    expect(wrapper.find("#err-1").text()).toBe(" Your face is ugly");
+  });
+});
+
 describe("When no properties are provided", () => {
   var wrapper;
   beforeEach(() => {

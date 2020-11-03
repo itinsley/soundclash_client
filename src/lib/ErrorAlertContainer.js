@@ -3,10 +3,17 @@ import { Alert } from "reactstrap";
 var startCase = require("lodash.startcase");
 
 const errorList = (errors) => {
+  // If Error is not an object it will return a number for the property name element
+  const displayName = (name) => (isNaN(name) ? name : "");
+
   const toListItems = (errors) => {
     return Object.entries(errors).map(([name, description]) => {
-      const message = `${startCase(name)} ${description}`;
-      return <div key={name}>{message}</div>;
+      const message = `${startCase(displayName(name))} ${description}`;
+      return (
+        <div id={`err-${name}`} key={name}>
+          {message}
+        </div>
+      );
     });
   };
 
