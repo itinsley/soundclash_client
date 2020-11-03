@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import { Alert } from "reactstrap";
 var startCase = require("lodash.startcase");
 
@@ -21,7 +21,7 @@ const errorList = (errors) => {
 };
 
 const ErrorAlertContainer = (props) => {
-  if (!props.errorMessage && (props.errors || []).length == 0) {
+  if (!props.errorMessage && (props.errors || []).length === 0) {
     return null;
   }
 

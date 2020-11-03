@@ -4,13 +4,13 @@ import spinner from "../../assets/spinner.gif";
 import { fetchMyClashesAction } from "../../actions";
 import ConnectStore from "../../lib/ConnectStore";
 
-const MyClashes = (props) => {
+const MyClashes = ({ myClashes, dispatch }) => {
   useEffect(() => {
-    props.dispatch(fetchMyClashesAction);
-  }, []);
+    dispatch(fetchMyClashesAction);
+  }, [dispatch]);
 
   const clashTiles = () => {
-    if (props.myClashes.loading) {
+    if (myClashes.loading) {
       return (
         <img
           src={spinner}
@@ -19,8 +19,8 @@ const MyClashes = (props) => {
         />
       );
     }
-    if (props.myClashes.data.length > 0) {
-      const clashTiles = props.myClashes.data.map((clash) => (
+    if (myClashes.data.length > 0) {
+      const clashTiles = myClashes.data.map((clash) => (
         <ClashTile key={`clash-${clash.id}`} clash={clash} showFooter={true} />
       ));
       return clashTiles;

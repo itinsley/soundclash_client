@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React from "react";
 import { withAuth0 } from "@auth0/auth0-react";
 import ConnectStore from "../../lib/ConnectStore";
 import Loading from "../../components/Loading";
@@ -45,7 +45,7 @@ const CurrentUser = ({ currentUser }) => {
               </td>
               <td align="left">
                 {" "}
-                <img src={currentUser.image_url} />
+                <img alt="Current user avatar" src={currentUser.image_url} />
               </td>
             </tr>
           </tbody>

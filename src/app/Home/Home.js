@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { withAuth0 } from "@auth0/auth0-react";
 import RecentClashes from "./RecentClashes";
 import MyClashes from "./MyClashes";

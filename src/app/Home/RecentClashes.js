@@ -7,7 +7,7 @@ import { fetchRecentClashesAction } from "../../actions";
 const RecentClashes = ({ dispatch, recentClashes }) => {
   useEffect(() => {
     dispatch(fetchRecentClashesAction);
-  }, []);
+  }, [dispatch]);
 
   const clashTiles = () => {
     if (!recentClashes.loading) {

@@ -21,7 +21,7 @@ const Challenge = (props) => {
   const { loginWithPopup } = useAuth0();
   useEffect(() => {
     loadChallenge(uniqueRef);
-  }, []);
+  }, [uniqueRef]);
 
   if (loading) {
     return <Loading />;
@@ -44,10 +44,8 @@ const Challenge = (props) => {
         </p>
         <p>has challenged you to a Soundclash:</p>
         <h2 className="u-text-truncate">{clash.name}</h2>
-        <p>
-          <ErrorAlertContainer errors={errors} errorMessage={errorMessage} />
-          <ChallengeActions />
-        </p>
+        <ErrorAlertContainer errors={errors} errorMessage={errorMessage} />
+        <ChallengeActions />
         <div className="u-s-mb-base">
           <div className="u-s-mb-base mx-auto text-center col-xs-12 col-sm-6">
             <div className="pb-4">
@@ -129,7 +127,6 @@ const Challenge = (props) => {
     setLoading(true);
     const clash = await ClashApi.getChallenge(uniqueRef);
     setClash(clash);
-    console.log(clash, "CLASH");
     setLoading(false);
   }
 };

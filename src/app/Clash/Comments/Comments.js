@@ -51,7 +51,7 @@ class Comment extends Component {
       this.props.dispatch(refreshClashAction);
       this.clearFormState();
     } catch (err) {
-      const { errorMessage, errors, type } = HandleApiError(err);
+      const { errorMessage, errors } = HandleApiError(err);
       this.setState({
         errorMessage,
         errors,

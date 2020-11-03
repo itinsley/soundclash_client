@@ -16,7 +16,7 @@ import { setUserSessionAction, clearUserSessionAction } from "../../actions";
 import ErrorAlertContainer from "../../lib/ErrorAlertContainer";
 import Avatar from "../shared/Avatar";
 
-function Navigation(props) {
+function Navigation({ dispatch, currentUser, currentUserError }) {
   const {
     user: auth0user,
     isAuthenticated,
@@ -31,18 +31,18 @@ function Navigation(props) {
   // Set user and JWT in global state when auth0 user status changes
   useEffect(() => {
     if (auth0user == null) {
-      props.dispatch(clearUserSessionAction());
+      dispatch(clearUserSessionAction());
       return;
     }
 
     // Reset user session if auth0User different to session user
-    if (auth0user.email !== (props.currentUser && props.currentUser.email)) {
+    if (auth0user.email !== (currentUser && currentUser.email)) {
       (async () => {
         const jwt = await getAccessTokenSilently();
-        props.dispatch(setUserSessionAction(auth0user, jwt));
+        dispatch(setUserSessionAction(auth0user, jwt));
       })();
     }
-  }, []);
+  }, [dispatch, currentUser, auth0user, getAccessTokenSilently]);
 
   return (
     <div>
@@ -64,7 +64,7 @@ function Navigation(props) {
                 What is this?
               </NavLink>
             </NavItem>
-            <ErrorAlertContainer errorMessage={props.currentUserError} />
+            <ErrorAlertContainer errorMessage={currentUserError} />
             <LoginNav />
           </Nav>
         </Collapse>
@@ -73,7 +73,7 @@ function Navigation(props) {
   );
 
   function isLoggedIn() {
-    return isAuthenticated && props.currentUser;
+    return isAuthenticated && currentUser;
   }
 
   function loggedInNavItem() {
@@ -81,16 +81,12 @@ function Navigation(props) {
       <Fragment>
         <NavItem>
           <NavLink tag={Link} to="/user">
-            {props.currentUser.name}
+            {currentUser.name}
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink tag={Link} to="/user">
-            <Avatar
-              user={props.currentUser}
-              description="User avatar"
-              size="35"
-            />
+            <Avatar user={currentUser} description="User avatar" size="35" />
           </NavLink>
         </NavItem>
         <NavItem>
@@ -125,7 +121,7 @@ function Navigation(props) {
 
   async function doLogout() {
     logout();
-    props.dispatch(setUserSessionAction(null));
+    dispatch(setUserSessionAction(null));
   }
 }
 

@@ -118,7 +118,7 @@ const Challenge = (props) => {
       setState(DEFAULT_STATE);
       history.push(`/clashes/${newClash.id}`);
     } catch (err) {
-      const { errorMessage, errors, type } = HandleApiError(err);
+      const { errorMessage, errors } = HandleApiError(err);
       setState({
         errorMessage,
         errors,
