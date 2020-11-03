@@ -2,7 +2,11 @@ import React from "react";
 import { Alert } from "reactstrap";
 var startCase = require("lodash.startcase");
 
-const errorList = (errors) => {
+const listErrors = (errors) => {
+  if (!errors) {
+    return null;
+  }
+
   // If Error is not an object it will return a number for the property name element
   const displayName = (name) => (isNaN(name) ? name : "");
 
@@ -20,18 +24,18 @@ const errorList = (errors) => {
   return <div>{toListItems(errors)}</div>;
 };
 
-const ErrorAlertContainer = (props) => {
-  if (!props.errorMessage && (props.errors || []).length === 0) {
+const ErrorAlertContainer = ({ errorMessage, errors }) => {
+  if (!errorMessage && (errors || []).length === 0) {
     return null;
   }
 
   const message =
-    props.errorMessage ||
+    errorMessage ||
     "Unhandled exception occurred. Please try again. If the problem persists please email support@soundcla.sh";
   return (
     <Alert color="danger">
       <div className="font-weight-bold">{message}</div>
-      {props.errors && errorList(props.errors)}
+      {listErrors(errors)}
     </Alert>
   );
 };
