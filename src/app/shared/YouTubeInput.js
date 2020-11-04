@@ -20,6 +20,10 @@ const YouTubeInput = ({ state, setState }) => {
       showUrl: true,
       url: "",
     });
+    scrollReference.current.scrollIntoView({
+      block: "end",
+      behavior: "smooth",
+    });
   };
 
   const handleChange = (e) => {
@@ -48,9 +52,14 @@ const YouTubeInput = ({ state, setState }) => {
   };
 
   const [internalUrlState, setInternalUrlState] = useState("");
+  const scrollReference = React.createRef();
 
   return (
-    <div className="col text-center px-0 mx-0" style={{ width: "100%" }}>
+    <div
+      className="col text-center px-0 mx-0"
+      style={{ width: "100%" }}
+      ref={scrollReference}
+    >
       <input
         required
         value={internalUrlState}
