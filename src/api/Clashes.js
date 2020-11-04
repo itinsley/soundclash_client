@@ -7,9 +7,21 @@ const recent = async () => {
   return response.data.data;
 };
 
-const get = async (clashId, jwt = "") => {
+const get = async (clashId) => {
   const response = await axios.get(
     `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes/${clashId}`
+  );
+  return response.data.data;
+};
+
+const getAuthenticated = async (clashId, jwt) => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}//user/current/clashes/${clashId}`,
+    {
+      headers: {
+        Authorization: `bearer ${jwt}`,
+      },
+    }
   );
   return response.data.data;
 };
@@ -80,6 +92,7 @@ export default {
   create,
   forUser,
   get,
+  getAuthenticated,
   getChallenge,
   recent,
 };

@@ -80,3 +80,6 @@ All components depend only upon the properties passed in, this makes them pure C
 ## Tech Debt
 - Have multiple reducers
 - Review file locations - lib/component
+ - Challenge components
+- Handle not logged in for /user
+- Can we get rid of currentClash? State should come from the url

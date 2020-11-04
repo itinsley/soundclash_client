@@ -16,7 +16,7 @@ class CurrentRound extends Component {
     const clash = this.props.currentClash.data;
     const state = ClashWorkflow.state(clash, currentUser);
 
-    const props = { clash, currentUser };
+    const props = { clash };
     const previousTrack = clash.tracks[clash.tracks.length - 1];
 
     console.log(state);

@@ -1,9 +1,12 @@
 import React from "react";
+import ConnectStore from "../../../lib/ConnectStore";
 import Track from "../Track/Track";
+import AcceptChallengeActionComponent from "../../Home/AcceptChallengeActionComponent";
+import fetchClashAction from "../../../actions/fetchClashAction";
 
-function ReadyToAccept(props) {
-  const { clash } = props;
+function ReadyToAccept({ clash, currentUser, jwt, dispatch }) {
   const owner_track = clash.owner_track;
+  const uniqueRef = clash.private_info.unique_ref;
 
   return (
     <div className="col-sm-12 text-center p-3">
@@ -19,6 +22,16 @@ function ReadyToAccept(props) {
             <div>
               You have been challenged to a soundclash by {clash.owner.name}
             </div>
+            <div className="mt-3">
+              <AcceptChallengeActionComponent
+                {...{
+                  currentUser,
+                  jwt,
+                  uniqueRef,
+                  onSuccess: () => dispatch(fetchClashAction(clash.id)),
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -26,4 +39,4 @@ function ReadyToAccept(props) {
   );
 }
 
-export default ReadyToAccept;
+export default ConnectStore(ReadyToAccept);
