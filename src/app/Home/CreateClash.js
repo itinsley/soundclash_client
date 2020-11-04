@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
 import SpinnerButtonInner from "../shared/SpinnerButtonInner";
-import youtube from "../../lib/youtube";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackspace } from "@fortawesome/free-solid-svg-icons";
+import YouTubeInput from "../shared/YouTubeInput";
 import ConnectStore from "../../lib/ConnectStore";
 import ClashApi from "../../api/Clashes";
 import HandleApiError from "../../api/HandleApiError";
@@ -16,10 +14,7 @@ const LOCAL_STORAGE_STATE_KEY = "createClash";
 const DEFAULT_SESSION_STATE = {
   clashName: "",
   opponentEmailAddress: "",
-  youTubeUrl: "",
-  trackName: "",
   commentText: "",
-  showYouTubeUrl: true,
 };
 const DEFAULT_STATE = {
   errors: [],
@@ -28,6 +23,12 @@ const DEFAULT_STATE = {
 };
 
 const Challenge = (props) => {
+  const [youTubeState, setYouTubeState] = useState({
+    url: "",
+    trackName: "",
+    showUrl: true,
+  });
+
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   const updateSessionState = (item) => {
@@ -57,25 +58,6 @@ const Challenge = (props) => {
     e.target.setCustomValidity("");
   };
 
-  const youTubeUrl_AfterChange = async (e) => {
-    if (sessionState.youTubeUrl === "") {
-      return;
-    }
-
-    try {
-      e.persist();
-      const trackName = await youtube.getTitle(sessionState.youTubeUrl);
-      updateSessionState({
-        trackName,
-        showYouTubeUrl: false,
-      });
-    } catch (error) {
-      e.target.setCustomValidity(
-        "Invalid YouTube URL. Please review and try again."
-      );
-    }
-  };
-
   const email_AfterChange = (e) => {
     if (!EmailValidator.validate(e.target.value)) {
       e.target.setCustomValidity(
@@ -84,14 +66,6 @@ const Challenge = (props) => {
     } else {
       e.target.setCustomValidity("");
     }
-  };
-
-  const clearUrl_HandleClick = (e) => {
-    e.preventDefault();
-    updateSessionState({
-      showYouTubeUrl: true,
-      youTubeUrl: "",
-    });
   };
 
   const handleSubmit = async (event) => {
@@ -105,8 +79,8 @@ const Challenge = (props) => {
     const clash = {
       name: sessionState.clashName,
       opponentEmailAddress: sessionState.opponentEmailAddress,
-      youTubeUrl: sessionState.youTubeUrl,
-      trackName: sessionState.trackName,
+      youTubeUrl: youTubeState.url,
+      trackName: youTubeState.trackName,
       commentText: sessionState.commentText,
     };
 
@@ -127,7 +101,6 @@ const Challenge = (props) => {
     }
   };
 
-  const embedYouTubeUrl = youtube.embedUrl(sessionState.youTubeUrl);
   return (
     <div ref={useRef()} className="container-fluid challenge">
       <div
@@ -175,35 +148,7 @@ const Challenge = (props) => {
             </div>
 
             <div className="row py-2 px-0 mx-0">
-              <div
-                className="col text-center px-0 mx-0"
-                style={{ width: "100%" }}
-              >
-                <input
-                  required
-                  value={sessionState.youTubeUrl}
-                  hidden={!sessionState.showYouTubeUrl}
-                  className="form-control"
-                  name="youTubeUrl"
-                  placeholder="Put your YouTube tune url here!"
-                  onChange={handleChange}
-                  onBlur={youTubeUrl_AfterChange}
-                  style={{ background: "none" }}
-                />
-
-                {!sessionState.showYouTubeUrl &&
-                  youtube.iframe(embedYouTubeUrl, sessionState.trackName)}
-                {!sessionState.showYouTubeUrl && (
-                  <button
-                    className="mt-1 btn btn-dark text-uppercase"
-                    type="submit"
-                    title="Enter a different track URL"
-                    onClick={clearUrl_HandleClick}
-                  >
-                    <FontAwesomeIcon icon={faBackspace} size="lg" />
-                  </button>
-                )}
-              </div>
+              <YouTubeInput state={youTubeState} setState={setYouTubeState} />
             </div>
 
             <div className="row py-2 px-0 mx-0">
