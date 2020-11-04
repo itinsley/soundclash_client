@@ -6,7 +6,7 @@ import history from "../../history";
 import ErrorAlertContainer from "../../lib/ErrorAlertContainer";
 import HandleApiError from "../../api/HandleApiError";
 
-const AcceptChallengeAction = ({ uniqueRef, jwt, currentUser }) => {
+const AcceptChallengeActionComponent = ({ uniqueRef, jwt, currentUser }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [errors, setErrors] = useState([]);
   const [acceptButtonLoading, setAcceptButtonLoading] = useState(false);
@@ -59,4 +59,4 @@ const LoginOrSignUpButton = () => {
   );
 };
 
-export default AcceptChallengeAction;
+export default AcceptChallengeActionComponent;

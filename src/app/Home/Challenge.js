@@ -4,7 +4,7 @@ import ConnectStore from "../../lib/ConnectStore";
 import Avatar from "../shared/Avatar";
 import ClashApi from "../../api/Clashes";
 import Loading from "../../components/Loading";
-import AcceptChallengeAction from "./AcceptChallengeAction";
+import AcceptChallengeActionComponent from "./AcceptChallengeActionComponent";
 
 const Challenge = (props) => {
   const [clash, setClash] = useState(null);
@@ -38,7 +38,7 @@ const Challenge = (props) => {
         <h2 className="u-text-truncate">{clash.name}</h2>
 
         <div className="pb-3">
-          <AcceptChallengeAction
+          <AcceptChallengeActionComponent
             currentUser={props.currentUser}
             jwt={props.jwt}
             uniqueRef={uniqueRef}
