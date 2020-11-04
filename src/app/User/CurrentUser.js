@@ -1,7 +1,7 @@
 import React from "react";
 import { withAuth0 } from "@auth0/auth0-react";
 import ConnectStore from "../../lib/ConnectStore";
-import Loading from "../../components/Loading";
+import Loading from "../shared/Loading";
 
 const CurrentUser = ({ currentUser }) => {
   if (!currentUser) {

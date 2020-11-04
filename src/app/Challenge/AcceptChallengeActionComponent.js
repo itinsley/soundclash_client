@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from "react";
-import SpinnerButtonInner from "../../lib/SpinnerButtonInner";
+import SpinnerButtonInner from "../shared/SpinnerButtonInner";
 import ClashApi from "../../api/Clashes";
 import { useAuth0 } from "@auth0/auth0-react";
-import ErrorAlertContainer from "../../lib/ErrorAlertContainer";
+import ErrorAlertContainer from "../shared/ErrorAlertContainer";
 import HandleApiError from "../../api/HandleApiError";
 
 const AcceptChallengeActionComponent = ({

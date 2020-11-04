@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SpinnerButtonInner from "../../../lib/SpinnerButtonInner";
+import SpinnerButtonInner from "../../shared/SpinnerButtonInner";
 import youtube from "../../../lib/youtube";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackspace } from "@fortawesome/free-solid-svg-icons";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import Loading from "./components/Loading";
+import Loading from "./app/shared/Loading";
 import Navigation from "./app/Navigation/Navigation";
 import Home from "./app/Home/Home";
 import About from "./app/About/About";

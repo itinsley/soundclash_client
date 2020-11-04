@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ClashTile from "./ClashTile";
-import Loading from "../../components/Loading";
+import Loading from "../shared/Loading";
 import ConnectStore from "../../lib/ConnectStore";
 import { fetchRecentClashesAction } from "../../actions";
 

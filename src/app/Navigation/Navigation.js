@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import { setUserSessionAction, clearUserSessionAction } from "../../actions";
-import ErrorAlertContainer from "../../lib/ErrorAlertContainer";
+import ErrorAlertContainer from "../shared/ErrorAlertContainer";
 import Avatar from "../shared/Avatar";
 
 function Navigation({ dispatch, currentUser, currentUserError }) {

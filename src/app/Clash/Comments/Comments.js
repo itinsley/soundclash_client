@@ -2,10 +2,10 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import CommentItem from "./CommentItem";
 import Avatar from "../../shared/Avatar";
-import SpinnerButtonInner from "../../../lib/SpinnerButtonInner";
+import SpinnerButtonInner from "../../shared/SpinnerButtonInner";
 import CommentApi from "../../../api/Comments";
 import HandleApiError from "../../../api/HandleApiError";
-import ErrorAlertContainer from "../../../lib/ErrorAlertContainer";
+import ErrorAlertContainer from "../../shared/ErrorAlertContainer";
 import { refreshClashAction } from "../../../actions";
 
 const DEFAULT_STATE = {

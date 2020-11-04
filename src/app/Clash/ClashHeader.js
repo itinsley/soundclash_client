@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Avatar from "../shared/Avatar";
-import CountLabel from "../../components/CountLabel";
+import CountLabel from "../shared/CountLabel";
 
 class Clash extends Component {
   opponent(clash) {

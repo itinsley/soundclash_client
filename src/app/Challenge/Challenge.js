@@ -3,7 +3,7 @@ import { withAuth0 } from "@auth0/auth0-react";
 import ConnectStore from "../../lib/ConnectStore";
 import Avatar from "../shared/Avatar";
 import ClashApi from "../../api/Clashes";
-import Loading from "../../components/Loading";
+import Loading from "../shared/Loading";
 import AcceptChallengeActionComponent from "./AcceptChallengeActionComponent";
 import history from "../../history";
 

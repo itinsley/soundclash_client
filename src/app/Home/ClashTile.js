@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import CountLabel from "../../components/CountLabel";
+import CountLabel from "../shared/CountLabel";
 
 function Footer(props) {
   if (props.show) {

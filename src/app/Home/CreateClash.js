@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react";
-import SpinnerButtonInner from "../../lib/SpinnerButtonInner";
+import SpinnerButtonInner from "../shared/SpinnerButtonInner";
 import youtube from "../../lib/youtube";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackspace } from "@fortawesome/free-solid-svg-icons";
 import ConnectStore from "../../lib/ConnectStore";
 import ClashApi from "../../api/Clashes";
 import HandleApiError from "../../api/HandleApiError";
-import ErrorAlertContainer from "../../lib/ErrorAlertContainer";
+import ErrorAlertContainer from "../shared/ErrorAlertContainer";
 import EmailValidator from "email-validator";
 import history from "../../history";
 import useStickyState from "../../lib/useStickyState";
