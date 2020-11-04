@@ -78,8 +78,7 @@ All components depend only upon the properties passed in, this makes them pure C
  - Pick up default user picture after social login - but allow it to be changed
 
 ## Tech Debt
-- Have multiple reducers
 - Review file locations - lib/component
- - Challenge components
+ - Challenge components ✅
 - Handle not logged in for /user
 - Can we get rid of currentClash? State should come from the url

@@ -1,7 +1,7 @@
 import React from "react";
 import ConnectStore from "../../../lib/ConnectStore";
 import Track from "../Track/Track";
-import AcceptChallengeActionComponent from "../../Home/AcceptChallengeActionComponent";
+import AcceptChallengeActionComponent from "../../Challenge/AcceptChallengeActionComponent";
 import fetchClashAction from "../../../actions/fetchClashAction";
 
 function ReadyToAccept({ clash, currentUser, jwt, dispatch }) {
