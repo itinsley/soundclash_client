@@ -23,13 +23,16 @@ const DEFAULT_STATE = {
 };
 
 const Challenge = (props) => {
-  const [youTubeState, setYouTubeState] = useState({
-    url: "",
-    trackName: "",
-    showUrl: true,
-  });
+  const [youTubeState, setYouTubeState] = useStickyState(
+    {
+      url: "",
+      trackName: "",
+      showUrl: true,
+    },
+    "createClashYouTubeInput"
+  );
 
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithPopup } = useAuth0();
 
   const updateSessionState = (item) => {
     const newState = Object.assign({ ...sessionState }, item);
@@ -72,7 +75,7 @@ const Challenge = (props) => {
     event.preventDefault();
 
     if (!isAuthenticated) {
-      loginWithRedirect();
+      loginWithPopup();
       return;
     }
 

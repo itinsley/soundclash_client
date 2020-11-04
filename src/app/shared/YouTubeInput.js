@@ -51,7 +51,7 @@ const YouTubeInput = ({ state, setState }) => {
     }
   };
 
-  const [internalUrlState, setInternalUrlState] = useState("");
+  const [internalUrlState, setInternalUrlState] = useState(state.url);
   const scrollReference = React.createRef();
 
   return (
