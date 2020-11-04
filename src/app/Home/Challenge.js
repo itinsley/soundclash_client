@@ -5,6 +5,7 @@ import Avatar from "../shared/Avatar";
 import ClashApi from "../../api/Clashes";
 import Loading from "../../components/Loading";
 import AcceptChallengeActionComponent from "./AcceptChallengeActionComponent";
+import history from "../../history";
 
 const Challenge = (props) => {
   const [clash, setClash] = useState(null);
@@ -42,6 +43,7 @@ const Challenge = (props) => {
             currentUser={props.currentUser}
             jwt={props.jwt}
             uniqueRef={uniqueRef}
+            onSuccess={() => history.push(`/clashes/${clash.id}`)}
           />
         </div>
 
