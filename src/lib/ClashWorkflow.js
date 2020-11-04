@@ -27,7 +27,7 @@ const state = (clash, player) => {
     if (player === null) {
       return STATES.Hidden;
     }
-    if (clash.owner.email === player.email) {
+    if (clash.owner.id === player.id) {
       return STATES.Upload;
     } else if (clash.opponent === player) {
       return STATES.AwaitingPlayer;
@@ -37,7 +37,8 @@ const state = (clash, player) => {
   }
   if (clash.state === "awaiting_opponent") {
     console.log(clash);
-    if (player === null || clash.opponent.email !== player.email) {
+    console.log(player);
+    if (player === null || clash.opponent.id !== player.id) {
       return STATES.DisplayInfo;
     } else {
       return STATES.Upload;
