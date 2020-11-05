@@ -1,158 +1,111 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import SpinnerButtonInner from "../../shared/SpinnerButtonInner";
-import youtube from "../../../lib/youtube";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackspace } from "@fortawesome/free-solid-svg-icons";
+import YouTubeInput from "../../shared/YouTubeInput";
+import Loading from "../../shared/Loading";
+import { useAuth0 } from "@auth0/auth0-react";
+import ErrorAlertContainer from "../../shared/ErrorAlertContainer";
 
-class Upload extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      youTubeUrl: "",
-      trackName: "",
-      commentText: "",
-      loading: false,
-      showYouTubeUrl: true,
+const Upload = ({ clash, createTrack, clearError, error }) => {
+  const { isAuthenticated, loginWithPopup } = useAuth0();
+  const [youTubeState, setYouTubeState] = useState(YouTubeInput.DEFAULT_STATE);
+  const [commentText, setCommentText] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const commentText_handleChange = (e) => {
+    setCommentText(e.target.value);
+  };
+
+  const clearState = () => {
+    setCommentText("");
+    setYouTubeState(YouTubeInput.DEFAULT_STATE);
+    clearError();
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setLoading(true);
+    const track = {
+      commentText: commentText,
+      youTubeUrl: youTubeState.url,
+      name: youTubeState.trackName,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.youTubeUrl_AfterChange = this.youTubeUrl_AfterChange.bind(this);
-    this.clearUrl_HandleClick = this.clearUrl_HandleClick.bind(this);
-    this.scrollReference = React.createRef();
+    createTrack(track, clash.id);
+    setLoading(false);
   }
 
-  async youTubeUrl_AfterChange(e) {
-    if (this.state.youTubeUrl === "") {
-      return;
-    }
-    try {
-      const trackName = await youtube.getTitle(this.state.youTubeUrl);
-      this.setState({
-        trackName,
-        showYouTubeUrl: false,
-      });
-    } catch (error) {
-      alert("Invalid YouTube URL. Please review and try again.");
-    }
+  if (!isAuthenticated) {
+    loginWithPopup();
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  if (!clash.private_info.other_player) {
+    return <Loading />;
   }
 
-  clearUrl_HandleClick(event) {
-    event.preventDefault();
-    this.setState({
-      showYouTubeUrl: true,
-      youTubeUrl: "",
-    });
-    this.scrollReference.current.scrollIntoView({ behavior: "smooth" });
-  }
+  const previousTrack = clash.tracks[clash.tracks.length - 1];
+  const otherPlayer = clash.private_info.other_player;
 
-  async handleSubmit(event) {
-    event.preventDefault();
-    this.setState({ loading: true });
-    this.props.createTrack({
-      commentText: this.state.commentText,
-      youTubeUrl: this.state.youTubeUrl,
-      name: this.state.trackName,
-    });
-  }
+  return (
+    <div className="container-fluid current-round-intro">
+      <div
+        className="t-clash-status mx-auto text-center p-3"
+        style={{ maxWidth: "40.25rem" }}
+      >
+        <p>
+          <strong>{otherPlayer.name}</strong> just played{" "}
+          <em>{previousTrack.name}</em>
+        </p>
+        <p>
+          <strong>Now it's your turn...</strong>
+        </p>
 
-  render() {
-    const clash = this.props.clash;
-    const embedYouTubeUrl = youtube.embedUrl(this.state.youTubeUrl);
+        <div style={{ maxWidth: "37.5rem" }}>
+          <form onSubmit={handleSubmit}>
+            <ErrorAlertContainer {...error} />
 
-    //Belt and braces on private information
-    if (clash.private_info.current_user_is_involved) {
-      const previousTrack = clash.tracks[clash.tracks.length - 1];
-      const otherPlayer = clash.private_info.other_player;
-      return (
-        <div
-          ref={this.scrollReference}
-          className="container-fluid current-round-intro"
-        >
-          <div
-            className="t-clash-status mx-auto text-center p-3"
-            style={{ maxWidth: "40.25rem" }}
-          >
-            <p>
-              <strong>{otherPlayer.name}</strong> just played{" "}
-              <em>{previousTrack.name}</em>
-            </p>
-            <p>
-              <strong>Now it's your turn...</strong>
-            </p>
-
-            <div style={{ maxWidth: "37.5rem" }}>
-              <form onSubmit={this.handleSubmit}>
-                <div className="row py-2 px-0 mx-0">
-                  <div
-                    className="col text-center px-0 mx-0"
-                    style={{ width: "100%" }}
-                  >
-                    {this.state.showYouTubeUrl && (
-                      <input
-                        required
-                        value={this.state.youTubeUrl}
-                        className="form-control"
-                        name="youTubeUrl"
-                        placeholder="Put your YouTube tune url here!"
-                        onChange={this.handleChange}
-                        onBlur={this.youTubeUrl_AfterChange}
-                        style={{ background: "none" }}
-                      />
-                    )}
-
-                    {!this.state.showYouTubeUrl &&
-                      youtube.iframe(embedYouTubeUrl, this.state.trackName)}
-                    {!this.state.showYouTubeUrl && (
-                      <button
-                        className="mt-1 btn btn-dark text-uppercase"
-                        type="submit"
-                        title="Enter a different track URL"
-                        onClick={this.clearUrl_HandleClick}
-                      >
-                        <FontAwesomeIcon icon={faBackspace} size="lg" />
-                      </button>
-                    )}
-                  </div>
-                </div>
-                <div className="row py-2 px-0 mx-0">
-                  <div className="col text-left px-0 mx-0">
-                    <textarea
-                      type="text"
-                      required
-                      value={this.state.commentText}
-                      className="form-control"
-                      name="commentText"
-                      placeholder="Say what you have to say"
-                      onChange={this.handleChange}
-                      style={{ background: "none" }}
-                    />
-                  </div>
-                </div>
-                <div className="py-0 px-0 mx-auto text-center ">
-                  <div className="px-0 ">
-                    <button
-                      className="btn btn-dark text-uppercase"
-                      type="submit"
-                    >
-                      <SpinnerButtonInner
-                        label="Submit"
-                        loading={this.state.loading}
-                      />
-                    </button>
-                  </div>
-                </div>
-              </form>
+            <div className="row py-2 px-0 mx-0">
+              <YouTubeInput.Component
+                state={youTubeState}
+                setState={setYouTubeState}
+              />
             </div>
-          </div>
+
+            <div className="row py-2 px-0 mx-0">
+              <div className="col text-left px-0 mx-0">
+                <textarea
+                  type="text"
+                  required
+                  value={commentText}
+                  className="form-control"
+                  name="commentText"
+                  placeholder="Say what you have to say"
+                  onChange={commentText_handleChange}
+                  style={{ background: "none" }}
+                />
+              </div>
+            </div>
+            <div className="py-0 px-0 mx-auto text-center ">
+              <div className="px-0 ">
+                <button
+                  className="btn btn-dark text-uppercase mr-3"
+                  type="submit"
+                >
+                  <SpinnerButtonInner label="Submit" loading={loading} />
+                </button>
+                <button
+                  id="clearForm"
+                  className="btn btn-dark text-uppercase"
+                  type="button"
+                  onClick={clearState}
+                >
+                  Clear
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      );
-    }
-    return null;
-  }
-}
+      </div>
+    </div>
+  );
+};
 
 export default Upload;

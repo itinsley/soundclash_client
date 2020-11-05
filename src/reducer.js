@@ -21,11 +21,29 @@ const defaultState = {
   currentUser: null,
   currentUserError: "",
   jwt: null,
+  error: {
+    errorMessage: "",
+    errors: [],
+  },
 };
 
 // Reducer
 function reducer(state = defaultState, action) {
   switch (action.type) {
+    case "SET_ERROR":
+      return {
+        ...state,
+        error: action.error,
+      };
+    case "CLEAR_ERROR":
+      return {
+        ...state,
+        error: {
+          errorMessage: "",
+          errors: [],
+        },
+      };
+
     case "GET_RECENT_CLASHES":
       return {
         ...state,

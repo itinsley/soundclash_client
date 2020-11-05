@@ -1,19 +1,22 @@
 import Upload from "./Upload";
-import createTrackAction from "../../../actions/createTrackAction";
+import { createTrackAction, clearErrorAction } from "../../../actions";
 import { connect } from "react-redux";
 
 const mapProps = (state, ownProps) => {
-  console.log("Uokoiadcitauber", state);
   return {
     clash: state.currentClash.data,
     currentUser: state.currentUser,
+    error: state.error,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createTrack: (track) => {
-      dispatch(createTrackAction(track));
+    createTrack: (track, clashId) => {
+      dispatch(createTrackAction(track, clashId));
+    },
+    clearError: () => {
+      dispatch(clearErrorAction());
     },
   };
 };

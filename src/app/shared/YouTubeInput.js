@@ -26,6 +26,7 @@ const Component = ({ state, setState }) => {
       showUrl: true,
       url: "",
     });
+    setInternalUrlState("");
     scrollReference.current.scrollIntoView({
       block: "end",
       behavior: "smooth",

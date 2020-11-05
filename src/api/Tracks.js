@@ -10,13 +10,18 @@ import axios from "axios";
  * @param {string} track.youTubeUrl
  */
 const create = async (jwt, clashId, track) => {
-  const uri = `/api/clashes/${clashId}/tracks?jwt=${jwt}`;
-  const response = await axios.post(uri, {
+  const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes/${clashId}/tracks`;
+  const payload = {
     url: track.youTubeUrl,
     comment_text: track.commentText,
     name: track.name,
+  };
+
+  return await axios.post(uri, payload, {
+    headers: {
+      Authorization: `bearer ${jwt}`,
+    },
   });
-  return response;
 };
 
 export default {

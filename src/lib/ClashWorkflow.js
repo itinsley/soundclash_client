@@ -36,8 +36,6 @@ const state = (clash, player) => {
     }
   }
   if (clash.state === "awaiting_opponent") {
-    console.log(clash);
-    console.log(player);
     if (player === null || clash.opponent.id !== player.id) {
       return STATES.DisplayInfo;
     } else {

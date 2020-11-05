@@ -19,12 +19,11 @@ class CurrentRound extends Component {
     const props = { clash };
     const previousTrack = clash.tracks[clash.tracks.length - 1];
 
-    console.log(state);
     switch (state) {
       case ClashWorkflow.STATES.ReadyToAccept:
         return <ReadyToAccept />;
       case ClashWorkflow.STATES.Upload:
-        return <UploadContainer {...props} />;
+        return <UploadContainer />;
       case ClashWorkflow.STATES.DisplayInfo:
         return (
           <PartialRound
