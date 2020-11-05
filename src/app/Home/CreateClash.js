@@ -69,8 +69,14 @@ const CreateClash = (props) => {
     }
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const clearState = () => {
+    setSessionState(DEFAULT_SESSION_STATE);
+    setState(DEFAULT_STATE);
+    setYouTubeState(YouTubeInput.DEFAULT_STATE);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     if (!isAuthenticated) {
       loginWithPopup();
@@ -95,9 +101,7 @@ const CreateClash = (props) => {
       setState({ ...state, loading: true });
       const response = await ClashApi.create(props.jwt, clash);
       const newClash = response.data.data.clash;
-      setSessionState(DEFAULT_SESSION_STATE);
-      setState(DEFAULT_STATE);
-      setYouTubeState(YouTubeInput.DEFAULT_STATE);
+      clearState();
       history.push(`/clashes/${newClash.id}`);
     } catch (err) {
       const { errorMessage, errors } = HandleApiError(err);
@@ -183,13 +187,21 @@ const CreateClash = (props) => {
               <div className="px-0 ">
                 <button
                   id="createTrack"
-                  className="btn btn-dark text-uppercase"
+                  className="btn btn-dark text-uppercase mr-3"
                   type="submit"
                 >
                   <SpinnerButtonInner
                     label="Submit"
                     loading={sessionState.loading}
                   />
+                </button>
+                <button
+                  id="clearForm"
+                  className="btn btn-dark text-uppercase"
+                  type="button"
+                  onClick={clearState}
+                >
+                  Clear
                 </button>
               </div>
             </div>
