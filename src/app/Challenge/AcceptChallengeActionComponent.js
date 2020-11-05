@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 import SpinnerButtonInner from "../shared/SpinnerButtonInner";
 import ClashApi from "../../api/Clashes";
-import { useAuth0 } from "@auth0/auth0-react";
 import ErrorAlertContainer from "../shared/ErrorAlertContainer";
 import HandleApiError from "../../api/HandleApiError";
+import LoginOrSignUpButton from "../shared/LoginOrSignUpButton";
 
 const AcceptChallengeActionComponent = ({
   uniqueRef,
@@ -44,22 +44,6 @@ const AcceptChallengeActionComponent = ({
         />
       </button>
     </Fragment>
-  );
-};
-
-const LoginOrSignUpButton = () => {
-  const { loginWithPopup } = useAuth0();
-
-  return (
-    <button
-      className="t-comment-submit btn btn-dark btn-sm"
-      type="submit"
-      onClick={() => {
-        loginWithPopup();
-      }}
-    >
-      Login or Sign up to start playing
-    </button>
   );
 };
 
