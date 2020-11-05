@@ -23,12 +23,10 @@ const DEFAULT_STATE = {
 };
 
 const Challenge = (props) => {
+  const errorScrollRef = React.createRef();
+
   const [youTubeState, setYouTubeState] = useStickyState(
-    {
-      url: "",
-      trackName: "",
-      showUrl: true,
-    },
+    YouTubeInput.DEFAULT_STATE,
     "createClashYouTubeInput"
   );
 
@@ -87,12 +85,19 @@ const Challenge = (props) => {
       commentText: sessionState.commentText,
     };
 
+    console.log(clash, "clash to post");
+    errorScrollRef.current.scrollIntoView({
+      block: "end",
+      behavior: "smooth",
+    });
+
     try {
       setState({ ...state, loading: true });
       const response = await ClashApi.create(props.jwt, clash);
       const newClash = response.data.data.clash;
       setSessionState(DEFAULT_SESSION_STATE);
       setState(DEFAULT_STATE);
+      setYouTubeState(YouTubeInput.DEFAULT_STATE);
       history.push(`/clashes/${newClash.id}`);
     } catch (err) {
       const { errorMessage, errors } = HandleApiError(err);
@@ -112,10 +117,12 @@ const Challenge = (props) => {
       >
         <h1>Challenge someone...</h1>
 
-        <ErrorAlertContainer
-          errors={state.errors}
-          errorMessage={state.errorMessage}
-        />
+        <div ref={errorScrollRef}>
+          <ErrorAlertContainer
+            errors={state.errors}
+            errorMessage={state.errorMessage}
+          />
+        </div>
 
         <div style={{ maxWidth: "37.5rem" }}>
           <form onSubmit={handleSubmit}>
@@ -151,7 +158,10 @@ const Challenge = (props) => {
             </div>
 
             <div className="row py-2 px-0 mx-0">
-              <YouTubeInput state={youTubeState} setState={setYouTubeState} />
+              <YouTubeInput.Component
+                state={youTubeState}
+                setState={setYouTubeState}
+              />
             </div>
 
             <div className="row py-2 px-0 mx-0">

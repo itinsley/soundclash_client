@@ -3,6 +3,12 @@ import youtube from "../../lib/youtube";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackspace } from "@fortawesome/free-solid-svg-icons";
 
+const DEFAULT_STATE = {
+  url: "",
+  trackName: "",
+  showUrl: true,
+};
+
 /**
  *
  * @param {string} state.url
@@ -11,7 +17,7 @@ import { faBackspace } from "@fortawesome/free-solid-svg-icons";
  * @param {funtion} setState
  *
  */
-const YouTubeInput = ({ state, setState }) => {
+const Component = ({ state, setState }) => {
   const embedYouTubeUrl = () => youtube.embedUrl(state.url);
 
   const clearUrl_HandleClick = (e) => {
@@ -86,4 +92,7 @@ const YouTubeInput = ({ state, setState }) => {
   );
 };
 
-export default YouTubeInput;
+export default {
+  Component,
+  DEFAULT_STATE,
+};

@@ -72,10 +72,12 @@ All components depend only upon the properties passed in, this makes them pure C
 # TODO
 ## Features
 - AcceptChallenge ✅
- - POST /clash_challenge/:unique_ref ✅
- - Redirect to clash ✅
- - Redirect back to challenge after Login 
- - Pick up default user picture after social login - but allow it to be changed
+  - POST /clash_challenge/:unique_ref ✅
+  - Redirect to clash ✅
+  - Redirect back to challenge after Login ✅
+- Pick up default user picture after social login - but allow it to be changed
+- Scroll to error message
+
 
 ## Tech Debt
 - Review file locations - lib/component
