@@ -22,7 +22,7 @@ const DEFAULT_STATE = {
   loading: false,
 };
 
-const Challenge = (props) => {
+const CreateClash = (props) => {
   const errorScrollRef = React.createRef();
 
   const [youTubeState, setYouTubeState] = useStickyState(
@@ -200,4 +200,4 @@ const Challenge = (props) => {
   );
 };
 
-export default ConnectStore(Challenge);
+export default ConnectStore(CreateClash);
