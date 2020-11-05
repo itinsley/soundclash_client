@@ -22,7 +22,7 @@ class CurrentRound extends Component {
     console.log(state);
     switch (state) {
       case ClashWorkflow.STATES.ReadyToAccept:
-        return <ReadyToAccept {...props} />;
+        return <ReadyToAccept />;
       case ClashWorkflow.STATES.Upload:
         return <UploadContainer {...props} />;
       case ClashWorkflow.STATES.DisplayInfo:

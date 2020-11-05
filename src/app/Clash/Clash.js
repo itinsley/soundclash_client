@@ -26,7 +26,7 @@ const Clash = ({ dispatch, match, currentClash, currentUser }) => {
     return (
       <Fragment>
         <ClashHeader clash={clash} />
-        <CurrentRound />
+        <CurrentRound clash={clash} />
         <RoundsList rounds={clash.rounds} />
       </Fragment>
     );

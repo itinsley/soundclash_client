@@ -4,7 +4,8 @@ import Track from "../Track/Track";
 import AcceptChallengeActionComponent from "../../Challenge/AcceptChallengeActionComponent";
 import fetchClashAction from "../../../actions/fetchClashAction";
 
-function ReadyToAccept({ clash, currentUser, jwt, dispatch }) {
+function ReadyToAccept({ currentClash, currentUser, jwt, dispatch }) {
+  const clash = currentClash.data;
   const owner_track = clash.owner_track;
   const uniqueRef = clash.private_info.unique_ref;
 

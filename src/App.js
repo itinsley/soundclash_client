@@ -37,8 +37,8 @@ const App = () => {
         <div id="app">
           <Navigation />
           <Switch>
-            <Route path="/about" render={(props) => <About />} />
-            <Route path="/user" render={(props) => <CurrentUser />} />
+            <Route path="/about" render={() => <About />} />
+            <Route path="/user" render={() => <CurrentUser />} />
             <Route
               path="/challenge/:uniqueRef"
               render={(props) => <Challenge {...props} />}
@@ -47,7 +47,7 @@ const App = () => {
               path="/clashes/:clashId"
               render={(props) => <Clash {...props} />}
             />
-            <Route path="/" render={(props) => <Home />} />
+            <Route path="/" render={(s) => <Home />} />
           </Switch>
         </div>
       </Router>
