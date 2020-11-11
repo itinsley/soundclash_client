@@ -79,6 +79,7 @@ All components depend only upon the properties passed in, this makes them pure C
 - Scroll to error message
 - List rounds
 - Playlist player!
+- I think user should be able to accept a clash with an account linked to a different email address
 
 
 ## Tech Debt
