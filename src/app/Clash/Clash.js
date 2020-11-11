@@ -4,6 +4,7 @@ import CurrentRound from "./CurrentRound/CurrentRound";
 import RoundsList from "./RoundsList";
 import spinner from "../../assets/spinner.gif";
 import ConnectStore from "../../lib/ConnectStore";
+import sortRoundsDesc from "../../lib/sortRoundsDesc";
 import { fetchClashAction } from "../../actions";
 
 const Clash = ({ dispatch, match, currentClash, currentUser }) => {
@@ -27,7 +28,7 @@ const Clash = ({ dispatch, match, currentClash, currentUser }) => {
       <Fragment>
         <ClashHeader clash={clash} />
         <CurrentRound clash={clash} />
-        <RoundsList rounds={clash.rounds} />
+        <RoundsList rounds={sortRoundsDesc(clash.rounds)} />
       </Fragment>
     );
   }
