@@ -5,7 +5,7 @@ import CountLabel from "../shared/CountLabel";
 function Footer(props) {
   if (props.show) {
     return (
-      <div className="card-footer clash-tile-waiting mt-2 text-truncate">
+      <div className="t-clash-status card-footer clash-tile-waiting mt-2 text-truncate">
         {props.clash.waiting_for_description}
       </div>
     );
@@ -27,7 +27,7 @@ class ClashTile extends Component {
                 {clash.name}
               </h3>
               <h4 className="card-subtitle mb-2 text-muted text-truncate">
-                {clash.owner_name} vs. {clash.opponent_name}
+                {`${clash.owner_name} vs. ${clash.opponent_name}`}
               </h4>
               <div className="card-text">
                 <img

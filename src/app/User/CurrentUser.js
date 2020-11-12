@@ -1,12 +1,10 @@
 import React from "react";
-import { withAuth0 } from "@auth0/auth0-react";
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 import ConnectStore from "../../lib/ConnectStore";
-import Loading from "../shared/Loading";
 
 const CurrentUser = ({ currentUser }) => {
   if (!currentUser) {
-    console.log("loading..");
-    return <Loading />;
+    return null;
   } else {
     return (
       <div className="mx-auto text-center" style={{ maxWidth: "56.25rem" }}>
@@ -54,4 +52,4 @@ const CurrentUser = ({ currentUser }) => {
     );
   }
 };
-export default withAuth0(ConnectStore(CurrentUser));
+export default withAuthenticationRequired(ConnectStore(CurrentUser));

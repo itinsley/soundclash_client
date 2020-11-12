@@ -90,7 +90,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
           </NavLink>
         </NavItem>
         <NavItem>
-          <Button className="btn-link nav-link" onClick={doLogout}>
+          <Button id="logout" className="btn-link nav-link" onClick={doLogout}>
             Logout
           </Button>
         </NavItem>
@@ -106,7 +106,10 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
           <Button
             id="login"
             className="btn-link nav-link"
-            onClick={loginWithPopup}
+            onClick={() => {
+              console.log("loginwithpop");
+              loginWithPopup();
+            }}
           >
             Login/Sign Up
           </Button>

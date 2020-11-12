@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-const LoginOrSignUpButton = () => {
+const LoginOrSignUpButton = ({ buttonText = "Login or Sign up" }) => {
   const { loginWithPopup } = useAuth0();
 
   return (
@@ -11,7 +11,7 @@ const LoginOrSignUpButton = () => {
         loginWithPopup();
       }}
     >
-      Login or Sign up to start playing
+      {buttonText}
     </button>
   );
 };

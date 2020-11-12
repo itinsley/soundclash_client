@@ -115,10 +115,7 @@ const CreateClash = (props) => {
 
   return (
     <div ref={useRef()} className="container-fluid challenge">
-      <div
-        className="t-clash-status mx-auto text-center p-3"
-        style={{ maxWidth: "40.25rem" }}
-      >
+      <div className="mx-auto text-center p-3" style={{ maxWidth: "40.25rem" }}>
         <h1>Challenge someone...</h1>
 
         <div ref={errorScrollRef}>
