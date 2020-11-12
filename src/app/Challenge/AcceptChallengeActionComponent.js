@@ -16,7 +16,9 @@ const AcceptChallengeActionComponent = ({
   const [acceptButtonLoading, setAcceptButtonLoading] = useState(false);
 
   if (!currentUser) {
-    return <LoginOrSignUpButton />;
+    return (
+      <LoginOrSignUpButton buttonText="Login or Sign up to start playing" />
+    );
   }
 
   return (

@@ -76,15 +76,13 @@ All components depend only upon the properties passed in, this makes them pure C
   - Redirect to clash ✅
   - Redirect back to challenge after Login ✅
 - Pick up default user picture after social login - but allow it to be changed
-- Scroll to error message
-- List rounds
+- Scroll to error message ✅
+- List rounds ✅
+- I think user should be able to accept a clash with an account linked to a different email address  ✅
 - Playlist player!
-- I think user should be able to accept a clash with an account linked to a different email address
 
 
 ## Tech Debt
 - Review file locations - lib/component
  - Challenge components ✅
-- Handle not logged in for /user
-- Can we get rid of currentClash? State should come from the url
-- Fix state of youtube input - you will have to stop using internalstate and use individual state updaters
+- Handle not logged in for /user ✅
