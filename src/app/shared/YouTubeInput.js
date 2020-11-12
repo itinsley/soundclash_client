@@ -45,7 +45,7 @@ const Component = ({ state, setState }) => {
     try {
       e.persist();
       const trackName = await youtube.getTitle(internalUrlState);
-
+      e.target.setCustomValidity("");
       setState({
         url: internalUrlState,
         trackName,
