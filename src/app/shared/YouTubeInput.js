@@ -72,7 +72,7 @@ const Component = ({ state, setState }) => {
         value={internalUrlState}
         hidden={!state.showUrl}
         className="form-control"
-        name="url"
+        name="youTubeUrl"
         placeholder="Put your YouTube tune url here!"
         onChange={handleChange}
         onBlur={youTubeUrl_AfterChange}

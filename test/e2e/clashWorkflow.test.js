@@ -7,7 +7,9 @@ const {
   OWNER,
   OPPONENT,
   SPECTATOR,
+  PASSWORD,
 } = require("../helpers/constants");
+const { faPause } = require("@fortawesome/free-solid-svg-icons");
 
 module.exports = {
   "View Clash:: - spectator, not logged in": async function (browser) {
@@ -22,30 +24,28 @@ module.exports = {
     browser.verify.containsText("h1", "API::awaiting_owner");
 
     // My Clashes:: - spectator, not logged in
-    browser
-      .click(".navbar-brand")
-      .waitForElementVisible(".card")
-      .verify.elementNotPresent(".t-myclashes-header")
-      .end();
+    browser.click(".navbar-brand");
+    browser.waitForElementVisible(".card");
+    browser.verify.elementNotPresent(".t-myclashes-header");
   },
 
   "My Clashes:: logged in as clash owner": async function (browser) {
     // With status of challenge_sent
     await browser.url(BASE_URL);
-    await login(browser, OWNER, "password");
+    await login(browser, OWNER, PASSWORD);
 
     // I can challenge someone
     browser.verify.containsText(".challenge h1", "Challenge someone...");
 
     // My clashes
-    browser.verify.containsText(".clash-tile", "Api Owner vs. Api Opponent");
+    await browser.pause(100);
     await clickElementBySelector(
       browser,
       ".t-myclashes-container .t-card-title",
       "API::challenge_sent"
     );
-    browser.waitForElementVisible(".t-clash-status");
-    browser.verify.containsText(".t-clash-status", "Waiting for Api Opponent");
+    browser.waitForElementVisible(".t-clash-header");
+    browser.verify.containsText(".t-clash-status", "Waiting for api_opponent");
 
     // With status of awaiting_owner
     browser.click(".navbar-brand");
@@ -58,15 +58,17 @@ module.exports = {
       "API::awaiting_owner"
     );
     browser.waitForElementVisible(".t-clash-status");
-    browser.verify.containsText(".t-clash-status", "Api Opponent just played");
+    browser.verify.containsText(".t-clash-status", "api_opponent");
+    browser.verify.containsText(".t-clash-status", "just played");
     browser.verify.containsText(".t-clash-status", "Now it's your turn...");
-    browser.end();
+    await browser.click("#logout");
   },
 
   "My Clashes:: logged in as clash opponent": async function (browser) {
     // Clash with status of awaiting_owner
     await browser.url(BASE_URL);
-    await login(browser, OPPONENT, "password");
+    browser.waitForElementVisible("#login");
+    await login(browser, OPPONENT, PASSWORD);
     browser.waitForElementVisible(".t-myclashes-container");
     browser.waitForElementVisible(".t-card-title");
     await clickElementBySelector(
@@ -76,7 +78,7 @@ module.exports = {
     );
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.elementPresent("iframe");
-    browser.verify.containsText(".t-clash-status", "Waiting for Api Owner");
+    browser.verify.containsText(".t-clash-status", "Waiting for api_owner");
 
     // Clash with status of awaiting_opponent
     browser.click(".navbar-brand");
@@ -103,7 +105,7 @@ module.exports = {
 
     // Clash with status of challenge_sent
     browser.click(".navbar-brand");
-    browser.verify.containsText(".clash-tile", "Api Owner vs. Api Opponent");
+    browser.verify.containsText(".clash-tile", "api_owner vs. api_opponent");
     await clickElementBySelector(
       browser,
       ".t-myclashes-container .t-card-title",
@@ -117,7 +119,7 @@ module.exports = {
     );
     browser.verify.containsText(
       ".t-track-opponent-container",
-      "You have been challenged to a soundclash by Api Owner"
+      "You have been challenged to a soundclash by api_owner"
     );
     browser.end();
   },
@@ -126,29 +128,30 @@ module.exports = {
     browser
   ) {
     await browser.url(BASE_URL);
-    await login(browser, SPECTATOR, "password");
+    await login(browser, SPECTATOR, PASSWORD);
     browser.verify.elementNotPresent(".t-myclashes-header .clash-tile");
     browser.end();
   },
 
   "Create Clash:: logged in as clash owner": async function (browser) {
     await browser.url(BASE_URL);
-    await login(browser, OWNER, "password");
-    browser
-      .setValue("input[name='clashName']", "A new Clash Owner Clash..")
-      .setValue("input[name='opponentEmailAddress']", "doesnt.exist@yet.com")
-      .setValue(
-        "input[name='youTubeUrl']",
-        "https://www.youtube.com/watch?v=-KIm0Je4phY"
-      )
-      .setValue(
-        "textarea[name='commentText']",
-        "New clash for unregistered user"
-      )
-      .waitForElementVisible(".t-track-title")
-      .click("button#createTrack")
-      .waitForElementVisible(".t-clash-header")
-      .verify.containsText("h1", "A new Clash Owner Clash..")
-      .end();
+    await login(browser, OWNER, PASSWORD);
+    browser.setValue("input[name='clashName']", "A new Clash Owner Clash..");
+    browser.setValue(
+      "input[name='opponentEmailAddress']",
+      "doesnt.exist@yet.com"
+    );
+    browser.setValue(
+      "input[name='youTubeUrl']",
+      "https://www.youtube.com/watch?v=-KIm0Je4phY"
+    );
+    browser.setValue(
+      "textarea[name='commentText']",
+      "New clash for unregistered user"
+    );
+    browser.waitForElementVisible(".t-track-title");
+    browser.click("button#createTrack");
+    browser.waitForElementVisible(".t-clash-header");
+    browser.verify.containsText("h1", "A new Clash Owner Clash..");
   },
 };

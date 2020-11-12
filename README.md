@@ -19,14 +19,10 @@
     npm start
 
 # Tests
+## Unit tests
+  `npm test` 
 
-## Element identification
-
-Use classes with a prefix of t- for identifying elements for testing purposes. i.e.
-
-       t-owner-track-container
-
-# e2e Tests
+## e2e Tests
 
 This project depends on e2e tests. Unit tests are used for discrete logic when appropriate but most plumbing, rendering and integration are done through integration tests against a live API. As a result, continuous deployment gets stuck behind a failing CI.
 
@@ -36,22 +32,29 @@ CI e2e's run against the 'edge' server
 
 1. Ensure server is up-to-date `git push edge`
 2. Ensure server fixtures are up-to-data `heroku run rake api_fixtures:generate --remote edge'
-3. Run tests against CI environment `BASE_URL=https://frifti.com/client npm run e2e` to identify issues with tests
+3. Run tests against CI environment `BASE_URL=https://soundcla5h-edge.herokuapp.com/ npm run e2e` to identify issues with tests
 4. Run tests against local react environment `npm run e2e` to debug
 
 ## Fixtures
 
 Uses fixtures defined and created _from the server_ using the command
 
-       rake api_fixtures:generate
+        rake api_fixtures:generate
 
-- Assume fixtures are always loaded at http://soundcla5h-edge.herokuapp.com
+- Assume fixtures are always loaded at https://soundcla5h-edge.herokuapp.com
 
 ## Run against other environment
 
 Set env variable BASE_URL - i.e
 
-      BASE_URL=https://frifti.com/client npm run e2e
+      BASE_URL=https://soundcla.sh/client npm run e2e
+
+## Element identification
+
+Use classes with a prefix of t- for identifying elements for testing purposes. i.e.
+
+       t-owner-track-container
+
 
 ## Open (unsecured) routes
 
