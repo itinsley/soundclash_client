@@ -44,6 +44,7 @@ module.exports = {
       ".t-myclashes-container .t-card-title",
       "API::challenge_sent"
     );
+    browser.pause(10000);
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.containsText(".t-clash-status", "Waiting for api_opponent");
 
