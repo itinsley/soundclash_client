@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import spinner from "../../assets/spinner.gif";
+import loading from "../../assets/loading.svg";
 
 const iframe = (url, track_name) => {
   if (!url || !/.*youtube.*/.test(url)) {
-    return <img src={spinner} alt="Logo" />;
+    return <img src={loading} alt="Logo" />;
   }
 
   return (

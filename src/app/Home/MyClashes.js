@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ClashTile from "./ClashTile";
-import spinner from "../../assets/spinner.gif";
+import loading from "../../assets/loading.svg";
 import { fetchMyClashesAction } from "../../actions";
 import ConnectStore from "../../lib/ConnectStore";
 
@@ -13,7 +13,7 @@ const MyClashes = ({ myClashes, dispatch }) => {
     if (myClashes.loading) {
       return (
         <img
-          src={spinner}
+          src={loading}
           style={{ width: "100%", maxWidth: "300px" }}
           alt="waiting.."
         />

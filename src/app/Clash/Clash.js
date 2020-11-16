@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from "react";
 import ClashHeader from "./ClashHeader";
 import CurrentRound from "./CurrentRound/CurrentRound";
 import RoundsList from "./RoundsList";
-import spinner from "../../assets/spinner.gif";
+import loadingImg from "../../assets/loading.svg";
 import ConnectStore from "../../lib/ConnectStore";
 import sortRoundsDesc from "../../lib/sortRoundsDesc";
 import { fetchClashAction } from "../../actions";
@@ -20,7 +20,7 @@ const Clash = ({ dispatch, match, currentClash, currentUser }) => {
   if (loading) {
     return (
       <div className="container-fluid bg-grey text-center">
-        <img src={spinner} alt="waiting.." />
+        <img src={loadingImg} alt="waiting.." />
       </div>
     );
   } else {

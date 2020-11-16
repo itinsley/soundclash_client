@@ -12,7 +12,5 @@ function SpinnerButtonInner(props) {
       <span hidden={props.loading}>{props.label}</span>
     </Fragment>
   );
-
-  return props.label;
 }
 export default SpinnerButtonInner;
