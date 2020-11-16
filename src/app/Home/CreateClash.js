@@ -9,6 +9,7 @@ import EmailValidator from "email-validator";
 import history from "../../history";
 import useStickyState from "../../lib/useStickyState";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Alert } from "reactstrap";
 
 const LOCAL_STORAGE_STATE_KEY = "createClash";
 const DEFAULT_SESSION_STATE = {
@@ -75,6 +76,49 @@ const CreateClash = (props) => {
     setYouTubeState(YouTubeInput.DEFAULT_STATE);
   };
 
+  const buildClash = () => {
+    return {
+      name: sessionState.clashName,
+      opponentEmailAddress: sessionState.opponentEmailAddress,
+      youTubeUrl: youTubeState.url,
+      trackName: youTubeState.trackName,
+      commentText: sessionState.commentText,
+    };
+  };
+
+  const infoAlert = () => {
+    const clash = buildClash();
+    console.log(clash);
+    console.log(
+      "Valid",
+      Boolean(
+        clash.name &&
+          clash.opponentEmailAddress &&
+          clash.youTubeUrl &&
+          clash.trackName &&
+          clash.commentText
+      )
+    );
+    if (
+      clash.name &&
+      EmailValidator.validate(clash.opponentEmailAddress) &&
+      clash.youTubeUrl &&
+      clash.trackName &&
+      clash.commentText
+    ) {
+      return (
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          Challenge is ready to be sent.<br></br>
+          Click the Submit button below to send the challenge. It will appear on
+          your homepage once created.
+        </div>
+      );
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -83,13 +127,7 @@ const CreateClash = (props) => {
       return;
     }
 
-    const clash = {
-      name: sessionState.clashName,
-      opponentEmailAddress: sessionState.opponentEmailAddress,
-      youTubeUrl: youTubeState.url,
-      trackName: youTubeState.trackName,
-      commentText: sessionState.commentText,
-    };
+    const clash = buildClash();
 
     console.log(clash, "clash to post");
     errorScrollRef.current.scrollIntoView({
@@ -124,6 +162,7 @@ const CreateClash = (props) => {
             errorMessage={state.errorMessage}
           />
         </div>
+        {infoAlert()}
 
         <div style={{ maxWidth: "37.5rem" }}>
           <form onSubmit={handleSubmit}>
