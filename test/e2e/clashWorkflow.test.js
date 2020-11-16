@@ -1,6 +1,5 @@
 require("dotenv").config();
 const login = require("../helpers/login");
-const clickElementBySelector = require("../helpers/clickElementBySelector");
 
 const {
   BASE_URL,
@@ -16,11 +15,7 @@ module.exports = {
     await browser.url(BASE_URL);
     browser.waitForElementVisible(".card");
     browser.verify.containsText("h2", "Recent Clashes");
-    await clickElementBySelector(
-      browser,
-      ".t-card-title",
-      "API::awaiting_owner"
-    );
+    browser.click("partial link text", "API::awaiting_owner");
     browser.verify.containsText("h1", "API::awaiting_owner");
 
     // My Clashes:: - spectator, not logged in
@@ -38,13 +33,7 @@ module.exports = {
     browser.verify.containsText(".challenge h1", "Challenge someone...");
 
     // My clashes
-    await browser.pause(100);
-    await clickElementBySelector(
-      browser,
-      ".t-myclashes-container .t-card-title",
-      "API::challenge_sent"
-    );
-    browser.pause(10000);
+    browser.click("partial link text", "API::challenge_sent");
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.containsText(".t-clash-status", "Waiting for api_opponent");
 
@@ -53,11 +42,7 @@ module.exports = {
     browser.waitForElementVisible(".t-myclashes-container");
     browser.verify.containsText("h1.t-myclashes-header", "My Clashes");
     browser.waitForElementVisible(".t-card-title");
-    await clickElementBySelector(
-      browser,
-      ".t-myclashes-container .t-card-title",
-      "API::awaiting_owner"
-    );
+    browser.click("partial link text", "API::awaiting_owner");
     browser.waitForElementVisible(".t-clash-status");
     browser.verify.containsText(".t-clash-status", "api_opponent");
     browser.verify.containsText(".t-clash-status", "just played");
@@ -72,22 +57,14 @@ module.exports = {
     await login(browser, OPPONENT, PASSWORD);
     browser.waitForElementVisible(".t-myclashes-container");
     browser.waitForElementVisible(".t-card-title");
-    await clickElementBySelector(
-      browser,
-      ".t-myclashes-container .t-card-title",
-      "API::awaiting_owner"
-    );
+    browser.click("partial link text", "API::awaiting_owner");
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.elementPresent("iframe");
     browser.verify.containsText(".t-clash-status", "Waiting for api_owner");
 
     // Clash with status of awaiting_opponent
     browser.click(".navbar-brand");
-    await clickElementBySelector(
-      browser,
-      ".t-myclashes-container .t-card-title",
-      "API::awaiting_opponent"
-    );
+    browser.click("partial link text", "API::awaiting_opponent");
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.containsText(".t-clash-status", "Now it's your turn");
     browser.setValue(
@@ -107,11 +84,7 @@ module.exports = {
     // Clash with status of challenge_sent
     browser.click(".navbar-brand");
     browser.verify.containsText(".clash-tile", "api_owner vs. api_opponent");
-    await clickElementBySelector(
-      browser,
-      ".t-myclashes-container .t-card-title",
-      "API::challenge_sent"
-    );
+    browser.click("partial link text", "API::challenge_sent");
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.elementPresent("iframe");
     browser.verify.containsText(
