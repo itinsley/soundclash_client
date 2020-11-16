@@ -30,7 +30,7 @@ const AcceptChallengeActionComponent = ({
         onClick={async () => {
           setAcceptButtonLoading(true);
           try {
-            const clash = await ClashApi.acceptChallenge(uniqueRef, jwt);
+            await ClashApi.acceptChallenge(uniqueRef, jwt);
             onSuccess();
           } catch (err) {
             const { errorMessage, errors } = HandleApiError(err);

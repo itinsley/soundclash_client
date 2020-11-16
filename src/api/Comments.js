@@ -12,6 +12,5 @@ const create = async (trackId, commentText, jwt) => {
   });
 };
 
-export default {
-  create,
-};
+const comments = { create };
+export default comments;

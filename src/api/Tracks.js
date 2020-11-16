@@ -26,6 +26,5 @@ const create = async (jwt, clashId, track) => {
   });
 };
 
-export default {
-  create,
-};
+const tracks = { create };
+export default tracks;

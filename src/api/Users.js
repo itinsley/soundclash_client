@@ -15,7 +15,9 @@ const currentUser = async (jwt) => {
   return response.data.data;
 };
 
-export default {
+const users = {
   get,
   currentUser,
 };
+
+export default users;

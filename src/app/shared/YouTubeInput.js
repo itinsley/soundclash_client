@@ -93,7 +93,9 @@ const Component = ({ state, setState }) => {
   );
 };
 
-export default {
+const YouTubeInput = {
   Component,
   DEFAULT_STATE,
 };
+
+export default YouTubeInput;

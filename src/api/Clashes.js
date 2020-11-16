@@ -87,7 +87,7 @@ const create = async (jwt, clash) => {
   });
 };
 
-export default {
+const clashes = {
   acceptChallenge,
   create,
   forUser,
@@ -96,3 +96,5 @@ export default {
   getChallenge,
   recent,
 };
+
+export default clashes;
