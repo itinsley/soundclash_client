@@ -7,10 +7,10 @@
  * @param {string} errors.error2
  * @param {string} errors.error3
  */
-const setError = (error) => (dispatch) => {
+const setError = (apiError) => (dispatch) => {
   dispatch({
     type: "SET_ERROR",
-    error: error,
+    apiError: apiError,
   });
 };
 

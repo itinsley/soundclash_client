@@ -8,8 +8,8 @@ const createTrackAction = (track, clashId) => async (dispatch, getState) => {
     await TrackApi.create(state.jwt, clashId, track);
     dispatch(refreshClashAction);
   } catch (err) {
-    const error = HandleApiError(err);
-    dispatch(setErrorAction(error));
+    const apiError = HandleApiError(err);
+    dispatch(setErrorAction(apiError));
   }
 };
 export default createTrackAction;

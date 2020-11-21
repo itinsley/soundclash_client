@@ -21,7 +21,7 @@ const defaultState = {
   currentUser: null,
   currentUserError: "",
   jwt: null,
-  error: {
+  apiError: {
     errorMessage: "",
     errors: [],
   },
@@ -33,12 +33,12 @@ function reducer(state = defaultState, action) {
     case "SET_ERROR":
       return {
         ...state,
-        error: action.error,
+        apiError: action.apiError,
       };
     case "CLEAR_ERROR":
       return {
         ...state,
-        error: {
+        apiError: {
           errorMessage: "",
           errors: [],
         },
