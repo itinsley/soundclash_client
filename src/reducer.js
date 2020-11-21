@@ -75,6 +75,7 @@ function reducer(state = defaultState, action) {
         ...state,
         currentUser: action.currentUser,
         jwt: action.jwt,
+        currentUserError: "",
       };
     case "SET_USER_SESSION_ERROR":
       console.log(action, "setus");

@@ -88,17 +88,6 @@ const CreateClash = (props) => {
 
   const infoAlert = () => {
     const clash = buildClash();
-    console.log(clash);
-    console.log(
-      "Valid",
-      Boolean(
-        clash.name &&
-          clash.opponentEmailAddress &&
-          clash.youTubeUrl &&
-          clash.trackName &&
-          clash.commentText
-      )
-    );
     if (
       clash.name &&
       EmailValidator.validate(clash.opponentEmailAddress) &&
