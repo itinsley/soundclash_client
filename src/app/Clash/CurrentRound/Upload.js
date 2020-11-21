@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SpinnerButtonInner from "../../shared/SpinnerButtonInner";
 import YouTubeInput from "../../shared/YouTubeInput";
 import Loading from "../../shared/Loading";
@@ -32,6 +32,10 @@ const Upload = ({ clash, createTrack, clearError, error }) => {
     createTrack(track, clash.id);
     setLoading(false);
   }
+
+  useEffect(() => {
+    clearError();
+  }, []);
 
   if (!isAuthenticated) {
     loginWithPopup();
