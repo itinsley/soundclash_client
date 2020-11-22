@@ -90,7 +90,7 @@ const Upload = ({ clash, createTrack, clearError, error }) => {
             <div className="py-0 px-0 mx-auto text-center ">
               <div className="px-0 ">
                 <button
-                  className="btn btn-dark text-uppercase mr-3"
+                  className="btn btn-dark text-uppercase mr-3 t-btn-submit"
                   type="submit"
                 >
                   <SpinnerButtonInner label="Submit" loading={loading} />
