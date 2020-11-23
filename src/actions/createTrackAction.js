@@ -1,6 +1,6 @@
 import TrackApi from "../api/Tracks";
 import HandleApiError from "../api/HandleApiError";
-import { setErrorAction, refreshClashAction } from "../actions";
+import { actionContexts, setErrorAction, refreshClashAction } from "../actions";
 
 const createTrackAction = (track, clashId) => async (dispatch, getState) => {
   try {
@@ -8,7 +8,7 @@ const createTrackAction = (track, clashId) => async (dispatch, getState) => {
     await TrackApi.create(state.jwt, clashId, track);
     dispatch(refreshClashAction);
   } catch (err) {
-    const apiError = HandleApiError(err);
+    const apiError = HandleApiError(err, actionContexts.CREATE_TRACK);
     dispatch(setErrorAction(apiError));
   }
 };

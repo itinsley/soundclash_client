@@ -26,5 +26,10 @@ module.exports = {
     browser.click("button.t-btn-submit");
     await browser.waitForElementVisible(".t-error-alert");
     browser.verify.containsText(".t-error-alert", "Track has errors");
+
+    //Ensure Error is reset
+    browser.click(".navbar-brand");
+    browser.click("partial link text", "API::awaiting_opponent");
+    browser.verify.elementNotPresent(".t-error-alert");
   },
 };

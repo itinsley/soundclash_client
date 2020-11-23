@@ -3,9 +3,10 @@ import SpinnerButtonInner from "../../shared/SpinnerButtonInner";
 import YouTubeInput from "../../shared/YouTubeInput";
 import Loading from "../../shared/Loading";
 import { useAuth0 } from "@auth0/auth0-react";
-import ErrorAlertContainer from "../../shared/ErrorAlertContainer";
+import ConnectedErrorAlert from "../../shared/ConnectedErrorAlert";
+import { actionContexts } from "../../../actions";
 
-const Upload = ({ clash, createTrack, clearError, error }) => {
+const Upload = ({ clash, createTrack, clearError, apiError }) => {
   const { isAuthenticated, loginWithPopup } = useAuth0();
   const [youTubeState, setYouTubeState] = useState(YouTubeInput.DEFAULT_STATE);
   const [commentText, setCommentText] = useState("");
@@ -35,7 +36,7 @@ const Upload = ({ clash, createTrack, clearError, error }) => {
 
   useEffect(() => {
     clearError();
-  }, []);
+  }, [clearError]);
 
   if (!isAuthenticated) {
     loginWithPopup();
@@ -64,7 +65,7 @@ const Upload = ({ clash, createTrack, clearError, error }) => {
 
         <div style={{ maxWidth: "37.5rem" }}>
           <form onSubmit={handleSubmit}>
-            <ErrorAlertContainer {...error} />
+            <ConnectedErrorAlert actionContext={actionContexts.CREATE_TRACK} />
 
             <div className="row py-2 px-0 mx-0">
               <YouTubeInput.Component

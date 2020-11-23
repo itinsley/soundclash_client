@@ -24,6 +24,7 @@ const defaultState = {
   apiError: {
     errorMessage: "",
     errors: [],
+    errorContext: "",
   },
 };
 
@@ -41,6 +42,7 @@ function reducer(state = defaultState, action) {
         apiError: {
           errorMessage: "",
           errors: [],
+          errorContext: "",
         },
       };
 
