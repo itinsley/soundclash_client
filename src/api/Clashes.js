@@ -1,4 +1,5 @@
 import axios from "axios";
+import authenticatedGet from "./authenticatedGet";
 
 const recent = async () => {
   const response = await axios.get(
@@ -15,27 +16,11 @@ const get = async (clashId) => {
 };
 
 const getAuthenticated = async (clashId, jwt) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}//user/current/clashes/${clashId}`,
-    {
-      headers: {
-        Authorization: `bearer ${jwt}`,
-      },
-    }
-  );
-  return response.data.data;
+  return await authenticatedGet(`user/current/clashes/${clashId}`, jwt);
 };
 
 const forUser = async (jwt) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/user/current/clashes`,
-    {
-      headers: {
-        Authorization: `bearer ${jwt}`,
-      },
-    }
-  );
-  return response.data.data;
+  return await authenticatedGet(`user/current/clashes`, jwt);
 };
 
 const getChallenge = async (uniqueRef) => {

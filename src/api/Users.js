@@ -1,4 +1,3 @@
-import axios from "axios";
 import authenticatedGet from "./authenticatedGet";
 
 const currentUser = async (jwt) => {
