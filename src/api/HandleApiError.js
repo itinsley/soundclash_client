@@ -15,6 +15,7 @@ const HandleApiError = (err, errorContext) => {
   } else {
     type = "Unhandled";
     errorMessage = err.message;
+    console.log("Unhandled exception", err);
   }
 
   return { errorMessage, errors, type, errorContext };

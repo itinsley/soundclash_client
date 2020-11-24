@@ -97,7 +97,7 @@ const CreateClash = (props) => {
     ) {
       return (
         <div
-          class="alert alert-success alert-dismissible fade show"
+          className="alert alert-success alert-dismissible fade show"
           role="alert"
         >
           Challenge is ready to be sent.<br></br>
@@ -127,7 +127,7 @@ const CreateClash = (props) => {
     try {
       setState({ ...state, loading: true });
       const response = await ClashApi.create(props.jwt, clash);
-      const newClash = response.data.data.clash;
+      const newClash = response;
       clearState();
       history.push(`/clashes/${newClash.id}`);
     } catch (err) {

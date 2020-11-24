@@ -1,4 +1,4 @@
-import axios from "axios";
+import apiAuthenticatedPost from "./apiAuthenticatedPost";
 
 /**
  *
@@ -10,7 +10,6 @@ import axios from "axios";
  * @param {string} track.youTubeUrl
  */
 const create = async (jwt, clashId, track) => {
-  const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes/${clashId}/tracks`;
   const payload = {
     track: {
       url: track.youTubeUrl,
@@ -19,11 +18,7 @@ const create = async (jwt, clashId, track) => {
     },
   };
 
-  return await axios.post(uri, payload, {
-    headers: {
-      Authorization: `bearer ${jwt}`,
-    },
-  });
+  return await apiAuthenticatedPost(`clashes/${clashId}/tracks`, jwt, payload);
 };
 
 const tracks = { create };

@@ -1,5 +1,5 @@
-import axios from "axios";
 import apiAuthenticatedGet from "./apiAuthenticatedGet";
+import apiAuthenticatedPost from "./apiAuthenticatedPost";
 import apiGet from "./apiGet";
 
 const recent = async () => await apiGet("clashes");
@@ -15,20 +15,8 @@ const forUser = async (jwt) =>
 const getChallenge = async (uniqueRef) =>
   await apiGet(`/challenge/${uniqueRef}`);
 
-const acceptChallenge = async (uniqueRef, jwt) => {
-  const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/challenge/${uniqueRef}`;
-  const response = await axios.post(
-    uri,
-    {},
-    {
-      headers: {
-        Authorization: `bearer ${jwt}`,
-      },
-    }
-  );
-
-  return response.data.data;
-};
+const acceptChallenge = async (uniqueRef, jwt) =>
+  await apiAuthenticatedPost(`challenge/${uniqueRef}`, jwt, {});
 
 /**
  *
@@ -49,12 +37,9 @@ const create = async (jwt, clash) => {
       opponent_email_address: clash.opponentEmailAddress,
     },
   };
-  const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes`;
-  return await axios.post(uri, launchClash, {
-    headers: {
-      Authorization: `bearer ${jwt}`,
-    },
-  });
+
+  const response = await apiAuthenticatedPost(`clashes`, jwt, launchClash);
+  return response.clash;
 };
 
 const clashes = {

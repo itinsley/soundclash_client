@@ -1,15 +1,11 @@
-import axios from "axios";
+import apiAuthenticatedPost from "./apiAuthenticatedPost";
 
 const create = async (trackId, commentText, jwt) => {
-  const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/tracks/${trackId}/comments`;
-  const comment = {
+  const payload = {
     comment: { comment_text: commentText },
   };
-  return await axios.post(uri, comment, {
-    headers: {
-      Authorization: `bearer ${jwt}`,
-    },
-  });
+
+  return await apiAuthenticatedPost(`tracks/${trackId}/comments`, jwt, payload);
 };
 
 const comments = { create };
