@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const authenticatedGet = async (path, jwt) => {
+const apiAuthenticatedGet = async (path, jwt) => {
   const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/${path}`;
 
   const response = await axios.get(uri, {
@@ -12,4 +12,4 @@ const authenticatedGet = async (path, jwt) => {
   return response.data.data;
 };
 
-export default authenticatedGet;
+export default apiAuthenticatedGet;

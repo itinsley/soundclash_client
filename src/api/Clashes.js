@@ -1,34 +1,19 @@
 import axios from "axios";
-import authenticatedGet from "./authenticatedGet";
+import apiAuthenticatedGet from "./apiAuthenticatedGet";
+import apiGet from "./apiGet";
 
-const recent = async () => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes`
-  );
-  return response.data.data;
-};
+const recent = async () => await apiGet("clashes");
 
-const get = async (clashId) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/clashes/${clashId}`
-  );
-  return response.data.data;
-};
+const get = async (clashId) => await apiGet(`clashes/${clashId}`);
 
-const getAuthenticated = async (clashId, jwt) => {
-  return await authenticatedGet(`user/current/clashes/${clashId}`, jwt);
-};
+const getAuthenticated = async (clashId, jwt) =>
+  await apiAuthenticatedGet(`user/current/clashes/${clashId}`, jwt);
 
-const forUser = async (jwt) => {
-  return await authenticatedGet(`user/current/clashes`, jwt);
-};
+const forUser = async (jwt) =>
+  await apiAuthenticatedGet(`user/current/clashes`, jwt);
 
-const getChallenge = async (uniqueRef) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/challenge/${uniqueRef}`
-  );
-  return response.data.data;
-};
+const getChallenge = async (uniqueRef) =>
+  await apiGet(`/challenge/${uniqueRef}`);
 
 const acceptChallenge = async (uniqueRef, jwt) => {
   const uri = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/challenge/${uniqueRef}`;

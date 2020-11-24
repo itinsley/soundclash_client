@@ -1,7 +1,7 @@
-import authenticatedGet from "./authenticatedGet";
+import apiAuthenticatedGet from "./apiAuthenticatedGet";
 
 const currentUser = async (jwt) => {
-  return await authenticatedGet("user", jwt);
+  return await apiAuthenticatedGet("user", jwt);
 };
 
 const users = {
