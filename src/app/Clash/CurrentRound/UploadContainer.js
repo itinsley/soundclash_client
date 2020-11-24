@@ -6,7 +6,7 @@ const mapProps = (state, ownProps) => {
   return {
     clash: state.currentClash.data,
     currentUser: state.currentUser,
-    error: state.error,
+    apiError: state.apiError,
   };
 };
 

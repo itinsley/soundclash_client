@@ -22,8 +22,6 @@ const state = (clash, player) => {
   }
 
   if (clash.state === "awaiting_owner") {
-    console.log("PLAYER");
-    console.log(player);
     if (player === null) {
       return STATES.Hidden;
     }

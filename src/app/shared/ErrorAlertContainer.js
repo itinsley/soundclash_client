@@ -33,7 +33,7 @@ const ErrorAlertContainer = ({ errorMessage, errors }) => {
     errorMessage ||
     "Unhandled exception occurred. Please try again. If the problem persists please email support@soundcla.sh";
   return (
-    <Alert color="danger">
+    <Alert color="danger" className="t-error-alert">
       <div className="font-weight-bold">{message}</div>
       {listErrors(errors)}
     </Alert>

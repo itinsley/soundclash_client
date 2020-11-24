@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SpinnerButtonInner from "../../shared/SpinnerButtonInner";
 import YouTubeInput from "../../shared/YouTubeInput";
 import Loading from "../../shared/Loading";
 import { useAuth0 } from "@auth0/auth0-react";
-import ErrorAlertContainer from "../../shared/ErrorAlertContainer";
+import ConnectedErrorAlert from "../../shared/ConnectedErrorAlert";
+import { actionContexts } from "../../../actions";
 
-const Upload = ({ clash, createTrack, clearError, error }) => {
+const Upload = ({ clash, createTrack, clearError, apiError }) => {
   const { isAuthenticated, loginWithPopup } = useAuth0();
   const [youTubeState, setYouTubeState] = useState(YouTubeInput.DEFAULT_STATE);
   const [commentText, setCommentText] = useState("");
@@ -32,6 +33,10 @@ const Upload = ({ clash, createTrack, clearError, error }) => {
     createTrack(track, clash.id);
     setLoading(false);
   }
+
+  useEffect(() => {
+    clearError();
+  }, [clearError]);
 
   if (!isAuthenticated) {
     loginWithPopup();
@@ -60,7 +65,7 @@ const Upload = ({ clash, createTrack, clearError, error }) => {
 
         <div style={{ maxWidth: "37.5rem" }}>
           <form onSubmit={handleSubmit}>
-            <ErrorAlertContainer {...error} />
+            <ConnectedErrorAlert actionContext={actionContexts.CREATE_TRACK} />
 
             <div className="row py-2 px-0 mx-0">
               <YouTubeInput.Component
@@ -86,7 +91,7 @@ const Upload = ({ clash, createTrack, clearError, error }) => {
             <div className="py-0 px-0 mx-auto text-center ">
               <div className="px-0 ">
                 <button
-                  className="btn btn-dark text-uppercase mr-3"
+                  className="btn btn-dark text-uppercase mr-3 t-btn-submit"
                   type="submit"
                 >
                   <SpinnerButtonInner label="Submit" loading={loading} />

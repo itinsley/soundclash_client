@@ -21,9 +21,10 @@ const defaultState = {
   currentUser: null,
   currentUserError: "",
   jwt: null,
-  error: {
+  apiError: {
     errorMessage: "",
     errors: [],
+    errorContext: "",
   },
 };
 
@@ -33,14 +34,15 @@ function reducer(state = defaultState, action) {
     case "SET_ERROR":
       return {
         ...state,
-        error: action.error,
+        apiError: action.apiError,
       };
     case "CLEAR_ERROR":
       return {
         ...state,
-        error: {
+        apiError: {
           errorMessage: "",
           errors: [],
+          errorContext: "",
         },
       };
 
@@ -75,6 +77,7 @@ function reducer(state = defaultState, action) {
         ...state,
         currentUser: action.currentUser,
         jwt: action.jwt,
+        currentUserError: "",
       };
     case "SET_USER_SESSION_ERROR":
       console.log(action, "setus");

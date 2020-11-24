@@ -1,4 +1,10 @@
-const HandleApiError = (err) => {
+/**
+ *
+ * @param {Object} err - Server response or Exception
+ * @param {string} context - The context in which it was created. This value is echoed back in the return value
+ *
+ */
+const HandleApiError = (err, errorContext) => {
   let errorMessage = "";
   let type = "";
   let errors = [];
@@ -11,7 +17,7 @@ const HandleApiError = (err) => {
     errorMessage = err.message;
   }
 
-  return { errorMessage, errors, type };
+  return { errorMessage, errors, type, errorContext };
 };
 
 export default HandleApiError;
