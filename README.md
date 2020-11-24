@@ -77,3 +77,6 @@ All components depend only upon the properties passed in, this makes them pure C
 - Playlist music player!
 
 ## Tech Debt
+
+Questions for code review
+* Naming conventions - upper case for constructors and modules? lower case for functions generally. Lower case when default export == a single function?
