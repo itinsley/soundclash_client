@@ -60,7 +60,7 @@ module.exports = {
     browser.click("partial link text", "API::awaiting_owner");
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.elementPresent("iframe");
-    browser.verify.containsText(".t-clash-status", "Waiting for api_owner");
+    browser.verify.containsText(".t-clash-status", "Waiting for Api Owner");
 
     // Clash with status of awaiting_opponent
     browser.click(".navbar-brand");
@@ -83,7 +83,7 @@ module.exports = {
 
     // Clash with status of challenge_sent
     browser.click(".navbar-brand");
-    browser.verify.containsText(".clash-tile", "api_owner vs. api_opponent");
+    browser.verify.containsText(".clash-tile", "Api Owner vs. api_opponent");
     browser.click("partial link text", "API::challenge_sent");
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.elementPresent("iframe");
@@ -93,7 +93,7 @@ module.exports = {
     );
     browser.verify.containsText(
       ".t-track-opponent-container",
-      "You have been challenged to a soundclash by api_owner"
+      "You have been challenged to a soundclash by Api Owner"
     );
     browser.end();
   },
