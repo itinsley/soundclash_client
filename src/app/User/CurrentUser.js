@@ -69,14 +69,14 @@ const CurrentUser = ({ currentUser, dispatch }) => {
               </td>
               <td align="left">{currentUser.name}</td>
             </tr>
-            {/* <tr>
+            <tr>
               <td align="right" className="font-weight-bold">
                 Picture:
               </td>
               <td align="left">
                 <img alt="Current user avatar" src={currentUser.image_url} />
               </td>
-            </tr> */}
+            </tr>
             <tr>
               <td align="right" className="font-weight-bold">
                 Unsubscribe from user notifications and reminders:

@@ -23,18 +23,18 @@ class Avatar extends Component {
     const description = this.props.description;
     const size = this.props.size;
 
-    // if (user.image_url) {
-    //   return (
-    //     <img
-    //       alt={description}
-    //       className="image-avatar u-circle "
-    //       height={size}
-    //       src={user.image_url}
-    //       title={user.name}
-    //       width={size}
-    //     ></img>
-    //   );
-    // }
+    if (user.image_url) {
+      return (
+        <img
+          alt={description}
+          className="image-avatar u-circle "
+          height={size}
+          src={user.image_url}
+          title={user.name}
+          width={size}
+        ></img>
+      );
+    }
 
     return <UserAvatar size={size} name={user.name} colors={colours} />;
   }

@@ -40,7 +40,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
 
     (async () => {
       const jwt = await getAccessTokenSilently();
-      dispatch(refreshUserSessionAction(jwt));
+      dispatch(refreshUserSessionAction(jwt, auth0user));
     })();
   }, [dispatch, auth0user, getAccessTokenSilently]);
 
