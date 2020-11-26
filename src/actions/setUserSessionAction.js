@@ -3,7 +3,7 @@ import { fetchMyClashesAction } from "../actions";
 
 const setUserSession = (auth0User, jwt) => async (dispatch) => {
   try {
-    const soundClashUser = await Users.currentUser(jwt);
+    const soundClashUser = await Users.getOrCreateCurrentUser(jwt);
     dispatch({
       type: "SET_USER_SESSION",
       currentUser: {
