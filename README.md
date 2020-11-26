@@ -75,8 +75,10 @@ All components depend only upon the properties passed in, this makes them pure C
 # TODO
 ## Features
 - Playlist music player!
+- Update user details - username
 
 ## Tech Debt
 
 Questions for code review
 * Naming conventions - upper case for constructors and modules? lower case for functions generally. Lower case when default export == a single function?
+* Inconsistency between approaches - createClash calls API directly and currentUser updates via action/redux

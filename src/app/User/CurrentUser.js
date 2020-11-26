@@ -1,11 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import ConnectStore from "../../lib/ConnectStore";
+import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  setUserSessionAction,
+  updateCurrentUserAction,
+  actionContexts,
+  clearErrorAction,
+} from "../../actions";
+import ConnectedErrorAlert from "../shared/ConnectedErrorAlert";
 
-const CurrentUser = ({ currentUser }) => {
+const BooleanInput = ({ value, onClick }) => {
+  return (
+    <div>
+      <FontAwesomeIcon
+        icon={value ? faCheckSquare : faSquare}
+        size="lg"
+        onClick={onClick}
+      />
+    </div>
+  );
+};
+
+const CurrentUser = ({ currentUser, dispatch }) => {
+  const User_Unsubscribed_Click = (event) => {
+    const updateable = () => {
+      return { ...currentUser, unsubscribed: !currentUser.unsubscribed };
+    };
+    event.preventDefault();
+    console.log("update the following", updateable());
+    dispatch(updateCurrentUserAction(updateable()));
+  };
+
+  // Not sure why this is needed... apart to ensure refresh of user data
+  useEffect(() => {
+    dispatch(clearErrorAction);
+    // if (currentUser) {
+    //   dispatch(setUserSessionAction);
+    // }
+  }, [dispatch]);
+
   if (!currentUser) {
     return null;
   } else {
+    console.log(currentUser);
     return (
       <div className="mx-auto text-center" style={{ maxWidth: "56.25rem" }}>
         <div className="top-element-margin"></div>
@@ -21,12 +60,6 @@ const CurrentUser = ({ currentUser }) => {
             </tr>
             <tr>
               <td align="right" className="font-weight-bold">
-                Name:
-              </td>
-              <td align="left">{currentUser.name}</td>
-            </tr>
-            <tr>
-              <td align="right" className="font-weight-bold">
                 Email:
               </td>
               <td align="left">{currentUser.email}</td>
@@ -39,11 +72,31 @@ const CurrentUser = ({ currentUser }) => {
             </tr>
             <tr>
               <td align="right" className="font-weight-bold">
+                Name:
+              </td>
+              <td align="left">{currentUser.name}</td>
+            </tr>
+            <tr>
+              <td align="right" className="font-weight-bold">
                 Picture:
               </td>
               <td align="left">
-                {" "}
                 <img alt="Current user avatar" src={currentUser.image_url} />
+              </td>
+            </tr>
+            <tr>
+              <td align="right" className="font-weight-bold">
+                Unsubscribe from user notifications and reminders:
+              </td>
+              <td align="left">
+                <ConnectedErrorAlert
+                  actionContext={actionContexts.UPDATE_USER}
+                />
+
+                <BooleanInput
+                  value={currentUser.unsubscribed}
+                  onClick={User_Unsubscribed_Click}
+                />
               </td>
             </tr>
           </tbody>

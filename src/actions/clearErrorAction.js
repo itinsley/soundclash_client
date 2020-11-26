@@ -1,7 +1,7 @@
-const clearError = () => (dispatch) => {
+const clearErrorAction = (dispatch) => {
   dispatch({
     type: "CLEAR_ERROR",
   });
 };
 
-export default clearError;
+export default clearErrorAction;

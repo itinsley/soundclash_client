@@ -30,6 +30,7 @@ const defaultState = {
 
 // Reducer
 function reducer(state = defaultState, action) {
+  console.log("READUCER", action);
   switch (action.type) {
     case "SET_ERROR":
       return {
@@ -37,6 +38,7 @@ function reducer(state = defaultState, action) {
         apiError: action.apiError,
       };
     case "CLEAR_ERROR":
+      console.log("Reducer clearning error");
       return {
         ...state,
         apiError: {

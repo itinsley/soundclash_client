@@ -8,6 +8,7 @@ import setErrorAction from "./setErrorAction";
 import clearErrorAction from "./clearErrorAction";
 import createTrackAction from "./createTrackAction";
 import actionContexts from "./actionContexts";
+import updateCurrentUserAction from "./updateCurrentUserAction";
 
 export {
   actionContexts,
@@ -20,4 +21,5 @@ export {
   setErrorAction,
   clearErrorAction,
   createTrackAction,
+  updateCurrentUserAction,
 };
