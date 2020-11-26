@@ -18,6 +18,7 @@ import {
 } from "../../actions";
 import ErrorAlertContainer from "../shared/ErrorAlertContainer";
 import Avatar from "../shared/Avatar";
+import clearUserSession from "../../actions/clearUserSessionAction";
 
 function Navigation({ dispatch, currentUser, currentUserError }) {
   const {
@@ -123,7 +124,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
 
   async function doLogout() {
     logout();
-    dispatch(refreshUserSessionAction(null));
+    dispatch(clearUserSession);
   }
 }
 
