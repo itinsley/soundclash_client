@@ -1,7 +1,7 @@
 import Users from "../api/Users";
 import { fetchMyClashesAction } from "../actions";
 
-const setUserSession = (auth0User, jwt) => async (dispatch) => {
+const setUserSession = (jwt) => async (dispatch) => {
   try {
     const soundClashUser = await Users.getOrCreateCurrentUser(jwt);
     dispatch({
@@ -11,7 +11,8 @@ const setUserSession = (auth0User, jwt) => async (dispatch) => {
         name: soundClashUser.name,
         email: soundClashUser.email,
         sub: soundClashUser.sub,
-        image_url: auth0User.picture,
+        // image_url: auth0User.picture,
+        unsubscribed: soundClashUser.unsubscribed,
       },
       jwt: jwt,
     });

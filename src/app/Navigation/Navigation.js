@@ -39,7 +39,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
     if (auth0user.email !== (currentUser && currentUser.email)) {
       (async () => {
         const jwt = await getAccessTokenSilently();
-        dispatch(setUserSessionAction(auth0user, jwt));
+        dispatch(setUserSessionAction(jwt));
       })();
     }
   }, [dispatch, currentUser, auth0user, getAccessTokenSilently]);
@@ -107,7 +107,6 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
             id="login"
             className="btn-link nav-link"
             onClick={() => {
-              console.log("loginwithpop");
               loginWithPopup();
             }}
           >
