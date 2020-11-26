@@ -38,14 +38,11 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
       return;
     }
 
-    // Reset user session if auth0User different to session user
-    if (auth0user.email !== (currentUser && currentUser.email)) {
-      (async () => {
-        const jwt = await getAccessTokenSilently();
-        dispatch(refreshUserSessionAction(jwt));
-      })();
-    }
-  }, [dispatch, currentUser, auth0user, getAccessTokenSilently]);
+    (async () => {
+      const jwt = await getAccessTokenSilently();
+      dispatch(refreshUserSessionAction(jwt));
+    })();
+  }, [dispatch, auth0user, getAccessTokenSilently]);
 
   return (
     <div>
