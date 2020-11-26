@@ -1,7 +1,7 @@
 import Users from "../api/Users";
-import { fetchMyClashesAction } from "../actions";
+import { fetchMyClashesAction } from ".";
 
-const setUserSession = (jwt) => async (dispatch) => {
+const refreshUserSession = (jwt) => async (dispatch) => {
   try {
     const soundClashUser = await Users.getOrCreateCurrentUser(jwt);
     dispatch({
@@ -27,4 +27,4 @@ const setUserSession = (jwt) => async (dispatch) => {
   dispatch(fetchMyClashesAction);
 };
 
-export default setUserSession;
+export default refreshUserSession;

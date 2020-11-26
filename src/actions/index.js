@@ -2,7 +2,7 @@ import fetchMyClashesAction from "./fetchMyClashesAction";
 import fetchRecentClashesAction from "./fetchRecentClashesAction";
 import fetchClashAction from "./fetchClashAction";
 import refreshClashAction from "./refreshClashAction";
-import setUserSessionAction from "./setUserSessionAction";
+import refreshUserSessionAction from "./refreshUserSessionAction";
 import clearUserSessionAction from "./clearUserSessionAction";
 import setErrorAction from "./setErrorAction";
 import clearErrorAction from "./clearErrorAction";
@@ -14,7 +14,7 @@ export {
   actionContexts,
   fetchMyClashesAction,
   fetchRecentClashesAction,
-  setUserSessionAction,
+  refreshUserSessionAction,
   clearUserSessionAction,
   fetchClashAction,
   refreshClashAction,

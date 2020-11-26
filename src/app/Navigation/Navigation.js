@@ -12,7 +12,10 @@ import {
   NavItem,
 } from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
-import { setUserSessionAction, clearUserSessionAction } from "../../actions";
+import {
+  refreshUserSessionAction,
+  clearUserSessionAction,
+} from "../../actions";
 import ErrorAlertContainer from "../shared/ErrorAlertContainer";
 import Avatar from "../shared/Avatar";
 
@@ -39,7 +42,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
     if (auth0user.email !== (currentUser && currentUser.email)) {
       (async () => {
         const jwt = await getAccessTokenSilently();
-        dispatch(setUserSessionAction(jwt));
+        dispatch(refreshUserSessionAction(jwt));
       })();
     }
   }, [dispatch, currentUser, auth0user, getAccessTokenSilently]);
@@ -123,7 +126,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
 
   async function doLogout() {
     logout();
-    dispatch(setUserSessionAction(null));
+    dispatch(refreshUserSessionAction(null));
   }
 }
 
