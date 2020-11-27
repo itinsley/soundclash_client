@@ -9,6 +9,7 @@ import CurrentUser from "./app/User/CurrentUser";
 import Clash from "../src/app/Clash/Clash";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./history";
+import UserUnsubscribe from "./app/UserUnsubscribe/UserUnsubscribe";
 
 // styles
 import "./App.css";
@@ -39,6 +40,10 @@ const App = () => {
           <Switch>
             <Route path="/about" render={() => <About />} />
             <Route path="/user" render={() => <CurrentUser />} />
+            <Route
+              path="/unsubscribe/:unsubscribeId"
+              render={(props) => <UserUnsubscribe {...props} />}
+            />
             <Route
               path="/challenge/:uniqueRef"
               render={(props) => <Challenge {...props} />}
