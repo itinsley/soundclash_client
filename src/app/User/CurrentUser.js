@@ -24,20 +24,11 @@ const BooleanInput = ({ value, onClick }) => {
 };
 
 const CurrentUser = ({ currentUser, dispatch }) => {
-  const User_Unsubscribed_Click = (event) => {
+  const Input_Save = (propertyName, value) => {
     dispatch(
       updateCurrentUserAction({
         ...currentUser,
-        unsubscribed: !currentUser.unsubscribed,
-      })
-    );
-  };
-
-  const ImageUrl_Save = (event) => {
-    dispatch(
-      updateCurrentUserAction({
-        ...currentUser,
-        image_url: event.value,
+        [propertyName]: value,
       })
     );
   };
@@ -87,11 +78,14 @@ const CurrentUser = ({ currentUser, dispatch }) => {
               <td align="left">
                 <EditText
                   name="image_url"
+                  placeholder="Enter Avatar Url"
                   style={{ width: "20.25rem" }}
                   value={currentUser.image_url}
-                  onSave={ImageUrl_Save}
+                  onSave={(e) => Input_Save("image_url", e.value)}
                 />
-                <img alt="Current user avatar" src={currentUser.image_url} />
+                {currentUser.image_url && (
+                  <img alt="Current user avatar" src={currentUser.image_url} />
+                )}
               </td>
             </tr>
             <tr>
@@ -105,7 +99,9 @@ const CurrentUser = ({ currentUser, dispatch }) => {
 
                 <BooleanInput
                   value={currentUser.unsubscribed}
-                  onClick={User_Unsubscribed_Click}
+                  onClick={(e) =>
+                    Input_Save("unsubscribed", !currentUser.unsubscribed)
+                  }
                 />
               </td>
             </tr>
