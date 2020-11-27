@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserAvatar from "react-user-avatar";
+import { Img } from "react-image";
 
 const colours = [
   "#27ae60",
@@ -25,14 +26,14 @@ class Avatar extends Component {
 
     if (user.image_url) {
       return (
-        <img
+        <Img
           alt={description}
           className="image-avatar u-circle "
           height={size}
           src={user.image_url}
           title={user.name}
           width={size}
-        ></img>
+        />
       );
     }
 

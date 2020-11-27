@@ -81,7 +81,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
     return (
       <Fragment>
         <NavItem>
-          <NavLink tag={Link} to="/user">
+          <NavLink id="userDetails" tag={Link} to="/user">
             {currentUser.name}
           </NavLink>
         </NavItem>

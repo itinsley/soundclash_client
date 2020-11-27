@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect, Suspense } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import ConnectStore from "../../lib/ConnectStore";
 import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons";
@@ -10,6 +10,8 @@ import {
 } from "../../actions";
 import ConnectedErrorAlert from "../shared/ConnectedErrorAlert";
 import { EditText } from "react-edit-text";
+import { Img } from "react-image";
+import Avatar from "../shared/Avatar";
 
 const BooleanInput = ({ value, onClick }) => {
   return (
@@ -18,7 +20,11 @@ const BooleanInput = ({ value, onClick }) => {
         icon={value ? faCheckSquare : faSquare}
         size="lg"
         onClick={onClick}
+        className="t-unsubscribe mr-2"
       />
+      <span className="t-unsubscribed-status">
+        {value ? "Unsubscribed" : "Send Notifcations"}
+      </span>
     </div>
   );
 };
@@ -43,7 +49,9 @@ const CurrentUser = ({ currentUser, dispatch }) => {
     return (
       <div className="mx-auto text-center" style={{ maxWidth: "40.25rem" }}>
         <div className="top-element-margin"></div>
-        <h1 className="px-2 p-3">Hi {currentUser.name}</h1>
+        <h1 className="px-2 p-3 t-user-detail-heading">
+          Hi {currentUser.name}
+        </h1>
         <h2>Your details</h2>
         <table className="table" style={{ maxWidth: "40.25rem" }}>
           <tbody>
@@ -84,7 +92,11 @@ const CurrentUser = ({ currentUser, dispatch }) => {
                   onSave={(e) => Input_Save("image_url", e.value)}
                 />
                 {currentUser.image_url && (
-                  <img alt="Current user avatar" src={currentUser.image_url} />
+                  <Avatar
+                    user={currentUser}
+                    description="User avatar"
+                    size="50"
+                  />
                 )}
               </td>
             </tr>
