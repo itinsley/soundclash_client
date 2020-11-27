@@ -9,10 +9,14 @@ import {
 
 const updateCurrentUserAction = (user) => async (dispatch, getState) => {
   try {
-    const state = getState();
+    const jwt = getState().jwt;
     dispatch(clearErrorAction);
-    await UserApi.update(state.jwt, user);
-    dispatch(refreshUserSessionAction(state.jwt));
+    await UserApi.update(jwt, user);
+    dispatch({
+      type: "SET_USER_SESSION",
+      currentUser: user,
+      jwt,
+    });
   } catch (err) {
     const apiError = HandleApiError(err, actionContexts.UPDATE_USER);
     dispatch(setErrorAction(apiError));
