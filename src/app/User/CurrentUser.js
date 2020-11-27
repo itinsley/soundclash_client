@@ -9,6 +9,7 @@ import {
   clearErrorAction,
 } from "../../actions";
 import ConnectedErrorAlert from "../shared/ConnectedErrorAlert";
+import { EditText } from "react-edit-text";
 
 const BooleanInput = ({ value, onClick }) => {
   return (
@@ -24,11 +25,21 @@ const BooleanInput = ({ value, onClick }) => {
 
 const CurrentUser = ({ currentUser, dispatch }) => {
   const User_Unsubscribed_Click = (event) => {
-    const updateable = () => {
-      return { ...currentUser, unsubscribed: !currentUser.unsubscribed };
-    };
-    event.preventDefault();
-    dispatch(updateCurrentUserAction(updateable()));
+    dispatch(
+      updateCurrentUserAction({
+        ...currentUser,
+        unsubscribed: !currentUser.unsubscribed,
+      })
+    );
+  };
+
+  const ImageUrl_Save = (event) => {
+    dispatch(
+      updateCurrentUserAction({
+        ...currentUser,
+        image_url: event.value,
+      })
+    );
   };
 
   useEffect(() => {
@@ -39,11 +50,11 @@ const CurrentUser = ({ currentUser, dispatch }) => {
     return null;
   } else {
     return (
-      <div className="mx-auto text-center" style={{ maxWidth: "56.25rem" }}>
+      <div className="mx-auto text-center" style={{ maxWidth: "40.25rem" }}>
         <div className="top-element-margin"></div>
         <h1 className="px-2 p-3">Hi {currentUser.name}</h1>
         <h2>Your details</h2>
-        <table className="table">
+        <table className="table" style={{ maxWidth: "40.25rem" }}>
           <tbody>
             <tr>
               <td align="right" className="font-weight-bold">
@@ -71,9 +82,15 @@ const CurrentUser = ({ currentUser, dispatch }) => {
             </tr>
             <tr>
               <td align="right" className="font-weight-bold">
-                Picture:
+                Avatar Url:
               </td>
               <td align="left">
+                <EditText
+                  name="image_url"
+                  style={{ width: "20.25rem" }}
+                  value={currentUser.image_url}
+                  onSave={ImageUrl_Save}
+                />
                 <img alt="Current user avatar" src={currentUser.image_url} />
               </td>
             </tr>
