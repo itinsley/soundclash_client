@@ -4,7 +4,7 @@ import CurrentRound from "./CurrentRound/CurrentRound";
 import RoundsList from "./RoundsList";
 import loadingImg from "../../assets/loading.svg";
 import ConnectStore from "../../lib/ConnectStore";
-import sortRoundsDesc from "../../lib/sortRoundsDesc";
+import sortByIndex from "../../lib/sortByIndex";
 import { fetchClashAction } from "../../actions";
 
 const Clash = ({ dispatch, match, currentClash, currentUser }) => {
@@ -28,7 +28,7 @@ const Clash = ({ dispatch, match, currentClash, currentUser }) => {
       <Fragment>
         <ClashHeader clash={clash} />
         <CurrentRound clash={clash} />
-        <RoundsList rounds={sortRoundsDesc(clash.rounds)} />
+        <RoundsList rounds={sortByIndex.desc(clash.rounds)} />
       </Fragment>
     );
   }
