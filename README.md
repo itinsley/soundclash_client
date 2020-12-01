@@ -76,6 +76,9 @@ All components depend only upon the properties passed in, this makes them pure C
 ## Features
 - Playlist music player!
 - Update user details - username
+- Render takes too long on big clashes
+ - Stop using currentClash - it means you see the wrong clash
+ - Add paging
 
 ## Tech Debt
 

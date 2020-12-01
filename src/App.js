@@ -7,6 +7,7 @@ import About from "./app/About/About";
 import Challenge from "./app/Challenge/Challenge";
 import CurrentUser from "./app/User/CurrentUser";
 import Clash from "../src/app/Clash/Clash";
+import ClashPlaylist from "../src/app/Clash/ClashPlaylist";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./history";
 import UserUnsubscribe from "./app/UserUnsubscribe/UserUnsubscribe";
@@ -47,6 +48,10 @@ const App = () => {
             <Route
               path="/challenge/:uniqueRef"
               render={(props) => <Challenge {...props} />}
+            />
+            <Route
+              path="/clashes/:clashId/playlist"
+              render={(props) => <ClashPlaylist {...props} />}
             />
             <Route
               path="/clashes/:clashId"

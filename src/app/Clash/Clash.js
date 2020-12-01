@@ -6,6 +6,7 @@ import loadingImg from "../../assets/loading.svg";
 import ConnectStore from "../../lib/ConnectStore";
 import sortByIndex from "../../lib/sortByIndex";
 import { fetchClashAction } from "../../actions";
+import PlayAllTracksButton from "./PlayAllTracksButton";
 
 const Clash = ({ dispatch, match, currentClash, currentUser }) => {
   const clashId = match.params.clashId;
@@ -26,6 +27,7 @@ const Clash = ({ dispatch, match, currentClash, currentUser }) => {
   } else {
     return (
       <Fragment>
+        <PlayAllTracksButton clash={clash} />
         <ClashHeader clash={clash} />
         <CurrentRound clash={clash} />
         <RoundsList rounds={sortByIndex.desc(clash.rounds)} />
