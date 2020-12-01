@@ -28,7 +28,7 @@ video {
 
 /* I don't know how else to prevent content getting hidden under the NavBar */
 .top-element-margin {
-  padding-top: 60px;
+  padding-top: 55px;
 }
 
 .UserAvatar {

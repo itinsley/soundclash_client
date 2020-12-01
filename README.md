@@ -79,6 +79,7 @@ All components depend only upon the properties passed in, this makes them pure C
 - Render takes too long on big clashes
  - Stop using currentClash - it means you see the wrong clash
  - Add paging
+ - Login to leave comment
 
 ## Tech Debt
 

@@ -30,6 +30,6 @@ module.exports = {
     //Ensure Error is reset
     browser.click(".navbar-brand");
     browser.click("partial link text", "API::awaiting_opponent");
-    browser.verify.elementNotPresent(".t-error-alert");
+    browser.assert.not.elementPresent(".t-error-alert");
   },
 };
