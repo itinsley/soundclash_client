@@ -35,7 +35,7 @@ module.exports = {
     // My clashes
     browser.click("partial link text", "API::challenge_sent");
     browser.waitForElementVisible(".t-clash-header");
-    browser.verify.containsText(".t-clash-status", "Waiting for api_opponent");
+    browser.verify.containsText(".t-clash-status", `Waiting for ${OPPONENT}`);
 
     // With status of awaiting_owner
     browser.click(".navbar-brand");
@@ -44,7 +44,7 @@ module.exports = {
     browser.waitForElementVisible(".t-card-title");
     browser.click("partial link text", "API::awaiting_owner");
     browser.waitForElementVisible(".t-clash-status");
-    browser.verify.containsText(".t-clash-status", "api_opponent");
+    browser.verify.containsText(".t-clash-status", "Api Opponent");
     browser.verify.containsText(".t-clash-status", "just played");
     browser.verify.containsText(".t-clash-status", "Now it's your turn...");
     await browser.click("#logout");
@@ -83,7 +83,7 @@ module.exports = {
 
     // Clash with status of challenge_sent
     browser.click(".navbar-brand");
-    browser.verify.containsText(".clash-tile", "Api Owner vs. api_opponent");
+    browser.verify.containsText(".clash-tile", "Api Owner vs. Api Opponent");
     browser.click("partial link text", "API::challenge_sent");
     browser.waitForElementVisible(".t-clash-header");
     browser.verify.elementPresent("iframe");
