@@ -20,7 +20,7 @@ const Clash = ({ dispatch, match, currentClash, currentUser }) => {
 
   if (loading) {
     return (
-      <div className="container-fluid bg-grey text-center">
+      <div className="container-fluid bg-grey text-center top-element-margin">
         <img src={loadingImg} alt="waiting.." />
       </div>
     );

@@ -4,6 +4,7 @@ import fetchClashAction from "./fetchClashAction";
 import refreshClashAction from "./refreshClashAction";
 import refreshUserSessionAction from "./refreshUserSessionAction";
 import clearUserSessionAction from "./clearUserSessionAction";
+import clearCurrentClashAction from "./clearCurrentClashAction";
 import setErrorAction from "./setErrorAction";
 import clearErrorAction from "./clearErrorAction";
 import createTrackAction from "./createTrackAction";
@@ -16,6 +17,7 @@ export {
   fetchRecentClashesAction,
   refreshUserSessionAction,
   clearUserSessionAction,
+  clearCurrentClashAction,
   fetchClashAction,
   refreshClashAction,
   setErrorAction,

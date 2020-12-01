@@ -1,4 +1,5 @@
 import ClashApi from "../api/Clashes";
+import { clearCurrentClashAction } from "./index";
 
 const fetch = async (clashId, state) => {
   if (state.jwt) {
@@ -9,6 +10,7 @@ const fetch = async (clashId, state) => {
 };
 
 const fetchClash = (clashId) => async (dispatch, getState) => {
+  dispatch(clearCurrentClashAction);
   const clash = await fetch(clashId, getState());
   dispatch({
     type: "GET_CLASH",

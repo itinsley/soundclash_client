@@ -11,7 +11,7 @@ const defaultState = {
     loading: true,
   },
   currentClash: {
-    data: [],
+    data: {},
     loading: true,
   },
   newClash: {
@@ -45,7 +45,14 @@ function reducer(state = defaultState, action) {
           errorContext: "",
         },
       };
-
+    case "CLEAR_CURRENT_CLASH":
+      return {
+        ...state,
+        currentClash: {
+          data: null,
+          loading: true,
+        },
+      };
     case "GET_RECENT_CLASHES":
       return {
         ...state,
