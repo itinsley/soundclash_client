@@ -21,7 +21,7 @@ module.exports = {
     // My Clashes:: - spectator, not logged in
     browser.click(".navbar-brand");
     browser.waitForElementVisible(".card");
-    browser.verify.elementNotPresent(".t-myclashes-header");
+    browser.assert.not.elementPresent(".t-myclashes-header");
   },
 
   "My Clashes:: logged in as clash owner": async function (browser) {
@@ -103,7 +103,7 @@ module.exports = {
   ) {
     await browser.url(BASE_URL);
     await login(browser, SPECTATOR, PASSWORD);
-    browser.verify.elementNotPresent(".t-myclashes-header .clash-tile");
+    browser.assert.not.elementPresent(".t-myclashes-header .clash-tile");
     browser.end();
   },
 

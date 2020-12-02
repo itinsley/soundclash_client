@@ -46,7 +46,7 @@ const Upload = ({ clash, createTrack, clearError, apiError }) => {
     return <Loading />;
   }
 
-  const previousTrack = clash.tracks[clash.tracks.length - 1];
+  const previousTrack = clash.previous_track;
   const otherPlayer = clash.private_info.other_player;
 
   return (

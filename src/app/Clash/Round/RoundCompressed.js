@@ -20,10 +20,10 @@ class RoundCompressed extends Component {
           {round.comments_count}
         </strong>
         <h3 style={{ fontSize: "150%", fontWeight: "300" }}>
-          {round.owner_track.name}
+          {round.owner_track_name}
         </h3>
         <h3 style={{ fontSize: "150%", fontWeight: "300" }}>
-          {round.opponent_track.name}
+          {round.opponent_track_name}
         </h3>
       </a>
     );
