@@ -73,6 +73,7 @@ The pattern is to avoid using connected redux components or containers unless ne
 - Login to leave comment
 
 ## Features
+- Accept youtube link from share link
 - Playlist music player!
 - Nudge player..
 - Social media links!

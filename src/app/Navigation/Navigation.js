@@ -48,13 +48,8 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
 
   return (
     <div>
-      <Navbar
-        color="black"
-        dark
-        expand="xl"
-        className="xcontainer-gutters fixed-top"
-      >
-        <Container>
+      <Navbar color="black" dark expand="xl" className="fixed-top">
+        <Container className="container container-gutters">
           <NavbarBrand tag={Link} to="/">
             <img
               alt="Soundclash Logo"
