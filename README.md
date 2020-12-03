@@ -75,7 +75,7 @@ All components depend only upon the properties passed in, this makes them pure C
 # TODO
 ## Bug
 - Need gutters for wide screens.. ✅
-- Comment count not shown on rounds list
+- Comment count not shown on rounds list ✅
 - Min height for Track youtube tile 
 
 ## Features
