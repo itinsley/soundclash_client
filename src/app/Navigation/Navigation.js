@@ -131,7 +131,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
   }
 
   async function doLogout() {
-    logout();
+    logout({ returnTo: window.location.origin });
     dispatch(clearUserSession);
   }
 }

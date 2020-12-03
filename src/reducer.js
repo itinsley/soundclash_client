@@ -87,7 +87,6 @@ function reducer(state = defaultState, action) {
         currentUserError: "",
       };
     case "SET_USER_SESSION_ERROR":
-      console.log(action, "setus");
       return {
         ...state,
         currentUser: null,
