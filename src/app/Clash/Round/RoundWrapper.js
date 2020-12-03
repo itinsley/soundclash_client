@@ -19,7 +19,11 @@ class RoundWrapper extends Component {
   render() {
     const round = this.props.round;
     if (this.state.isOpen) {
-      return <RoundExpanded round={round} />;
+      return (
+        <div className="container-gutters">
+          <RoundExpanded round={round} />
+        </div>
+      );
     } else {
       return <RoundCompressed round={round} Handle_Click={this.Handle_Click} />;
     }

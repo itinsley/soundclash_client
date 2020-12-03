@@ -11,6 +11,13 @@ body {
   font-weight: 300;
 }
 
+.container-gutters {
+  width: 92%;
+  min-width: 13.75rem;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
 audio,
 canvas,
 progress,

@@ -10,6 +10,7 @@ import {
   Nav,
   NavLink,
   NavItem,
+  Container,
 } from "reactstrap";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
@@ -47,28 +48,35 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
 
   return (
     <div>
-      <Navbar color="black" dark expand="md" className="fixed-top bg-black">
-        <NavbarBrand tag={Link} to="/">
-          <img
-            alt="Soundclash Logo"
-            src="https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg"
-          />
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-            <NavLink tag={Link} to="/">
-              Home
-            </NavLink>
-            <NavItem>
-              <NavLink tag={Link} to="/about">
-                What is this?
+      <Navbar
+        color="black"
+        dark
+        expand="xl"
+        className="xcontainer-gutters fixed-top"
+      >
+        <Container>
+          <NavbarBrand tag={Link} to="/">
+            <img
+              alt="Soundclash Logo"
+              src="https://res.cloudinary.com/soundclash/image/asset/logo-2fbf65a68e23f142eb0690887b418c0e.svg"
+            />
+          </NavbarBrand>
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavLink tag={Link} to="/">
+                Home
               </NavLink>
-            </NavItem>
-            <ErrorAlertContainer errorMessage={currentUserError} />
-            <LoginNav />
-          </Nav>
-        </Collapse>
+              <NavItem>
+                <NavLink tag={Link} to="/about">
+                  What is this?
+                </NavLink>
+              </NavItem>
+              <ErrorAlertContainer errorMessage={currentUserError} />
+              <LoginNav />
+            </Nav>
+          </Collapse>
+        </Container>
       </Navbar>
     </div>
   );

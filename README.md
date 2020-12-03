@@ -73,8 +73,14 @@ The pattern is to avoid using connected redux components or containers unless ne
 All components depend only upon the properties passed in, this makes them pure Components and easily testable.
 
 # TODO
+## Bug
+- Need gutters for wide screens.. ✅
+- Comment count not shown on rounds list
+- Min height for Track youtube tile 
+
 ## Features
 - Playlist music player!
+- Nudge player..
 - Update user details - username
 - Render takes too long on big clashes
  - Stop using currentClash - it means you see the wrong clash

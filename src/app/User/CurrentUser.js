@@ -47,7 +47,10 @@ const CurrentUser = ({ currentUser, dispatch }) => {
     return null;
   } else {
     return (
-      <div className="mx-auto text-center" style={{ maxWidth: "40.25rem" }}>
+      <div
+        className="container-gutters mx-auto text-center"
+        style={{ maxWidth: "40.25rem" }}
+      >
         <div className="top-element-margin"></div>
         <h1 className="px-2 p-3 t-user-detail-heading">
           Hi {currentUser.name}

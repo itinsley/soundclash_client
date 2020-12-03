@@ -5,7 +5,7 @@ class RoundsList extends Component {
     return this.props.rounds.map((round, idx) => {
       return (
         <Fragment key={round.id}>
-          <div className="row">
+          <div className="row bg-grey">
             <div className="col-sm-12 text-center">
               <RoundWrapper isOpen={idx === 0} round={round} />
             </div>

@@ -21,7 +21,10 @@ const Challenge = (props) => {
   }
   return (
     <Fragment>
-      <div className="mx-auto text-center" style={{ maxWidth: "56.25rem" }}>
+      <div
+        className="container-gutters mx-auto text-center mx-auto text-center"
+        style={{ maxWidth: "56.25rem" }}
+      >
         <div className="top-element-margin"></div>
         <div className="u-s-mt-small u-s-mb-tiny pt-5">
           <span className="text-size-xx-small p-2">

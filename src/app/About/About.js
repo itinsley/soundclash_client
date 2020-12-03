@@ -2,8 +2,10 @@ import React from "react";
 
 function About() {
   const about = (
-    <div className="mx-auto text-center" style={{ maxWidth: "56.25rem" }}>
-      <div className="top-element-margin"></div>
+    <div
+      className="container-gutters mx-auto text-center top-element-margin"
+      style={{ maxWidth: "56.25rem" }}
+    >
       <h1 className="px-2 p-3">What is Soundclash?</h1>
       <hr />
       <div className="u-s-mb-base">

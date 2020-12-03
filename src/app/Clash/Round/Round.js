@@ -5,7 +5,7 @@ import ConnectStore from "../../../lib/ConnectStore";
 function Round({ round }) {
   const rowClassNames = `row px-4 t-row-detail-${round.index}`;
   return (
-    <div className="container-fluid bg-grey px-0">
+    <div className="px-0">
       <div className={rowClassNames}>
         <div className="t-track-owner col-sm-6 text-center p-3">
           <Track track={round.owner_track} />
