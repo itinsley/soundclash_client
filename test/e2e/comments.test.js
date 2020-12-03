@@ -11,7 +11,7 @@ module.exports = {
     browser.waitForElementVisible(".t-track-owner textarea[name='newComment']");
     browser.setValue(".t-track-owner textarea[name='newComment']", comment);
     await browser.click(".t-track-owner .t-comment-submit");
-    await browser.waitForElementNotPresent(".t-track-owner .t-spinner");
+    await browser.waitForElementNotVisible(".t-track-owner .t-spinner");
     browser.assert.containsText(".t-track-owner", comment);
 
     browser.assert.value(".t-track-owner textarea[name='newComment']", "");

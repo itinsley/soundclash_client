@@ -7,11 +7,13 @@ import ConnectStore from "../../lib/ConnectStore";
 import sortByIndex from "../../lib/sortByIndex";
 import { fetchClashAction } from "../../actions";
 import PlayAllTracksButton from "./PlayAllTracksButton";
+import { clearCurrentClashAction } from "../../actions";
 
 const Clash = ({ dispatch, match, currentClash, currentUser }) => {
   const clashId = match.params.clashId;
 
   useEffect(() => {
+    dispatch(clearCurrentClashAction);
     dispatch(fetchClashAction(clashId));
   }, [dispatch, clashId, currentUser]);
 
