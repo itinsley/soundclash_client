@@ -70,18 +70,11 @@ The pattern is to avoid using connected redux components or containers unless ne
 
 # TODO
 ## Bug
-- Need gutters for wide screens.. ✅
-- Comment count not shown on rounds list ✅
-- Min height for Track youtube tile  ✅ - Fixed in API
+- Login to leave comment
 
 ## Features
 - Playlist music player!
 - Nudge player..
-- Update user details - username
-- Render takes too long on big clashes
- - Stop using currentClash - it means you see the wrong clash
- - Add paging
-- Login to leave comment
 - Social media links!
 - Twitter login
 
