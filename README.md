@@ -68,15 +68,11 @@ Use classes with a prefix of t- for identifying elements for testing purposes. i
 We are using Redux and Thunks to manage global state reads and writes.
 The pattern is to avoid using connected redux components or containers unless necessary. Most components just rely on the props that are passed into them.
 
-## Components
-
-All components depend only upon the properties passed in, this makes them pure Components and easily testable.
-
 # TODO
 ## Bug
 - Need gutters for wide screens.. ✅
 - Comment count not shown on rounds list ✅
-- Min height for Track youtube tile 
+- Min height for Track youtube tile  ✅ - Fixed in API
 
 ## Features
 - Playlist music player!
