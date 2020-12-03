@@ -11,6 +11,7 @@ import ClashPlaylist from "../src/app/Clash/ClashPlaylist";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./history";
 import UserUnsubscribe from "./app/UserUnsubscribe/UserUnsubscribe";
+import VersionTag from "./app/VersionTag";
 
 // styles
 import "./App.css";
@@ -38,6 +39,7 @@ const App = () => {
       <Router history={history}>
         <div id="app">
           <Navigation />
+          <VersionTag />
           <Switch>
             <Route path="/about" render={() => <About />} />
             <Route path="/user" render={() => <CurrentUser />} />
