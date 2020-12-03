@@ -9,7 +9,6 @@ import EmailValidator from "email-validator";
 import history from "../../history";
 import useStickyState from "../../lib/useStickyState";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Alert } from "reactstrap";
 
 const LOCAL_STORAGE_STATE_KEY = "createClash";
 const DEFAULT_SESSION_STATE = {

@@ -25,7 +25,6 @@ const Unsubscribe = (props) => {
       <div className="top-element-margin"></div>
       <h1 className="px-2 p-3">Unsubscribe from notifications and reminders</h1>
       <hr />
-      <h2 className="px-2 p-3 t-user-detail-heading"></h2>
       <h3>{message}</h3>
     </div>
   );

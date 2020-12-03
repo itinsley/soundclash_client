@@ -39,6 +39,7 @@ const ClashPlaylist = ({ match }) => {
         <div className="top-element-margin"></div>
         <div>
           <iframe
+            title={`Sounclash Playlist:: ${clash.name}`}
             className="youtube-playlist"
             allowFullScreen={true}
             src={`https://www.youtube.com/embed?autoplay=1&playlist=${youtube_ids()}`}

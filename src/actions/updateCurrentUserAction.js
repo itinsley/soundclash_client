@@ -1,11 +1,6 @@
 import UserApi from "../api/Users";
 import HandleApiError from "../api/HandleApiError";
-import {
-  actionContexts,
-  setErrorAction,
-  clearErrorAction,
-  refreshUserSessionAction,
-} from ".";
+import { actionContexts, setErrorAction, clearErrorAction } from ".";
 
 const updateCurrentUserAction = (user) => async (dispatch, getState) => {
   try {

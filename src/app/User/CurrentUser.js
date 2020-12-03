@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, Suspense } from "react";
+import React, { useEffect } from "react";
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import ConnectStore from "../../lib/ConnectStore";
 import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons";
@@ -10,7 +10,6 @@ import {
 } from "../../actions";
 import ConnectedErrorAlert from "../shared/ConnectedErrorAlert";
 import { EditText } from "react-edit-text";
-import { Img } from "react-image";
 import Avatar from "../shared/Avatar";
 
 const BooleanInput = ({ value, onClick }) => {
