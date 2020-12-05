@@ -10,14 +10,6 @@ module.exports = {
     browser.waitForElementVisible(".t-user-detail-heading");
     browser.assert.containsText(".t-user-detail-heading", "Hi Api Owner");
 
-    //User Details - Unsubscribe
-    const subscriptionStatus = browser.getText(".t-unsubscribed-status");
-    browser.assert.ok(subscriptionStatus != "");
-    await browser.click("#userDetails");
-    browser.assert.ok(
-      subscriptionStatus != browser.getText(".t-unsubscribed-status")
-    );
-
     //Dynmamic Round loading
     await browser.url(BASE_URL);
     browser.waitForElementVisible(".card");

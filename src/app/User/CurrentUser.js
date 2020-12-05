@@ -21,9 +21,9 @@ const BooleanInput = ({ value, onClick }) => {
         onClick={onClick}
         className="t-unsubscribe mr-2"
       />
-      <span className="t-unsubscribed-status">
+      {/* <span className="t-unsubscribed-status">
         {value ? "Unsubscribed" : "Send Notifcations"}
-      </span>
+      </span> */}
     </div>
   );
 };
