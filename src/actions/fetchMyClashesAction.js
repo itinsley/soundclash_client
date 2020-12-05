@@ -5,7 +5,7 @@ async function fetchMyClashesAction(dispatch, getState) {
   if (state.jwt) {
     const myClashes = await ClashApi.forUser(state.jwt);
     dispatch({
-      type: "GET_MY_CLASHES",
+      type: "SET_MY_CLASHES",
       myClashes,
       loading: false,
     });

@@ -11,7 +11,7 @@ const fetch = async (clashId, state) => {
 const fetchClash = (clashId) => async (dispatch, getState) => {
   const clash = await fetch(clashId, getState());
   dispatch({
-    type: "GET_CLASH",
+    type: "SET_CURRENT_CLASH",
     clash,
   });
 };

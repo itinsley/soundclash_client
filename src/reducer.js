@@ -53,7 +53,7 @@ function reducer(state = defaultState, action) {
           loading: true,
         },
       };
-    case "GET_RECENT_CLASHES":
+    case "SET_RECENT_CLASHES":
       return {
         ...state,
         recentClashes: {
@@ -61,7 +61,7 @@ function reducer(state = defaultState, action) {
           loading: false,
         },
       };
-    case "GET_MY_CLASHES":
+    case "SET_MY_CLASHES":
       return {
         ...state,
         myClashes: {
@@ -69,7 +69,7 @@ function reducer(state = defaultState, action) {
           loading: false,
         },
       };
-    case "GET_CLASH":
+    case "SET_CURRENT_CLASH":
       return {
         ...state,
         currentClash: {
