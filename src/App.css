@@ -33,6 +33,10 @@ video {
   font-weight: 300;
 }
 
+.btn-login-link {
+  color: #167ac6;
+}
+
 /* I don't know how else to prevent content getting hidden under the NavBar */
 .top-element-margin {
   padding-top: 55px;

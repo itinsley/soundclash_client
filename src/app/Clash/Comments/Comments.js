@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import CommentItem from "./CommentItem";
 import Avatar from "../../shared/Avatar";
 import SpinnerButtonInner from "../../shared/SpinnerButtonInner";
@@ -7,6 +7,7 @@ import CommentApi from "../../../api/Comments";
 import HandleApiError from "../../../api/HandleApiError";
 import ErrorAlertContainer from "../../shared/ErrorAlertContainer";
 import { refreshClashAction } from "../../../actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const DEFAULT_STATE = {
   newComment: "",
@@ -17,6 +18,8 @@ const DEFAULT_STATE = {
 
 const Comment = (props) => {
   const [state, setState] = useState(DEFAULT_STATE);
+  const { loginWithPopup } = useAuth0();
+
   useEffect(() => setState(DEFAULT_STATE), []);
 
   function handleChange(e) {
@@ -102,10 +105,14 @@ const Comment = (props) => {
     } else {
       return (
         <div className="my-2 text-left">
-          <strong>
-            <Link to={"/login"}>Login</Link>
-          </strong>{" "}
-          to leave a comment
+          <button
+            id="login"
+            variant="link"
+            className="btn btn-login-link"
+            onClick={loginWithPopup}
+          >
+            Login to leave a comment
+          </button>
         </div>
       );
     }
