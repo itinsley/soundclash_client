@@ -7,7 +7,7 @@ class RoundsList extends Component {
         <Fragment key={round.id}>
           <div className="row bg-grey">
             <div className="col-sm-12 text-center">
-              <RoundWrapper isOpen={idx === 0} round={round} />
+              <RoundWrapper round={round} />
             </div>
           </div>
         </Fragment>
