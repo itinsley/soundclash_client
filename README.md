@@ -71,7 +71,7 @@ The pattern is to avoid using connected redux components or containers unless ne
 # TODO
 ## Bug
 - Login to leave comment ✅
-- Can we send emails async?
+- Can we send emails async? ✅
 - Comment mailer URL (domain, path, page)
 - View Clash URL (domain)
 - Internal styling for gmail
