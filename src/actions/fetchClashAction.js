@@ -15,7 +15,7 @@ const fetchClash = (clashId) => async (dispatch, getState) => {
     const round = clash.rounds[clash.rounds.length - 1];
     round.expanded = true;
   }
-  dispatch({
+  return dispatch({
     type: "SET_CURRENT_CLASH",
     clash,
   });

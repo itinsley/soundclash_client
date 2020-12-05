@@ -7,15 +7,19 @@ import ConnectStore from "../../lib/ConnectStore";
 import sortByIndex from "../../lib/sortByIndex";
 import { fetchClashAction } from "../../actions";
 import PlayAllTracksButton from "./PlayAllTracksButton";
-import { clearCurrentClashAction } from "../../actions";
+import { clearCurrentClashAction, setRoundExpandedAction } from "../../actions";
 
 const Clash = ({ dispatch, match, currentClash, currentUser }) => {
-  const clashId = match.params.clashId;
+  const clashId = parseInt(match.params.clashId);
+  const roundId = parseInt(match.params.roundId);
 
   useEffect(() => {
-    dispatch(clearCurrentClashAction);
-    dispatch(fetchClashAction(clashId));
-  }, [dispatch, clashId, currentUser]);
+    dispatch(clearCurrentClashAction).then(() => {
+      dispatch(fetchClashAction(clashId)).then(() => {
+        if (roundId) dispatch(setRoundExpandedAction(roundId));
+      });
+    });
+  }, [dispatch, clashId, currentUser, roundId]);
 
   const clash = currentClash.data;
   const loading = currentClash.loading;

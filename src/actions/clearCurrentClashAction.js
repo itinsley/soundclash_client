@@ -1,5 +1,5 @@
-const ClearCurrentClash = (dispatch) => {
-  dispatch({
+const ClearCurrentClash = async (dispatch) => {
+  return dispatch({
     type: "CLEAR_CURRENT_CLASH",
   });
 };
