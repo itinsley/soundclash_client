@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CommentItem from "./CommentItem";
 import Avatar from "../../shared/Avatar";
@@ -15,44 +15,34 @@ const DEFAULT_STATE = {
   errorMessage: "",
 };
 
-class Comment extends Component {
-  constructor(props) {
-    super(props);
-    this.state = DEFAULT_STATE;
+const Comment = (props) => {
+  const [state, setState] = useState(DEFAULT_STATE);
+  useEffect(() => setState(DEFAULT_STATE), []);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearFormState = this.clearFormState.bind(this);
+  function handleChange(e) {
+    setState({ [e.target.name]: e.target.value });
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  renderHistory() {
-    return this.props.comments.map((comment) => (
+  function renderHistory() {
+    return props.comments.map((comment) => (
       <CommentItem key={`comment=${comment.id}`} comment={comment} />
     ));
   }
 
-  clearFormState() {
-    this.setState(DEFAULT_STATE);
+  function clearFormState() {
+    setState(DEFAULT_STATE);
   }
 
-  async handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     try {
-      this.setState({ loading: true });
-      await CommentApi.create(
-        this.props.trackId,
-        this.state.newComment,
-        this.props.jwt
-      );
-      this.props.dispatch(refreshClashAction);
-      this.clearFormState();
+      setState({ loading: true });
+      await CommentApi.create(props.trackId, state.newComment, props.jwt);
+      props.dispatch(refreshClashAction);
+      clearFormState();
     } catch (err) {
       const { errorMessage, errors } = HandleApiError(err);
-      this.setState({
+      setState({
         errorMessage,
         errors,
         loading: false,
@@ -60,13 +50,13 @@ class Comment extends Component {
     }
   }
 
-  renderCommentForm() {
-    const currentUser = this.props.currentUser;
+  function renderCommentForm() {
+    const currentUser = props.currentUser;
 
     if (currentUser) {
       return (
         <Fragment>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="row py-2 px-0 mx-0">
               <div className="col-auto text-left">
                 <Avatar
@@ -83,17 +73,17 @@ class Comment extends Component {
                   type="text"
                   required
                   rows="2"
-                  value={this.state.newComment}
+                  value={state.newComment}
                   className="form-control"
                   name="newComment"
                   placeholder="Comment on this track"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
               </div>
             </div>
             <ErrorAlertContainer
-              errors={this.state.errors}
-              errorMessage={this.state.errorMessage}
+              errors={state.errors}
+              errorMessage={state.errorMessage}
             />
 
             <div className="row py-0 px-0 mx-0 justify-content-end">
@@ -102,10 +92,7 @@ class Comment extends Component {
                   className="t-comment-submit btn btn-dark btn-sm"
                   type="submit"
                 >
-                  <SpinnerButtonInner
-                    label="Post"
-                    loading={this.state.loading}
-                  />
+                  <SpinnerButtonInner label="Post" loading={state.loading} />
                 </button>
               </div>
             </div>
@@ -124,14 +111,12 @@ class Comment extends Component {
     }
   }
 
-  render() {
-    return (
-      <div>
-        {this.renderCommentForm()}
-        {this.renderHistory()}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {renderCommentForm()}
+      {renderHistory()}
+    </div>
+  );
+};
 
 export default Comment;
