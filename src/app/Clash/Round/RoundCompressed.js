@@ -4,7 +4,7 @@ import ConnectStore from "../../../lib/ConnectStore";
 const RoundCompressed = ({ round, dispatch }) => {
   const expandRound = (e) => {
     e.preventDefault();
-    dispatch(setRoundExpandedAction(round.index));
+    dispatch(setRoundExpandedAction(round.index, true));
   };
 
   return (

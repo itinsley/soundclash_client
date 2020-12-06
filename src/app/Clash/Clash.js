@@ -16,7 +16,7 @@ const Clash = ({ dispatch, match, currentClash, currentUser }) => {
   useEffect(() => {
     dispatch(clearCurrentClashAction).then(() => {
       dispatch(fetchClashAction(clashId)).then(() => {
-        if (roundId) dispatch(setRoundExpandedAction(roundId));
+        if (roundId) dispatch(setRoundExpandedAction(roundId, true));
       });
     });
   }, [dispatch, clashId, currentUser, roundId]);

@@ -76,6 +76,7 @@ The pattern is to avoid using connected redux components or containers unless ne
 
 
 ## Features
+- Adjust Email colors for dark mode ✅
 - Accept youtube link from share link
 - Playlist music player!
 - Nudge player..

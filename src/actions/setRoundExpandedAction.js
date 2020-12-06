@@ -1,13 +1,14 @@
-const setRoundExpanded = (roundIndex) => (dispatch, getState) => {
+const setRoundExpanded = (roundIndex, scrollIntoView) => (
+  dispatch,
+  getState
+) => {
   const state = getState();
   const clash = state.currentClash.data;
-  const rounds = clash.rounds.map((round, index) => {
-    if (round.index === roundIndex) {
-      return { ...round, expanded: true };
-    }
-
-    return { ...round };
-  });
+  const rounds = clash.rounds.map((round) =>
+    round.index === roundIndex
+      ? { ...round, expanded: true, scrollIntoView }
+      : round
+  );
 
   dispatch({
     type: "SET_CURRENT_CLASH_ROUNDS",
