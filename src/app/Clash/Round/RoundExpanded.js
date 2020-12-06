@@ -5,6 +5,8 @@ import RoundApi from "../../../api/Rounds";
 import ConnectStore from "../../../lib/ConnectStore";
 
 const scrollIntoView = (ref) => {
+  if (!ref.current) return;
+
   ref.current.scrollIntoView({
     block: "center",
     behavior: "smooth",
