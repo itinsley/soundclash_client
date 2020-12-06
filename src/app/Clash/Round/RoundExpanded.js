@@ -23,7 +23,7 @@ function RoundExpanded({ currentClash, round }) {
       setRoundDetail(roundDetail);
       if (round.scrollIntoView) scrollIntoView(scrollReference);
     });
-  }, [clashId, round, scrollReference]);
+  }, [clashId, round]);
 
   if (!roundDetail) {
     return <Loading />;
