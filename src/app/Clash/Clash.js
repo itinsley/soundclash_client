@@ -19,7 +19,7 @@ const Clash = ({ dispatch, match, currentClash, currentUser }) => {
         if (roundId) dispatch(setRoundExpandedAction(roundId, true));
       });
     });
-  }, [dispatch, clashId, currentUser, roundId]);
+  }, [dispatch, clashId, roundId]);
 
   const clash = currentClash.data;
   const loading = currentClash.loading;
