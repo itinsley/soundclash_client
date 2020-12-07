@@ -14,6 +14,19 @@
 - To get FB integration working you neet to setup a hostname alias to soundclash.test and run from port 3000 over SSL. Can't use Soundclash.dev as this is a reserved domain by google. soundclash.test:3000 is an approved callback URI for Facebook app.
 - App runs in /client i.e. - http://soundclash.test:3000/client
 
+### SSL
+  - Generally you can run on SSL on localhost but if you need to use a valid domain for testing
+   - Setup domain in /etc/hosts
+   - Create certificate https://devcenter.heroku.com/articles/ssl-certificate-self
+   - Specify cert/host/https in environment variables https://dev.to/wozzo/using-https-with-create-react-app-5337
+
+    HOST=soundclash.test
+    HTTPS=true
+    SSL_CRT_FILE=./certs/server.crt
+    SSL_KEY_FILE=./certs/server.key
+
+   - Add cert to system - i.e for OSX https://support.securly.com/hc/en-us/articles/206058318-How-to-install-the-Securly-SSL-certificate-on-Mac-OSX-
+  
 ## Start
 
     npm start
