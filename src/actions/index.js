@@ -10,6 +10,7 @@ import clearErrorAction from "./clearErrorAction";
 import createTrackAction from "./createTrackAction";
 import actionContexts from "./actionContexts";
 import updateCurrentUserAction from "./updateCurrentUserAction";
+import setRoundExpandedAction from "./setRoundExpandedAction";
 
 export {
   actionContexts,
@@ -21,6 +22,7 @@ export {
   fetchClashAction,
   refreshClashAction,
   setErrorAction,
+  setRoundExpandedAction,
   clearErrorAction,
   createTrackAction,
   updateCurrentUserAction,

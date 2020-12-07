@@ -56,6 +56,10 @@ const App = () => {
               render={(props) => <ClashPlaylist {...props} />}
             />
             <Route
+              path="/clashes/:clashId/rounds/:roundId"
+              render={(props) => <Clash {...props} />}
+            />
+            <Route
               path="/clashes/:clashId"
               render={(props) => <Clash {...props} />}
             />

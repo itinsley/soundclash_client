@@ -1,9 +1,17 @@
-const RoundCompressed = ({ round, Handle_Click }) => {
+import setRoundExpandedAction from "../../../actions/setRoundExpandedAction";
+import ConnectStore from "../../../lib/ConnectStore";
+
+const RoundCompressed = ({ round, dispatch }) => {
+  const expandRound = (e) => {
+    e.preventDefault();
+    dispatch(setRoundExpandedAction(round.index, true));
+  };
+
   return (
     <a
       href={`/rounds/${round.id}.json`}
       className="py-3 round-thumb u-overlay-hover"
-      onClick={Handle_Click}
+      onClick={expandRound}
     >
       <strong>
         <span className="text-uppercase">Round {round.index}</span>
@@ -25,4 +33,4 @@ const RoundCompressed = ({ round, Handle_Click }) => {
   );
 };
 
-export default RoundCompressed;
+export default ConnectStore(RoundCompressed);

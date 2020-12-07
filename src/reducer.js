@@ -77,6 +77,18 @@ function reducer(state = defaultState, action) {
           loading: false,
         },
       };
+    case "SET_CURRENT_CLASH_ROUNDS":
+      return {
+        ...state,
+        currentClash: {
+          data: {
+            ...state.currentClash.data,
+            rounds: action.rounds,
+          },
+          loading: false,
+        },
+      };
+
     // Session is stored in local storage.
     // Sync should be performed to establish session expiry when user state is critical
     case "SET_USER_SESSION":

@@ -24,6 +24,7 @@ class Clash extends Component {
 
     return (
       <main className="container-fluid main-content mt-5 px-0">
+        <div className="t-clash-id">{clash.id}</div>
         <div
           className="t-clash-header container mx-auto text-center "
           style={{ maxWidth: "56.25rem" }}
