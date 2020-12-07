@@ -2,6 +2,62 @@ import React, { Component, Fragment } from "react";
 import Avatar from "../shared/Avatar";
 import CountLabel from "../shared/CountLabel";
 
+const SocialMediaIcons = (clash) => {
+  const shareDescription = (clash) =>
+    `${clash.owner_name} vs ${clash.opponent_name} in a Soundclash:: ${clash.name}`;
+
+  return (
+    <div className="pb-3">
+      <span>
+        <a
+          href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+          target="_blank"
+          title="Facebook Share"
+          rel="noreferrer"
+        >
+          <img
+            alt=""
+            class="u-display-inline-block u-s-ml-micro"
+            src="https://res.cloudinary.com/soundclash/image/asset/facebook-share-4702e873848c86c2419993eaff72dbdb.svg"
+            width="20"
+          />
+        </a>
+      </span>
+      <span>
+        <a
+          href={`https://www.twitter.com/intent/tweet?url=${
+            window.location.href
+          }&text=${shareDescription(clash)}&hashtags=soundclash`}
+          target="_blank"
+          title="Twitter Share"
+          rel="noreferrer"
+        >
+          <img
+            alt=""
+            className="ml-2"
+            src="https://res.cloudinary.com/soundclash/image/asset/twitter-share-1d435796085c7644b3acee055c898e3e.svg"
+            width="20"
+          />
+        </a>
+      </span>
+      <span>
+        <a
+          href={`https://plus.google.com/share?url=${window.location.href}`}
+          target="_blank"
+          title="Googleplus Share"
+          rel="noreferrer"
+        >
+          <img
+            alt=""
+            className="ml-2"
+            src="https://res.cloudinary.com/soundclash/image/asset/googleplus-share-1ff908728ed97a30172569f2433f43b9.svg"
+            width="20"
+          />
+        </a>
+      </span>
+    </div>
+  );
+};
 class Clash extends Component {
   opponent(clash) {
     if (clash.opponent) {
@@ -65,6 +121,7 @@ class Clash extends Component {
               <CountLabel label="Track" count={clash.tracks_count} />
             </span>
           </div>
+          <SocialMediaIcons clash={Clash} />
         </div>
       </main>
     );

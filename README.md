@@ -70,6 +70,7 @@ The pattern is to avoid using connected redux components or containers unless ne
 
 # TODO
 ## Bug
+- Playlist broken - add a sanity test!
 - Comment mailer URL (domain, path, page)
 - View Clash URL (domain)
 - Api Owner vs Null ??
@@ -77,10 +78,10 @@ The pattern is to avoid using connected redux components or containers unless ne
 
 ## Features
 - Adjust Email colors for dark mode ✅
+- Social media links! ✅
 - Accept youtube link from share link
 - Playlist music player!
 - Nudge player..
-- Social media links!
 - Twitter login
 
 
