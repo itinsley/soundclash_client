@@ -1,11 +1,29 @@
 import React, { Component, Fragment } from "react";
 import Avatar from "../shared/Avatar";
 import CountLabel from "../shared/CountLabel";
+import MetaTags from "react-meta-tags";
 
-const SocialMediaIcons = (clash) => {
-  const shareDescription = (clash) =>
-    `${clash.owner_name} vs ${clash.opponent_name} in a Soundclash:: ${clash.name}`;
+const description = (clash) => {
+  return (
+    `${clash.owner_name} and ${clash.opponent_name} laying down tracks in a Soundclash:: ${clash.name}.` +
+    ` ${clash.tracks_count} played so far..`
+  );
+};
 
+const Tags = ({ clash }) => {
+  const title = () => `Soundclash:: ${clash.name}`;
+
+  return (
+    <MetaTags>
+      <title>{title()}</title>
+      <meta name="description" content={description(clash)} />
+      <meta property="og:title" content={title()} />
+      <meta property="og:image" content={clash.image_url} />
+    </MetaTags>
+  );
+};
+
+const SocialMediaIcons = ({ clash }) => {
   return (
     <div className="pb-3">
       <span>
@@ -17,7 +35,6 @@ const SocialMediaIcons = (clash) => {
         >
           <img
             alt=""
-            class="u-display-inline-block u-s-ml-micro"
             src="https://res.cloudinary.com/soundclash/image/asset/facebook-share-4702e873848c86c2419993eaff72dbdb.svg"
             width="20"
           />
@@ -27,7 +44,7 @@ const SocialMediaIcons = (clash) => {
         <a
           href={`https://www.twitter.com/intent/tweet?url=${
             window.location.href
-          }&text=${shareDescription(clash)}&hashtags=soundclash`}
+          }&text=${description(clash)}&hashtags=soundclash`}
           target="_blank"
           title="Twitter Share"
           rel="noreferrer"
@@ -80,6 +97,7 @@ class Clash extends Component {
 
     return (
       <main className="container-fluid main-content mt-5 px-0">
+        <Tags clash={clash} />
         <div className="t-clash-id">{clash.id}</div>
         <div
           className="t-clash-header container mx-auto text-center "
@@ -121,7 +139,7 @@ class Clash extends Component {
               <CountLabel label="Track" count={clash.tracks_count} />
             </span>
           </div>
-          <SocialMediaIcons clash={Clash} />
+          <SocialMediaIcons clash={clash} />
         </div>
       </main>
     );
