@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Avatar from "../shared/Avatar";
 import CountLabel from "../shared/CountLabel";
 import MetaTags from "react-meta-tags";
+import OpponentAvatar from "../shared/OpponentAvatar";
 
 const description = (clash) => {
   return (
@@ -76,29 +77,12 @@ const SocialMediaIcons = ({ clash }) => {
   );
 };
 class Clash extends Component {
-  opponent(clash) {
-    if (clash.opponent) {
-      return (
-        <Fragment>
-          <strong>{clash.opponent.name}</strong>
-          <Avatar
-            user={clash.opponent}
-            description="Comment user avatar"
-            size="35"
-          />
-        </Fragment>
-      );
-    } else {
-      return clash.opponent_name;
-    }
-  }
   render() {
     const clash = this.props.clash;
 
     return (
       <main className="container-fluid main-content mt-5 px-0">
         <Tags clash={clash} />
-        <div className="t-clash-id">{clash.id}</div>
         <div
           className="t-clash-header container mx-auto text-center "
           style={{ maxWidth: "56.25rem" }}
@@ -116,7 +100,7 @@ class Clash extends Component {
               </span>
               <span>vs.</span>
               <span className="text-size-xx-small p-2">
-                {this.opponent(clash)}
+                {OpponentAvatar(clash)}
               </span>
             </div>
           </h6>

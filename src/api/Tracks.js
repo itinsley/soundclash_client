@@ -1,4 +1,7 @@
 import apiAuthenticatedPost from "./apiAuthenticatedPost";
+import apiGet from "./apiGet";
+
+const forClash = async (clashId) => await apiGet(`clashes/${clashId}/tracks`);
 
 /**
  *
@@ -21,5 +24,5 @@ const create = async (jwt, clashId, track) => {
   return await apiAuthenticatedPost(`clashes/${clashId}/tracks`, jwt, payload);
 };
 
-const tracks = { create };
+const tracks = { forClash, create };
 export default tracks;

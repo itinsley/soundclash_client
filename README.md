@@ -99,6 +99,7 @@ The pattern is to avoid using connected redux components or containers unless ne
 
 
 ## Tech Debt
+* Change API GET to find
 
 Questions for code review
 * Naming conventions - upper case for constructors and modules? lower case for functions generally. Lower case when default export == a single function?
