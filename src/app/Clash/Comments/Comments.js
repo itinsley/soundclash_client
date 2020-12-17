@@ -18,7 +18,7 @@ const DEFAULT_STATE = {
 
 const Comment = (props) => {
   const [state, setState] = useState(DEFAULT_STATE);
-  const { loginWithPopup } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   useEffect(() => setState(DEFAULT_STATE), []);
 
@@ -109,7 +109,11 @@ const Comment = (props) => {
             id="login"
             variant="link"
             className="btn btn-login-link"
-            onClick={loginWithPopup}
+            onClick={() => {
+              loginWithRedirect({
+                appState: { returnTo: window.location.pathname },
+              });
+            }}
           >
             Login to leave a comment
           </button>

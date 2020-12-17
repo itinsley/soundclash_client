@@ -25,7 +25,7 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
   const {
     user: auth0user,
     isAuthenticated,
-    loginWithPopup,
+    loginWithRedirect,
     logout,
     getAccessTokenSilently,
   } = useAuth0();
@@ -111,7 +111,9 @@ function Navigation({ dispatch, currentUser, currentUserError }) {
             id="login"
             className="btn-link nav-link"
             onClick={() => {
-              loginWithPopup();
+              loginWithRedirect({
+                appState: { returnTo: window.location.pathname },
+              });
             }}
           >
             Login/Sign Up

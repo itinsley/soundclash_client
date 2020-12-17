@@ -1,6 +1,5 @@
 {
   "domain": "soundclash.au.auth0.com",
   "clientId": "Tu8W50sESSq3SWZryRv8eCfhDTFmmQR9",
-  "audience": "https://soundcla.sh",
-  "apiOrigin": "http://localhost:3001"
+  "audience": "https://soundcla.sh"
 }

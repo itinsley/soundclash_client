@@ -92,6 +92,7 @@ The pattern is to avoid using connected redux components or containers unless ne
 ## Features
 - Adjust Email colors for dark mode ✅
 - Social media links! ✅
+- When Challenge is not challenge_sent, should invalidate accept button and instruct accordingly
 - Accept youtube link from share link
 - Playlist music player!
 - Nudge player..

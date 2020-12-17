@@ -30,7 +30,7 @@ const CreateClash = (props) => {
     "createClashYouTubeInput"
   );
 
-  const { isAuthenticated, loginWithPopup } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   const updateSessionState = (item) => {
     const newState = Object.assign({ ...sessionState }, item);
@@ -111,13 +111,13 @@ const CreateClash = (props) => {
     e.preventDefault();
 
     if (!isAuthenticated) {
-      loginWithPopup();
-      return;
+      loginWithRedirect({
+        appState: { returnTo: window.location.pathname },
+      });
     }
 
     const clash = buildClash();
 
-    console.log(clash, "clash to post");
     errorScrollRef.current.scrollIntoView({
       block: "end",
       behavior: "smooth",

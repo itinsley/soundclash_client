@@ -7,7 +7,7 @@ import ConnectedErrorAlert from "../../shared/ConnectedErrorAlert";
 import { actionContexts } from "../../../actions";
 
 const Upload = ({ clash, createTrack, clearError, apiError }) => {
-  const { isAuthenticated, loginWithPopup } = useAuth0();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   const [youTubeState, setYouTubeState] = useState(YouTubeInput.DEFAULT_STATE);
   const [commentText, setCommentText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,9 @@ const Upload = ({ clash, createTrack, clearError, apiError }) => {
   }, [clearError]);
 
   if (!isAuthenticated) {
-    loginWithPopup();
+    loginWithRedirect({
+      appState: { returnTo: window.location.pathname },
+    });
   }
 
   if (!clash.private_info.other_player) {
