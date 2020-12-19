@@ -7,7 +7,7 @@ import OpponentAvatar from "../shared/OpponentAvatar";
 const description = (clash) => {
   return (
     `${clash.owner_name} and ${clash.opponent_name} laying down tracks in a Soundclash:: ${clash.name}.` +
-    ` ${clash.tracks_count} played so far..`
+    ` ${clash.tracks_count} tracks played so far..`
   );
 };
 
@@ -19,7 +19,18 @@ const Tags = ({ clash }) => {
       <title>{title()}</title>
       <meta name="description" content={description(clash)} />
       <meta property="og:title" content={title()} />
+      <meta property="og:url" content={window.location.href} />
       <meta property="og:image" content={clash.image_url} />
+      <meta property="og:description" content={description(clash)} />
+      <meta property="og:type" content="website"></meta>
+      <meta property="og:site_name" content="Soundclash"></meta>
+
+      <meta name="twitter:title" content={title()} />
+      <meta name="twitter:url" content={window.location.href} />
+      <meta name="twitter:image" content={clash.image_url} />
+      <meta name="twitter:site" content="@soundcla__sh" />
+      <meta name="twitter:creator" content="@soundcla__sh" />
+      <meta name="twitter:card" content="summary" />
     </MetaTags>
   );
 };
