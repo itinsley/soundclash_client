@@ -12,7 +12,6 @@
 - Set proxy in package.json to use edge http://soundcla5h-edge.herokuapp.com or localhost if
   running local copy of soundclash server.
 - To get FB integration working you neet to setup a hostname alias to soundclash.test and run from port 3000 over SSL. Can't use Soundclash.dev as this is a reserved domain by google. soundclash.test:3000 is an approved callback URI for Facebook app.
-- App runs in /client i.e. - http://soundclash.test:3000/client
 
 ### SSL
   - Generally you can run on SSL on localhost but if you need to use a valid domain for testing
@@ -45,7 +44,7 @@ CI e2e's run against the 'edge' server
 
 1. Ensure server is up-to-date `git push edge`
 2. Ensure server fixtures are up-to-data `heroku run rake api_fixtures:generate --remote edge'
-3. Run tests against CI environment `BASE_URL=https://soundcla5h-edge.herokuapp.com/ npm run e2e` to identify issues with tests
+3. Run tests against CI environment `BASE_URL=https://soundcla5h-client.herokuapp.com/ npm run e2e` to identify issues with tests
 4. Run tests against local react environment `npm run e2e` to debug
 
 ## Fixtures
