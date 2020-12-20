@@ -6,11 +6,37 @@ import ClashApi from "../../api/Clashes";
 import Loading from "../shared/Loading";
 import AcceptChallengeActionComponent from "./AcceptChallengeActionComponent";
 import history from "../../history";
+import { Link } from "react-router-dom";
 
 const Challenge = (props) => {
   const [clash, setClash] = useState(null);
   const [loading, setLoading] = useState(true);
   const uniqueRef = props.match.params.uniqueRef;
+
+  const AcceptChallengeWrapper = () => {
+    if (clash.state !== "challenge_sent") {
+      return (
+        <div>
+          <div className="alert alert-success alert-dismissible" role="alert">
+            This clash has already been accepted
+          </div>
+          <Link className="btn btn-dark btn-sm" to="/">
+            View my clashes
+          </Link>
+        </div>
+      );
+    }
+
+    return (
+      <AcceptChallengeActionComponent
+        currentUser={props.currentUser}
+        jwt={props.jwt}
+        clash={clash}
+        uniqueRef={uniqueRef}
+        onSuccess={() => history.push(`/clashes/${clash.id}`)}
+      />
+    );
+  };
 
   useEffect(() => {
     loadChallenge(uniqueRef);
@@ -42,12 +68,7 @@ const Challenge = (props) => {
         <h2 className="u-text-truncate">{clash.name}</h2>
 
         <div className="pb-3">
-          <AcceptChallengeActionComponent
-            currentUser={props.currentUser}
-            jwt={props.jwt}
-            uniqueRef={uniqueRef}
-            onSuccess={() => history.push(`/clashes/${clash.id}`)}
-          />
+          <AcceptChallengeWrapper />
         </div>
 
         <div className="u-s-mb-base">
