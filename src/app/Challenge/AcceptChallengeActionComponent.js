@@ -25,7 +25,7 @@ const AcceptChallengeActionComponent = ({
     <Fragment>
       <ErrorAlertContainer errors={errors} errorMessage={errorMessage} />
       <button
-        className="t-comment-submit btn btn-dark btn-sm"
+        className="btn btn-dark btn-sm"
         type="submit"
         onClick={async () => {
           setAcceptButtonLoading(true);

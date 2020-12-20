@@ -9,7 +9,7 @@ module.exports = {
       .attributeEquals(
         "meta[name='description']",
         "content",
-        "Api Owner and Api Opponent laying down tracks in a Soundclash:: API::with_history. 6 played so far.."
+        "Api Owner and Api Opponent laying down tracks in a Soundclash:: API::with_history. 6 tracks played so far.."
       )
       .verify.attributeEquals(
         "meta[property='og:title']",
