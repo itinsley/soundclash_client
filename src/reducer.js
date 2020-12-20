@@ -69,6 +69,14 @@ function reducer(state = defaultState, action) {
           loading: false,
         },
       };
+    case "SET_CLASH_LOADING":
+      return {
+        ...state,
+        currentClash: {
+          ...state.currentClash,
+          data: { ...state.currentClash.data, id: action.clashId },
+        },
+      };
     case "SET_CURRENT_CLASH":
       return {
         ...state,

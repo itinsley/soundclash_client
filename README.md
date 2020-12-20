@@ -82,16 +82,12 @@ The pattern is to avoid using connected redux components or containers unless ne
 
 # TODO
 ## Bug
-- Playlist broken - add a sanity test!
-- Comment mailer URL (domain, path, page)
-- View Clash URL (domain)
-- Api Owner vs Null ??
-
+- Memory leak in Avatar
 
 ## Features
 - Adjust Email colors for dark mode ✅
 - Social media links! ✅
-- When Challenge is not challenge_sent, should invalidate accept button and instruct accordingly
+- When Challenge is not challenge_sent, should invalidate accept button and instruct accordingly ✅
 - Accept youtube link from share link
 - Playlist music player!
 - Nudge player..

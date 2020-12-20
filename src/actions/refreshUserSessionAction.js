@@ -1,7 +1,7 @@
 import UserApi from "../api/Users";
-import { fetchMyClashesAction } from ".";
+import { fetchMyClashesAction, refreshClashAction } from ".";
 
-const refreshUserSession = (jwt, auth0User) => async (dispatch) => {
+const refreshUserSession = (jwt, auth0User) => async (dispatch, getState) => {
   const addProperties = async (soundClashUser, auth0User) => {
     if (soundClashUser.image_url || !auth0User.picture) {
       return soundClashUser;
@@ -12,6 +12,8 @@ const refreshUserSession = (jwt, auth0User) => async (dispatch) => {
       image_url: auth0User.picture,
     });
   };
+
+  const state = getState();
 
   try {
     const currentUser = await UserApi.getOrCreateCurrentUser(jwt).then(
@@ -34,6 +36,7 @@ const refreshUserSession = (jwt, auth0User) => async (dispatch) => {
   }
 
   dispatch(fetchMyClashesAction);
+  if (state.currentClash.data) dispatch(refreshClashAction);
 };
 
 export default refreshUserSession;

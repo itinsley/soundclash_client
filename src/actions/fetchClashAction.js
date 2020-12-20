@@ -10,6 +10,10 @@ const fetch = async (clashId, state) => {
 };
 
 const fetchClash = (clashId) => async (dispatch, getState) => {
+  // To avoid race condition with user Auth, set the ID of the clash being retrieved immediately
+  // so that clash can be reloaded after Auth is completed
+  dispatch({ type: "SET_CLASH_LOADING", clashId });
+
   const clash = await fetch(clashId, getState());
   if (clash.rounds.length > 0) {
     const round = clash.rounds[clash.rounds.length - 1];
