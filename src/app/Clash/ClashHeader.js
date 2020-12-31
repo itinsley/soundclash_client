@@ -36,11 +36,14 @@ const Tags = ({ clash }) => {
 };
 
 const SocialMediaIcons = ({ clash }) => {
+  const target = `${process.env.REACT_APP_SOUNDCLASH_API_BASE_URI}/content/${window.location.pathname}`;
+  const _description = description(clash);
+
   return (
     <div className="pb-3">
       <span>
         <a
-          href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=${target}`}
           target="_blank"
           title="Facebook Share"
           rel="noreferrer"
@@ -54,9 +57,7 @@ const SocialMediaIcons = ({ clash }) => {
       </span>
       <span>
         <a
-          href={`https://www.twitter.com/intent/tweet?url=${
-            window.location.href
-          }&text=${description(clash)}&hashtags=soundclash`}
+          href={`https://www.twitter.com/intent/tweet?url=${target}&text=${_description}&hashtags=soundclash`}
           target="_blank"
           title="Twitter Share"
           rel="noreferrer"
@@ -65,21 +66,6 @@ const SocialMediaIcons = ({ clash }) => {
             alt=""
             className="ml-2"
             src="https://res.cloudinary.com/soundclash/image/asset/twitter-share-1d435796085c7644b3acee055c898e3e.svg"
-            width="20"
-          />
-        </a>
-      </span>
-      <span>
-        <a
-          href={`https://plus.google.com/share?url=${window.location.href}`}
-          target="_blank"
-          title="Googleplus Share"
-          rel="noreferrer"
-        >
-          <img
-            alt=""
-            className="ml-2"
-            src="https://res.cloudinary.com/soundclash/image/asset/googleplus-share-1ff908728ed97a30172569f2433f43b9.svg"
             width="20"
           />
         </a>
