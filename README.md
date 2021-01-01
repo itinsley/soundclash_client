@@ -85,7 +85,6 @@ The pattern is to avoid using connected redux components or containers unless ne
 - Memory leak in Avatar
 
 ## Features
-- Use Sendgrid API Keys
 - Accept youtube link from share link
 - Playlist music player!
 - Nudge player..
@@ -98,3 +97,5 @@ The pattern is to avoid using connected redux components or containers unless ne
 Questions for code review
 * Naming conventions - upper case for constructors and modules? lower case for functions generally. Lower case when default export == a single function?
 * Inconsistency between approaches - createClash calls API directly and currentUser updates via action/redux
+* Properly understanding reducers - should I have one or many? Is it ok for the action to manipulate the state and use a more general purpose reducer to actually update the state? i..e refreshUserAction
+
