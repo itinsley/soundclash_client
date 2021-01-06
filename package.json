@@ -25,6 +25,7 @@
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
     "react-edit-text": "^2.1.3",
+    "react-ga": "^3.3.0",
     "react-icons": "^3.5.0",
     "react-image": "^4.0.3",
     "react-jsonschema-form": "^1.3.0",

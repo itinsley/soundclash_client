@@ -10,8 +10,10 @@ import Clash from "../src/app/Clash/Clash";
 import ClashPlaylist from "../src/app/Clash/ClashPlaylist";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./history";
+import "./app/shared/GoogleAnalytics";
 import UserUnsubscribe from "./app/UserUnsubscribe/UserUnsubscribe";
 import VersionTag from "./app/VersionTag";
+import ReactGA from "react-ga";
 
 // styles
 import "./App.css";
@@ -21,10 +23,14 @@ import { Provider } from "react-redux";
 import reducer from "./reducer";
 import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
+
+const trackingId = "UA-55070071-1";
 const store = createStore(reducer, applyMiddleware(thunk));
 
 const App = () => {
   const { isLoading, error } = useAuth0();
+
+  ReactGA.initialize(trackingId);
 
   if (error) {
     return <div>Oops... {error.message}</div>;
