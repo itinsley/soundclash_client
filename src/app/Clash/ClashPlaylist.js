@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import loadingImg from "../../assets/loading.svg";
 import ConnectStore from "../../lib/ConnectStore";
 import { ClashApi, TrackApi } from "../../api";
@@ -24,7 +24,7 @@ const ClashPlaylist = ({ match }) => {
     });
   };
 
-  if (clash.loading == true) {
+  if (clash.loading === true) {
     return (
       <div className="container-fluid bg-grey text-center">
         <img src={loadingImg} alt="waiting.." />

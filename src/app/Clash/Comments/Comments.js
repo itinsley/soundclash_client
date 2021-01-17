@@ -1,5 +1,4 @@
 import React, { useState, Fragment, useEffect } from "react";
-import Button from "react-bootstrap/Button";
 import CommentItem from "./CommentItem";
 import Avatar from "../../shared/Avatar";
 import SpinnerButtonInner from "../../shared/SpinnerButtonInner";

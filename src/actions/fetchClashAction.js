@@ -1,5 +1,4 @@
 import ClashApi from "../api/Clashes";
-import rounds from "../api/Rounds";
 
 const fetch = async (clashId, state) => {
   if (state.jwt) {

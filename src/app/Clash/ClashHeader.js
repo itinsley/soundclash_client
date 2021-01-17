@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import Avatar from "../shared/Avatar";
 import CountLabel from "../shared/CountLabel";
 import MetaTags from "react-meta-tags";

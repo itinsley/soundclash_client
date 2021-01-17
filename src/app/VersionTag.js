@@ -9,7 +9,7 @@ const VersionTag = () => {
     InfoApi.get().then((info) => setEnv(info.environment));
   }, []);
 
-  if (env == null || env == "production") {
+  if (env === null || env === "production") {
     return null;
   }
 
