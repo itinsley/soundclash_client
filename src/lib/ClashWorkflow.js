@@ -23,14 +23,14 @@ const state = (clash, player) => {
 
   if (clash.state === "awaiting_owner") {
     if (player === null) {
-      return STATES.Hidden;
+      return STATES.DisplayInfo;
     }
     if (clash.owner.id === player.id) {
       return STATES.Upload;
     } else if (clash.opponent === player) {
-      return STATES.AwaitingPlayer;
+      return STATES.DisplayInfo;
     } else {
-      return STATES.Hidden;
+      return STATES.DisplayInfo;
     }
   }
   if (clash.state === "awaiting_opponent") {

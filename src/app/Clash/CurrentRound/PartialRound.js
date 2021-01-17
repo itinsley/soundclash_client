@@ -6,7 +6,7 @@ const PartialRound = (props) => {
   const waitingForDescription = props.waitingForDescription;
 
   return (
-    <div className="container-fluid bg-grey px-0">
+    <div className="t-current-round container-fluid bg-grey px-0">
       <div className="row p-4 container-gutters">
         <div className="col-sm-6 text-center p-3">
           <Track track={previousTrack} />
