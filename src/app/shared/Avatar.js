@@ -24,6 +24,8 @@ class Avatar extends Component {
     const description = this.props.description;
     const size = this.props.size;
 
+    if (!user) return null;
+
     if (user.image_url) {
       return (
         <Img
