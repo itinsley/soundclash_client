@@ -89,11 +89,11 @@ describe("Current round workflow - ", () => {
       expect(state(awaitingOwner, owner)).toEqual(STATES.Upload);
     });
     test("viewed by opponent should display info", () => {
-      expect(state(awaitingOwner, opponent)).toEqual(STATES.AwaitingPlayer);
+      expect(state(awaitingOwner, opponent)).toEqual(STATES.DisplayInfo);
     });
-    test("viewed by spectator should be hidden", () => {
-      expect(state(awaitingOwner, spectator)).toEqual(STATES.AwaitingPlayer);
-      expect(state(awaitingOwner, null)).toEqual(STATES.AwaitingPlayer);
+    test("viewed by spectator should display info", () => {
+      expect(state(awaitingOwner, spectator)).toEqual(STATES.DisplayInfo);
+      expect(state(awaitingOwner, null)).toEqual(STATES.DisplayInfo);
     });
   });
 
