@@ -12,7 +12,6 @@
 - Set proxy in package.json to use edge http://soundcla5h-edge.herokuapp.com or localhost if
   running local copy of soundclash server.
 - To get FB integration working you neet to setup a hostname alias to soundclash.test and run from port 3000 over SSL. Can't use Soundclash.dev as this is a reserved domain by google. soundclash.test:3000 is an approved callback URI for Facebook app.
-- Auth0 - currently sharing the same auth service between prod, test and even local dev, this is a _bad_ idea and needs to be fixed up by adding different sets of credentials to auth_config.json or using env variables.
 
 ### SSL
   - Generally you can run on SSL on localhost but if you need to use a valid domain for testing
