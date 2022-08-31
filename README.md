@@ -25,7 +25,41 @@
     SSL_KEY_FILE=./certs/server.key
 
    - Add cert to system - i.e for OSX https://support.securly.com/hc/en-us/articles/206058318-How-to-install-the-Securly-SSL-certificate-on-Mac-OSX-
-  
+
+## Configuration
+Copy the `env.example` file to `.env` or equivalent for other environments
+
+### Auth0
+
+Application uses Auth0 for authentication. Set the following credentials
+
+`REACT_APP_AUTH0_AUDIENCE` must match `AUTH0_API_IDENTIFIER` on the API
+
+`REACT_APP_AUTH0_DOMAIN` must match `AUTH0_DOMAIN` on the API
+
+## Errors and Debugging
+### "Failed to retrieve user session" 
+This is normally due to Auth0 having logged you in but the API doesn't recognise you (either due to a bug or out of sync data).
+To clear this, delete the relevant auth0 cookies in Chrome Settings: Privacy and Security > See all site data...
+
+
+## Environments
+
+### Staging
+* Client: https://www.soundclash-staging.com/ (Vercel)
+* API: https://soundclash-api-edge.herokuapp.com/
+* DNS/Proxy: Cloudflare
+* Registrar: name.com
+
+### Production
+* Client: soundcla.sh (heroku:soundclash-client)
+* API: https://soundclash-api.herokuapp.com
+* DNS/Proxy: Heroku for SSL
+* Registrar: name.com
+
+### Edge
+Edge is effectively staging. Any Edge environments should be migrated to Staging as we move to Vercel and away from Heroku
+
 ## Start
 
     npm start
@@ -38,14 +72,24 @@
 
 This project depends on e2e tests. Unit tests are used for discrete logic when appropriate but most plumbing, rendering and integration are done through integration tests against a live API. As a result, continuous deployment gets stuck behind a failing CI.
 
-CI e2e's run against the 'edge' server
+## CI 
+CI is currently broken as I cannot access Cloudbees/Codeship at all.
 
-## Fixing/debugging e2e tests
+## Running e2e tests
+Run tests against server instances for a CI e2e test
 
 1. Ensure server is up-to-date `git push edge`
 2. Ensure server fixtures are up-to-data `heroku run rake api_fixtures:generate --remote edge'
-3. Run tests against CI environment `BASE_URL=https://soundcla5h-client.herokuapp.com/ npm run e2e` to identify issues with tests
-4. Run tests against local react environment `npm run e2e` to debug
+3. Run tests against CI environment `BASE_URL=https://www.soundclash-staging.com/ npm run e2e` to identify issues with tests
+
+## 
+Run tests against local react environment `npm run e2e` to debug
+
+1. Ensure .env files are created for 'React Client' and 'Rails API' - see notes on AUTH0 configuration
+2. Start API: `rails server -p3001`
+3. Start Client `npm start`
+4. Run tests `npm run e2e`
+
 
 ## Fixtures
 

@@ -57,7 +57,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "chromedriver": "^86.0.0",
+    "chromedriver": "^104.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "prettier": "2.1.2"
