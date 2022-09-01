@@ -116,7 +116,7 @@ class Clash extends Component {
                 alt="Tracks Icon"
                 src="https://res.cloudinary.com/soundclash/image/asset/vinyl-record-a40f320b60a2c98f4e4479f85ee1d218.svg"
                 width="20"
-              />
+              />&nbsp;
               <CountLabel label="Track" count={clash.tracks_count} />
             </span>
           </div>
