@@ -1,5 +1,5 @@
 import React from "react";
-import getUrlVars from "./getUrlVars";
+import getUrlVars from "../../lib/getUrlVars";
 
 const embedUrl = (url) => {
   try {

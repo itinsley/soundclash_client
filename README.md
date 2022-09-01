@@ -13,6 +13,10 @@
   running local copy of soundclash server.
 - To get FB integration working you neet to setup a hostname alias to soundclash.test and run from port 3000 over SSL. Can't use Soundclash.dev as this is a reserved domain by google. soundclash.test:3000 is an approved callback URI for Facebook app.
 
+### Linting
+* Install prettier and ESLint plugins for VSCode
+* Set prettier to format on save
+
 ### SSL
   - Generally you can run on SSL on localhost but if you need to use a valid domain for testing
    - Setup domain in /etc/hosts

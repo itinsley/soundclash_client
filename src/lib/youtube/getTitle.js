@@ -1,5 +1,5 @@
 import axios from "axios";
-import getUrlVars from "./getUrlVars";
+import getUrlVars from "../../lib/getUrlVars";
 
 const getTitle = async (url) => {
   const youTubeId = getUrlVars(url)["v"];
