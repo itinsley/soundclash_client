@@ -46,12 +46,14 @@ To clear this, ensure you are using the correct API, if it persists delete the r
 ## Environments
 
 ### Staging
+* Git branch: staging
 * Client: https://www.soundclash-staging.com/ (Vercel)
 * API: https://soundclash-api-edge.herokuapp.com/
 * DNS/Proxy: Cloudflare
 * Registrar: name.com
 
 ### Production
+* Git branch: master
 * Client: soundcla.sh (heroku:soundclash-client)
 * API: https://soundclash-api.herokuapp.com
 * DNS/Proxy: Heroku for SSL
