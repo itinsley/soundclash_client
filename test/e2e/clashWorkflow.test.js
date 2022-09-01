@@ -27,7 +27,6 @@ module.exports = {
     browser.click(".navbar-brand");
     browser.click("partial link text", "API::awaiting_owner");
     browser.verify.containsText(".t-clash-status", "Waiting for Api Owner");
-    browser.verify.elementPresent(".t-current-round iframe");
   },
 
   "My Clashes:: logged in as clash owner": async function (browser) {

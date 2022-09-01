@@ -74,27 +74,29 @@ Edge is effectively staging. Any Edge environments should be migrated to Staging
 ## Unit tests
   `npm test` 
 
+## CI 
+CI is currently broken and not integrated. Run CI Locally
+
 ## e2e Tests
 
-This project depends on e2e tests. Unit tests are used for discrete logic when appropriate but most plumbing, rendering and integration are done through integration tests against a live API. As a result, continuous deployment gets stuck behind a failing CI.
+This project depends on e2e tests. Unit tests are used for discrete logic when appropriate but most plumbing, rendering and integration are done through integration tests against a live API. 
 
-## CI 
-CI is currently broken as I cannot access Cloudbees/Codeship at all.
+### Running e2e tests
 
-## Running e2e tests
-Run tests against server instances for a CI e2e test
+Run tests against local react environment `npm run e2e` to debug
+
+1. Ensure .env files are created for 'React Client' and 'Rails API' - see notes on AUTH0 configuration
+2. Create the fixtures in soundclash_api
+2. Start API: `rails server -p3001`
+3. Start Client `npm start`
+4. Run tests `npm run e2e`
+
+### Running e2e tests against a server
+You can Run the tests against server instances for a CI e2e test
 
 1. Ensure server is up-to-date `git push edge`
 2. Ensure server fixtures are up-to-data `heroku run rake api_fixtures:generate --remote edge'
 3. Run tests against CI environment `BASE_URL=https://www.soundclash-staging.com/ npm run e2e` to identify issues with tests
-
-## 
-Run tests against local react environment `npm run e2e` to debug
-
-1. Ensure .env files are created for 'React Client' and 'Rails API' - see notes on AUTH0 configuration
-2. Start API: `rails server -p3001`
-3. Start Client `npm start`
-4. Run tests `npm run e2e`
 
 
 ## Fixtures
