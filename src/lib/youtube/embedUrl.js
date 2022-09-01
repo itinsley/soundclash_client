@@ -1,9 +1,9 @@
 import React from "react";
-import getUrlVars from "../../lib/getUrlVars";
+import getUrlId from "./getUrlId";
 
 const embedUrl = (url) => {
   try {
-    const youTubeId = getUrlVars(url)["v"];
+    const youTubeId = getUrlId(url);
     return "https://www.youtube.com/embed/" + youTubeId + "?showinfo=0";
   } catch (e) {
     return (

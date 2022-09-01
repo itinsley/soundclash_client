@@ -1,8 +1,8 @@
 import axios from "axios";
-import getUrlVars from "../../lib/getUrlVars";
+import getUrlId from "./getUrlId";
 
 const getTitle = async (url) => {
-  const youTubeId = getUrlVars(url)["v"];
+  const youTubeId = getUrlId(url);
   const baseUrl = "https://content.googleapis.com/youtube/v3";
   const key = process.env.REACT_APP_YOUTUBE_API_KEY;
 
