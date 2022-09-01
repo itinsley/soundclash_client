@@ -7,10 +7,10 @@ function Round({ round }) {
   return (
     <div className="px-0">
       <div className={rowClassNames}>
-        <div className="t-track-owner col-sm-6 text-center p-3">
+        <div className="t-track-owner col-sm-6 order-2 order-sm-1 text-center p-3">
           <Track track={round.owner_track} />
         </div>
-        <div className="col-sm-6 text-center p-3">
+        <div className="col-sm-6 order-1 order-sm-2 text-center p-3">
           <Track track={round.opponent_track} />
         </div>
       </div>

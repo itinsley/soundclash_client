@@ -17,7 +17,7 @@ class CurrentRound extends Component {
     const state = ClashWorkflow.state(clash, currentUser);
 
     const props = { clash };
-    const previousTrack = clash.previous_track;
+    const ownerTrack = clash.owner_track;
 
     switch (state) {
       case ClashWorkflow.STATES.ReadyToAccept:
@@ -27,7 +27,7 @@ class CurrentRound extends Component {
       case ClashWorkflow.STATES.DisplayInfo:
         return (
           <PartialRound
-            previousTrack={previousTrack}
+            ownerTrack={ownerTrack}
             waitingForDescription={clash.waiting_for_description}
           />
         );
