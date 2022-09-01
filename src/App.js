@@ -71,7 +71,6 @@ const App = () => {
             />
             <Route path="/" render={(s) => <Home />} />
           </Switch>
-          <div id="version">Ver: 220830</div>
         </div>
       </Router>
     </Provider>

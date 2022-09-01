@@ -39,19 +39,21 @@ Application uses Auth0 for authentication. Set the following credentials
 
 ## Errors and Debugging
 ### "Failed to retrieve user session" 
-This is normally due to Auth0 having logged you in but the API doesn't recognise you (either due to a bug or out of sync data).
-To clear this, delete the relevant auth0 cookies in Chrome Settings: Privacy and Security > See all site data...
+This is normally due to Auth0 having logged you in but the API doesn't recognise you (either due to API not running, invalid API config, a bug or out of sync data).
+To clear this, ensure you are using the correct API, if it persists delete the relevant auth0 cookies in Chrome Settings: Privacy and Security > See all site data...
 
 
 ## Environments
 
 ### Staging
+* Git branch: staging
 * Client: https://www.soundclash-staging.com/ (Vercel)
 * API: https://soundclash-api-edge.herokuapp.com/
 * DNS/Proxy: Cloudflare
 * Registrar: name.com
 
 ### Production
+* Git branch: master
 * Client: soundcla.sh (heroku:soundclash-client)
 * API: https://soundclash-api.herokuapp.com
 * DNS/Proxy: Heroku for SSL

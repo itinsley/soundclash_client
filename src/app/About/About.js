@@ -38,6 +38,9 @@ function About() {
         <a href="mailto:contact@soundcla.sh">contact@soundcla.sh</a>
       </div>
       <p className="my-5" />
+
+      <div className="mt-10" id="version">Ver: 220901</div>
+
     </div>
   );
 
