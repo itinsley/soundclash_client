@@ -71,7 +71,9 @@ const Upload = ({ clash, createTrack, clearError, apiError }) => {
 
             <div style={{ maxWidth: "37.5rem" }}>
               <form onSubmit={handleSubmit}>
-                <ConnectedErrorAlert actionContext={actionContexts.CREATE_TRACK} />
+                <ConnectedErrorAlert
+                  actionContext={actionContexts.CREATE_TRACK}
+                />
 
                 <div className="row py-2 px-0 mx-0">
                   <YouTubeInput.Component
@@ -116,21 +118,21 @@ const Upload = ({ clash, createTrack, clearError, apiError }) => {
             </div>
           </div>
         </div>
-        <OwnerTrack {...{ownerTrack}} />
+        <OwnerTrack {...{ ownerTrack }} />
       </div>
     </div>
   );
 };
 
-const OwnerTrack=({ownerTrack})=>{
-  // We only need to show this track if it is the owner's track. If the last track was the opponents 
+const OwnerTrack = ({ ownerTrack }) => {
+  // We only need to show this track if it is the owner's track. If the last track was the opponents
   // it will show in the history as a completed round
-  if (!ownerTrack) return null
+  if (!ownerTrack) return null;
 
-  return(
+  return (
     <div className="col-sm-12 text-center p-3 container-gutters">
-      <Track track={ownerTrack}/>
+      <Track track={ownerTrack} />
     </div>
-  ) 
-}
+  );
+};
 export default Upload;
