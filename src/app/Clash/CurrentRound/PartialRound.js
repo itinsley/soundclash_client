@@ -12,22 +12,22 @@ const PartialRound = (props) => {
           <h2 className="text-truncate p-4 clash-item__header">Waiting...</h2>
           {waitingForDescription}
         </div>
-          <PreviousTrack {...{ownerTrack}} />
+        <PreviousTrack {...{ ownerTrack }} />
       </div>
     </div>
   );
 };
 
-const PreviousTrack=({ownerTrack})=>{
-  // We only need to show this track if it is the owner's track. If the last track was the opponents 
+const PreviousTrack = ({ ownerTrack }) => {
+  // We only need to show this track if it is the owner's track. If the last track was the opponents
   // it will show in the history as a completed round
-  if (!ownerTrack) return null
+  if (!ownerTrack) return null;
 
-  return(
+  return (
     <div className="col-sm-6 order-2 order-sm-1 text-center p-3">
-      <Track track={ownerTrack}/>
+      <Track track={ownerTrack} />
     </div>
-  ) 
-}
+  );
+};
 
 export default PartialRound;
