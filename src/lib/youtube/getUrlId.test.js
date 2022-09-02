@@ -1,8 +1,14 @@
 import getUrlId from "./getUrlId";
 
 describe("getUrlId", () => {
-  test("should parse format for www.youtube.com", () => {
+  test("should parse format for youtube.com", () => {
     expect(getUrlId("https://www.youtube.com/watch?v=H81VWKBt45I")).toEqual(
+      "H81VWKBt45I"
+    );
+    expect(getUrlId("https://m.youtube.com/watch?v=H81VWKBt45I")).toEqual(
+      "H81VWKBt45I"
+    );
+    expect(getUrlId("https://youtube.com/watch?v=H81VWKBt45I")).toEqual(
       "H81VWKBt45I"
     );
   });

@@ -1,7 +1,7 @@
 import getUrlVars from "../getUrlVars";
 
 const getUrlId = (url) => {
-  if (url.match(/.*www.youtube.com.*/)) {
+  if (url.match(/.*youtube.com.*/)) {
     return getUrlVars(url)["v"];
   }
 
