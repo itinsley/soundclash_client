@@ -53,7 +53,7 @@ const Component = ({ state, setState }) => {
       });
     } catch (error) {
       e.target.setCustomValidity(
-        "Invalid YouTube URL. Please review and try again."
+        "Invalid YouTube URL. Please review and try again.",
       );
     }
   };

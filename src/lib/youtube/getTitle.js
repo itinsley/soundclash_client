@@ -7,7 +7,7 @@ const getTitle = async (url) => {
   const key = process.env.REACT_APP_YOUTUBE_API_KEY;
 
   const response = await axios.get(
-    `${baseUrl}/videos?id=${youTubeId}&part=snippet&key=${key}`
+    `${baseUrl}/videos?id=${youTubeId}&part=snippet&key=${key}`,
   );
   if (response.data.items.length > 0) {
     return response.data.items[0].snippet.title;

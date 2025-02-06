@@ -101,8 +101,8 @@ describe("When only errors are provided", () => {
   test("it should show default error message", () => {
     expect(
       wrapper.contains(
-        "Unhandled exception occurred. Please try again. If the problem persists please email support@soundcla.sh"
-      )
+        "Unhandled exception occurred. Please try again. If the problem persists please email support@soundcla.sh",
+      ),
     ).toBe(true);
   });
 });

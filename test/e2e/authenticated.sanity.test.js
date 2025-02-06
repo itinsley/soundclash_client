@@ -3,7 +3,7 @@ const { BASE_URL, OWNER, PASSWORD } = require("../helpers/constants");
 
 module.exports = {
   "Logged in Sanity Test:: - Check various components": async function (
-    browser
+    browser,
   ) {
     // User details
     await browser.url(BASE_URL);

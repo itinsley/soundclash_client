@@ -33,7 +33,7 @@ describe("When error action is dispatched for different context", () => {
       setErrorAction({
         errorMessage: "stubbed error message",
         context: "ERROR_CONTEXT_B",
-      })
+      }),
     );
   });
   test("it will not show an error", () => {
@@ -49,7 +49,7 @@ describe("When error action is dispatched for the specified context", () => {
       setErrorAction({
         errorMessage: "stubbed error message",
         context: "ERROR_CONTEXT_A",
-      })
+      }),
     );
   });
   test("it will show an error", () => {

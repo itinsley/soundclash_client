@@ -19,7 +19,7 @@ const refreshUserSession = (jwt, auth0User) => async (dispatch, getState) => {
     const currentUser = await UserApi.getOrCreateCurrentUser(jwt).then(
       (soundClashUser) => {
         return addProperties(soundClashUser, auth0User);
-      }
+      },
     );
 
     dispatch({

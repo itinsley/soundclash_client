@@ -34,7 +34,7 @@ const CurrentUser = ({ currentUser, dispatch }) => {
       updateCurrentUserAction({
         ...currentUser,
         [propertyName]: value,
-      })
+      }),
     );
   };
 

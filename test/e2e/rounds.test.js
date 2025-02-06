@@ -22,7 +22,7 @@ module.exports = {
       browser.waitForElementVisible(".t-row-detail-2");
       browser.assert.containsText(
         ".t-row-detail-2 h2",
-        "With History:: Track 1"
+        "With History:: Track 1",
       );
     });
   },

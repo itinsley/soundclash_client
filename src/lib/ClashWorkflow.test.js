@@ -45,16 +45,16 @@ describe("Current round workflow - ", () => {
 
     test("viewed by anyone should be hidden", () => {
       expect(state(challengeSentToUnregisteredPlayer, spectator)).toEqual(
-        STATES.Hidden
+        STATES.Hidden,
       );
       expect(state(challengeSentToUnregisteredPlayer, owner)).toEqual(
-        STATES.Hidden
+        STATES.Hidden,
       );
       expect(state(challengeSentToUnregisteredPlayer, opponent)).toEqual(
-        STATES.Hidden
+        STATES.Hidden,
       );
       expect(state(challengeSentToUnregisteredPlayer, null)).toEqual(
-        STATES.Hidden
+        STATES.Hidden,
       );
     });
   });

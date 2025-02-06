@@ -10,7 +10,9 @@ import history from "./history";
 
 const onRedirectCallback = (appState) => {
   history.push(
-    appState && appState.returnTo ? appState.returnTo : window.location.pathname
+    appState && appState.returnTo
+      ? appState.returnTo
+      : window.location.pathname,
   );
 };
 
@@ -24,7 +26,7 @@ ReactDOM.render(
   >
     <App />
   </Auth0Provider>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );
 
 // If you want your app to work offline and load faster, you can change

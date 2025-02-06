@@ -9,17 +9,17 @@ module.exports = {
       .attributeEquals(
         "meta[name='description']",
         "content",
-        "Api Owner and Api Opponent laying down tracks in a Soundclash:: API::with_history. 6 tracks played so far.."
+        "Api Owner and Api Opponent laying down tracks in a Soundclash:: API::with_history. 6 tracks played so far..",
       )
       .verify.attributeEquals(
         "meta[property='og:title']",
         "content",
-        "Soundclash:: API::with_history"
+        "Soundclash:: API::with_history",
       )
       .verify.attributeEquals(
         "meta[property='og:image']",
         "content",
-        "https://res.cloudinary.com/soundclash/image/youtube/c_fill_pad,g_auto,h_200,w_267/imTDWIZwEDU"
+        "https://res.cloudinary.com/soundclash/image/youtube/c_fill_pad,g_auto,h_200,w_267/imTDWIZwEDU",
       );
   },
 };

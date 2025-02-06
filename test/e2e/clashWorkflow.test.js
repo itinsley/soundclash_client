@@ -74,7 +74,7 @@ module.exports = {
     browser.verify.containsText(".t-clash-status", "Now it's your turn");
     browser.setValue(
       "input[name='youTubeUrl']",
-      "https://www.youtube.com/watch?v=-KIm0Je4phY"
+      "https://www.youtube.com/watch?v=-KIm0Je4phY",
     );
     browser.setValue("textarea[name='commentText']", "Owner's revenge");
     browser.waitForElementVisible(".t-track-title");
@@ -82,7 +82,7 @@ module.exports = {
     // Youtube integration, depends on track existing..
     browser.verify.containsText(
       ".t-track-title",
-      "Friends by Amii Stewart (12 in version - VERY CLEAR)"
+      "Friends by Amii Stewart (12 in version - VERY CLEAR)",
     );
     // Don't submit the track as this will break the tests next time.
 
@@ -94,17 +94,17 @@ module.exports = {
     browser.verify.elementPresent("iframe");
     browser.verify.containsText(
       ".t-track-opponent-container",
-      "Waiting for you"
+      "Waiting for you",
     );
     browser.verify.containsText(
       ".t-track-opponent-container",
-      "You have been challenged to a soundclash by Api Owner"
+      "You have been challenged to a soundclash by Api Owner",
     );
     browser.end();
   },
 
   "My Clashes:: challenge_sent - logged in spectator": async function (
-    browser
+    browser,
   ) {
     await browser.url(BASE_URL);
     await login(browser, SPECTATOR, PASSWORD);
@@ -118,15 +118,15 @@ module.exports = {
     browser.setValue("input[name='clashName']", "A new Clash Owner Clash..");
     browser.setValue(
       "input[name='opponentEmailAddress']",
-      "doesnt.exist@yet.com"
+      "doesnt.exist@yet.com",
     );
     browser.setValue(
       "input[name='youTubeUrl']",
-      "https://www.youtube.com/watch?v=-KIm0Je4phY"
+      "https://www.youtube.com/watch?v=-KIm0Je4phY",
     );
     browser.setValue(
       "textarea[name='commentText']",
-      "New clash for unregistered user"
+      "New clash for unregistered user",
     );
     browser.waitForElementVisible(".t-track-title");
     browser.click("button#createTrack");

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserAvatar from "react-user-avatar";
+// import UserAvatar from "react-user-avatar";
 import { Img } from "react-image";
 
 const colours = [
@@ -39,7 +39,7 @@ class Avatar extends Component {
       );
     }
 
-    return <UserAvatar size={size} name={user.name} colors={colours} />;
+    return <div size={size}>{user.name}</div>;
   }
 }
 

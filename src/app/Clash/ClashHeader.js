@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Avatar from "../shared/Avatar";
 import CountLabel from "../shared/CountLabel";
-import MetaTags from "react-meta-tags";
+// import MetaTags from "react-meta-tags";
 import OpponentAvatar from "../shared/OpponentAvatar";
 
 const description = (clash) => {
@@ -14,25 +14,25 @@ const description = (clash) => {
 const Tags = ({ clash }) => {
   const title = () => `Soundclash:: ${clash.name}`;
 
-  return (
-    <MetaTags>
-      <title>{title()}</title>
-      <meta name="description" content={description(clash)} />
-      <meta property="og:title" content={title()} />
-      <meta property="og:url" content={window.location.href} />
-      <meta property="og:image" content={clash.image_url} />
-      <meta property="og:description" content={description(clash)} />
-      <meta property="og:type" content="website"></meta>
-      <meta property="og:site_name" content="Soundclash"></meta>
+  return null;
+  // <MetaTags>
+  //   <title>{title()}</title>
+  //   <meta name="description" content={description(clash)} />
+  //   <meta property="og:title" content={title()} />
+  //   <meta property="og:url" content={window.location.href} />
+  //   <meta property="og:image" content={clash.image_url} />
+  //   <meta property="og:description" content={description(clash)} />
+  //   <meta property="og:type" content="website"></meta>
+  //   <meta property="og:site_name" content="Soundclash"></meta>
 
-      <meta name="twitter:title" content={title()} />
-      <meta name="twitter:url" content={window.location.href} />
-      <meta name="twitter:image" content={clash.image_url} />
-      <meta name="twitter:site" content="@soundcla__sh" />
-      <meta name="twitter:creator" content="@soundcla__sh" />
-      <meta name="twitter:card" content="summary" />
-    </MetaTags>
-  );
+  //   <meta name="twitter:title" content={title()} />
+  //   <meta name="twitter:url" content={window.location.href} />
+  //   <meta name="twitter:image" content={clash.image_url} />
+  //   <meta name="twitter:site" content="@soundcla__sh" />
+  //   <meta name="twitter:creator" content="@soundcla__sh" />
+  //   <meta name="twitter:card" content="summary" />
+  // </MetaTags>
+  // );
 };
 
 const SocialMediaIcons = ({ clash }) => {

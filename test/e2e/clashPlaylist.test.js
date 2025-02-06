@@ -10,12 +10,12 @@ module.exports = {
       browser.switchWindow(windows.value[1]);
       browser.assert.containsText(
         "h4",
-        "YouTube playlist. Hit play to listen."
+        "YouTube playlist. Hit play to listen.",
       );
       browser.assert.attributeEquals(
         "iframe",
         "title",
-        "Soundclash Playlist:: API::with_history"
+        "Soundclash Playlist:: API::with_history",
       );
     });
   },

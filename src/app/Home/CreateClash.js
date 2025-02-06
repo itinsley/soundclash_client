@@ -27,7 +27,7 @@ const CreateClash = (props) => {
 
   const [youTubeState, setYouTubeState] = useStickyState(
     YouTubeInput.DEFAULT_STATE,
-    "createClashYouTubeInput"
+    "createClashYouTubeInput",
   );
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -39,7 +39,7 @@ const CreateClash = (props) => {
 
   const [sessionState, setSessionState] = useStickyState(
     DEFAULT_SESSION_STATE,
-    LOCAL_STORAGE_STATE_KEY
+    LOCAL_STORAGE_STATE_KEY,
   );
   const [state, setState] = useState(DEFAULT_STATE);
 
@@ -51,7 +51,7 @@ const CreateClash = (props) => {
     const currentUser = props.currentUser;
     const name = currentUser ? currentUser.name : "John";
     e.target.setCustomValidity(
-      `Please provide a name for your clash such as '${name}'s Laidback tunes'`
+      `Please provide a name for your clash such as '${name}'s Laidback tunes'`,
     );
   };
 
@@ -62,7 +62,7 @@ const CreateClash = (props) => {
   const email_AfterChange = (e) => {
     if (!EmailValidator.validate(e.target.value)) {
       e.target.setCustomValidity(
-        "Please choose a valid email address for your opponent"
+        "Please choose a valid email address for your opponent",
       );
     } else {
       e.target.setCustomValidity("");
