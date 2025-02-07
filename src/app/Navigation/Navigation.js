@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import ConnectStore from "../../lib/ConnectStore";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import {
   Button,
   Collapse,

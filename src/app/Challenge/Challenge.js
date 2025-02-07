@@ -6,7 +6,7 @@ import ClashApi from "../../api/Clashes";
 import Loading from "../shared/Loading";
 import AcceptChallengeActionComponent from "./AcceptChallengeActionComponent";
 import history from "../../history";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const Challenge = (props) => {
   const [clash, setClash] = useState(null);

@@ -6,7 +6,8 @@ import InfoApi from "../api/Info";
 const VersionTag = () => {
   const [env, setEnv] = useState(null);
   useEffect(() => {
-    InfoApi.get().then((info) => setEnv(info.environment));
+    // InfoApi.get().then((info) => setEnv(info.environment));
+    InfoApi.get().then((info) => setEnv("xxx"));
   }, []);
 
   if (env === null || env === "production") {
